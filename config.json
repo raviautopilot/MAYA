@@ -1,0 +1,12 @@
+{
+  "port": 8080,
+  "root_email": "admin@mykanban.local",
+  "root_password_hash": "$2a$12$LJ3m4ys3Lk0TSwHAlehVHeFlQBDMRGMolvuhRyEO/QDKsftz0E6we",
+  "jwt_secret": "change-me-to-a-strong-random-secret-in-production",
+  "jwt_expiry_hours": 24,
+  "google_client_id": "",
+  "google_client_secret": "",
+  "google_redirect_url": "http://localhost:8080/api/v1/auth/google/callback",
+  "storage_dir": "./storage",
+  "log_file": "server.log"
+}

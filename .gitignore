@@ -1,0 +1,8 @@
+bin/
+coverage.out
+coverage.html
+storage/*.json
+!storage/storage.go
+!storage/storage_test.go
+server.log
+*.log

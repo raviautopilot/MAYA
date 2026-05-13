@@ -1,0 +1,96 @@
+@startuml MyKanban Data Model
+
+title MyKanban - Entity Relationship Diagram
+
+skinparam shadowing false
+
+entity "Project" as project {
+    * id : UUID <<PK>>
+    --
+    * name : string
+    description : string
+    * type : enum [personal, professional]
+    created_at : datetime
+    updated_at : datetime
+    deleted_at : datetime (nullable)
+}
+
+entity "Board" as board {
+    * id : UUID <<PK>>
+    --
+    * project_id : UUID <<FK>>
+    * name : string
+    swimlanes : []string
+    task_types : []string
+    created_at : datetime
+    updated_at : datetime
+    deleted_at : datetime (nullable)
+}
+
+entity "Task" as task {
+    * id : UUID <<PK>>
+    --
+    * board_id : UUID <<FK>>
+    * swimlane : string
+    * task_type : string
+    * title : string
+    description : string
+    assignee_id : UUID <<FK>> (optional)
+    estimation_minutes : int
+    actual_time_minutes : int
+    cost : float64
+    * priority : enum [Low, Medium, High, Critical]
+    reminders : []Reminder (max 5)
+    scheduler_id : UUID <<FK>> (optional)
+    created_at : datetime
+    updated_at : datetime
+    deleted_at : datetime (nullable)
+}
+
+entity "Reminder" as reminder {
+    time : ISO 8601 string
+    note : string
+}
+
+entity "Scheduler" as scheduler {
+    * id : UUID <<PK>>
+    --
+    * name : string
+    cron_expression : string
+    * type : enum [cron, yearly, monthly, weekly, daily]
+    next_run : ISO 8601 string
+    linked_task_template_id : UUID (optional)
+    created_at : datetime
+    updated_at : datetime
+    deleted_at : datetime (nullable)
+}
+
+entity "Resource" as resource {
+    * id : UUID <<PK>>
+    --
+    * name : string
+    * type : enum [Global, Project, Task]
+    linked_items : []UUID
+    created_at : datetime
+    updated_at : datetime
+    deleted_at : datetime (nullable)
+}
+
+project "1" --> "0..*" board : contains
+board "1" --> "0..*" task : contains
+task "1" --> "0..5" reminder : has
+task "0..*" --> "0..1" scheduler : linked via scheduler_id
+task "0..*" --> "0..1" resource : assigned via assignee_id
+resource "0..*" ..> "0..*" project : linked_items
+resource "0..*" ..> "0..*" board : linked_items
+resource "0..*" ..> "0..*" task : linked_items
+resource "0..*" ..> "0..*" scheduler : linked_items
+
+note bottom of scheduler
+  When a Task with a scheduler_id
+  is moved to "Done", a new identical
+  task is auto-created with next_run
+  calculated from the schedule.
+end note
+
+@enduml

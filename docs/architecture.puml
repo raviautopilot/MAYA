@@ -1,0 +1,85 @@
+@startuml MyKanban Architecture
+
+title MyKanban Backend - High-Level Architecture
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+actor "Web/Mobile Client" as Client
+
+package "Gin HTTP Server" {
+    component "Router" as Router
+    component "Recovery Middleware" as Recovery
+    component "JWT Auth Middleware" as JWTMiddleware
+    
+    package "Handlers" {
+        component "Auth Handler" as AuthH
+        component "Project Handler" as ProjH
+        component "Board Handler" as BoardH
+        component "Task Handler" as TaskH
+        component "Scheduler Handler" as SchedH
+        component "Resource Handler" as ResH
+    }
+}
+
+package "Auth Layer" {
+    component "JWT (HS256)" as JWT
+    component "bcrypt (cost 12)" as Bcrypt
+    component "Google OAuth 2.0" as OAuth
+}
+
+package "Storage Layer" {
+    component "Generic Store[T]\n(sync.RWMutex)" as Store
+    database "projects.json" as ProjDB
+    database "boards.json" as BoardDB
+    database "tasks.json" as TaskDB
+    database "schedulers.json" as SchedDB
+    database "resources.json" as ResDB
+}
+
+file "config.json" as Config
+
+Client --> Router : HTTP Requests
+Router --> Recovery
+Recovery --> JWTMiddleware : Protected routes
+Router --> AuthH : /api/v1/auth/*
+JWTMiddleware --> ProjH
+JWTMiddleware --> BoardH
+JWTMiddleware --> TaskH
+JWTMiddleware --> SchedH
+JWTMiddleware --> ResH
+
+AuthH --> JWT
+AuthH --> Bcrypt
+AuthH --> OAuth
+
+ProjH --> Store
+BoardH --> Store
+TaskH --> Store
+SchedH --> Store
+ResH --> Store
+
+Store --> ProjDB
+Store --> BoardDB
+Store --> TaskDB
+Store --> SchedDB
+Store --> ResDB
+
+Router ..> Config : reads on startup
+
+note right of Store
+  All file I/O is protected by
+  sync.RWMutex per store instance.
+  Read operations use RLock.
+  Write operations use Lock.
+  WithLock() provides atomic
+  read-modify-write semantics.
+end note
+
+note bottom of Config
+  Contains: port, root_email,
+  bcrypt-hashed password,
+  JWT secret, Google OAuth creds
+end note
+
+@enduml
