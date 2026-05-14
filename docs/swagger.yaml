@@ -1,0 +1,1339 @@
+basePath: /api
+definitions:
+  models.APIResponse:
+    properties:
+      data: {}
+      error:
+        type: string
+      status:
+        type: integer
+    type: object
+  models.Board:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      project_id:
+        type: string
+      swimlanes:
+        items:
+          type: string
+        type: array
+      task_types:
+        items:
+          type: string
+        type: array
+      updated_at:
+        type: string
+    required:
+    - name
+    - project_id
+    type: object
+  models.ChangePasswordRequest:
+    properties:
+      new_password:
+        minLength: 8
+        type: string
+      old_password:
+        type: string
+    required:
+    - new_password
+    - old_password
+    type: object
+  models.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  models.Project:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        enum:
+        - personal
+        - professional
+        type: string
+      updated_at:
+        type: string
+    required:
+    - name
+    - type
+    type: object
+  models.Reminder:
+    properties:
+      note:
+        type: string
+      time:
+        type: string
+    required:
+    - time
+    type: object
+  models.Resource:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: string
+      linked_items:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      type:
+        enum:
+        - Global
+        - Project
+        - Task
+        type: string
+      updated_at:
+        type: string
+    required:
+    - name
+    - type
+    type: object
+  models.Scheduler:
+    properties:
+      created_at:
+        type: string
+      cron_expression:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: string
+      linked_task_template_id:
+        type: string
+      name:
+        type: string
+      next_run:
+        type: string
+      type:
+        enum:
+        - cron
+        - yearly
+        - monthly
+        - weekly
+        - daily
+        type: string
+      updated_at:
+        type: string
+    required:
+    - name
+    - type
+    type: object
+  models.Task:
+    properties:
+      actual_time_minutes:
+        type: integer
+      assignee_id:
+        type: string
+      board_id:
+        type: string
+      cost:
+        type: number
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      estimation_minutes:
+        type: integer
+      id:
+        type: string
+      priority:
+        enum:
+        - Low
+        - Medium
+        - High
+        - Critical
+        type: string
+      reminders:
+        items:
+          $ref: '#/definitions/models.Reminder'
+        type: array
+      scheduler_id:
+        type: string
+      swimlane:
+        type: string
+      task_type:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - board_id
+    - priority
+    - swimlane
+    - task_type
+    - title
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: admin@mykanban.local
+    name: MyKanban Support
+  description: A minimalistic, secure REST API for personal and professional task
+    tracking.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: MyKanban Backend API
+  version: "1.0"
+paths:
+  /health:
+    get:
+      description: Returns server status and current UTC time
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Server is healthy
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    status:
+                      type: string
+                    time:
+                      type: string
+                  type: object
+              type: object
+      summary: Health check
+      tags:
+      - System
+  /v1/auth/change-password:
+    post:
+      consumes:
+      - application/json
+      description: Change the root user's password (requires current password)
+      parameters:
+      - description: Password change request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.ChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password changed
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    message:
+                      type: string
+                  type: object
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "401":
+          description: Old password incorrect
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Server error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Change password
+      tags:
+      - Auth
+  /v1/auth/google/callback:
+    get:
+      description: Handle the callback from Google OAuth and return a JWT token
+      parameters:
+      - description: Authorization code from Google
+        in: query
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: JWT token and user info
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    email:
+                      type: string
+                    name:
+                      type: string
+                    token:
+                      type: string
+                  type: object
+              type: object
+        "400":
+          description: Missing code parameter
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Google auth or token generation failure
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      summary: Google OAuth callback
+      tags:
+      - Auth
+  /v1/auth/google/login:
+    get:
+      description: Redirect to Google OAuth 2.0 consent screen for authentication
+      produces:
+      - application/json
+      responses:
+        "307":
+          description: Redirect to Google
+        "503":
+          description: Google OAuth not configured
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      summary: Google OAuth login
+      tags:
+      - Auth
+  /v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate with email and password to receive a JWT token
+      parameters:
+      - description: Login credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: JWT token
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    token:
+                      type: string
+                  type: object
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Token generation failure
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      summary: User login
+      tags:
+      - Auth
+  /v1/boards:
+    get:
+      description: Get all active boards. Optionally filter by project_id query parameter.
+      parameters:
+      - description: Filter by project UUID
+        in: query
+        name: project_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of boards
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Board'
+                  type: array
+              type: object
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List boards
+      tags:
+      - Boards
+    post:
+      consumes:
+      - application/json
+      description: Create a new kanban board linked to a project. Defaults swimlanes
+        to [To Do, In Progress, Done] and task types to [Bug, Feature, Chore] if not
+        provided.
+      parameters:
+      - description: Board data (project_id, name required)
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Board'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created board
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Board'
+              type: object
+        "400":
+          description: Invalid request or invalid project_id
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create board
+      tags:
+      - Boards
+  /v1/boards/{id}:
+    delete:
+      description: Soft-delete a board by UUID
+      parameters:
+      - description: Board UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deletion confirmation
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    message:
+                      type: string
+                  type: object
+              type: object
+        "404":
+          description: Board not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete board
+      tags:
+      - Boards
+    get:
+      description: Get a board by its UUID
+      parameters:
+      - description: Board UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Board details
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Board'
+              type: object
+        "404":
+          description: Board not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get board
+      tags:
+      - Boards
+    put:
+      consumes:
+      - application/json
+      description: Full update of a board by UUID
+      parameters:
+      - description: Board UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated board data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Board'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated board
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Board'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "404":
+          description: Board not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update board
+      tags:
+      - Boards
+  /v1/projects:
+    get:
+      description: Get all active projects (excludes soft-deleted)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of projects
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Project'
+                  type: array
+              type: object
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List projects
+      tags:
+      - Projects
+    post:
+      consumes:
+      - application/json
+      description: Create a new project (personal or professional)
+      parameters:
+      - description: Project data (name, description, type required)
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Project'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created project
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Project'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create project
+      tags:
+      - Projects
+  /v1/projects/{id}:
+    delete:
+      description: Soft-delete a project by UUID (sets deleted_at timestamp)
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deletion confirmation
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    message:
+                      type: string
+                  type: object
+              type: object
+        "404":
+          description: Project not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete project
+      tags:
+      - Projects
+    get:
+      description: Get a project by its UUID
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Project details
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Project'
+              type: object
+        "404":
+          description: Project not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get project
+      tags:
+      - Projects
+    put:
+      consumes:
+      - application/json
+      description: Full update of a project by UUID
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated project data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Project'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated project
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Project'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "404":
+          description: Project not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update project
+      tags:
+      - Projects
+  /v1/resources:
+    get:
+      description: Get all active resources (excludes soft-deleted)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of resources
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Resource'
+                  type: array
+              type: object
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List resources
+      tags:
+      - Resources
+    post:
+      consumes:
+      - application/json
+      description: Create a new resource (Global, Project, or Task scoped)
+      parameters:
+      - description: Resource data (name, type required)
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Resource'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created resource
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Resource'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create resource
+      tags:
+      - Resources
+  /v1/resources/{id}:
+    delete:
+      description: Soft-delete a resource by UUID
+      parameters:
+      - description: Resource UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deletion confirmation
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    message:
+                      type: string
+                  type: object
+              type: object
+        "404":
+          description: Resource not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete resource
+      tags:
+      - Resources
+    get:
+      description: Get a resource by its UUID
+      parameters:
+      - description: Resource UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Resource details
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Resource'
+              type: object
+        "404":
+          description: Resource not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get resource
+      tags:
+      - Resources
+    put:
+      consumes:
+      - application/json
+      description: Full update of a resource by UUID
+      parameters:
+      - description: Resource UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated resource data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Resource'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated resource
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Resource'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "404":
+          description: Resource not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update resource
+      tags:
+      - Resources
+  /v1/schedulers:
+    get:
+      description: Get all active schedulers (excludes soft-deleted)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of schedulers
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Scheduler'
+                  type: array
+              type: object
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List schedulers
+      tags:
+      - Schedulers
+    post:
+      consumes:
+      - application/json
+      description: Create a new scheduler (daily, weekly, monthly, yearly, or cron).
+        Automatically calculates next_run if not provided.
+      parameters:
+      - description: Scheduler data (name, type required; cron_expression required
+          when type=cron)
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Scheduler'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created scheduler
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Scheduler'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create scheduler
+      tags:
+      - Schedulers
+  /v1/schedulers/{id}:
+    delete:
+      description: Soft-delete a scheduler by UUID
+      parameters:
+      - description: Scheduler UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deletion confirmation
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    message:
+                      type: string
+                  type: object
+              type: object
+        "404":
+          description: Scheduler not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete scheduler
+      tags:
+      - Schedulers
+    get:
+      description: Get a scheduler by its UUID
+      parameters:
+      - description: Scheduler UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Scheduler details
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Scheduler'
+              type: object
+        "404":
+          description: Scheduler not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get scheduler
+      tags:
+      - Schedulers
+    put:
+      consumes:
+      - application/json
+      description: Full update of a scheduler by UUID. Recalculates next_run.
+      parameters:
+      - description: Scheduler UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated scheduler data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Scheduler'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated scheduler
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Scheduler'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "404":
+          description: Scheduler not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update scheduler
+      tags:
+      - Schedulers
+  /v1/tasks:
+    get:
+      description: Get all active tasks. Filter by board_id, swimlane, assignee_id,
+        or priority.
+      parameters:
+      - description: Filter by board UUID
+        in: query
+        name: board_id
+        type: string
+      - description: Filter by swimlane name
+        in: query
+        name: swimlane
+        type: string
+      - description: Filter by assignee resource UUID
+        in: query
+        name: assignee_id
+        type: string
+      - description: Filter by priority (Low, Medium, High, Critical)
+        in: query
+        name: priority
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of tasks
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Task'
+                  type: array
+              type: object
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List tasks
+      tags:
+      - Tasks
+    post:
+      consumes:
+      - application/json
+      description: Create a new task. Validates board_id, swimlane, and task_type
+        against the board. Max 5 reminders.
+      parameters:
+      - description: Task data (board_id, swimlane, task_type, title, priority required)
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Task'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created task
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Task'
+              type: object
+        "400":
+          description: Invalid request, invalid board/swimlane/task_type, or too many
+            reminders
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create task
+      tags:
+      - Tasks
+  /v1/tasks/{id}:
+    delete:
+      description: Soft-delete a task by UUID
+      parameters:
+      - description: Task UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deletion confirmation
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  properties:
+                    message:
+                      type: string
+                  type: object
+              type: object
+        "404":
+          description: Task not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete task
+      tags:
+      - Tasks
+    get:
+      description: Get a task by its UUID
+      parameters:
+      - description: Task UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Task details
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Task'
+              type: object
+        "404":
+          description: Task not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get task
+      tags:
+      - Tasks
+    patch:
+      consumes:
+      - application/json
+      description: Partial update of a task. Supports updating individual fields (swimlane,
+        title, description, assignee_id, priority, task_type, cost, estimation_minutes,
+        actual_time_minutes, scheduler_id). Moving to "Done" with a scheduler_id triggers
+        recurring task generation.
+      parameters:
+      - description: Task UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Fields to update (only include fields you want to change)
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Patched task
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Task'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "404":
+          description: Task not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Patch task
+      tags:
+      - Tasks
+    put:
+      consumes:
+      - application/json
+      description: Full update of a task by UUID. Max 5 reminders.
+      parameters:
+      - description: Task UUID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated task data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Task'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated task
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Task'
+              type: object
+        "400":
+          description: Invalid request or too many reminders
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "404":
+          description: Task not found
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+        "500":
+          description: Storage error
+          schema:
+            $ref: '#/definitions/models.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update task
+      tags:
+      - Tasks
+securityDefinitions:
+  BearerAuth:
+    description: Enter your JWT token with the `Bearer ` prefix, e.g. "Bearer eyJhbGci..."
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

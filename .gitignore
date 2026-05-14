@@ -6,3 +6,4 @@ storage/*.json
 !storage/storage_test.go
 server.log
 *.log
+.abacus.donotdelete

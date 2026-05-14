@@ -60,7 +60,8 @@ mykanban-backend/
 ├── models/              # Data structures and validation
 ├── storage/             # Generic JSON file store with mutex locking
 ├── scripts/             # Build, test, run, stop, troubleshoot scripts
-├── docs/                # Architecture diagrams, ERD, user journeys
+├── design/              # Architecture diagrams, ERD, user journeys
+├── docs/                # Swagger-generated API documentation
 └── bin/                 # Compiled binary (generated)
 ```
 
@@ -113,9 +114,12 @@ Edit `config.json`:
 
 ## Documentation
 
-- **Architecture:** `docs/architecture.puml`
-- **Data Model ERD:** `docs/data_model.puml`
-- **User Journeys:** `docs/user_journeys.md`
+- **Architecture:** `design/architecture.puml`
+- **Data Model ERD:** `design/data_model.puml`
+- **User Journeys:** `design/user_journeys.md`
+- **Swagger / API Docs:** See [`SWAGGER.md`](SWAGGER.md) for access instructions
+- **API Testing (curl):** `scripts/test_api.sh`
+- **API Testing (HTTP Client):** `api-tests.http`
 
 ## License
 
