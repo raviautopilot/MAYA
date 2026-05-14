@@ -114,9 +114,34 @@ Edit `config.json`:
   "google_client_secret": "",
   "google_redirect_url": "http://localhost:8080/api/v1/auth/google/callback",
   "storage_dir": "./storage",
-  "log_file": "server.log"
+  "log_file": "server.log",
+  "allowed_origins": "http://localhost:3000"
 }
 ```
+
+### CORS Configuration
+
+The backend supports configurable Cross-Origin Resource Sharing (CORS) to allow the frontend (or other clients) to communicate with the API.
+
+| Field | Format | Default | Description |
+|-------|--------|---------|-------------|
+| `allowed_origins` | Comma-separated string | `http://localhost:3000` | Origins permitted to make cross-origin requests |
+
+**Examples:**
+
+```json
+// Single origin (default — local Next.js dev server)
+"allowed_origins": "http://localhost:3000"
+
+// Multiple origins (dev + staging)
+"allowed_origins": "http://localhost:3000,http://localhost:3001,https://mykanban.example.com"
+```
+
+The CORS middleware:
+- Allows credentials (cookies, Authorization header)
+- Permits all standard HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`
+- Handles preflight `OPTIONS` requests automatically
+- Caches preflight responses for 12 hours
 
 ## Documentation
 

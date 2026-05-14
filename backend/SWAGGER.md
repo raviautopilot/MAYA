@@ -96,3 +96,7 @@ The raw spec files are available at:
 - **YAML:** Download from the `docs/swagger.yaml` file
 
 These can be imported into tools like Postman, Insomnia, or used for client code generation.
+
+## CORS Support
+
+The API supports Cross-Origin Resource Sharing (CORS), which allows Swagger UI and frontend applications running on different origins to interact with the backend. Allowed origins are configured in `config.json` via the `allowed_origins` field. See [Backend README – CORS Configuration](README.md#cors-configuration) for details.
