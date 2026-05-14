@@ -43,7 +43,8 @@ import (
 
 func main() {
 	// Load configuration
-	cfgStore := storage.NewConfigStore("config.json", nil)
+	configPath := "backend/config.json"
+	cfgStore := storage.NewConfigStore(configPath, nil)
 	var cfg models.Config
 	if err := cfgStore.Load(&cfg); err != nil {
 		log.Fatalf("Failed to load config.json: %v", err)
