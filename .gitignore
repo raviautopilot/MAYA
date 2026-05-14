@@ -1,9 +1,45 @@
-bin/
-coverage.out
-coverage.html
-storage/*.json
-!storage/storage.go
-!storage/storage_test.go
-server.log
-*.log
+# ========================
+# Root .gitignore (Monorepo)
+# ========================
+
+# Abacus internal
 .abacus.donotdelete
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ========================
+# Backend (Go)
+# ========================
+backend/bin/
+backend/coverage.out
+backend/coverage.html
+backend/storage/*.json
+!backend/storage/storage.go
+!backend/storage/storage_test.go
+backend/server.log
+backend/*.log
+
+# ========================
+# Frontend (Node.js)
+# ========================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+frontend/.env.local
+
+# ========================
+# General
+# ========================
+node_modules/
+*.log
+.env
+.env.local

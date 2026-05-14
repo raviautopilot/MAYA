@@ -1,126 +1,81 @@
-# MyKanban Backend
+# MyKanban
 
-A minimalistic, secure REST API for personal and professional task tracking. Built with Go and the Gin framework, using flat JSON files for storage — no external database required.
+**MyKanban** is a full-stack Kanban board application for project and task management. This monorepo contains all components of the application.
 
-## Features
+---
 
-- **5 Entity Types:** Projects, Boards, Tasks, Schedulers, Resources
-- **Full CRUD** with soft-delete support for all entities
-- **Recurring Tasks:** Automatic task generation when completing scheduled tasks
-- **JWT Authentication** with bcrypt-hashed passwords
-- **Google OAuth 2.0** integration
-- **Thread-safe** JSON file storage using `sync.RWMutex`
-- **Swagger** API documentation (via Swaggo)
-- **Graceful shutdown** on SIGINT/SIGTERM
+## 📁 Monorepo Structure
 
-## Quick Start
+```
+mykanban/
+├── backend/          # Go REST API server (Gin framework)
+│   ├── auth/         # Authentication & JWT handling
+│   ├── handlers/     # API route handlers
+│   ├── middleware/    # Gin middleware (JWT auth, recovery)
+│   ├── models/       # Data models and structs
+│   ├── storage/      # JSON file-based storage layer
+│   ├── scripts/      # Build, run, test, and utility scripts
+│   ├── design/       # Architecture diagrams and design docs
+│   ├── docs/         # Swagger/OpenAPI generated docs
+│   └── main.go       # Application entry point
+├── frontend/         # Frontend application (coming soon)
+├── e2e/              # End-to-end tests
+├── utils/            # Shared utilities and scripts
+├── package.json      # Monorepo workspace configuration
+├── CONTRIBUTING.md   # Development workflow guide
+└── README.md         # This file
+```
 
-### Prerequisites
-- Go 1.21+
-- (Optional) `jq` for script helpers
+## 🚀 Quick Start
 
-### Setup & Run
+### Backend
 
 ```bash
-# 1. Build the project
-bash scripts/build.sh
-
-# 2. Start the server
-bash scripts/run.sh
+cd backend
+cp config.example.json config.json   # Configure settings
+bash scripts/build.sh                # Build the server
+bash scripts/run.sh                  # Start the server
 ```
 
-The server starts on port `8080` by default (configurable in `config.json`).
+The API server runs at `http://localhost:8080` by default. Swagger UI is available at `http://localhost:8080/swagger/index.html`.
 
-### Default Login Credentials
+### Frontend
 
-| Field    | Value                  |
-|----------|------------------------|
-| Email    | `admin@mykanban.local` |
-| Password | `admin123`             |
+> 🚧 Coming soon. See [frontend/README.md](frontend/README.md) for planned details.
 
-**⚠️ Change the default password immediately after first login!**
+### Running Tests
 
 ```bash
-curl -X POST http://localhost:8080/api/v1/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@mykanban.local","password":"admin123"}'
+# Backend unit tests
+cd backend
+bash scripts/test.sh
+
+# API integration tests
+cd backend
+bash scripts/test_api.sh
 ```
 
-## Project Structure
+## 📖 Documentation
 
-```
-mykanban-backend/
-├── main.go              # Entry point, router setup, graceful shutdown
-├── config.json          # Application configuration
-├── config.example.json  # Template configuration
-├── go.mod               # Go module definition
-├── auth/                # JWT generation/validation, Google OAuth
-├── middleware/           # JWT auth middleware, panic recovery
-├── handlers/            # HTTP route handlers (CRUD for all entities)
-├── models/              # Data structures and validation
-├── storage/             # Generic JSON file store with mutex locking
-├── scripts/             # Build, test, run, stop, troubleshoot scripts
-├── design/              # Architecture diagrams, ERD, user journeys
-├── docs/                # Swagger-generated API documentation
-└── bin/                 # Compiled binary (generated)
-```
+| Document | Description |
+|----------|-------------|
+| [Backend README](backend/README.md) | Backend setup, API overview, and development guide |
+| [Swagger Docs](backend/SWAGGER.md) | How to access and use the Swagger UI |
+| [API Tests](backend/api-tests.http) | HTTP client test collection |
+| [Architecture](backend/design/architecture.puml) | System architecture diagram |
+| [Data Model](backend/design/data_model.puml) | Entity relationship diagram |
+| [User Journeys](backend/design/user_journeys.md) | User interaction scenarios |
+| [Contributing](CONTRIBUTING.md) | Development workflow for this monorepo |
 
-## API Endpoints
+## 🛠️ Tech Stack
 
-Base path: `/api/v1`
+| Component | Technology |
+|-----------|-----------|
+| Backend | Go, Gin, JWT, bcrypt, Swagger |
+| Storage | JSON flat-file with thread-safe access |
+| Frontend | *(Planned)* React, TypeScript, Vite |
+| Testing | Go test, curl scripts, HTTP client files |
 
-| Method | Endpoint                     | Auth | Description              |
-|--------|------------------------------|------|--------------------------|
-| GET    | `/api/health`                | No   | Health check             |
-| POST   | `/api/v1/auth/login`         | No   | Login, get JWT           |
-| GET    | `/api/v1/auth/google/login`  | No   | Google OAuth redirect    |
-| GET    | `/api/v1/auth/google/callback`| No  | Google OAuth callback    |
-| POST   | `/api/v1/auth/change-password`| Yes | Change root password     |
-| CRUD   | `/api/v1/projects[/:id]`     | Yes  | Project management       |
-| CRUD   | `/api/v1/boards[/:id]`       | Yes  | Board management         |
-| CRUD   | `/api/v1/tasks[/:id]`        | Yes  | Task management          |
-| PATCH  | `/api/v1/tasks/:id`          | Yes  | Partial update / move    |
-| CRUD   | `/api/v1/schedulers[/:id]`   | Yes  | Scheduler management     |
-| CRUD   | `/api/v1/resources[/:id]`    | Yes  | Resource management      |
+## 📄 License
 
-## Scripts
-
-| Script                    | Purpose                                |
-|---------------------------|----------------------------------------|
-| `scripts/build.sh`       | Format, vet, swagger gen, compile      |
-| `scripts/test.sh`        | Run tests with coverage report         |
-| `scripts/run.sh`         | Start server (auto-builds if needed)   |
-| `scripts/stop.sh`        | Gracefully stop the server             |
-| `scripts/troubleshoot.sh`| Diagnose port, JSON, Go environment    |
-
-## Configuration
-
-Edit `config.json`:
-
-```json
-{
-  "port": 8080,
-  "root_email": "admin@mykanban.local",
-  "root_password_hash": "<bcrypt hash>",
-  "jwt_secret": "your-secret-here",
-  "jwt_expiry_hours": 24,
-  "google_client_id": "",
-  "google_client_secret": "",
-  "google_redirect_url": "http://localhost:8080/api/v1/auth/google/callback",
-  "storage_dir": "./storage",
-  "log_file": "server.log"
-}
-```
-
-## Documentation
-
-- **Architecture:** `design/architecture.puml`
-- **Data Model ERD:** `design/data_model.puml`
-- **User Journeys:** `design/user_journeys.md`
-- **Swagger / API Docs:** See [`SWAGGER.md`](SWAGGER.md) for access instructions
-- **API Testing (curl):** `scripts/test_api.sh`
-- **API Testing (HTTP Client):** `api-tests.http`
-
-## License
-
-MIT
+This project is private. All rights reserved.

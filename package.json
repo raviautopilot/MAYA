@@ -1,0 +1,23 @@
+{
+  "name": "mykanban",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MyKanban — Full-stack Kanban board monorepo",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "backend:build": "cd backend && bash scripts/build.sh",
+    "backend:start": "cd backend && bash scripts/run.sh",
+    "backend:stop": "cd backend && bash scripts/stop.sh",
+    "backend:test": "cd backend && bash scripts/test.sh",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "test:e2e": "echo 'E2E tests not yet configured'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raviautopilot/mycan.git"
+  },
+  "license": "UNLICENSED"
+}
