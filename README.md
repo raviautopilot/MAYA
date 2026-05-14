@@ -76,6 +76,23 @@ bash scripts/test_api.sh
 | Frontend | *(Planned)* React, TypeScript, Vite |
 | Testing | Go test, curl scripts, HTTP client files |
 
+## 🔧 Troubleshooting
+
+### CORS Errors
+
+If you see errors like `Cross-Origin Request Blocked: ... CORS header 'Access-Control-Allow-Origin' missing` when the frontend tries to reach the backend:
+
+1. **Check `backend/config.json`** — ensure `allowed_origins` includes the frontend URL:
+   ```json
+   "allowed_origins": "http://localhost:3000"
+   ```
+2. **Multiple origins** — separate with commas, no spaces around the comma:
+   ```json
+   "allowed_origins": "http://localhost:3000,https://mykanban.example.com"
+   ```
+3. **Restart the backend** after editing `config.json` — CORS settings are loaded at startup.
+4. **Check the port** — the origin must match exactly (scheme + host + port). `http://localhost:3000` ≠ `http://localhost:3001`.
+
 ## 📄 License
 
 This project is private. All rights reserved.
