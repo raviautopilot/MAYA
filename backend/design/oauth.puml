@@ -1,0 +1,79 @@
+@startuml
+autonumber
+title Gmail OAuth 2.0 Integration Flow
+
+actor User as U
+participant "Your App\n(Client)" as App
+participant "Your Backend\nServer" as Server
+participant "Google Auth\nServer" as GoogleAuth
+participant "Gmail API\n/ SMTP / IMAP" as Gmail
+
+== Phase 1: OAuth 2.0 Authorization ==
+
+U -> App: 1. Click "Login with Gmail"
+App -> Server: 2. Initiate OAuth flow\nGET /auth/gmail/login
+
+Server -> GoogleAuth: 3. Redirect to consent screen\nGET https://accounts.google.com/o/oauth2/v2/auth?\n  client_id=YOUR_CLIENT_ID&\n  redirect_uri=http://localhost:8080/callback&\n  response_type=code&\n  scope=https://mail.google.com/&\n  access_type=offline
+
+GoogleAuth -> U: 4. Display consent screen\n"App requests access to your Gmail"
+U -> GoogleAuth: 5. Click "Allow"
+
+GoogleAuth -> Server: 6. Redirect with auth code\nGET http://localhost:8080/callback?\n  code=AUTH_CODE_HERE
+
+Server -> GoogleAuth: 7. Exchange code for tokens\nPOST https://oauth2.googleapis.com/token\nContent-Type: application/x-www-form-urlencoded\n\nBody:\n  code=AUTH_CODE_HERE&\n  client_id=YOUR_CLIENT_ID&\n  client_secret=YOUR_CLIENT_SECRET&\n  redirect_uri=http://localhost:8080/callback&\n  grant_type=authorization_code
+
+GoogleAuth -> Server: 8. Return tokens\nHTTP 200 OK\n\nResponse Body:\n{\n  "access_token": "ya29.xxx...",\n  "refresh_token": "1//xxx...",\n  "expires_in": 3599,\n  "token_type": "Bearer"\n}
+
+Server -> Server: 9. Store tokens securely\n(access & refresh tokens)
+
+Server -> App: 10. Return success\nHTTP 200 OK\n\nResponse Body:\n{\n  "status": "authenticated",\n  "email": "user@gmail.com"\n}
+
+== Phase 2: Access Gmail (API Method) ==
+
+App -> Server: 11. Request to read emails\nGET /api/gmail/messages\n\nHeaders:\n  Authorization: Bearer {stored_token}
+
+Server -> Gmail: 12. Call Gmail API\nGET https://gmail.googleapis.com/gmail/v1/users/me/messages\n\nHeaders:\n  Authorization: Bearer ya29.xxx...
+
+Gmail -> Server: 13. Return emails\nHTTP 200 OK\n\nResponse Body:\n{\n  "messages": [\n    {"id": "123", "threadId": "456"},\n    {"id": "789", "threadId": "012"}\n  ]\n}
+
+Server -> App: 14. Return formatted emails\nHTTP 200 OK\n\nResponse Body:\n{\n  "count": 2,\n  "messages": [...]\n}
+
+== Phase 3: Access Gmail (SMTP Method - Send Email) ==
+
+App -> Server: 15. Request to send email\nPOST /api/gmail/send\nContent-Type: application/json\n\nBody:\n{\n  "to": "recipient@example.com",\n  "subject": "Hello",\n  "body": "Test email"\n}
+
+Server -> Server: 16. Generate XOAUTH2 string\nuser=user@gmail.com\001auth=Bearer ya29.xxx...\001\001\n\nBase64 encode string
+
+Server -> Gmail: 17. Connect to SMTP\n(Establish TCP connection to smtp.gmail.com:587)
+
+Server -> Gmail: 18. Send EHLO command\nEHLO yourdomain.com
+
+Gmail -> Server: 19. SMTP response\n250-smtp.gmail.com at your service
+
+Server -> Gmail: 20. Authenticate with XOAUTH2\nAUTH XOAUTH2 {base64_encoded_string}
+
+Gmail -> Server: 21. Authentication success\n235 2.7.0 Accepted
+
+Server -> Gmail: 22. Send email commands\nMAIL FROM: <user@gmail.com>\nRCPT TO: <recipient@example.com>\nDATA\n{email content}
+
+Gmail -> Server: 23. Email accepted\n250 2.0.0 OK
+
+Server -> App: 24. Return success\nHTTP 200 OK\n\nResponse Body:\n{\n  "status": "sent",\n  "message_id": "XYZ123"\n}
+
+== Phase 4: Token Refresh ==
+
+Server -> Gmail: 25. API call with expired token\nGET https://gmail.googleapis.com/gmail/v1/users/me/profile\n\nHeaders:\n  Authorization: Bearer {expired_token}
+
+Gmail -> Server: 26. Token expired error\nHTTP 401 Unauthorized\n\nResponse Body:\n{\n  "error": "invalid_token",\n  "error_description": "Token expired"\n}
+
+Server -> GoogleAuth: 27. Refresh access token\nPOST https://oauth2.googleapis.com/token\nContent-Type: application/x-www-form-urlencoded\n\nBody:\n  refresh_token={stored_refresh_token}&\n  client_id=YOUR_CLIENT_ID&\n  client_secret=YOUR_CLIENT_SECRET&\n  grant_type=refresh_token
+
+GoogleAuth -> Server: 28. Return new tokens\nHTTP 200 OK\n\nResponse Body:\n{\n  "access_token": "ya29.newxxx...",\n  "expires_in": 3599,\n  "token_type": "Bearer"\n}
+
+Server -> Server: 29. Update stored access token
+
+Server -> Gmail: 30. Retry API with new token\nGET https://gmail.googleapis.com/gmail/v1/users/me/profile\n\nHeaders:\n  Authorization: Bearer ya29.newxxx...
+
+Gmail -> Server: 31. Request successful\nHTTP 200 OK\n\nResponse Body:\n{\n  "emailAddress": "user@gmail.com",\n  "messagesTotal": 1234\n}
+
+@enduml

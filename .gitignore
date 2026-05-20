@@ -11,10 +11,7 @@
 rbot.exe
 rbot.bin
 .build_hash
-<<<<<<< HEAD
 
-=======
->>>>>>> 98fcb72 (docs added togit ignore)
 # OS generated files
 .DS_Store
 .DS_Store?

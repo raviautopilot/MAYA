@@ -1,7 +1,7 @@
 {
   "port": 8080,
   "root_email": "admin@mykanban.local",
-  "root_password_hash": "$2a$12$LJ3m4ys3Lk0TSwHAlehVHeFlQBDMRGMolvuhRyEO/QDKsftz0E6we",
+  "root_password_hash": "$2a$12$rOR3twUJNy1DohD1gOrriOZb4wTzJ9RGYragruxw4499A.CpNiRM6",
   "jwt_secret": "change-me-to-a-strong-random-secret-in-production",
   "jwt_expiry_hours": 24,
   "google_client_id": "",

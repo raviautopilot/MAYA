@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "a33455f3-39aa-420f-bf02-5d8f768ff05b",
+    "name": "Daily",
+    "cron_expression": "",
+    "type": "daily",
+    "next_run": "2026-05-15T12:46:36Z",
+    "linked_task_template_id": "0f693672-ad2b-46de-8675-d0de42829603",
+    "created_at": "2026-05-14T12:46:36.020548517Z",
+    "updated_at": "2026-05-14T12:46:36.020548517Z"
+  }
+]
