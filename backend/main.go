@@ -45,12 +45,7 @@ import (
 
 func main() {
 	// Load configuration
-	pwd, err := os.Getwd()
-	if err != nil {
-		fmt.Println("Unable to get Working Direcotry : ", err.Error())
-	}
-	fmt.Println("***: pwd=" + pwd + " :***")
-	configPath := "backend/config.json"
+	configPath := resolveConfigPath()
 	cfgStore := storage.NewConfigStore(configPath, nil)
 	var cfg models.Config
 	if err := cfgStore.Load(&cfg); err != nil {
@@ -133,6 +128,16 @@ func main() {
 		log.Fatalf("Server forced to shutdown: %v", err)
 	}
 	log.Println("Server exited gracefully")
+}
+
+func resolveConfigPath() string {
+	candidates := []string{"config.json", "backend/config.json"}
+	for _, candidate := range candidates {
+		if _, err := os.Stat(candidate); err == nil {
+			return candidate
+		}
+	}
+	return "config.json"
 }
 
 // parseAllowedOrigins splits a comma-separated string of origins into a slice,
