@@ -164,3 +164,7 @@ node_modules/
 *.log
 .env
 .env.local
+
+# Dev Control Script Lockfile and Logs
+.dev_pids
+logs/
