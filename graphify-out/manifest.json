@@ -200,9 +200,9 @@
     "semantic_hash": "dd7e71d06868c302773c10fa3e3241bf"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/frontend/src/app/(dashboard)/tasks/page.tsx": {
-    "mtime": 1779919111.460377,
-    "ast_hash": "d8a1aa8716fd3f76fdb7ce7eeaa8e3bd",
-    "semantic_hash": "d8a1aa8716fd3f76fdb7ce7eeaa8e3bd"
+    "mtime": 1779920005.2519636,
+    "ast_hash": "7af59c21d87774e020604e1542b19e58",
+    "semantic_hash": "7af59c21d87774e020604e1542b19e58"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/main_test.go": {
     "mtime": 1778763843.1745386,
@@ -245,9 +245,9 @@
     "semantic_hash": "d16a971ed9df53b9fc6ff566235be8db"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/handlers/handlers_test.go": {
-    "mtime": 1779919015.435505,
-    "ast_hash": "fb142ea6d4eb236e9492528a8072afd1",
-    "semantic_hash": "fb142ea6d4eb236e9492528a8072afd1"
+    "mtime": 1779920170.6587825,
+    "ast_hash": "7dfc55054e4804cf4e51772eee3513f3",
+    "semantic_hash": "7dfc55054e4804cf4e51772eee3513f3"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/auth/auth_test.go": {
     "mtime": 1778747608.7333183,
@@ -315,14 +315,14 @@
     "semantic_hash": "b532d3b8637808ed2dc1b9ead4a9f9de"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/schedulers.json": {
-    "mtime": 1778762796.017082,
-    "ast_hash": "b329a70c3c2561a42a4a57f73c5c3cf4",
-    "semantic_hash": "b329a70c3c2561a42a4a57f73c5c3cf4"
+    "mtime": 1779920979.3184426,
+    "ast_hash": "f4d64b1000a9e1dbf3f5d8701720b3d9",
+    "semantic_hash": "f4d64b1000a9e1dbf3f5d8701720b3d9"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/tasks.json": {
-    "mtime": 1778774486.7694516,
-    "ast_hash": "5b6198b5d8db2c4618c59690125dcba7",
-    "semantic_hash": "5b6198b5d8db2c4618c59690125dcba7"
+    "mtime": 1779920979.3184426,
+    "ast_hash": "fc32a77090c8296ff1ab29b62971f9d1",
+    "semantic_hash": "fc32a77090c8296ff1ab29b62971f9d1"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/boards.json": {
     "mtime": 1778774460.3253288,
@@ -335,8 +335,8 @@
     "semantic_hash": "446de290a9491abd639a6418bd12028e"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/control.sh": {
-    "mtime": 1779918500.7388296,
-    "ast_hash": "323d4af65b1c2f82660f9601c3711724",
-    "semantic_hash": "323d4af65b1c2f82660f9601c3711724"
+    "mtime": 1779920629.638493,
+    "ast_hash": "000b56dd3f3a879ae394f84faef8fd8d",
+    "semantic_hash": "000b56dd3f3a879ae394f84faef8fd8d"
   }
 }

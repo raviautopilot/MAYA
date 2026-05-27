@@ -18,6 +18,18 @@ const priorityColors: Record<string, string> = {
   Critical: 'bg-red-100 text-red-700',
 };
 
+const formatForDateTimeLocal = (dateStr?: string) => {
+  if (!dateStr) return '';
+  try {
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return '';
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  } catch {
+    return '';
+  }
+};
+
 export default function TasksPage() {
   return (
     <Suspense fallback={<div className="p-6"><CardSkeleton /></div>}>
@@ -91,7 +103,7 @@ function TasksContent() {
 
   const openCreate = () => {
     setEditingTask(null);
-    reset({ board_id: filterBoardId || '', swimlane: '', task_type: '', title: '', priority: 'Medium', description: '', reminders: [] });
+    reset({ board_id: filterBoardId || '', swimlane: '', task_type: '', title: '', priority: 'Medium', description: '', reminders: [], due_date: '' });
     setModalOpen(true);
   };
 
@@ -108,6 +120,7 @@ function TasksContent() {
     setValue('actual_time_minutes', t.actual_time_minutes || 0);
     setValue('cost', t.cost || 0);
     setValue('scheduler_id', t.scheduler_id || '');
+    setValue('due_date', formatForDateTimeLocal(t.due_date));
     setValue('reminders', t.reminders || []);
     setModalOpen(true);
   };
@@ -118,6 +131,16 @@ function TasksContent() {
       const payload = { ...data };
       if (!payload.assignee_id) delete payload.assignee_id;
       if (!payload.scheduler_id) delete payload.scheduler_id;
+      if (payload.due_date) {
+        const d = new Date(payload.due_date);
+        if (!isNaN(d.getTime())) {
+          payload.due_date = d.toISOString();
+        } else {
+          payload.due_date = '';
+        }
+      } else {
+        payload.due_date = '';
+      }
       if (editingTask) {
         await tasksApi.update(editingTask.id, payload);
         addToast('Task updated', 'success');
@@ -325,6 +348,12 @@ function TasksContent() {
             e2e-test-id="task-scheduler-select"
             options={schedulers.map((s) => ({ value: s.id, label: s.name }))}
             {...register('scheduler_id')}
+          />
+          <Input
+            label="Due Date"
+            type="datetime-local"
+            e2e-test-id="task-due-date-input"
+            {...register('due_date')}
           />
 
           {/* Reminders */}

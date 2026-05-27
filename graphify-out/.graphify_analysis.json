@@ -20,7 +20,6 @@
       "frontend_src_app_login_page_tsx",
       "frontend_src_components_ui_card_tsx",
       "frontend_src_components_ui_index_ts",
-      "frontend_src_components_ui_input_tsx",
       "frontend_src_components_ui_toast_tsx",
       "frontend_src_services_api_auth_ts",
       "frontend_src_services_api_boards_ts",
@@ -41,6 +40,7 @@
       "store_toaststore_toaststate",
       "store_toaststore_toasttype",
       "store_toaststore_usetoaststore",
+      "tasks_page_formatfordatetimelocal",
       "tasks_page_formdata",
       "tasks_page_prioritycolors",
       "tasks_page_taskscontent",
@@ -70,8 +70,6 @@
       "ui_card_cardbody",
       "ui_card_cardheader",
       "ui_card_cardprops",
-      "ui_input_input",
-      "ui_input_inputprops",
       "ui_skeleton_cardskeleton",
       "ui_skeleton_skeleton",
       "ui_skeleton_tableskeleton",
@@ -125,6 +123,7 @@
       "handlers_handlers_test_testtask_create_invalidtasktype",
       "handlers_handlers_test_testtask_create_toomanyreminders",
       "handlers_handlers_test_testtask_create_withreminders",
+      "handlers_handlers_test_testtask_duedate",
       "handlers_handlers_test_testtask_list_filters",
       "handlers_handlers_test_testtask_patchmove",
       "handlers_handlers_test_testtask_patchmultiplefields",
@@ -335,23 +334,6 @@
       "storage_testitem"
     ],
     "10": [
-      "frontend_src_components_ui_button_tsx",
-      "frontend_src_components_ui_modal_tsx",
-      "frontend_src_components_ui_select_tsx",
-      "frontend_src_components_ui_table_tsx",
-      "ui_button_button",
-      "ui_button_buttonprops",
-      "ui_button_variants",
-      "ui_confirmdialog_confirmdialog",
-      "ui_modal_modal",
-      "ui_modal_modalprops",
-      "ui_select_select",
-      "ui_select_selectprops",
-      "ui_table_column",
-      "ui_table_table",
-      "ui_table_tableprops"
-    ],
-    "11": [
       "control_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
       "mycan_control_do_kill",
@@ -367,7 +349,7 @@
       "mycan_control_log_warn",
       "mycan_control_show_help"
     ],
-    "12": [
+    "11": [
       "components_header_header",
       "components_header_headerprops",
       "components_sidebar_navitems",
@@ -382,7 +364,7 @@
       "store_authstore_useauthstore",
       "store_authstore_user"
     ],
-    "13": [
+    "12": [
       "backend_auth",
       "backend_config",
       "backend_handlers",
@@ -396,7 +378,7 @@
       "readme_mykanban",
       "utils_readme"
     ],
-    "14": [
+    "13": [
       "backend_config_example_google_client_id",
       "backend_config_example_google_client_secret",
       "backend_config_example_google_redirect_url",
@@ -409,7 +391,7 @@
       "backend_config_example_root_password_hash",
       "backend_config_example_storage_dir"
     ],
-    "15": [
+    "14": [
       "backend_models_models_go",
       "models_apiresponse",
       "models_board",
@@ -420,6 +402,16 @@
       "models_reminder",
       "models_scheduler",
       "models_task"
+    ],
+    "15": [
+      "frontend_src_components_ui_button_tsx",
+      "frontend_src_components_ui_modal_tsx",
+      "ui_button_button",
+      "ui_button_buttonprops",
+      "ui_button_variants",
+      "ui_confirmdialog_confirmdialog",
+      "ui_modal_modal",
+      "ui_modal_modalprops"
     ],
     "16": [
       "handlers_mockfs",
@@ -448,76 +440,92 @@
       "scripts_test_api_run"
     ],
     "20": [
-      "backend_scripts_troubleshoot_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_troubleshoot_sh__entry"
+      "frontend_src_components_ui_table_tsx",
+      "ui_table_column",
+      "ui_table_table",
+      "ui_table_tableprops"
     ],
     "21": [
+      "frontend_src_components_ui_input_tsx",
+      "ui_input_input",
+      "ui_input_inputprops"
+    ],
+    "22": [
+      "frontend_src_components_ui_select_tsx",
+      "ui_select_select",
+      "ui_select_selectprops"
+    ],
+    "23": [
       "frontend_eslintrc_extends",
       "frontend_eslintrc_json"
     ],
-    "22": [
+    "24": [
       "frontend_postcss_config_config",
       "frontend_postcss_config_mjs"
     ],
-    "23": [
+    "25": [
       "app_page_home",
       "frontend_src_app_page_tsx"
     ],
-    "24": [
+    "26": [
       "frontend_tailwind_config_config",
       "frontend_tailwind_config_ts"
     ],
-    "25": [
+    "27": [
       "backend_scripts_build_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_build_sh__entry"
     ],
-    "26": [
+    "28": [
       "backend_scripts_run_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_run_sh__entry"
     ],
-    "27": [
+    "29": [
       "backend_scripts_stop_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_stop_sh__entry"
     ],
-    "28": [
+    "30": [
       "backend_scripts_test_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_sh__entry"
     ],
-    "29": [
+    "31": [
+      "backend_scripts_troubleshoot_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_troubleshoot_sh__entry"
+    ],
+    "32": [
       "utils_main_go",
       "utils_main_main"
     ],
-    "30": [
+    "33": [
       "frontend_next_config_mjs"
     ],
-    "31": [
+    "34": [
       "frontend_next_env_d_ts"
     ],
-    "32": [
+    "35": [
       "storage_resources_json"
     ],
-    "33": [
+    "36": [
       "storage_projects_json"
     ],
-    "34": [
+    "37": [
       "storage_schedulers_json"
     ],
-    "35": [
+    "38": [
       "storage_tasks_json"
     ],
-    "36": [
+    "39": [
       "storage_boards_json"
     ],
-    "37": [
+    "40": [
       "contributing_contributing"
     ],
-    "38": [
+    "41": [
       "update_graphify_sh"
     ]
   },
   "cohesion": {
-    "0": 0.06903622693096377,
-    "1": 0.14876632801161102,
+    "0": 0.07207207207207207,
+    "1": 0.1474493361285814,
     "2": 0.10796221322537113,
     "3": 0.06451612903225806,
     "4": 0.08,
@@ -526,19 +534,19 @@
     "7": 0.16993464052287582,
     "8": 0.1111111111111111,
     "9": 0.20952380952380953,
-    "10": 0.11428571428571428,
-    "11": 0.46153846153846156,
-    "12": 0.21794871794871795,
-    "13": 0.19696969696969696,
-    "14": 0.18181818181818182,
-    "15": 0.2,
+    "10": 0.46153846153846156,
+    "11": 0.21794871794871795,
+    "12": 0.19696969696969696,
+    "13": 0.18181818181818182,
+    "14": 0.2,
+    "15": 0.25,
     "16": 0.4,
     "17": 0.5,
     "18": 0.5,
     "19": 0.8333333333333334,
-    "20": 1.0,
-    "21": 1.0,
-    "22": 1.0,
+    "20": 0.5,
+    "21": 0.6666666666666666,
+    "22": 0.6666666666666666,
     "23": 1.0,
     "24": 1.0,
     "25": 1.0,
@@ -554,18 +562,21 @@
     "35": 1.0,
     "36": 1.0,
     "37": 1.0,
-    "38": 1.0
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0
   },
   "gods": [
     {
       "id": "handlers_handlers_test_setuptesthandler",
       "label": "setupTestHandler()",
-      "degree": 50
+      "degree": 51
     },
     {
       "id": "handlers_handlers_test_dorequest",
       "label": "doRequest()",
-      "degree": 45
+      "degree": 46
     },
     {
       "id": "handlers_handler",
@@ -580,17 +591,17 @@
     {
       "id": "handlers_handlers_test_createproject",
       "label": "createProject()",
-      "degree": 25
+      "degree": 26
     },
     {
       "id": "handlers_handlers_test_parseresponse",
       "label": "parseResponse()",
-      "degree": 20
+      "degree": 21
     },
     {
       "id": "handlers_handlers_test_createboard",
       "label": "createBoard()",
-      "degree": 19
+      "degree": 20
     },
     {
       "id": "frontend_tsconfig_compileroptions",
