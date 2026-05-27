@@ -940,26 +940,65 @@ func (h *Handler) generateRecurringTask(completed models.Task) *models.Task {
 // calculateNextRun determines the next occurrence based on the scheduler type/cron.
 func calculateNextRun(s *models.Scheduler) string {
 	now := time.Now().UTC()
+	var baseTime time.Time
+	if s.NextRun != "" {
+		if t, err := time.Parse(time.RFC3339, s.NextRun); err == nil {
+			baseTime = t
+		}
+	}
+
+	if baseTime.IsZero() {
+		baseTime = now
+	}
+
 	switch s.Type {
 	case "daily":
-		return now.AddDate(0, 0, 1).Format(time.RFC3339)
+		next := baseTime.AddDate(0, 0, 1)
+		for next.Before(now) {
+			next = next.AddDate(0, 0, 1)
+		}
+		return next.Format(time.RFC3339)
 	case "weekly":
-		return now.AddDate(0, 0, 7).Format(time.RFC3339)
+		next := baseTime.AddDate(0, 0, 7)
+		for next.Before(now) {
+			next = next.AddDate(0, 0, 7)
+		}
+		return next.Format(time.RFC3339)
 	case "monthly":
-		return now.AddDate(0, 1, 0).Format(time.RFC3339)
+		next := baseTime.AddDate(0, 1, 0)
+		for next.Before(now) {
+			next = next.AddDate(0, 1, 0)
+		}
+		return next.Format(time.RFC3339)
 	case "yearly":
-		return now.AddDate(1, 0, 0).Format(time.RFC3339)
+		next := baseTime.AddDate(1, 0, 0)
+		for next.Before(now) {
+			next = next.AddDate(1, 0, 0)
+		}
+		return next.Format(time.RFC3339)
 	case "cron":
 		if s.CronExpression != "" {
 			parser := cron.NewParser(cron.Minute | cron.Hour | cron.Dom | cron.Month | cron.Dow)
 			schedule, err := parser.Parse(s.CronExpression)
 			if err == nil {
-				return schedule.Next(now).Format(time.RFC3339)
+				next := schedule.Next(baseTime)
+				for next.Before(now) {
+					next = schedule.Next(next)
+				}
+				return next.Format(time.RFC3339)
 			}
 		}
-		return now.AddDate(0, 0, 1).Format(time.RFC3339)
+		next := baseTime.AddDate(0, 0, 1)
+		for next.Before(now) {
+			next = next.AddDate(0, 0, 1)
+		}
+		return next.Format(time.RFC3339)
 	default:
-		return now.AddDate(0, 0, 1).Format(time.RFC3339)
+		next := baseTime.AddDate(0, 0, 1)
+		for next.Before(now) {
+			next = next.AddDate(0, 0, 1)
+		}
+		return next.Format(time.RFC3339)
 	}
 }
 
