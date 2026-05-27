@@ -72,6 +72,7 @@ export interface Task {
   priority: 'Low' | 'Medium' | 'High' | 'Critical';
   reminders: Reminder[];
   scheduler_id: string;
+  due_date?: string;
   created_at: string;
   updated_at: string;
   deleted_at?: string;
@@ -84,6 +85,7 @@ export type TaskCreate = Pick<Task, 'board_id' | 'swimlane' | 'task_type' | 'tit
   cost?: number;
   reminders?: Reminder[];
   scheduler_id?: string;
+  due_date?: string;
 };
 export type TaskUpdate = TaskCreate & { actual_time_minutes?: number };
 export type TaskPatch = Partial<Omit<Task, 'id' | 'created_at' | 'updated_at' | 'deleted_at'>>;

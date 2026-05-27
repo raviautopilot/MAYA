@@ -2,6 +2,7 @@
 package handlers
 
 import (
+	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -574,6 +575,19 @@ func (h *Handler) CreateTask(c *gin.Context) {
 		t.Reminders = []models.Reminder{}
 	}
 
+	// Initialize DueDate from Scheduler if linked and not explicitly provided
+	if t.SchedulerID != "" && t.DueDate == "" {
+		schedulers, err := h.Schedulers.LoadAll()
+		if err == nil {
+			for _, s := range schedulers {
+				if s.ID == t.SchedulerID && s.DeletedAt == nil {
+					t.DueDate = s.NextRun
+					break
+				}
+			}
+		}
+	}
+
 	if err := h.Tasks.WithLock(func(items []models.Task) ([]models.Task, error) {
 		return append(items, t), nil
 	}); err != nil {
@@ -715,6 +729,7 @@ func (h *Handler) UpdateTask(c *gin.Context) {
 				items[i].Cost = input.Cost
 				items[i].Priority = input.Priority
 				items[i].SchedulerID = input.SchedulerID
+				items[i].DueDate = input.DueDate
 				if input.Reminders != nil {
 					items[i].Reminders = input.Reminders
 				}
@@ -791,6 +806,9 @@ func (h *Handler) PatchTask(c *gin.Context) {
 				}
 				if v, ok := patch["scheduler_id"].(string); ok {
 					items[i].SchedulerID = v
+				}
+				if v, ok := patch["due_date"].(string); ok {
+					items[i].DueDate = v
 				}
 				items[i].UpdatedAt = time.Now().UTC()
 				patched = &items[i]
@@ -912,6 +930,7 @@ func (h *Handler) generateRecurringTask(completed models.Task) *models.Task {
 		Priority:          completed.Priority,
 		Reminders:         []models.Reminder{},
 		SchedulerID:       completed.SchedulerID,
+		DueDate:           nextRun,
 		CreatedAt:         time.Now().UTC(),
 		UpdatedAt:         time.Now().UTC(),
 	}
@@ -1326,4 +1345,131 @@ func contains(slice []string, val string) bool {
 // @Router       /health [get]
 func Health(c *gin.Context) {
 	respond(c, http.StatusOK, gin.H{"status": "ok", "time": time.Now().UTC().Format(time.RFC3339)}, "")
+}
+
+// StartBackgroundWorker runs the task scheduler checker at regular intervals.
+func (h *Handler) StartBackgroundWorker(ctx context.Context) {
+	ticker := time.NewTicker(5 * time.Second)
+	defer ticker.Stop()
+
+	fmt.Println("Starting MyKanban task scheduler background worker...")
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println("Stopping MyKanban task scheduler background worker...")
+			return
+		case <-ticker.C:
+			h.checkAndTriggerSchedulers()
+		}
+	}
+}
+
+// checkAndTriggerSchedulers evaluates all schedulers and tasks to trigger automatic task generation on due date/expiry.
+func (h *Handler) checkAndTriggerSchedulers() {
+	now := time.Now().UTC()
+
+	// 1. Lock tasks first (following the established lock order tasks -> schedulers to avoid deadlock)
+	_ = h.Tasks.WithLock(func(tasks []models.Task) ([]models.Task, error) {
+		// 2. Lock schedulers second
+		_ = h.Schedulers.WithLock(func(schedulers []models.Scheduler) ([]models.Scheduler, error) {
+
+			for idxSched, s := range schedulers {
+				if s.DeletedAt != nil || s.NextRun == "" {
+					continue
+				}
+
+				nextRunTime, err := time.Parse(time.RFC3339, s.NextRun)
+				if err != nil {
+					continue
+				}
+
+				// If next_run is in the past (expired)
+				if nextRunTime.Before(now) {
+					// We need to create a new task for this scheduler!
+					// Try to find the source task template to copy details from.
+					var sourceTask *models.Task
+
+					// First, try using s.LinkedTaskTemplateID
+					if s.LinkedTaskTemplateID != "" {
+						for _, t := range tasks {
+							if t.ID == s.LinkedTaskTemplateID && t.DeletedAt == nil {
+								sourceTask = &t
+								break
+							}
+						}
+					}
+
+					// If template not found, find the latest active task linked to this scheduler
+					if sourceTask == nil {
+						var latestTask *models.Task
+						for _, t := range tasks {
+							if t.SchedulerID == s.ID && t.DeletedAt == nil {
+								if latestTask == nil || t.CreatedAt.After(latestTask.CreatedAt) {
+									latestTask = &t
+								}
+							}
+						}
+						sourceTask = latestTask
+					}
+
+					// If we still don't have a source task, we can't copy details. Skip this scheduler.
+					if sourceTask == nil {
+						continue
+					}
+
+					// Clear the scheduler_id and due_date of any existing uncompleted task linked to this scheduler
+					// so we don't keep checking/updating it and to allow the new task to be the active one.
+					for idxTask, t := range tasks {
+						if t.SchedulerID == s.ID && t.DeletedAt == nil && t.Swimlane != "Done" {
+							tasks[idxTask].SchedulerID = ""
+							tasks[idxTask].UpdatedAt = now
+						}
+					}
+
+					// Calculate the next next_run for the scheduler
+					nextNextRun := calculateNextRun(&s)
+					schedulers[idxSched].NextRun = nextNextRun
+					schedulers[idxSched].UpdatedAt = now
+
+					// Get board's first swimlane (typically "To Do")
+					boards, err := h.Boards.LoadAll()
+					firstSwimlane := "To Do"
+					if err == nil {
+						for _, b := range boards {
+							if b.ID == sourceTask.BoardID && b.DeletedAt == nil && len(b.Swimlanes) > 0 {
+								firstSwimlane = b.Swimlanes[0]
+								break
+							}
+						}
+					}
+
+					// Create the new task!
+					newTask := models.Task{
+						ID:                uuid.New().String(),
+						BoardID:           sourceTask.BoardID,
+						Swimlane:          firstSwimlane,
+						TaskType:          sourceTask.TaskType,
+						Title:             sourceTask.Title,
+						Description:       sourceTask.Description,
+						AssigneeID:        sourceTask.AssigneeID,
+						EstimationMinutes: sourceTask.EstimationMinutes,
+						Cost:              sourceTask.Cost,
+						Priority:          sourceTask.Priority,
+						Reminders:         []models.Reminder{},
+						SchedulerID:       s.ID,
+						DueDate:           nextNextRun, // Set the task's due date to the new next run!
+						CreatedAt:         now,
+						UpdatedAt:         now,
+					}
+
+					tasks = append(tasks, newTask)
+					fmt.Printf("Auto-generated recurring task '%s' (Scheduler: %s, Next Run: %s)\n", newTask.Title, s.Name, nextNextRun)
+				}
+			}
+
+			return schedulers, nil
+		})
+
+		return tasks, nil
+	})
 }
