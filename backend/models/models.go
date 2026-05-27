@@ -12,13 +12,16 @@ type APIResponse struct {
 
 // Project represents a top-level project grouping boards.
 type Project struct {
-	ID          string     `json:"id"`
-	Name        string     `json:"name" binding:"required"`
-	Description string     `json:"description"`
-	Type        string     `json:"type" binding:"required,oneof=personal professional"`
-	CreatedAt   time.Time  `json:"created_at"`
-	UpdatedAt   time.Time  `json:"updated_at"`
-	DeletedAt   *time.Time `json:"deleted_at,omitempty"`
+	ID             string     `json:"id"`
+	Name           string     `json:"name" binding:"required"`
+	Description    string     `json:"description"`
+	Type           string     `json:"type" binding:"required,oneof=personal professional"`
+	StartDate      *time.Time `json:"start_date,omitempty"`
+	EndDate        *time.Time `json:"end_date,omitempty"`
+	EstimatedHours float64    `json:"estimated_hours"`
+	CreatedAt      time.Time  `json:"created_at"`
+	UpdatedAt      time.Time  `json:"updated_at"`
+	DeletedAt      *time.Time `json:"deleted_at,omitempty"`
 }
 
 // Board represents a kanban board within a project.
@@ -28,6 +31,7 @@ type Board struct {
 	Name      string     `json:"name" binding:"required"`
 	Swimlanes []string   `json:"swimlanes"`
 	TaskTypes []string   `json:"task_types"`
+	IsActive  bool       `json:"is_active"`
 	CreatedAt time.Time  `json:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at"`
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`

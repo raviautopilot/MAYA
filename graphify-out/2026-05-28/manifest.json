@@ -200,9 +200,9 @@
     "semantic_hash": "dd7e71d06868c302773c10fa3e3241bf"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/frontend/src/app/(dashboard)/tasks/page.tsx": {
-    "mtime": 1779910261.9821138,
-    "ast_hash": "43e583cd0e3e552e527492cc17c04ce2",
-    "semantic_hash": "43e583cd0e3e552e527492cc17c04ce2"
+    "mtime": 1779916710.1287029,
+    "ast_hash": "886ddc68ad6c3d3e3cdfcb688603b171",
+    "semantic_hash": "886ddc68ad6c3d3e3cdfcb688603b171"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/main_test.go": {
     "mtime": 1778763843.1745386,
@@ -220,9 +220,9 @@
     "semantic_hash": "d73e9ab4d395d181702e7a719387d0dc"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/config.json": {
-    "mtime": 1779298363.4147573,
-    "ast_hash": "97391a51db1b21d2150b438555fc5791",
-    "semantic_hash": "97391a51db1b21d2150b438555fc5791"
+    "mtime": 1779916806.6534438,
+    "ast_hash": "932d4ddab9ceefda676f1e45c7e67f6f",
+    "semantic_hash": "932d4ddab9ceefda676f1e45c7e67f6f"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/models/models.go": {
     "mtime": 1779910850.4979167,
@@ -240,9 +240,9 @@
     "semantic_hash": "a9cc3bf9d376fbe672ff42b178f6d0ef"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/handlers/handlers.go": {
-    "mtime": 1779910904.6462665,
-    "ast_hash": "6536815bac085caaa16facc9accc7b73",
-    "semantic_hash": "6536815bac085caaa16facc9accc7b73"
+    "mtime": 1779916677.728454,
+    "ast_hash": "c6f5137b4cd19caf8a7f0b229927dd6f",
+    "semantic_hash": "c6f5137b4cd19caf8a7f0b229927dd6f"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/handlers/handlers_test.go": {
     "mtime": 1778747608.7373183,
@@ -328,5 +328,10 @@
     "mtime": 1778774460.3253288,
     "ast_hash": "787c78a04b0a66e249e496d6b97eca3d",
     "semantic_hash": "787c78a04b0a66e249e496d6b97eca3d"
+  },
+  "/home/ubuntu/code/github/raviautopilot/mycan/update-graphify.sh": {
+    "mtime": 1779916963.530648,
+    "ast_hash": "446de290a9491abd639a6418bd12028e",
+    "semantic_hash": "446de290a9491abd639a6418bd12028e"
   }
 }

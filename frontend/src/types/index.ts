@@ -26,12 +26,19 @@ export interface Project {
   name: string;
   description: string;
   type: 'personal' | 'professional';
+  start_date?: string;
+  end_date?: string;
+  estimated_hours?: number;
   created_at: string;
   updated_at: string;
   deleted_at?: string;
 }
 
-export type ProjectCreate = Pick<Project, 'name' | 'description' | 'type'>;
+export type ProjectCreate = Pick<Project, 'name' | 'description' | 'type'> & {
+  start_date?: string;
+  end_date?: string;
+  estimated_hours?: number;
+};
 export type ProjectUpdate = ProjectCreate;
 
 // ── Board ──
@@ -41,6 +48,7 @@ export interface Board {
   name: string;
   swimlanes: string[];
   task_types: string[];
+  is_active: boolean;
   created_at: string;
   updated_at: string;
   deleted_at?: string;
@@ -49,6 +57,7 @@ export interface Board {
 export type BoardCreate = Pick<Board, 'project_id' | 'name'> & {
   swimlanes?: string[];
   task_types?: string[];
+  is_active?: boolean;
 };
 export type BoardUpdate = BoardCreate;
 

@@ -353,6 +353,25 @@ func TestProject_Delete(t *testing.T) {
 	}
 }
 
+func TestProject_Delete_BlockedByBoards(t *testing.T) {
+	_, router, token := setupTestHandler(t)
+	p := createProject(t, router, token)
+	pid := p["id"].(string)
+
+	// Create board associated with project
+	createBoard(t, router, token, pid)
+
+	// Try deleting project (should fail with 400 Bad Request)
+	w := doRequest(router, "DELETE", "/api/v1/projects/"+pid, nil, token)
+	if w.Code != http.StatusBadRequest {
+		t.Errorf("expected 400 Bad Request, got %d", w.Code)
+	}
+	resp := parseResponse(w)
+	if resp.Error == "" {
+		t.Error("expected error message in response, got empty")
+	}
+}
+
 func TestProject_Delete_NotFound(t *testing.T) {
 	_, router, token := setupTestHandler(t)
 	w := doRequest(router, "DELETE", "/api/v1/projects/nonexistent", nil, token)
@@ -458,6 +477,26 @@ func TestBoard_GetUpdateDelete(t *testing.T) {
 	w = doRequest(router, "DELETE", "/api/v1/boards/"+bid, nil, token)
 	if w.Code != http.StatusOK {
 		t.Errorf("DELETE expected 200, got %d", w.Code)
+	}
+}
+
+func TestBoard_Delete_BlockedByTasks(t *testing.T) {
+	_, router, token := setupTestHandler(t)
+	p := createProject(t, router, token)
+	b := createBoard(t, router, token, p["id"].(string))
+	bid := b["id"].(string)
+
+	// Create task associated with board
+	createTask(t, router, token, bid)
+
+	// Try deleting board (should fail with 400 Bad Request)
+	w := doRequest(router, "DELETE", "/api/v1/boards/"+bid, nil, token)
+	if w.Code != http.StatusBadRequest {
+		t.Errorf("expected 400 Bad Request, got %d", w.Code)
+	}
+	resp := parseResponse(w)
+	if resp.Error == "" {
+		t.Error("expected error message in response, got empty")
 	}
 }
 

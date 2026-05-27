@@ -43,7 +43,7 @@ export default function BoardsPage() {
 
   const openCreate = () => {
     setEditingBoard(null);
-    reset({ name: '', project_id: '' });
+    reset({ name: '', project_id: '', is_active: true });
     setSwimlanesInput('');
     setTaskTypesInput('');
     setModalOpen(true);
@@ -53,6 +53,7 @@ export default function BoardsPage() {
     setEditingBoard(b);
     setValue('name', b.name);
     setValue('project_id', b.project_id);
+    setValue('is_active', b.is_active ?? true);
     setSwimlanesInput((b.swimlanes || []).join(', '));
     setTaskTypesInput((b.task_types || []).join(', '));
     setModalOpen(true);
@@ -62,6 +63,7 @@ export default function BoardsPage() {
     setSubmitting(true);
     const payload: BoardCreate = {
       ...data,
+      is_active: data.is_active ?? true,
       swimlanes: swimlanesInput ? swimlanesInput.split(',').map((s) => s.trim()).filter(Boolean) : undefined,
       task_types: taskTypesInput ? taskTypesInput.split(',').map((s) => s.trim()).filter(Boolean) : undefined,
     };
@@ -87,7 +89,10 @@ export default function BoardsPage() {
       addToast('Board deleted', 'success');
       setDeleteTarget(null);
       fetchData();
-    } catch { addToast('Failed to delete board', 'error'); }
+    } catch (err: unknown) {
+      const errMsg = (err as { response?: { data?: { error?: string } } }).response?.data?.error || 'Failed to delete board';
+      addToast(errMsg, 'error');
+    }
     finally { setSubmitting(false); }
   };
 
@@ -169,6 +174,18 @@ export default function BoardsPage() {
             onChange={(e) => setTaskTypesInput(e.target.value)}
             e2e-test-id="board-task-types-input"
           />
+          {editingBoard && (
+            <div className="flex items-center gap-2 py-1">
+              <input
+                type="checkbox"
+                id="is_active"
+                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                e2e-test-id="board-is-active-input"
+                {...register('is_active')}
+              />
+              <label htmlFor="is_active" className="text-sm font-medium text-gray-700">Active</label>
+            </div>
+          )}
           <div className="flex justify-end gap-3 pt-2">
             <Button variant="secondary" type="button" onClick={() => setModalOpen(false)} e2e-test-id="board-cancel-btn">Cancel</Button>
             <Button type="submit" loading={submitting} e2e-test-id="board-submit-btn">{editingBoard ? 'Update' : 'Create'}</Button>
