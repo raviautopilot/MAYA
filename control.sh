@@ -122,7 +122,7 @@ do_start() {
     log_info "Launching Frontend Next.js Dev Server..."
     cd "$FRONTEND_DIR"
     # Set PORT=3000 but Node will fallback to 3001/3002 if 3000 is occupied.
-    nohup npx next dev > "$LOGS_DIR/frontend.log" 2>&1 &
+    nohup ../node_modules/.bin/next dev > "$LOGS_DIR/frontend.log" 2>&1 &
     NEW_FRONTEND_PID=$!
     disown "$NEW_FRONTEND_PID" 2>/dev/null || true
     cd "$SCRIPT_DIR"

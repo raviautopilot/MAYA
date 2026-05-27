@@ -262,6 +262,9 @@ func (h *Handler) UpdateProject(c *gin.Context) {
 				items[i].Name = input.Name
 				items[i].Description = input.Description
 				items[i].Type = input.Type
+				items[i].StartDate = input.StartDate
+				items[i].EndDate = input.EndDate
+				items[i].EstimatedHours = input.EstimatedHours
 				items[i].UpdatedAt = time.Now().UTC()
 				updated = &items[i]
 				return items, nil
@@ -293,9 +296,23 @@ func (h *Handler) UpdateProject(c *gin.Context) {
 // @Router       /v1/projects/{id} [delete]
 func (h *Handler) DeleteProject(c *gin.Context) {
 	id := c.Param("id")
+
+	// Verify project contains no associated active boards
+	boards, err := h.Boards.LoadAll()
+	if err != nil {
+		respond(c, http.StatusInternalServerError, nil, "failed to check associated boards: "+err.Error())
+		return
+	}
+	for _, b := range boards {
+		if b.ProjectID == id && b.DeletedAt == nil {
+			respond(c, http.StatusBadRequest, nil, "cannot delete project: associated boards exist")
+			return
+		}
+	}
+
 	now := time.Now().UTC()
 	var deleted bool
-	err := h.Projects.WithLock(func(items []models.Project) ([]models.Project, error) {
+	err = h.Projects.WithLock(func(items []models.Project) ([]models.Project, error) {
 		for i, p := range items {
 			if p.ID == id && p.DeletedAt == nil {
 				items[i].DeletedAt = &now
@@ -355,6 +372,7 @@ func (h *Handler) CreateBoard(c *gin.Context) {
 		b.TaskTypes = models.DefaultTaskTypes
 	}
 	b.ID = uuid.New().String()
+	b.IsActive = true
 	b.CreatedAt = time.Now().UTC()
 	b.UpdatedAt = b.CreatedAt
 
@@ -462,6 +480,7 @@ func (h *Handler) UpdateBoard(c *gin.Context) {
 				if len(input.TaskTypes) > 0 {
 					items[i].TaskTypes = input.TaskTypes
 				}
+				items[i].IsActive = input.IsActive
 				items[i].UpdatedAt = time.Now().UTC()
 				updated = &items[i]
 				return items, nil
@@ -493,9 +512,23 @@ func (h *Handler) UpdateBoard(c *gin.Context) {
 // @Router       /v1/boards/{id} [delete]
 func (h *Handler) DeleteBoard(c *gin.Context) {
 	id := c.Param("id")
+
+	// Verify board contains no associated active tasks
+	tasks, err := h.Tasks.LoadAll()
+	if err != nil {
+		respond(c, http.StatusInternalServerError, nil, "failed to check associated tasks: "+err.Error())
+		return
+	}
+	for _, t := range tasks {
+		if t.BoardID == id && t.DeletedAt == nil {
+			respond(c, http.StatusBadRequest, nil, "cannot delete board: associated tasks exist")
+			return
+		}
+	}
+
 	now := time.Now().UTC()
 	var deleted bool
-	err := h.Boards.WithLock(func(items []models.Board) ([]models.Board, error) {
+	err = h.Boards.WithLock(func(items []models.Board) ([]models.Board, error) {
 		for i, b := range items {
 			if b.ID == id && b.DeletedAt == nil {
 				items[i].DeletedAt = &now
