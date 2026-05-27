@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { tasksApi, boardsApi, schedulersApi, resourcesApi } from '@/services/api';
 import { useToastStore } from '@/store/toastStore';
@@ -18,6 +19,18 @@ const priorityColors: Record<string, string> = {
 };
 
 export default function TasksPage() {
+  return (
+    <Suspense fallback={<div className="p-6"><CardSkeleton /></div>}>
+      <TasksContent />
+    </Suspense>
+  );
+}
+
+function TasksContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const boardIdParam = searchParams.get('board_id') || '';
+
   const [tasks, setTasks] = useState<Task[]>([]);
   const [boards, setBoards] = useState<Board[]>([]);
   const [schedulers, setSchedulers] = useState<Scheduler[]>([]);
@@ -28,9 +41,23 @@ export default function TasksPage() {
   const [deleteTarget, setDeleteTarget] = useState<Task | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [viewMode, setViewMode] = useState<'kanban' | 'table'>('kanban');
-  const [filterBoardId, setFilterBoardId] = useState('');
+  const [filterBoardId, setFilterBoardId] = useState(boardIdParam);
   const [filterPriority, setFilterPriority] = useState('');
   const addToast = useToastStore((s) => s.addToast);
+
+  useEffect(() => {
+    setFilterBoardId(boardIdParam);
+  }, [boardIdParam]);
+
+  const handleBoardFilterChange = (boardId: string) => {
+    const params = new URLSearchParams(window.location.search);
+    if (boardId) {
+      params.set('board_id', boardId);
+    } else {
+      params.delete('board_id');
+    }
+    router.push(`/tasks?${params.toString()}`);
+  };
 
   const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } = useForm<FormData>({
     defaultValues: { reminders: [] },
@@ -64,7 +91,7 @@ export default function TasksPage() {
 
   const openCreate = () => {
     setEditingTask(null);
-    reset({ board_id: '', swimlane: '', task_type: '', title: '', priority: 'Medium', description: '', reminders: [] });
+    reset({ board_id: filterBoardId || '', swimlane: '', task_type: '', title: '', priority: 'Medium', description: '', reminders: [] });
     setModalOpen(true);
   };
 
@@ -139,7 +166,7 @@ export default function TasksPage() {
           <p className="text-gray-500 text-sm mt-1">{tasks.length} task(s)</p>
         </div>
         <div className="flex items-center gap-3">
-          <select value={filterBoardId} onChange={(e) => setFilterBoardId(e.target.value)} className="rounded-md border border-gray-300 px-3 py-2 text-sm" e2e-test-id="tasks-filter-board">
+          <select value={filterBoardId} onChange={(e) => handleBoardFilterChange(e.target.value)} className="rounded-md border border-gray-300 px-3 py-2 text-sm" e2e-test-id="tasks-filter-board">
             <option value="">All Boards</option>
             {boards.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}
           </select>
