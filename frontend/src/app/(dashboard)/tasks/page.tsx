@@ -6,7 +6,7 @@ import { tasksApi, boardsApi, schedulersApi, resourcesApi } from '@/services/api
 import { useToastStore } from '@/store/toastStore';
 import { Button, Input, Select, Modal, ConfirmDialog, Card, CardBody } from '@/components/ui';
 import { CardSkeleton } from '@/components/ui/Skeleton';
-import { Plus, Pencil, Trash2, CheckSquare, List, LayoutGrid, Bell, X } from 'lucide-react';
+import { Plus, Pencil, Trash2, CheckSquare, List, LayoutGrid, Bell, X, Calendar, Clock } from 'lucide-react';
 import type { Task, TaskCreate, Board, Scheduler, Resource, Reminder } from '@/types';
 
 type FormData = TaskCreate & { reminders?: Reminder[]; actual_time_minutes?: number };
@@ -193,33 +193,48 @@ function TasksContent() {
             <div key={lane} className="bg-gray-100 rounded-lg p-4" e2e-test-id={`kanban-lane-${lane.replace(/\s/g, '-').toLowerCase()}`}>
               <h3 className="font-semibold text-gray-700 mb-3 text-sm uppercase">{lane} ({tasks.filter((t) => t.swimlane === lane).length})</h3>
               <div className="space-y-2">
-                {tasks.filter((t) => t.swimlane === lane).map((task) => (
-                  <Card key={task.id} className="cursor-pointer hover:shadow-md transition" e2e-test-id={`task-card-${task.id}`}>
-                    <CardBody className="p-3">
-                      <div className="flex items-start justify-between">
-                        <h4 className="text-sm font-medium text-gray-900">{task.title}</h4>
-                        <div className="flex gap-1">
-                          <button onClick={() => openEdit(task)} className="text-blue-500 hover:text-blue-700" e2e-test-id={`task-edit-btn-${task.id}`}><Pencil size={14} /></button>
-                          <button onClick={() => setDeleteTarget(task)} className="text-red-500 hover:text-red-700" e2e-test-id={`task-delete-btn-${task.id}`}><Trash2 size={14} /></button>
+                {tasks.filter((t) => t.swimlane === lane).map((task) => {
+                  const linkedScheduler = schedulers.find((s) => s.id === task.scheduler_id);
+                  return (
+                    <Card key={task.id} className="cursor-pointer hover:shadow-md transition" e2e-test-id={`task-card-${task.id}`}>
+                      <CardBody className="p-3">
+                        <div className="flex items-start justify-between">
+                          <h4 className="text-sm font-medium text-gray-900">{task.title}</h4>
+                          <div className="flex gap-1">
+                            <button onClick={() => openEdit(task)} className="text-blue-500 hover:text-blue-700" e2e-test-id={`task-edit-btn-${task.id}`}><Pencil size={14} /></button>
+                            <button onClick={() => setDeleteTarget(task)} className="text-red-500 hover:text-red-700" e2e-test-id={`task-delete-btn-${task.id}`}><Trash2 size={14} /></button>
+                          </div>
                         </div>
-                      </div>
-                      {task.description && <p className="text-xs text-gray-500 mt-1 line-clamp-2">{task.description}</p>}
-                      <div className="flex items-center gap-2 mt-2 flex-wrap">
-                        <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[task.priority] || ''}`}>{task.priority}</span>
-                        <span className="text-xs text-gray-400">{task.task_type}</span>
-                        {task.reminders && task.reminders.length > 0 && <Bell size={12} className="text-yellow-500" />}
-                      </div>
-                      {/* Move buttons */}
-                      <div className="flex gap-1 mt-2">
-                        {kanbanSwimlanes.filter((l) => l !== lane).map((l) => (
-                          <button key={l} onClick={() => handlePatchSwimlane(task.id, l)} className="text-xs px-2 py-0.5 bg-gray-200 rounded hover:bg-gray-300" e2e-test-id={`task-move-${task.id}-${l.replace(/\s/g, '-').toLowerCase()}`}>
-                            → {l}
-                          </button>
-                        ))}
-                      </div>
-                    </CardBody>
-                  </Card>
-                ))}
+                        {task.description && <p className="text-xs text-gray-500 mt-1 line-clamp-2">{task.description}</p>}
+                        <div className="flex items-center gap-2 mt-2 flex-wrap">
+                          <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[task.priority] || ''}`}>{task.priority}</span>
+                          <span className="text-xs text-gray-400">{task.task_type}</span>
+                          {task.reminders && task.reminders.length > 0 && <Bell size={12} className="text-yellow-500" />}
+                        </div>
+                        {task.due_date && (
+                          <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-2 bg-gray-50 p-1.5 rounded-md border border-gray-100">
+                            <Calendar size={12} className="text-gray-400" />
+                            <span>Due: {new Date(task.due_date).toLocaleString()}</span>
+                          </div>
+                        )}
+                        {linkedScheduler && (
+                          <div className="flex items-center gap-1.5 text-xs text-indigo-700 mt-1 bg-indigo-50 p-1.5 rounded-md border border-indigo-100">
+                            <Clock size={12} className="text-indigo-400" />
+                            <span>Recurring: {linkedScheduler.name}</span>
+                          </div>
+                        )}
+                        {/* Move buttons */}
+                        <div className="flex gap-1 mt-2">
+                          {kanbanSwimlanes.filter((l) => l !== lane).map((l) => (
+                            <button key={l} onClick={() => handlePatchSwimlane(task.id, l)} className="text-xs px-2 py-0.5 bg-gray-200 rounded hover:bg-gray-300" e2e-test-id={`task-move-${task.id}-${l.replace(/\s/g, '-').toLowerCase()}`}>
+                              → {l}
+                            </button>
+                          ))}
+                        </div>
+                      </CardBody>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
           ))}
@@ -231,7 +246,7 @@ function TasksContent() {
             <table className="min-w-full divide-y divide-gray-200" e2e-test-id="tasks-table">
               <thead className="bg-gray-50">
                 <tr>
-                  {['Title', 'Swimlane', 'Type', 'Priority', 'Board', 'Actions'].map((h) => (
+                  {['Title', 'Swimlane', 'Type', 'Priority', 'Due Date', 'Scheduler', 'Board', 'Actions'].map((h) => (
                     <th key={h} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{h}</th>
                   ))}
                 </tr>
@@ -243,6 +258,8 @@ function TasksContent() {
                     <td className="px-6 py-4 text-sm">{task.swimlane}</td>
                     <td className="px-6 py-4 text-sm">{task.task_type}</td>
                     <td className="px-6 py-4"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[task.priority]}`}>{task.priority}</span></td>
+                    <td className="px-6 py-4 text-sm text-gray-500">{task.due_date ? new Date(task.due_date).toLocaleString() : '—'}</td>
+                    <td className="px-6 py-4 text-sm text-gray-500">{schedulers.find((s) => s.id === task.scheduler_id)?.name || '—'}</td>
                     <td className="px-6 py-4 text-sm">{boards.find((b) => b.id === task.board_id)?.name || task.board_id}</td>
                     <td className="px-6 py-4">
                       <div className="flex gap-2">

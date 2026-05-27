@@ -102,6 +102,11 @@ func main() {
 	// Set up Gin router
 	router := SetupRouter(h, &cfg)
 
+	// Start background task scheduler worker
+	workerCtx, cancelWorker := context.WithCancel(context.Background())
+	defer cancelWorker()
+	go h.StartBackgroundWorker(workerCtx)
+
 	// Start server with graceful shutdown
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.Port),

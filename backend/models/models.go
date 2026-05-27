@@ -60,6 +60,7 @@ type Task struct {
 	Priority          string     `json:"priority" binding:"required,oneof=Low Medium High Critical"`
 	Reminders         []Reminder `json:"reminders"`
 	SchedulerID       string     `json:"scheduler_id,omitempty"`
+	DueDate           string     `json:"due_date,omitempty"`
 	CreatedAt         time.Time  `json:"created_at"`
 	UpdatedAt         time.Time  `json:"updated_at"`
 	DeletedAt         *time.Time `json:"deleted_at,omitempty"`

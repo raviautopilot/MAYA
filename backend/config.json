@@ -10,5 +10,5 @@
   "storage_dir": "./storage",
   "log_file": "server.log",
   "_comment_allowed_origins": "Comma-separated list of allowed CORS origins. Example: http://localhost:3000,http://localhost:3001,https://mykanban.example.com",
-  "allowed_origins": "http://localhost:3000"
+  "allowed_origins": "http://localhost:3000,http://localhost:3001"
 }

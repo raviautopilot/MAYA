@@ -2145,6 +2145,9 @@ const docTemplate = `{
                 "description": {
                     "type": "string"
                 },
+                "due_date": {
+                    "type": "string"
+                },
                 "estimation_minutes": {
                     "type": "integer"
                 },
