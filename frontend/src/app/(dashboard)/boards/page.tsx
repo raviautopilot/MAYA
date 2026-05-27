@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { boardsApi, projectsApi } from '@/services/api';
 import { useToastStore } from '@/store/toastStore';
@@ -91,7 +92,11 @@ export default function BoardsPage() {
   };
 
   const columns = [
-    { key: 'name', header: 'Name', render: (b: Board) => <span className="font-medium">{b.name}</span> },
+    { key: 'name', header: 'Name', render: (b: Board) => (
+      <Link href={`/tasks?board_id=${b.id}`} className="font-medium text-blue-600 hover:text-blue-800 hover:underline" e2e-test-id={`board-name-link-${b.id}`}>
+        {b.name}
+      </Link>
+    ) },
     { key: 'project_id', header: 'Project', render: (b: Board) => projectName(b.project_id) },
     { key: 'swimlanes', header: 'Swimlanes', render: (b: Board) => (
       <div className="flex flex-wrap gap-1">{(b.swimlanes || []).map((s) => (
