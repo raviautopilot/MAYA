@@ -65,7 +65,7 @@ func main() {
 	// Initialize storage
 	storageDir := cfg.StorageDir
 	if storageDir == "" {
-		storageDir = "./storage"
+		storageDir = "."
 	}
 
 	projectStore, err := storage.NewStore[models.Project](storageDir, "projects.json", nil)

@@ -1,11 +1,143 @@
-# Frontend Next.js build artifacts
-maya/.next/
-maya/out/
+# ==============================================================================
+# OS Generated Files
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
 
-# Node dependencies
+# ==============================================================================
+# IDEs and Editors
+# ==============================================================================
+# IntelliJ / GoLand / Android Studio / WebStorm
+.idea/
+*.iml
+*.iws
+out/
+cmake-build-*/
+.run/
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# Vim
+.viminfo
+.*.swp
+*.swo
+
+# ==============================================================================
+# Go
+# ==============================================================================
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# ==============================================================================
+# Node.js
+# ==============================================================================
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
 node_modules/
+jspm_packages/
 maya/node_modules/
 
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env
+.env.test
+.env.production
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# next.js
+.next/
+out/
+maya/.next/
+maya/out/
+build/
+
+# ==============================================================================
+# Project Specific
+# ==============================================================================
 # Backend build artifacts
 chitta/bin/
 chitta/chitta
+
+# Project data files
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!jsconfig.json
+!next-env.d.ts
+!chitta/config.json
+!maya/package.json
+!maya/package-lock.json
+!maya/tsconfig.json
+
+# If data files are stored in the root
+/boards.json
+/projects.json
+/tasks.json
+/schedulers.json
+/resources.json
+
+# If data files are stored in chitta/
+/chitta/boards.json
+/chitta/projects.json
+/chitta/tasks.json
+/chitta/schedulers.json
+/chitta/resources.json

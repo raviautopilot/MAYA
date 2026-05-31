@@ -61,8 +61,16 @@ func (s *Store[T]) LoadAll() ([]T, error) {
 func (s *Store[T]) loadAllUnsafe() ([]T, error) {
 	data, err := s.fs.ReadFile(s.filePath)
 	if err != nil {
+		if os.IsNotExist(err) {
+			return []T{}, nil // File doesn't exist, treat as empty.
+		}
 		return nil, fmt.Errorf("storage: read %s: %w", s.filePath, err)
 	}
+
+	if len(data) == 0 {
+		return []T{}, nil // File is empty, treat as empty.
+	}
+
 	var items []T
 	if err := json.Unmarshal(data, &items); err != nil {
 		return nil, fmt.Errorf("storage: unmarshal %s: %w", s.filePath, err)
