@@ -302,6 +302,16 @@ do_e2e() {
     log_info "1. Securing clean environment: Force killing active ports..."
     do_kill
 
+    # Back up existing JSON database files in chitta/ to ensure pristine state restore
+    log_info "Backing up database storage files..."
+    local backup_dir="$CHITTA_DIR/backup_db"
+    mkdir -p "$backup_dir"
+    for db_file in projects.json boards.json tasks.json schedulers.json resources.json; do
+        if [ -f "$CHITTA_DIR/$db_file" ]; then
+            cp "$CHITTA_DIR/$db_file" "$backup_dir/"
+        fi
+    done
+
     log_info "2. Launching backend and frontend services..."
     do_start
 
@@ -333,6 +343,11 @@ do_e2e() {
 
     if [ "$backend_up" -eq 0 ] || [ "$frontend_up" -eq 0 ]; then
         log_error "Services failed to become healthy within $timeout seconds."
+        # Restore backup before failing
+        if [ -d "$backup_dir" ]; then
+            cp "$backup_dir"/*.json "$CHITTA_DIR/" 2>/dev/null || true
+            rm -rf "$backup_dir"
+        fi
         do_kill
         exit 1
     fi
@@ -343,6 +358,19 @@ do_e2e() {
 
     log_info "5. Tearing down services and sweeping ports for future runs..."
     do_kill
+
+    # Restore the JSON database backup to fully preserve the original database state
+    log_info "Restoring database storage files to original state..."
+    if [ -d "$backup_dir" ]; then
+        for db_file in projects.json boards.json tasks.json schedulers.json resources.json; do
+            if [ -f "$backup_dir/$db_file" ]; then
+                cp "$backup_dir/$db_file" "$CHITTA_DIR/"
+            else
+                rm -f "$CHITTA_DIR/$db_file"
+            fi
+        done
+        rm -rf "$backup_dir"
+    fi
 
     if [ "$test_exit_code" -eq 0 ]; then
         log_success "E2E Test Lifecycle completed successfully! All tests passed."

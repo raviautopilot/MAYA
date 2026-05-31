@@ -2,6 +2,7 @@ package web
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/tebeka/selenium"
@@ -17,45 +18,10 @@ func (s *WebTestSuite) TestBoardWorkflow() {
 	s.ClickElement("[data-testid='mock-login-user-btn']", "Test Developer profile selection")
 	s.WaitTillElementFound("[e2e-test-id='header']", 10*time.Second)
 
-	// 2. Go to Projects Page and create a parent project first
-	s.NavigateTo(s.frontendURL + "/projects")
-	s.WaitTillElementFound("[e2e-test-id='projects-page']", 10*time.Second)
-	s.ClickElement("[e2e-test-id='project-create-btn']", "New Project button")
-	s.WaitTillElementFound("[e2e-test-id='project-form']", 10*time.Second)
-
+	// 2. Create parent project via backend API (fast & robust)
 	parentProjectName := fmt.Sprintf("Board Parent %d", time.Now().Unix())
-	nameInput, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='project-name-input']")
-	s.Require().NoError(err)
-	err = nameInput.SendKeys(parentProjectName)
-	s.Require().NoError(err)
-
-	// Select Project Type (required field)
-	typeSelect, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='project-type-select']")
-	s.Require().NoError(err)
-	err = typeSelect.Click()
-	s.Require().NoError(err)
-	typeOption, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='project-type-select'] option[value='personal']")
-	s.Require().NoError(err)
-	err = typeOption.Click()
-	s.Require().NoError(err)
-
-	s.ClickElement("[e2e-test-id='project-submit-btn']", "Project Submit button")
-
-	// Wait for project to appear in the table
-	s.CurrentTest.LogStep("Wait for Parent Project", "INFO", "Waiting for parent project in list")
-	projectFound := false
-	end := time.Now().Add(10 * time.Second)
-	for time.Now().Before(end) {
-		elem, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//*[contains(text(), '%s')]", parentProjectName))
-		if err == nil {
-			if displayed, _ := elem.IsDisplayed(); displayed {
-				projectFound = true
-				break
-			}
-		}
-		time.Sleep(500 * time.Millisecond)
-	}
-	s.Require().True(projectFound, "Parent project for board was not found in table")
+	_, err := s.CreateProjectViaAPI(parentProjectName, "Parent project for Board E2E test", "personal")
+	s.Require().NoError(err, "Failed to create parent project via API")
 
 	// 3. Go to Boards Page
 	s.NavigateTo(s.frontendURL + "/boards")
@@ -74,7 +40,7 @@ func (s *WebTestSuite) TestBoardWorkflow() {
 
 	// Wait for the exact project option to be populated and rendered in the dropdown
 	var projectOption selenium.WebElement
-	end = time.Now().Add(10 * time.Second)
+	end := time.Now().Add(10 * time.Second)
 	for time.Now().Before(end) {
 		projectOption, err = s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//select[@e2e-test-id='board-project-select']/option[contains(text(), '%s')]", parentProjectName))
 		if err == nil {
@@ -151,9 +117,16 @@ func (s *WebTestSuite) TestBoardWorkflow() {
 
 	s.TakeScreenshot("board_crud_04_filtered_table")
 
-	// 8. Click Board Link (navigates to tasks)
+	// 8. Click Board Link (navigates to tasks) and parse ID for cleanup
 	boardLink, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//*[contains(text(), '%s')]/ancestor::tr//a[contains(@e2e-test-id, 'board-name-link-')]", boardName))
 	s.Require().NoError(err)
+
+	// Parse board ID from link attribute to track for automatic teardown cleanup
+	if attr, err := boardLink.GetAttribute("e2e-test-id"); err == nil {
+		id := strings.TrimPrefix(attr, "board-name-link-")
+		s.CreatedBoardIDs = append(s.CreatedBoardIDs, id)
+	}
+
 	err = boardLink.Click()
 	s.Require().NoError(err)
 

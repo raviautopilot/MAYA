@@ -1,11 +1,15 @@
 package e2etest
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/stretchr/testify/suite"
@@ -87,6 +91,13 @@ type BaseWebSuite struct {
 	SeleniumService  *selenium.Service
 	WD               selenium.WebDriver
 	ChromeDriverPort int
+
+	// Track created entity IDs for automatic cleanup
+	CreatedProjectIDs   []string
+	CreatedBoardIDs     []string
+	CreatedTaskIDs      []string
+	CreatedResourceIDs  []string
+	CreatedSchedulerIDs []string
 }
 
 func (s *BaseWebSuite) SetupSuite() {
@@ -167,6 +178,9 @@ func (s *BaseWebSuite) TearDownTest() {
 	} else {
 		LogExecution("WEB TEST [%s] PASSED | Duration: %v", s.T().Name(), s.CurrentTest.Duration)
 	}
+
+	// Perform E2E database cleanups
+	s.CleanupTestData()
 
 	LogExecution("WEB TEST [%s]: Closing Chrome browser session...", s.T().Name())
 	if s.WD != nil {
@@ -265,4 +279,477 @@ func (s *BaseWebSuite) WaitTillElementFound(selector string, timeout time.Durati
 	s.CurrentTest.LogStep("Wait Timeout", "FAILED", fmt.Sprintf("Timeout waiting for element matching selector '%s' to be visible", selector))
 	LogExecution("WEB TEST [%s] WAIT TIMEOUT: Element matching selector '%s' not visible after %v", s.T().Name(), selector, timeout)
 	s.T().Fatalf("Timeout waiting for element '%s'", selector)
+}
+
+// GetJWTToken fetches a valid mock OAuth JWT token from the running backend.
+func (s *BaseWebSuite) GetJWTToken() (string, error) {
+	client := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+	backendURL := GlobalConfig.BackendURL
+	resp, err := client.Get(backendURL + "/api/v1/auth/google/callback?code=mock-code-123")
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	loc := resp.Header.Get("Location")
+	if loc == "" {
+		return "", fmt.Errorf("missing Location header in mock callback response")
+	}
+
+	u, err := url.Parse(loc)
+	if err != nil {
+		return "", err
+	}
+
+	token := u.Query().Get("token")
+	if token == "" {
+		return "", fmt.Errorf("JWT token not found in callback URL query")
+	}
+
+	return token, nil
+}
+
+// CreateProjectViaAPI programmatically registers a Project in MyKanban.
+func (s *BaseWebSuite) CreateProjectViaAPI(name, desc, pType string) (string, error) {
+	token, err := s.GetJWTToken()
+	if err != nil {
+		return "", err
+	}
+
+	urlStr := fmt.Sprintf("%s/api/v1/projects", GlobalConfig.BackendURL)
+	payload := map[string]interface{}{
+		"name":        name,
+		"description": desc,
+		"type":        pType,
+	}
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
+
+	req, err := http.NewRequest("POST", urlStr, bytes.NewBuffer(body))
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	client := &http.Client{Timeout: 10 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusCreated {
+		return "", fmt.Errorf("failed to create project: status %s", resp.Status)
+	}
+
+	var created struct {
+		Data struct {
+			ID string `json:"id"`
+		} `json:"data"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&created); err != nil {
+		return "", err
+	}
+
+	s.CreatedProjectIDs = append(s.CreatedProjectIDs, created.Data.ID)
+	return created.Data.ID, nil
+}
+
+// CreateBoardViaAPI programmatically registers a Board under a Project.
+func (s *BaseWebSuite) CreateBoardViaAPI(projectID, name string, swimlanes, taskTypes []string) (string, error) {
+	token, err := s.GetJWTToken()
+	if err != nil {
+		return "", err
+	}
+
+	urlStr := fmt.Sprintf("%s/api/v1/boards", GlobalConfig.BackendURL)
+	payload := map[string]interface{}{
+		"project_id": projectID,
+		"name":       name,
+		"swimlanes":  swimlanes,
+		"task_types": taskTypes,
+		"is_active":  true,
+	}
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
+
+	req, err := http.NewRequest("POST", urlStr, bytes.NewBuffer(body))
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	client := &http.Client{Timeout: 10 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusCreated {
+		return "", fmt.Errorf("failed to create board: status %s", resp.Status)
+	}
+
+	var created struct {
+		Data struct {
+			ID string `json:"id"`
+		} `json:"data"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&created); err != nil {
+		return "", err
+	}
+
+	s.CreatedBoardIDs = append(s.CreatedBoardIDs, created.Data.ID)
+	return created.Data.ID, nil
+}
+
+// CreateResourceViaAPI programmatically registers an Assignee Resource.
+func (s *BaseWebSuite) CreateResourceViaAPI(name, rType string, linkedItems []string) (string, error) {
+	token, err := s.GetJWTToken()
+	if err != nil {
+		return "", err
+	}
+
+	urlStr := fmt.Sprintf("%s/api/v1/resources", GlobalConfig.BackendURL)
+	payload := map[string]interface{}{
+		"name":         name,
+		"type":         rType,
+		"linked_items": linkedItems,
+	}
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
+
+	req, err := http.NewRequest("POST", urlStr, bytes.NewBuffer(body))
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	client := &http.Client{Timeout: 10 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusCreated {
+		return "", fmt.Errorf("failed to create resource: status %s", resp.Status)
+	}
+
+	var created struct {
+		Data struct {
+			ID string `json:"id"`
+		} `json:"data"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&created); err != nil {
+		return "", err
+	}
+
+	s.CreatedResourceIDs = append(s.CreatedResourceIDs, created.Data.ID)
+	return created.Data.ID, nil
+}
+
+// CreateTaskViaAPI programmatically registers a Task on a Board.
+func (s *BaseWebSuite) CreateTaskViaAPI(boardID, swimlane, taskType, title, desc, assigneeID, priority string) (string, error) {
+	token, err := s.GetJWTToken()
+	if err != nil {
+		return "", err
+	}
+
+	urlStr := fmt.Sprintf("%s/api/v1/tasks", GlobalConfig.BackendURL)
+	payload := map[string]interface{}{
+		"board_id":           boardID,
+		"swimlane":           swimlane,
+		"task_type":          taskType,
+		"title":              title,
+		"description":        desc,
+		"assignee_id":        assigneeID,
+		"priority":           priority,
+		"estimation_minutes": 60,
+		"cost":               150.00,
+	}
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
+
+	req, err := http.NewRequest("POST", urlStr, bytes.NewBuffer(body))
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	client := &http.Client{Timeout: 10 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusCreated {
+		return "", fmt.Errorf("failed to create task: status %s", resp.Status)
+	}
+
+	var created struct {
+		Data struct {
+			ID string `json:"id"`
+		} `json:"data"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&created); err != nil {
+		return "", err
+	}
+
+	s.CreatedTaskIDs = append(s.CreatedTaskIDs, created.Data.ID)
+	return created.Data.ID, nil
+}
+
+// CreateSchedulerViaAPI programmatically registers a Scheduler Cron Job.
+func (s *BaseWebSuite) CreateSchedulerViaAPI(name, sType, cronExpr string) (string, error) {
+	token, err := s.GetJWTToken()
+	if err != nil {
+		return "", err
+	}
+
+	urlStr := fmt.Sprintf("%s/api/v1/schedulers", GlobalConfig.BackendURL)
+	payload := map[string]interface{}{
+		"name":            name,
+		"type":            sType,
+		"cron_expression": cronExpr,
+	}
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
+
+	req, err := http.NewRequest("POST", urlStr, bytes.NewBuffer(body))
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	client := &http.Client{Timeout: 10 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusCreated {
+		return "", fmt.Errorf("failed to create scheduler: status %s", resp.Status)
+	}
+
+	var created struct {
+		Data struct {
+			ID string `json:"id"`
+		} `json:"data"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&created); err != nil {
+		return "", err
+	}
+
+	s.CreatedSchedulerIDs = append(s.CreatedSchedulerIDs, created.Data.ID)
+	return created.Data.ID, nil
+}
+
+// CleanupTestData forcefully destroys all resources created during tests using the backend REST API.
+func (s *BaseWebSuite) CleanupTestData() {
+	token, err := s.GetJWTToken()
+	if err != nil {
+		LogExecution("CLEANUP ERROR: Failed to get JWT token: %v", err)
+		return
+	}
+
+	client := &http.Client{Timeout: 10 * time.Second}
+
+	// Dynamic E2E Garbage Collector: scan for any leftover test items created during the test run
+	
+	// 1. Scan and clean Schedulers
+	req, _ := http.NewRequest("GET", fmt.Sprintf("%s/api/v1/schedulers", GlobalConfig.BackendURL), nil)
+	req.Header.Set("Authorization", "Bearer "+token)
+	if resp, err := client.Do(req); err == nil {
+		var list struct {
+			Data []struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"data"`
+		}
+		if json.NewDecoder(resp.Body).Decode(&list) == nil {
+			for _, item := range list.Data {
+				if strings.HasPrefix(item.Name, "E2E Scheduler") {
+					s.CreatedSchedulerIDs = append(s.CreatedSchedulerIDs, item.ID)
+				}
+			}
+		}
+		resp.Body.Close()
+	}
+
+	// 2. Scan and clean Tasks
+	req, _ = http.NewRequest("GET", fmt.Sprintf("%s/api/v1/tasks", GlobalConfig.BackendURL), nil)
+	req.Header.Set("Authorization", "Bearer "+token)
+	if resp, err := client.Do(req); err == nil {
+		var list struct {
+			Data []struct {
+				ID    string `json:"id"`
+				Title string `json:"title"`
+			} `json:"data"`
+		}
+		if json.NewDecoder(resp.Body).Decode(&list) == nil {
+			for _, item := range list.Data {
+				if strings.HasPrefix(item.Title, "E2E Task") {
+					s.CreatedTaskIDs = append(s.CreatedTaskIDs, item.ID)
+				}
+			}
+		}
+		resp.Body.Close()
+	}
+
+	// 3. Scan and clean Resources
+	req, _ = http.NewRequest("GET", fmt.Sprintf("%s/api/v1/resources", GlobalConfig.BackendURL), nil)
+	req.Header.Set("Authorization", "Bearer "+token)
+	if resp, err := client.Do(req); err == nil {
+		var list struct {
+			Data []struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"data"`
+		}
+		if json.NewDecoder(resp.Body).Decode(&list) == nil {
+			for _, item := range list.Data {
+				if strings.HasPrefix(item.Name, "E2E Resource") || strings.HasPrefix(item.Name, "Assignee") {
+					s.CreatedResourceIDs = append(s.CreatedResourceIDs, item.ID)
+				}
+			}
+		}
+		resp.Body.Close()
+	}
+
+	// 4. Scan and clean Boards
+	req, _ = http.NewRequest("GET", fmt.Sprintf("%s/api/v1/boards", GlobalConfig.BackendURL), nil)
+	req.Header.Set("Authorization", "Bearer "+token)
+	if resp, err := client.Do(req); err == nil {
+		var list struct {
+			Data []struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"data"`
+		}
+		if json.NewDecoder(resp.Body).Decode(&list) == nil {
+			for _, item := range list.Data {
+				if strings.HasPrefix(item.Name, "E2E Board") || strings.HasPrefix(item.Name, "Task Parent Board") {
+					s.CreatedBoardIDs = append(s.CreatedBoardIDs, item.ID)
+				}
+			}
+		}
+		resp.Body.Close()
+	}
+
+	// 5. Scan and clean Projects
+	req, _ = http.NewRequest("GET", fmt.Sprintf("%s/api/v1/projects", GlobalConfig.BackendURL), nil)
+	req.Header.Set("Authorization", "Bearer "+token)
+	if resp, err := client.Do(req); err == nil {
+		var list struct {
+			Data []struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"data"`
+		}
+		if json.NewDecoder(resp.Body).Decode(&list) == nil {
+			for _, item := range list.Data {
+				if strings.HasPrefix(item.Name, "E2E Project") || strings.HasPrefix(item.Name, "Board Parent") || strings.HasPrefix(item.Name, "Task Parent Proj") {
+					s.CreatedProjectIDs = append(s.CreatedProjectIDs, item.ID)
+				}
+			}
+		}
+		resp.Body.Close()
+	}
+
+	// Deduplicate slices to avoid duplicate delete requests
+	dedup := func(slice []string) []string {
+		keys := make(map[string]bool)
+		var list []string
+		for _, entry := range slice {
+			if _, value := keys[entry]; !value {
+				keys[entry] = true
+				list = append(list, entry)
+			}
+		}
+		return list
+	}
+
+	s.CreatedSchedulerIDs = dedup(s.CreatedSchedulerIDs)
+	s.CreatedTaskIDs = dedup(s.CreatedTaskIDs)
+	s.CreatedResourceIDs = dedup(s.CreatedResourceIDs)
+	s.CreatedBoardIDs = dedup(s.CreatedBoardIDs)
+	s.CreatedProjectIDs = dedup(s.CreatedProjectIDs)
+
+	// Now proceed to delete them in correct hierarchical dependency order (leaf nodes first)
+	// 1. Delete Schedulers
+	for _, id := range s.CreatedSchedulerIDs {
+		urlStr := fmt.Sprintf("%s/api/v1/schedulers/%s", GlobalConfig.BackendURL, id)
+		req, _ := http.NewRequest("DELETE", urlStr, nil)
+		req.Header.Set("Authorization", "Bearer "+token)
+		if resp, err := client.Do(req); err == nil {
+			resp.Body.Close()
+		}
+	}
+	s.CreatedSchedulerIDs = nil
+
+	// 2. Delete Tasks
+	for _, id := range s.CreatedTaskIDs {
+		urlStr := fmt.Sprintf("%s/api/v1/tasks/%s", GlobalConfig.BackendURL, id)
+		req, _ := http.NewRequest("DELETE", urlStr, nil)
+		req.Header.Set("Authorization", "Bearer "+token)
+		if resp, err := client.Do(req); err == nil {
+			resp.Body.Close()
+		}
+	}
+	s.CreatedTaskIDs = nil
+
+	// 3. Delete Resources
+	for _, id := range s.CreatedResourceIDs {
+		urlStr := fmt.Sprintf("%s/api/v1/resources/%s", GlobalConfig.BackendURL, id)
+		req, _ := http.NewRequest("DELETE", urlStr, nil)
+		req.Header.Set("Authorization", "Bearer "+token)
+		if resp, err := client.Do(req); err == nil {
+			resp.Body.Close()
+		}
+	}
+	s.CreatedResourceIDs = nil
+
+	// 4. Delete Boards
+	for _, id := range s.CreatedBoardIDs {
+		urlStr := fmt.Sprintf("%s/api/v1/boards/%s", GlobalConfig.BackendURL, id)
+		req, _ := http.NewRequest("DELETE", urlStr, nil)
+		req.Header.Set("Authorization", "Bearer "+token)
+		if resp, err := client.Do(req); err == nil {
+			resp.Body.Close()
+		}
+	}
+	s.CreatedBoardIDs = nil
+
+	// 5. Delete Projects
+	for _, id := range s.CreatedProjectIDs {
+		urlStr := fmt.Sprintf("%s/api/v1/projects/%s", GlobalConfig.BackendURL, id)
+		req, _ := http.NewRequest("DELETE", urlStr, nil)
+		req.Header.Set("Authorization", "Bearer "+token)
+		if resp, err := client.Do(req); err == nil {
+			resp.Body.Close()
+		}
+	}
+	s.CreatedProjectIDs = nil
 }
