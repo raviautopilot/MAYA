@@ -47,6 +47,7 @@ bin/
 
 # Test binary, built with `go test -c`
 *.test
+e2etest/reports
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out

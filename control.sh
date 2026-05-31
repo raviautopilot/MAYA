@@ -78,6 +78,7 @@ Available Commands:
   stop      Gracefully terminate running servers using SIGTERM and clean lockfile.
   kill      Forcefully terminate servers using SIGKILL and sweep port conflicts.
   restart   Sequence graceful stop (or kill) followed by start with a 2-second delay.
+  e2e       Execute complete E2E testing lifecycle: sweep ports, spin up services, verify health, run tests, and tear down.
   status    Check OS kernel for process states and display uptime statistics.
   logs      Aggregated interactive tail of backend and frontend logs.
   help      Display this user manual.
@@ -296,6 +297,62 @@ do_logs() {
     tail -n 50 -F "$LOGS_DIR/chitta.log" "$LOGS_DIR/maya.log"
 }
 
+# E2E subcommand
+do_e2e() {
+    log_info "1. Securing clean environment: Force killing active ports..."
+    do_kill
+
+    log_info "2. Launching backend and frontend services..."
+    do_start
+
+    log_info "3. Verifying services are fully responsive..."
+    local timeout=30
+    local elapsed=0
+    local backend_up=0
+    local frontend_up=0
+
+    while [ "$elapsed" -lt "$timeout" ]; do
+        if [ "$backend_up" -eq 0 ]; then
+            if curl -s -f "http://localhost:$CHITTA_PORT/health" >/dev/null; then
+                log_success "Backend Go API Server is up and healthy."
+                backend_up=1
+            fi
+        fi
+        if [ "$frontend_up" -eq 0 ]; then
+            if curl -s -f "http://localhost:3000" >/dev/null; then
+                log_success "Frontend Vite Server is up and healthy."
+                frontend_up=1
+            fi
+        fi
+        if [ "$backend_up" -eq 1 ] && [ "$frontend_up" -eq 1 ]; then
+            break
+        fi
+        sleep 1
+        elapsed=$((elapsed + 1))
+    done
+
+    if [ "$backend_up" -eq 0 ] || [ "$frontend_up" -eq 0 ]; then
+        log_error "Services failed to become healthy within $timeout seconds."
+        do_kill
+        exit 1
+    fi
+
+    log_info "4. Executing E2E Test Suite..."
+    local test_exit_code=0
+    (cd "$SCRIPT_DIR/e2etest" && FRONTEND_URL="http://localhost:3000" go test -v ./...) || test_exit_code=$?
+
+    log_info "5. Tearing down services and sweeping ports for future runs..."
+    do_kill
+
+    if [ "$test_exit_code" -eq 0 ]; then
+        log_success "E2E Test Lifecycle completed successfully! All tests passed."
+        exit 0
+    else
+        log_error "E2E Test Lifecycle completed with failures. Exit code: $test_exit_code"
+        exit "$test_exit_code"
+    fi
+}
+
 # Main Command Dispatcher
 COMMAND="${1:-help}"
 
@@ -308,6 +365,9 @@ case "$COMMAND" in
         ;;
     kill)
         do_kill
+        ;;
+    e2e)
+        do_e2e
         ;;
     restart)
         log_info "Initiating development environment restart..."

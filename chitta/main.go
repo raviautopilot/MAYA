@@ -188,6 +188,7 @@ func SetupRouter(h *handlers.Handler, cfg *models.Config) *gin.Engine {
 
 	// Public routes
 	router.GET("/api/health", handlers.Health)
+	router.GET("/health", handlers.Health)
 
 	// Auth routes (public)
 	authGroup := router.Group("/api/v1/auth")
@@ -195,6 +196,7 @@ func SetupRouter(h *handlers.Handler, cfg *models.Config) *gin.Engine {
 		authGroup.POST("/login", h.Login)
 		authGroup.GET("/google/login", h.GoogleLogin)
 		authGroup.GET("/google/callback", h.GoogleCallback)
+		authGroup.GET("/google/mock-consent", h.MockConsent)
 	}
 
 	// Protected API routes
