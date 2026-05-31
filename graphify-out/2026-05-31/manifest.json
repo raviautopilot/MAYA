@@ -150,7 +150,7 @@
     "semantic_hash": "9823fed2a3f43899778908b5ac46c98f"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/frontend/src/types/index.ts": {
-    "mtime": 1779921007.558732,
+    "mtime": 1779910917.4823494,
     "ast_hash": "88244161791c0a462f227686d0069e39",
     "semantic_hash": "88244161791c0a462f227686d0069e39"
   },
@@ -175,7 +175,7 @@
     "semantic_hash": "0163777efd0fb0f89333ff1122d71bdc"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/frontend/src/app/(dashboard)/boards/page.tsx": {
-    "mtime": 1779921007.5547318,
+    "mtime": 1779910261.978114,
     "ast_hash": "a32fdbbc22886f96c2544d3e04ac9d51",
     "semantic_hash": "a32fdbbc22886f96c2544d3e04ac9d51"
   },
@@ -190,7 +190,7 @@
     "semantic_hash": "eeb78935bf0b707c6daa852b8959539b"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/frontend/src/app/(dashboard)/projects/page.tsx": {
-    "mtime": 1779921007.5547318,
+    "mtime": 1778747608.7413185,
     "ast_hash": "99072a57efc0198df59cce0b5642525f",
     "semantic_hash": "99072a57efc0198df59cce0b5642525f"
   },
@@ -200,7 +200,7 @@
     "semantic_hash": "dd7e71d06868c302773c10fa3e3241bf"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/frontend/src/app/(dashboard)/tasks/page.tsx": {
-    "mtime": 1779921007.5547318,
+    "mtime": 1779916710.1287029,
     "ast_hash": "886ddc68ad6c3d3e3cdfcb688603b171",
     "semantic_hash": "886ddc68ad6c3d3e3cdfcb688603b171"
   },
@@ -215,17 +215,17 @@
     "semantic_hash": "54da88c9aeaf1c2de45e1c2523098af0"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/main.go": {
-    "mtime": 1779918500.7388296,
+    "mtime": 1779910885.05814,
     "ast_hash": "d73e9ab4d395d181702e7a719387d0dc",
     "semantic_hash": "d73e9ab4d395d181702e7a719387d0dc"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/config.json": {
-    "mtime": 1779918500.7388296,
+    "mtime": 1779916806.6534438,
     "ast_hash": "932d4ddab9ceefda676f1e45c7e67f6f",
     "semantic_hash": "932d4ddab9ceefda676f1e45c7e67f6f"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/models/models.go": {
-    "mtime": 1779921007.5547318,
+    "mtime": 1779910850.4979167,
     "ast_hash": "8fcc65090aa52c8f70b3fc72f45bd420",
     "semantic_hash": "8fcc65090aa52c8f70b3fc72f45bd420"
   },
@@ -240,12 +240,12 @@
     "semantic_hash": "a9cc3bf9d376fbe672ff42b178f6d0ef"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/handlers/handlers.go": {
-    "mtime": 1779921007.550732,
+    "mtime": 1779916677.728454,
     "ast_hash": "c6f5137b4cd19caf8a7f0b229927dd6f",
     "semantic_hash": "c6f5137b4cd19caf8a7f0b229927dd6f"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/backend/handlers/handlers_test.go": {
-    "mtime": 1779921007.5547318,
+    "mtime": 1778747608.7373183,
     "ast_hash": "03680ac71b72bc6f4a59b74a7bd238ad",
     "semantic_hash": "03680ac71b72bc6f4a59b74a7bd238ad"
   },
@@ -305,38 +305,33 @@
     "semantic_hash": "40fa1939d938f7d7e9290506b618afd7"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/resources.json": {
-    "mtime": 1779921064.391321,
-    "ast_hash": "c1027ff82fc6467543858815174df1ee",
-    "semantic_hash": "c1027ff82fc6467543858815174df1ee"
+    "mtime": 1778774537.3978148,
+    "ast_hash": "ec6f767e413347e989aa28e57a903496",
+    "semantic_hash": "ec6f767e413347e989aa28e57a903496"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/projects.json": {
-    "mtime": 1779921019.9308586,
-    "ast_hash": "878adbc38277639c9ada91b25655c788",
-    "semantic_hash": "878adbc38277639c9ada91b25655c788"
+    "mtime": 1778762625.5632124,
+    "ast_hash": "b532d3b8637808ed2dc1b9ead4a9f9de",
+    "semantic_hash": "b532d3b8637808ed2dc1b9ead4a9f9de"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/schedulers.json": {
-    "mtime": 1779921074.2914298,
-    "ast_hash": "6fe20c297f80a2895ca25d80e5b2995f",
-    "semantic_hash": "6fe20c297f80a2895ca25d80e5b2995f"
+    "mtime": 1778762796.017082,
+    "ast_hash": "b329a70c3c2561a42a4a57f73c5c3cf4",
+    "semantic_hash": "b329a70c3c2561a42a4a57f73c5c3cf4"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/tasks.json": {
-    "mtime": 1779921074.2914298,
-    "ast_hash": "dfab8e11d11610baeef47dcfd08a5820",
-    "semantic_hash": "dfab8e11d11610baeef47dcfd08a5820"
+    "mtime": 1778774486.7694516,
+    "ast_hash": "5b6198b5d8db2c4618c59690125dcba7",
+    "semantic_hash": "5b6198b5d8db2c4618c59690125dcba7"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/storage/boards.json": {
-    "mtime": 1779921029.2629545,
-    "ast_hash": "722a6628996524ffd1e5950706bd7737",
-    "semantic_hash": "722a6628996524ffd1e5950706bd7737"
+    "mtime": 1778774460.3253288,
+    "ast_hash": "787c78a04b0a66e249e496d6b97eca3d",
+    "semantic_hash": "787c78a04b0a66e249e496d6b97eca3d"
   },
   "/home/ubuntu/code/github/raviautopilot/mycan/update-graphify.sh": {
-    "mtime": 1779918500.7748299,
+    "mtime": 1779916963.530648,
     "ast_hash": "446de290a9491abd639a6418bd12028e",
     "semantic_hash": "446de290a9491abd639a6418bd12028e"
-  },
-  "/home/ubuntu/code/github/raviautopilot/mycan/control.sh": {
-    "mtime": 1779921007.5547318,
-    "ast_hash": "323d4af65b1c2f82660f9601c3711724",
-    "semantic_hash": "323d4af65b1c2f82660f9601c3711724"
   }
 }

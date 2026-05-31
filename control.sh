@@ -86,6 +86,15 @@ Log Files:
 EOF
 }
 
+# Display service access endpoints
+show_access_endpoints() {
+    log_info "MyKanban is now running. Access it here:"
+    echo "------------------------------------------"
+    printf "Backend API:   http://localhost:%s\n" "$BACKEND_PORT"
+    printf "Frontend Web:  http://localhost:%s\n" "${FRONTEND_PORTS[0]}"
+    echo "------------------------------------------"
+}
+
 # Start subcommand
 do_start() {
     load_pids
@@ -130,14 +139,19 @@ do_start() {
     # Give them a split second to spin up, then verify
     sleep 1.5
 
+    local backend_started=0
+    local frontend_started=0
+
     if is_alive "$NEW_BACKEND_PID"; then
         log_success "Backend Go Server started (PID: $NEW_BACKEND_PID)."
+        backend_started=1
     else
         log_error "Backend failed to start. Check logs/backend.log for details."
     fi
 
     if is_alive "$NEW_FRONTEND_PID"; then
         log_success "Frontend Next.js Server started (PID: $NEW_FRONTEND_PID)."
+        frontend_started=1
     else
         log_error "Frontend failed to start. Check logs/frontend.log for details."
     fi
@@ -146,6 +160,10 @@ do_start() {
     echo "BACKEND_PID=$NEW_BACKEND_PID" > "$LOCKFILE"
     echo "FRONTEND_PID=$NEW_FRONTEND_PID" >> "$LOCKFILE"
     log_info "PIDs successfully committed to .dev_pids lockfile."
+
+    if [ "$backend_started" -eq 1 ] && [ "$frontend_started" -eq 1 ]; then
+        show_access_endpoints
+    fi
 }
 
 # Stop subcommand
@@ -241,15 +259,19 @@ do_status() {
     local frontend_status="\033[1;31mSTOPPED\033[0m"
     local backend_uptime="N/A"
     local frontend_uptime="N/A"
+    local backend_running=0
+    local frontend_running=0
 
     if is_alive "$BACKEND_PID"; then
         backend_status="\033[1;32mRUNNING\033[0m"
         backend_uptime=$(ps -o etime= -p "$BACKEND_PID" | xargs || echo "Unknown")
+        backend_running=1
     fi
 
     if is_alive "$FRONTEND_PID"; then
         frontend_status="\033[1;32mRUNNING\033[0m"
         frontend_uptime=$(ps -o etime= -p "$FRONTEND_PID" | xargs || echo "Unknown")
+        frontend_running=1
     fi
 
     echo "MyKanban Development Environment Status"
@@ -257,6 +279,10 @@ do_status() {
     printf "Backend Go Server:  [%b] (PID: %s, Uptime: %s)\n" "$backend_status" "${BACKEND_PID:-None}" "$backend_uptime"
     printf "Frontend Next.js:   [%b] (PID: %s, Uptime: %s)\n" "$frontend_status" "${FRONTEND_PID:-None}" "$frontend_uptime"
     echo "========================================="
+
+    if [ "$backend_running" -eq 1 ] && [ "$frontend_running" -eq 1 ]; then
+        show_access_endpoints
+    fi
 }
 
 # Logs subcommand
