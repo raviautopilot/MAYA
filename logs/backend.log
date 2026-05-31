@@ -1,0 +1,62 @@
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] GET    /api/health               --> mykanban-backend/handlers.Health (4 handlers)
+[GIN-debug] POST   /api/v1/auth/login        --> mykanban-backend/handlers.(*Handler).Login-fm (4 handlers)
+[GIN-debug] GET    /api/v1/auth/google/login --> mykanban-backend/handlers.(*Handler).GoogleLogin-fm (4 handlers)
+[GIN-debug] GET    /api/v1/auth/google/callback --> mykanban-backend/handlers.(*Handler).GoogleCallback-fm (4 handlers)
+[GIN-debug] POST   /api/v1/auth/change-password --> mykanban-backend/handlers.(*Handler).ChangePassword-fm (5 handlers)
+[GIN-debug] POST   /api/v1/projects          --> mykanban-backend/handlers.(*Handler).CreateProject-fm (5 handlers)
+[GIN-debug] GET    /api/v1/projects          --> mykanban-backend/handlers.(*Handler).ListProjects-fm (5 handlers)
+[GIN-debug] GET    /api/v1/projects/:id      --> mykanban-backend/handlers.(*Handler).GetProject-fm (5 handlers)
+[GIN-debug] PUT    /api/v1/projects/:id      --> mykanban-backend/handlers.(*Handler).UpdateProject-fm (5 handlers)
+[GIN-debug] DELETE /api/v1/projects/:id      --> mykanban-backend/handlers.(*Handler).DeleteProject-fm (5 handlers)
+[GIN-debug] POST   /api/v1/boards            --> mykanban-backend/handlers.(*Handler).CreateBoard-fm (5 handlers)
+[GIN-debug] GET    /api/v1/boards            --> mykanban-backend/handlers.(*Handler).ListBoards-fm (5 handlers)
+[GIN-debug] GET    /api/v1/boards/:id        --> mykanban-backend/handlers.(*Handler).GetBoard-fm (5 handlers)
+[GIN-debug] PUT    /api/v1/boards/:id        --> mykanban-backend/handlers.(*Handler).UpdateBoard-fm (5 handlers)
+[GIN-debug] DELETE /api/v1/boards/:id        --> mykanban-backend/handlers.(*Handler).DeleteBoard-fm (5 handlers)
+[GIN-debug] POST   /api/v1/tasks             --> mykanban-backend/handlers.(*Handler).CreateTask-fm (5 handlers)
+[GIN-debug] GET    /api/v1/tasks             --> mykanban-backend/handlers.(*Handler).ListTasks-fm (5 handlers)
+[GIN-debug] GET    /api/v1/tasks/:id         --> mykanban-backend/handlers.(*Handler).GetTask-fm (5 handlers)
+[GIN-debug] PUT    /api/v1/tasks/:id         --> mykanban-backend/handlers.(*Handler).UpdateTask-fm (5 handlers)
+[GIN-debug] PATCH  /api/v1/tasks/:id         --> mykanban-backend/handlers.(*Handler).PatchTask-fm (5 handlers)
+[GIN-debug] DELETE /api/v1/tasks/:id         --> mykanban-backend/handlers.(*Handler).DeleteTask-fm (5 handlers)
+[GIN-debug] POST   /api/v1/schedulers        --> mykanban-backend/handlers.(*Handler).CreateScheduler-fm (5 handlers)
+[GIN-debug] GET    /api/v1/schedulers        --> mykanban-backend/handlers.(*Handler).ListSchedulers-fm (5 handlers)
+[GIN-debug] GET    /api/v1/schedulers/:id    --> mykanban-backend/handlers.(*Handler).GetScheduler-fm (5 handlers)
+[GIN-debug] PUT    /api/v1/schedulers/:id    --> mykanban-backend/handlers.(*Handler).UpdateScheduler-fm (5 handlers)
+[GIN-debug] DELETE /api/v1/schedulers/:id    --> mykanban-backend/handlers.(*Handler).DeleteScheduler-fm (5 handlers)
+[GIN-debug] POST   /api/v1/resources         --> mykanban-backend/handlers.(*Handler).CreateResource-fm (5 handlers)
+[GIN-debug] GET    /api/v1/resources         --> mykanban-backend/handlers.(*Handler).ListResources-fm (5 handlers)
+[GIN-debug] GET    /api/v1/resources/:id     --> mykanban-backend/handlers.(*Handler).GetResource-fm (5 handlers)
+[GIN-debug] PUT    /api/v1/resources/:id     --> mykanban-backend/handlers.(*Handler).UpdateResource-fm (5 handlers)
+[GIN-debug] DELETE /api/v1/resources/:id     --> mykanban-backend/handlers.(*Handler).DeleteResource-fm (5 handlers)
+Starting MyKanban task scheduler background worker...
+MyKanban server starting on port 8080
+[GIN] 2026/05/31 - 13:16:02 | 503 |   3.67ms |       127.0.0.1 | GET      "/api/v1/auth/google/login"
+[GIN] 2026/05/31 - 13:16:02 | 404 |  1.002µs |       127.0.0.1 | GET      "/favicon.ico"
+[GIN] 2026/05/31 - 13:57:26 | 204 | 118.755µs |       127.0.0.1 | OPTIONS  "/api/v1/auth/login"
+[GIN] 2026/05/31 - 13:57:26 | 200 | 376.53ms |       127.0.0.1 | POST     "/api/v1/auth/login"
+[GIN] 2026/05/31 - 13:57:27 | 204 |  9.027µs |       127.0.0.1 | OPTIONS  "/api/v1/projects"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 183.988µs |       127.0.0.1 | GET      "/api/v1/projects"
+[GIN] 2026/05/31 - 13:57:27 | 204 | 31.971µs |       127.0.0.1 | OPTIONS  "/api/v1/tasks"
+[GIN] 2026/05/31 - 13:57:27 | 204 |  3.197µs |       127.0.0.1 | OPTIONS  "/api/v1/boards"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 185.671µs |       127.0.0.1 | GET      "/api/v1/projects"
+[GIN] 2026/05/31 - 13:57:27 | 204 |  6.934µs |       127.0.0.1 | OPTIONS  "/api/v1/schedulers"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 265.352µs |       127.0.0.1 | GET      "/api/v1/tasks"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 123.694µs |       127.0.0.1 | GET      "/api/v1/boards"
+[GIN] 2026/05/31 - 13:57:27 | 204 |  8.847µs |       127.0.0.1 | OPTIONS  "/api/v1/boards"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 229.013µs |       127.0.0.1 | GET      "/api/v1/tasks"
+[GIN] 2026/05/31 - 13:57:27 | 204 |  3.948µs |       127.0.0.1 | OPTIONS  "/api/v1/resources"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 112.944µs |       127.0.0.1 | GET      "/api/v1/schedulers"
+[GIN] 2026/05/31 - 13:57:27 | 204 | 36.048µs |       127.0.0.1 | OPTIONS  "/api/v1/resources"
+[GIN] 2026/05/31 - 13:57:27 | 204 |  2.916µs |       127.0.0.1 | OPTIONS  "/api/v1/schedulers"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 155.824µs |       127.0.0.1 | GET      "/api/v1/resources"
+[GIN] 2026/05/31 - 13:57:27 | 200 |   3.08ms |       127.0.0.1 | GET      "/api/v1/boards"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 130.507µs |       127.0.0.1 | GET      "/api/v1/schedulers"
+[GIN] 2026/05/31 - 13:57:27 | 200 | 81.905µs |       127.0.0.1 | GET      "/api/v1/resources"
+[GIN] 2026/05/31 - 13:57:32 | 200 | 146.798µs |       127.0.0.1 | GET      "/api/v1/projects"
+[GIN] 2026/05/31 - 13:57:32 | 200 | 66.636µs |       127.0.0.1 | GET      "/api/v1/projects"

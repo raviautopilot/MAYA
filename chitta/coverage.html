@@ -1,0 +1,4413 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>auth: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">mykanban-backend/auth/auth.go (48.7%)</option>
+				
+				<option value="file1">mykanban-backend/docs/docs.go (0.0%)</option>
+				
+				<option value="file2">mykanban-backend/handlers/handlers.go (73.6%)</option>
+				
+				<option value="file3">mykanban-backend/main.go (49.5%)</option>
+				
+				<option value="file4">mykanban-backend/middleware/middleware.go (100.0%)</option>
+				
+				<option value="file5">mykanban-backend/storage/storage.go (73.2%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">// Package auth provides JWT token generation/validation and Google OAuth 2.0 support.
+package auth
+
+import (
+        "context"
+        "encoding/json"
+        "errors"
+        "fmt"
+        "io"
+        "net/http"
+        "time"
+
+        "github.com/golang-jwt/jwt/v5"
+        "golang.org/x/crypto/bcrypt"
+        "golang.org/x/oauth2"
+        "golang.org/x/oauth2/google"
+)
+
+// BcryptCost is the bcrypt hashing cost used for passwords.
+const BcryptCost = 12
+
+// Claims holds custom JWT claims.
+type Claims struct {
+        Email string `json:"email"`
+        jwt.RegisteredClaims
+}
+
+// HashPassword hashes a plaintext password with bcrypt.
+func HashPassword(password string) (string, error) <span class="cov8" title="1">{
+        hash, err := bcrypt.GenerateFromPassword([]byte(password), BcryptCost)
+        if err != nil </span><span class="cov0" title="0">{
+                return "", fmt.Errorf("auth: hash password: %w", err)
+        }</span>
+        <span class="cov8" title="1">return string(hash), nil</span>
+}
+
+// CheckPassword compares a plaintext password against a bcrypt hash.
+func CheckPassword(hash, password string) error <span class="cov8" title="1">{
+        return bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+}</span>
+
+// GenerateJWT creates a signed JWT for the given email.
+func GenerateJWT(email, secret string, expiryHours int) (string, error) <span class="cov8" title="1">{
+        if expiryHours &lt;= 0 </span><span class="cov8" title="1">{
+                expiryHours = 24
+        }</span>
+        <span class="cov8" title="1">claims := Claims{
+                Email: email,
+                RegisteredClaims: jwt.RegisteredClaims{
+                        ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(expiryHours) * time.Hour)),
+                        IssuedAt:  jwt.NewNumericDate(time.Now()),
+                },
+        }
+        token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+        signed, err := token.SignedString([]byte(secret))
+        if err != nil </span><span class="cov0" title="0">{
+                return "", fmt.Errorf("auth: sign jwt: %w", err)
+        }</span>
+        <span class="cov8" title="1">return signed, nil</span>
+}
+
+// ValidateJWT parses and validates a JWT token string.
+func ValidateJWT(tokenStr, secret string) (*Claims, error) <span class="cov8" title="1">{
+        token, err := jwt.ParseWithClaims(tokenStr, &amp;Claims{}, func(t *jwt.Token) (interface{}, error) </span><span class="cov8" title="1">{
+                if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("auth: unexpected signing method: %v", t.Header["alg"])
+                }</span>
+                <span class="cov8" title="1">return []byte(secret), nil</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("auth: parse jwt: %w", err)
+        }</span>
+        <span class="cov8" title="1">claims, ok := token.Claims.(*Claims)
+        if !ok || !token.Valid </span><span class="cov0" title="0">{
+                return nil, errors.New("auth: invalid token claims")
+        }</span>
+        <span class="cov8" title="1">return claims, nil</span>
+}
+
+// GoogleOAuthConfig returns an oauth2.Config for Google sign-in.
+func GoogleOAuthConfig(clientID, clientSecret, redirectURL string) *oauth2.Config <span class="cov0" title="0">{
+        return &amp;oauth2.Config{
+                ClientID:     clientID,
+                ClientSecret: clientSecret,
+                RedirectURL:  redirectURL,
+                Scopes:       []string{"openid", "email", "profile"},
+                Endpoint:     google.Endpoint,
+        }
+}</span>
+
+// GoogleUserInfo represents a subset of Google's userinfo response.
+type GoogleUserInfo struct {
+        Email         string `json:"email"`
+        VerifiedEmail bool   `json:"verified_email"`
+        Name          string `json:"name"`
+        Picture       string `json:"picture"`
+}
+
+// FetchGoogleUser exchanges an auth code for user info.
+func FetchGoogleUser(ctx context.Context, cfg *oauth2.Config, code string) (*GoogleUserInfo, error) <span class="cov0" title="0">{
+        token, err := cfg.Exchange(ctx, code)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("auth: google exchange: %w", err)
+        }</span>
+        <span class="cov0" title="0">client := cfg.Client(ctx, token)
+        resp, err := client.Get("https://www.googleapis.com/oauth2/v2/userinfo")
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("auth: google userinfo: %w", err)
+        }</span>
+        <span class="cov0" title="0">defer resp.Body.Close()
+        if resp.StatusCode != http.StatusOK </span><span class="cov0" title="0">{
+                body, _ := io.ReadAll(resp.Body)
+                return nil, fmt.Errorf("auth: google userinfo status %d: %s", resp.StatusCode, string(body))
+        }</span>
+        <span class="cov0" title="0">var info GoogleUserInfo
+        if err := json.NewDecoder(resp.Body).Decode(&amp;info); err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("auth: decode google userinfo: %w", err)
+        }</span>
+        <span class="cov0" title="0">return &amp;info, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">// Package docs Code generated by swaggo/swag. DO NOT EDIT
+package docs
+
+import "github.com/swaggo/swag"
+
+const docTemplate = `{
+    "schemes": {{ marshal .Schemes }},
+    "swagger": "2.0",
+    "info": {
+        "description": "{{escape .Description}}",
+        "title": "{{.Title}}",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "MyKanban Support",
+            "email": "admin@mykanban.local"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "{{.Version}}"
+    },
+    "host": "{{.Host}}",
+    "basePath": "{{.BasePath}}",
+    "paths": {
+        "/health": {
+            "get": {
+                "description": "Returns server status and current UTC time",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "System"
+                ],
+                "summary": "Health check",
+                "responses": {
+                    "200": {
+                        "description": "Server is healthy",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "time": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/auth/change-password": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Change the root user's password (requires current password)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Change password",
+                "parameters": [
+                    {
+                        "description": "Password change request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ChangePasswordRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Password changed",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Old password incorrect",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/auth/google/callback": {
+            "get": {
+                "description": "Handle the callback from Google OAuth and return a JWT token",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Google OAuth callback",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization code from Google",
+                        "name": "code",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JWT token and user info",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "token": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Missing code parameter",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Google auth or token generation failure",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/auth/google/login": {
+            "get": {
+                "description": "Redirect to Google OAuth 2.0 consent screen for authentication",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Google OAuth login",
+                "responses": {
+                    "307": {
+                        "description": "Redirect to Google"
+                    },
+                    "503": {
+                        "description": "Google OAuth not configured",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/auth/login": {
+            "post": {
+                "description": "Authenticate with email and password to receive a JWT token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "parameters": [
+                    {
+                        "description": "Login credentials",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JWT token",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Token generation failure",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/boards": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all active boards. Optionally filter by project_id query parameter.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "List boards",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filter by project UUID",
+                        "name": "project_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of boards",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/models.Board"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new kanban board linked to a project. Defaults swimlanes to [To Do, In Progress, Done] and task types to [Bug, Feature, Chore] if not provided.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Create board",
+                "parameters": [
+                    {
+                        "description": "Board data (project_id, name required)",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Board"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created board",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Board"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or invalid project_id",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/boards/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get a board by its UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Get board",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Board UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Board details",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Board"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Board not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Full update of a board by UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Update board",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Board UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated board data",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Board"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated board",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Board"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Board not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Soft-delete a board by UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Delete board",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Board UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deletion confirmation",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Board not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/projects": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all active projects (excludes soft-deleted)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "List projects",
+                "responses": {
+                    "200": {
+                        "description": "List of projects",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/models.Project"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new project (personal or professional)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Create project",
+                "parameters": [
+                    {
+                        "description": "Project data (name, description, type required)",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Project"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created project",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Project"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/projects/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get a project by its UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Get project",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Project details",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Project"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Project not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Full update of a project by UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Update project",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated project data",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Project"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated project",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Project"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Project not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Soft-delete a project by UUID (sets deleted_at timestamp)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Delete project",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deletion confirmation",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Project not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/resources": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all active resources (excludes soft-deleted)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Resources"
+                ],
+                "summary": "List resources",
+                "responses": {
+                    "200": {
+                        "description": "List of resources",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/models.Resource"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new resource (Global, Project, or Task scoped)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Resources"
+                ],
+                "summary": "Create resource",
+                "parameters": [
+                    {
+                        "description": "Resource data (name, type required)",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Resource"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created resource",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Resource"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/resources/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get a resource by its UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Resources"
+                ],
+                "summary": "Get resource",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Resource UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource details",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Resource"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Full update of a resource by UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Resources"
+                ],
+                "summary": "Update resource",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Resource UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated resource data",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Resource"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated resource",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Resource"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Soft-delete a resource by UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Resources"
+                ],
+                "summary": "Delete resource",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Resource UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deletion confirmation",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/schedulers": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all active schedulers (excludes soft-deleted)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Schedulers"
+                ],
+                "summary": "List schedulers",
+                "responses": {
+                    "200": {
+                        "description": "List of schedulers",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/models.Scheduler"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new scheduler (daily, weekly, monthly, yearly, or cron). Automatically calculates next_run if not provided.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Schedulers"
+                ],
+                "summary": "Create scheduler",
+                "parameters": [
+                    {
+                        "description": "Scheduler data (name, type required; cron_expression required when type=cron)",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Scheduler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created scheduler",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Scheduler"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/schedulers/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get a scheduler by its UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Schedulers"
+                ],
+                "summary": "Get scheduler",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Scheduler UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Scheduler details",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Scheduler"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Scheduler not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Full update of a scheduler by UUID. Recalculates next_run.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Schedulers"
+                ],
+                "summary": "Update scheduler",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Scheduler UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated scheduler data",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Scheduler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated scheduler",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Scheduler"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Scheduler not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Soft-delete a scheduler by UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Schedulers"
+                ],
+                "summary": "Delete scheduler",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Scheduler UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deletion confirmation",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Scheduler not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/tasks": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all active tasks. Filter by board_id, swimlane, assignee_id, or priority.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "List tasks",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filter by board UUID",
+                        "name": "board_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by swimlane name",
+                        "name": "swimlane",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by assignee resource UUID",
+                        "name": "assignee_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by priority (Low, Medium, High, Critical)",
+                        "name": "priority",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of tasks",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/models.Task"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new task. Validates board_id, swimlane, and task_type against the board. Max 5 reminders.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Create task",
+                "parameters": [
+                    {
+                        "description": "Task data (board_id, swimlane, task_type, title, priority required)",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created task",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Task"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request, invalid board/swimlane/task_type, or too many reminders",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/tasks/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get a task by its UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task details",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Task"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Full update of a task by UUID. Max 5 reminders.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Update task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated task data",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated task",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Task"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or too many reminders",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Soft-delete a task by UUID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Delete task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deletion confirmation",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Partial update of a task. Supports updating individual fields (swimlane, title, description, assignee_id, priority, task_type, cost, estimation_minutes, actual_time_minutes, scheduler_id). Moving to \"Done\" with a scheduler_id triggers recurring task generation.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Patch task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Task UUID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Fields to update (only include fields you want to change)",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Patched task",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/models.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/models.Task"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Storage error",
+                        "schema": {
+                            "$ref": "#/definitions/models.APIResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.APIResponse": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "error": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Board": {
+            "type": "object",
+            "required": [
+                "name",
+                "project_id"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "project_id": {
+                    "type": "string"
+                },
+                "swimlanes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "task_types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ChangePasswordRequest": {
+            "type": "object",
+            "required": [
+                "new_password",
+                "old_password"
+            ],
+            "properties": {
+                "new_password": {
+                    "type": "string",
+                    "minLength": 8
+                },
+                "old_password": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.LoginRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Project": {
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "personal",
+                        "professional"
+                    ]
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Reminder": {
+            "type": "object",
+            "required": [
+                "time"
+            ],
+            "properties": {
+                "note": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Resource": {
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "linked_items": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "Global",
+                        "Project",
+                        "Task"
+                    ]
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Scheduler": {
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ],
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "cron_expression": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "linked_task_template_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "next_run": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "cron",
+                        "yearly",
+                        "monthly",
+                        "weekly",
+                        "daily"
+                    ]
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Task": {
+            "type": "object",
+            "required": [
+                "board_id",
+                "priority",
+                "swimlane",
+                "task_type",
+                "title"
+            ],
+            "properties": {
+                "actual_time_minutes": {
+                    "type": "integer"
+                },
+                "assignee_id": {
+                    "type": "string"
+                },
+                "board_id": {
+                    "type": "string"
+                },
+                "cost": {
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "estimation_minutes": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "string",
+                    "enum": [
+                        "Low",
+                        "Medium",
+                        "High",
+                        "Critical"
+                    ]
+                },
+                "reminders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Reminder"
+                    }
+                },
+                "scheduler_id": {
+                    "type": "string"
+                },
+                "swimlane": {
+                    "type": "string"
+                },
+                "task_type": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "description": "Enter your JWT token with the ` + "`" + `Bearer ` + "`" + ` prefix, e.g. \"Bearer eyJhbGci...\"",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}`
+
+// SwaggerInfo holds exported Swagger Info so clients can modify it
+var SwaggerInfo = &amp;swag.Spec{
+        Version:          "1.0",
+        Host:             "localhost:8080",
+        BasePath:         "/api",
+        Schemes:          []string{},
+        Title:            "MyKanban Backend API",
+        Description:      "A minimalistic, secure REST API for personal and professional task tracking.",
+        InfoInstanceName: "swagger",
+        SwaggerTemplate:  docTemplate,
+        LeftDelim:        "{{",
+        RightDelim:       "}}",
+}
+
+func init() <span class="cov0" title="0">{
+        swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
+}</span>
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">// Package handlers implements the REST API route handlers for all entities.
+package handlers
+
+import (
+        "context"
+        "fmt"
+        "github.com/gin-gonic/gin"
+        "github.com/google/uuid"
+        "github.com/robfig/cron/v3"
+        "mykanban-backend/auth"
+        "mykanban-backend/models"
+        "mykanban-backend/storage"
+        "net/http"
+        "time"
+)
+
+// Handler holds references to all stores and configuration.
+type Handler struct {
+        Projects   *storage.Store[models.Project]
+        Boards     *storage.Store[models.Board]
+        Tasks      *storage.Store[models.Task]
+        Schedulers *storage.Store[models.Scheduler]
+        Resources  *storage.Store[models.Resource]
+        Config     *storage.ConfigStore
+        AppConfig  *models.Config
+}
+
+// respond writes a standard API response.
+func respond(c *gin.Context, status int, data interface{}, errMsg string) <span class="cov8" title="1">{
+        c.JSON(status, models.APIResponse{
+                Data:   data,
+                Error:  errMsg,
+                Status: status,
+        })
+}</span>
+
+// ---- Auth Handlers ----
+
+// Login authenticates with email/password and returns a JWT.
+// @Summary      User login
+// @Description  Authenticate with email and password to receive a JWT token
+// @Tags         Auth
+// @Accept       json
+// @Produce      json
+// @Param        body body models.LoginRequest true "Login credentials"
+// @Success      200 {object} models.APIResponse{data=object{token=string}} "JWT token"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      401 {object} models.APIResponse "Invalid credentials"
+// @Failure      500 {object} models.APIResponse "Token generation failure"
+// @Router       /v1/auth/login [post]
+func (h *Handler) Login(c *gin.Context) <span class="cov8" title="1">{
+        var req models.LoginRequest
+        if err := c.ShouldBindJSON(&amp;req); err != nil </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if req.Email != h.AppConfig.RootEmail </span><span class="cov8" title="1">{
+                respond(c, http.StatusUnauthorized, nil, "invalid credentials")
+                return
+        }</span>
+        <span class="cov8" title="1">if err := auth.CheckPassword(h.AppConfig.RootPasswordHash, req.Password); err != nil </span><span class="cov8" title="1">{
+                respond(c, http.StatusUnauthorized, nil, "invalid credentials")
+                return
+        }</span>
+        <span class="cov8" title="1">token, err := auth.GenerateJWT(req.Email, h.AppConfig.JWTSecret, h.AppConfig.JWTExpiryHours)
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to generate token")
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, gin.H{"token": token}, "")</span>
+}
+
+// ChangePassword updates the root password.
+// @Summary      Change password
+// @Description  Change the root user's password (requires current password)
+// @Tags         Auth
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body models.ChangePasswordRequest true "Password change request"
+// @Success      200 {object} models.APIResponse{data=object{message=string}} "Password changed"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      401 {object} models.APIResponse "Old password incorrect"
+// @Failure      500 {object} models.APIResponse "Server error"
+// @Router       /v1/auth/change-password [post]
+func (h *Handler) ChangePassword(c *gin.Context) <span class="cov8" title="1">{
+        var req models.ChangePasswordRequest
+        if err := c.ShouldBindJSON(&amp;req); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if err := auth.CheckPassword(h.AppConfig.RootPasswordHash, req.OldPassword); err != nil </span><span class="cov8" title="1">{
+                respond(c, http.StatusUnauthorized, nil, "old password is incorrect")
+                return
+        }</span>
+        <span class="cov8" title="1">newHash, err := auth.HashPassword(req.NewPassword)
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to hash new password")
+                return
+        }</span>
+        <span class="cov8" title="1">h.AppConfig.RootPasswordHash = newHash
+        if err := h.Config.Save(h.AppConfig); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to save config")
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, gin.H{"message": "password changed successfully"}, "")</span>
+}
+
+// GoogleLogin redirects to Google OAuth consent screen.
+// @Summary      Google OAuth login
+// @Description  Redirect to Google OAuth 2.0 consent screen for authentication
+// @Tags         Auth
+// @Produce      json
+// @Success      307 "Redirect to Google"
+// @Failure      503 {object} models.APIResponse "Google OAuth not configured"
+// @Router       /v1/auth/google/login [get]
+func (h *Handler) GoogleLogin(c *gin.Context) <span class="cov8" title="1">{
+        if h.AppConfig.GoogleClientID == "" </span><span class="cov8" title="1">{
+                respond(c, http.StatusServiceUnavailable, nil, "google oauth not configured")
+                return
+        }</span>
+        <span class="cov0" title="0">cfg := auth.GoogleOAuthConfig(h.AppConfig.GoogleClientID, h.AppConfig.GoogleClientSecret, h.AppConfig.GoogleRedirectURL)
+        url := cfg.AuthCodeURL("state-token")
+        c.Redirect(http.StatusTemporaryRedirect, url)</span>
+}
+
+// GoogleCallback handles the OAuth callback from Google.
+// @Summary      Google OAuth callback
+// @Description  Handle the callback from Google OAuth and return a JWT token
+// @Tags         Auth
+// @Produce      json
+// @Param        code query string true "Authorization code from Google"
+// @Success      200 {object} models.APIResponse{data=object{token=string,email=string,name=string}} "JWT token and user info"
+// @Failure      400 {object} models.APIResponse "Missing code parameter"
+// @Failure      500 {object} models.APIResponse "Google auth or token generation failure"
+// @Router       /v1/auth/google/callback [get]
+func (h *Handler) GoogleCallback(c *gin.Context) <span class="cov8" title="1">{
+        code := c.Query("code")
+        if code == "" </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, "missing code parameter")
+                return
+        }</span>
+        <span class="cov0" title="0">cfg := auth.GoogleOAuthConfig(h.AppConfig.GoogleClientID, h.AppConfig.GoogleClientSecret, h.AppConfig.GoogleRedirectURL)
+        userInfo, err := auth.FetchGoogleUser(c.Request.Context(), cfg, code)
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "google auth failed: "+err.Error())
+                return
+        }</span>
+        <span class="cov0" title="0">token, err := auth.GenerateJWT(userInfo.Email, h.AppConfig.JWTSecret, h.AppConfig.JWTExpiryHours)
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to generate token")
+                return
+        }</span>
+        <span class="cov0" title="0">respond(c, http.StatusOK, gin.H{"token": token, "email": userInfo.Email, "name": userInfo.Name}, "")</span>
+}
+
+// ---- Project Handlers ----
+
+// CreateProject creates a new project.
+// @Summary      Create project
+// @Description  Create a new project (personal or professional)
+// @Tags         Projects
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body models.Project true "Project data (name, description, type required)"
+// @Success      201 {object} models.APIResponse{data=models.Project} "Created project"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/projects [post]
+func (h *Handler) CreateProject(c *gin.Context) <span class="cov8" title="1">{
+        var p models.Project
+        if err := c.ShouldBindJSON(&amp;p); err != nil </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">p.ID = uuid.New().String()
+        p.CreatedAt = time.Now().UTC()
+        p.UpdatedAt = p.CreatedAt
+
+        if err := h.Projects.WithLock(func(items []models.Project) ([]models.Project, error) </span><span class="cov8" title="1">{
+                return append(items, p), nil
+        }</span>); err != nil <span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to save project: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusCreated, p, "")</span>
+}
+
+// ListProjects returns all active (non-deleted) projects.
+// @Summary      List projects
+// @Description  Get all active projects (excludes soft-deleted)
+// @Tags         Projects
+// @Produce      json
+// @Security     BearerAuth
+// @Success      200 {object} models.APIResponse{data=[]models.Project} "List of projects"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/projects [get]
+func (h *Handler) ListProjects(c *gin.Context) <span class="cov8" title="1">{
+        items, err := h.Projects.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load projects: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">active := filterActive(items, func(p models.Project) *time.Time </span><span class="cov8" title="1">{ return p.DeletedAt }</span>)
+        <span class="cov8" title="1">respond(c, http.StatusOK, active, "")</span>
+}
+
+// GetProject retrieves a single project by ID.
+// @Summary      Get project
+// @Description  Get a project by its UUID
+// @Tags         Projects
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Project UUID"
+// @Success      200 {object} models.APIResponse{data=models.Project} "Project details"
+// @Failure      404 {object} models.APIResponse "Project not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/projects/{id} [get]
+func (h *Handler) GetProject(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        items, err := h.Projects.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load projects: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">for _, p := range items </span><span class="cov8" title="1">{
+                if p.ID == id &amp;&amp; p.DeletedAt == nil </span><span class="cov8" title="1">{
+                        respond(c, http.StatusOK, p, "")
+                        return
+                }</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusNotFound, nil, "project not found")</span>
+}
+
+// UpdateProject replaces a project's data.
+// @Summary      Update project
+// @Description  Full update of a project by UUID
+// @Tags         Projects
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id   path string        true "Project UUID"
+// @Param        body body models.Project true "Updated project data"
+// @Success      200 {object} models.APIResponse{data=models.Project} "Updated project"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      404 {object} models.APIResponse "Project not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/projects/{id} [put]
+func (h *Handler) UpdateProject(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        var input models.Project
+        if err := c.ShouldBindJSON(&amp;input); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">var updated *models.Project
+        err := h.Projects.WithLock(func(items []models.Project) ([]models.Project, error) </span><span class="cov8" title="1">{
+                for i, p := range items </span><span class="cov8" title="1">{
+                        if p.ID == id &amp;&amp; p.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].Name = input.Name
+                                items[i].Description = input.Description
+                                items[i].Type = input.Type
+                                items[i].UpdatedAt = time.Now().UTC()
+                                updated = &amp;items[i]
+                                return items, nil
+                        }</span>
+                }
+                <span class="cov8" title="1">return items, fmt.Errorf("not found")</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov8" title="1">{
+                if err.Error() == "not found" </span><span class="cov8" title="1">{
+                        respond(c, http.StatusNotFound, nil, "project not found")
+                }</span> else<span class="cov0" title="0"> {
+                        respond(c, http.StatusInternalServerError, nil, "failed to update project: "+err.Error())
+                }</span>
+                <span class="cov8" title="1">return</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusOK, updated, "")</span>
+}
+
+// DeleteProject soft-deletes a project.
+// @Summary      Delete project
+// @Description  Soft-delete a project by UUID (sets deleted_at timestamp)
+// @Tags         Projects
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Project UUID"
+// @Success      200 {object} models.APIResponse{data=object{message=string}} "Deletion confirmation"
+// @Failure      404 {object} models.APIResponse "Project not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/projects/{id} [delete]
+func (h *Handler) DeleteProject(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        now := time.Now().UTC()
+        var deleted bool
+        err := h.Projects.WithLock(func(items []models.Project) ([]models.Project, error) </span><span class="cov8" title="1">{
+                for i, p := range items </span><span class="cov8" title="1">{
+                        if p.ID == id &amp;&amp; p.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].DeletedAt = &amp;now
+                                items[i].UpdatedAt = now
+                                deleted = true
+                                return items, nil
+                        }</span>
+                }
+                <span class="cov8" title="1">return items, nil</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to delete project: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if !deleted </span><span class="cov8" title="1">{
+                respond(c, http.StatusNotFound, nil, "project not found")
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, gin.H{"message": "project deleted"}, "")</span>
+}
+
+// ---- Board Handlers ----
+
+// CreateBoard creates a new board within a project.
+// @Summary      Create board
+// @Description  Create a new kanban board linked to a project. Defaults swimlanes to [To Do, In Progress, Done] and task types to [Bug, Feature, Chore] if not provided.
+// @Tags         Boards
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body models.Board true "Board data (project_id, name required)"
+// @Success      201 {object} models.APIResponse{data=models.Board} "Created board"
+// @Failure      400 {object} models.APIResponse "Invalid request or invalid project_id"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/boards [post]
+func (h *Handler) CreateBoard(c *gin.Context) <span class="cov8" title="1">{
+        var b models.Board
+        if err := c.ShouldBindJSON(&amp;b); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        // Verify project exists
+        <span class="cov8" title="1">projects, err := h.Projects.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to verify project: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if !entityExists(projects, b.ProjectID, func(p models.Project) (string, *time.Time) </span><span class="cov8" title="1">{ return p.ID, p.DeletedAt }</span>) <span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, "project_id does not reference a valid project")
+                return
+        }</span>
+
+        <span class="cov8" title="1">if len(b.Swimlanes) == 0 </span><span class="cov8" title="1">{
+                b.Swimlanes = models.DefaultSwimlanes
+        }</span>
+        <span class="cov8" title="1">if len(b.TaskTypes) == 0 </span><span class="cov8" title="1">{
+                b.TaskTypes = models.DefaultTaskTypes
+        }</span>
+        <span class="cov8" title="1">b.ID = uuid.New().String()
+        b.CreatedAt = time.Now().UTC()
+        b.UpdatedAt = b.CreatedAt
+
+        if err := h.Boards.WithLock(func(items []models.Board) ([]models.Board, error) </span><span class="cov8" title="1">{
+                return append(items, b), nil
+        }</span>); err != nil <span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to save board: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusCreated, b, "")</span>
+}
+
+// ListBoards returns all active boards, optionally filtered by project_id.
+// @Summary      List boards
+// @Description  Get all active boards. Optionally filter by project_id query parameter.
+// @Tags         Boards
+// @Produce      json
+// @Security     BearerAuth
+// @Param        project_id query string false "Filter by project UUID"
+// @Success      200 {object} models.APIResponse{data=[]models.Board} "List of boards"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/boards [get]
+func (h *Handler) ListBoards(c *gin.Context) <span class="cov8" title="1">{
+        items, err := h.Boards.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load boards: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">active := filterActive(items, func(b models.Board) *time.Time </span><span class="cov8" title="1">{ return b.DeletedAt }</span>)
+
+        // Optional filter by project_id
+        <span class="cov8" title="1">if pid := c.Query("project_id"); pid != "" </span><span class="cov8" title="1">{
+                var filtered []models.Board
+                for _, b := range active </span><span class="cov8" title="1">{
+                        if b.ProjectID == pid </span><span class="cov8" title="1">{
+                                filtered = append(filtered, b)
+                        }</span>
+                }
+                <span class="cov8" title="1">active = filtered</span>
+        }
+        <span class="cov8" title="1">if active == nil </span><span class="cov0" title="0">{
+                active = []models.Board{}
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, active, "")</span>
+}
+
+// GetBoard retrieves a single board by ID.
+// @Summary      Get board
+// @Description  Get a board by its UUID
+// @Tags         Boards
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Board UUID"
+// @Success      200 {object} models.APIResponse{data=models.Board} "Board details"
+// @Failure      404 {object} models.APIResponse "Board not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/boards/{id} [get]
+func (h *Handler) GetBoard(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        items, err := h.Boards.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load boards: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">for _, b := range items </span><span class="cov8" title="1">{
+                if b.ID == id &amp;&amp; b.DeletedAt == nil </span><span class="cov8" title="1">{
+                        respond(c, http.StatusOK, b, "")
+                        return
+                }</span>
+        }
+        <span class="cov0" title="0">respond(c, http.StatusNotFound, nil, "board not found")</span>
+}
+
+// UpdateBoard replaces a board's data.
+// @Summary      Update board
+// @Description  Full update of a board by UUID
+// @Tags         Boards
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id   path string       true "Board UUID"
+// @Param        body body models.Board  true "Updated board data"
+// @Success      200 {object} models.APIResponse{data=models.Board} "Updated board"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      404 {object} models.APIResponse "Board not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/boards/{id} [put]
+func (h *Handler) UpdateBoard(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        var input models.Board
+        if err := c.ShouldBindJSON(&amp;input); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">var updated *models.Board
+        err := h.Boards.WithLock(func(items []models.Board) ([]models.Board, error) </span><span class="cov8" title="1">{
+                for i, b := range items </span><span class="cov8" title="1">{
+                        if b.ID == id &amp;&amp; b.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].Name = input.Name
+                                items[i].ProjectID = input.ProjectID
+                                if len(input.Swimlanes) &gt; 0 </span><span class="cov0" title="0">{
+                                        items[i].Swimlanes = input.Swimlanes
+                                }</span>
+                                <span class="cov8" title="1">if len(input.TaskTypes) &gt; 0 </span><span class="cov0" title="0">{
+                                        items[i].TaskTypes = input.TaskTypes
+                                }</span>
+                                <span class="cov8" title="1">items[i].UpdatedAt = time.Now().UTC()
+                                updated = &amp;items[i]
+                                return items, nil</span>
+                        }
+                }
+                <span class="cov8" title="1">return items, fmt.Errorf("not found")</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov8" title="1">{
+                if err.Error() == "not found" </span><span class="cov8" title="1">{
+                        respond(c, http.StatusNotFound, nil, "board not found")
+                }</span> else<span class="cov0" title="0"> {
+                        respond(c, http.StatusInternalServerError, nil, "failed to update board: "+err.Error())
+                }</span>
+                <span class="cov8" title="1">return</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusOK, updated, "")</span>
+}
+
+// DeleteBoard soft-deletes a board.
+// @Summary      Delete board
+// @Description  Soft-delete a board by UUID
+// @Tags         Boards
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Board UUID"
+// @Success      200 {object} models.APIResponse{data=object{message=string}} "Deletion confirmation"
+// @Failure      404 {object} models.APIResponse "Board not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/boards/{id} [delete]
+func (h *Handler) DeleteBoard(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        now := time.Now().UTC()
+        var deleted bool
+        err := h.Boards.WithLock(func(items []models.Board) ([]models.Board, error) </span><span class="cov8" title="1">{
+                for i, b := range items </span><span class="cov8" title="1">{
+                        if b.ID == id &amp;&amp; b.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].DeletedAt = &amp;now
+                                items[i].UpdatedAt = now
+                                deleted = true
+                                return items, nil
+                        }</span>
+                }
+                <span class="cov8" title="1">return items, nil</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to delete board: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if !deleted </span><span class="cov8" title="1">{
+                respond(c, http.StatusNotFound, nil, "board not found")
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, gin.H{"message": "board deleted"}, "")</span>
+}
+
+// ---- Task Handlers ----
+
+// CreateTask creates a new task on a board.
+// @Summary      Create task
+// @Description  Create a new task. Validates board_id, swimlane, and task_type against the board. Max 5 reminders.
+// @Tags         Tasks
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body models.Task true "Task data (board_id, swimlane, task_type, title, priority required)"
+// @Success      201 {object} models.APIResponse{data=models.Task} "Created task"
+// @Failure      400 {object} models.APIResponse "Invalid request, invalid board/swimlane/task_type, or too many reminders"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/tasks [post]
+func (h *Handler) CreateTask(c *gin.Context) <span class="cov8" title="1">{
+        var t models.Task
+        if err := c.ShouldBindJSON(&amp;t); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if len(t.Reminders) &gt; models.MaxReminders </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, fmt.Sprintf("maximum %d reminders allowed", models.MaxReminders))
+                return
+        }</span>
+
+        // Validate board exists and swimlane/task_type are valid
+        <span class="cov8" title="1">boards, err := h.Boards.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to verify board: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">var board *models.Board
+        for _, b := range boards </span><span class="cov8" title="1">{
+                if b.ID == t.BoardID &amp;&amp; b.DeletedAt == nil </span><span class="cov8" title="1">{
+                        board = &amp;b
+                        break</span>
+                }
+        }
+        <span class="cov8" title="1">if board == nil </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, "board_id does not reference a valid board")
+                return
+        }</span>
+        <span class="cov8" title="1">if !contains(board.Swimlanes, t.Swimlane) </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, fmt.Sprintf("swimlane '%s' is not valid for this board; valid: %v", t.Swimlane, board.Swimlanes))
+                return
+        }</span>
+        <span class="cov8" title="1">if !contains(board.TaskTypes, t.TaskType) </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, fmt.Sprintf("task_type '%s' is not valid for this board; valid: %v", t.TaskType, board.TaskTypes))
+                return
+        }</span>
+
+        <span class="cov8" title="1">t.ID = uuid.New().String()
+        t.CreatedAt = time.Now().UTC()
+        t.UpdatedAt = t.CreatedAt
+        if t.Reminders == nil </span><span class="cov8" title="1">{
+                t.Reminders = []models.Reminder{}
+        }</span>
+
+        // Initialize DueDate from Scheduler if linked and not explicitly provided
+        <span class="cov8" title="1">if t.SchedulerID != "" &amp;&amp; t.DueDate == "" </span><span class="cov8" title="1">{
+                schedulers, err := h.Schedulers.LoadAll()
+                if err == nil </span><span class="cov8" title="1">{
+                        for _, s := range schedulers </span><span class="cov8" title="1">{
+                                if s.ID == t.SchedulerID &amp;&amp; s.DeletedAt == nil </span><span class="cov8" title="1">{
+                                        t.DueDate = s.NextRun
+                                        break</span>
+                                }
+                        }
+                }
+        }
+
+        <span class="cov8" title="1">if err := h.Tasks.WithLock(func(items []models.Task) ([]models.Task, error) </span><span class="cov8" title="1">{
+                return append(items, t), nil
+        }</span>); err != nil <span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to save task: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusCreated, t, "")</span>
+}
+
+// ListTasks returns all active tasks with optional filters.
+// @Summary      List tasks
+// @Description  Get all active tasks. Filter by board_id, swimlane, assignee_id, or priority.
+// @Tags         Tasks
+// @Produce      json
+// @Security     BearerAuth
+// @Param        board_id    query string false "Filter by board UUID"
+// @Param        swimlane    query string false "Filter by swimlane name"
+// @Param        assignee_id query string false "Filter by assignee resource UUID"
+// @Param        priority    query string false "Filter by priority (Low, Medium, High, Critical)"
+// @Success      200 {object} models.APIResponse{data=[]models.Task} "List of tasks"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/tasks [get]
+func (h *Handler) ListTasks(c *gin.Context) <span class="cov8" title="1">{
+        items, err := h.Tasks.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load tasks: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">active := filterActive(items, func(t models.Task) *time.Time </span><span class="cov8" title="1">{ return t.DeletedAt }</span>)
+
+        // Apply query filters
+        <span class="cov8" title="1">if bid := c.Query("board_id"); bid != "" </span><span class="cov8" title="1">{
+                var filtered []models.Task
+                for _, t := range active </span><span class="cov8" title="1">{
+                        if t.BoardID == bid </span><span class="cov8" title="1">{
+                                filtered = append(filtered, t)
+                        }</span>
+                }
+                <span class="cov8" title="1">active = filtered</span>
+        }
+        <span class="cov8" title="1">if sw := c.Query("swimlane"); sw != "" </span><span class="cov0" title="0">{
+                var filtered []models.Task
+                for _, t := range active </span><span class="cov0" title="0">{
+                        if t.Swimlane == sw </span><span class="cov0" title="0">{
+                                filtered = append(filtered, t)
+                        }</span>
+                }
+                <span class="cov0" title="0">active = filtered</span>
+        }
+        <span class="cov8" title="1">if aid := c.Query("assignee_id"); aid != "" </span><span class="cov0" title="0">{
+                var filtered []models.Task
+                for _, t := range active </span><span class="cov0" title="0">{
+                        if t.AssigneeID == aid </span><span class="cov0" title="0">{
+                                filtered = append(filtered, t)
+                        }</span>
+                }
+                <span class="cov0" title="0">active = filtered</span>
+        }
+        <span class="cov8" title="1">if p := c.Query("priority"); p != "" </span><span class="cov8" title="1">{
+                var filtered []models.Task
+                for _, t := range active </span><span class="cov8" title="1">{
+                        if t.Priority == p </span><span class="cov0" title="0">{
+                                filtered = append(filtered, t)
+                        }</span>
+                }
+                <span class="cov8" title="1">active = filtered</span>
+        }
+        <span class="cov8" title="1">if active == nil </span><span class="cov8" title="1">{
+                active = []models.Task{}
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, active, "")</span>
+}
+
+// GetTask retrieves a single task by ID.
+// @Summary      Get task
+// @Description  Get a task by its UUID
+// @Tags         Tasks
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Task UUID"
+// @Success      200 {object} models.APIResponse{data=models.Task} "Task details"
+// @Failure      404 {object} models.APIResponse "Task not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/tasks/{id} [get]
+func (h *Handler) GetTask(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        items, err := h.Tasks.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load tasks: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">for _, t := range items </span><span class="cov8" title="1">{
+                if t.ID == id &amp;&amp; t.DeletedAt == nil </span><span class="cov0" title="0">{
+                        respond(c, http.StatusOK, t, "")
+                        return
+                }</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusNotFound, nil, "task not found")</span>
+}
+
+// UpdateTask replaces a task's data (full update).
+// @Summary      Update task
+// @Description  Full update of a task by UUID. Max 5 reminders.
+// @Tags         Tasks
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id   path string      true "Task UUID"
+// @Param        body body models.Task  true "Updated task data"
+// @Success      200 {object} models.APIResponse{data=models.Task} "Updated task"
+// @Failure      400 {object} models.APIResponse "Invalid request or too many reminders"
+// @Failure      404 {object} models.APIResponse "Task not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/tasks/{id} [put]
+func (h *Handler) UpdateTask(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        var input models.Task
+        if err := c.ShouldBindJSON(&amp;input); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if len(input.Reminders) &gt; models.MaxReminders </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, fmt.Sprintf("maximum %d reminders allowed", models.MaxReminders))
+                return
+        }</span>
+
+        <span class="cov8" title="1">var updated *models.Task
+        err := h.Tasks.WithLock(func(items []models.Task) ([]models.Task, error) </span><span class="cov8" title="1">{
+                for i, t := range items </span><span class="cov8" title="1">{
+                        if t.ID == id &amp;&amp; t.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].Title = input.Title
+                                items[i].Description = input.Description
+                                items[i].BoardID = input.BoardID
+                                items[i].Swimlane = input.Swimlane
+                                items[i].TaskType = input.TaskType
+                                items[i].AssigneeID = input.AssigneeID
+                                items[i].EstimationMinutes = input.EstimationMinutes
+                                items[i].ActualTimeMinutes = input.ActualTimeMinutes
+                                items[i].Cost = input.Cost
+                                items[i].Priority = input.Priority
+                                items[i].SchedulerID = input.SchedulerID
+                                items[i].DueDate = input.DueDate
+                                if input.Reminders != nil </span><span class="cov0" title="0">{
+                                        items[i].Reminders = input.Reminders
+                                }</span>
+                                <span class="cov8" title="1">items[i].UpdatedAt = time.Now().UTC()
+                                updated = &amp;items[i]
+                                return items, nil</span>
+                        }
+                }
+                <span class="cov8" title="1">return items, fmt.Errorf("not found")</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov8" title="1">{
+                if err.Error() == "not found" </span><span class="cov8" title="1">{
+                        respond(c, http.StatusNotFound, nil, "task not found")
+                }</span> else<span class="cov0" title="0"> {
+                        respond(c, http.StatusInternalServerError, nil, "failed to update task: "+err.Error())
+                }</span>
+                <span class="cov8" title="1">return</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusOK, updated, "")</span>
+}
+
+// PatchTask handles partial updates, including moving swimlane and recurring task generation.
+// @Summary      Patch task
+// @Description  Partial update of a task. Supports updating individual fields (swimlane, title, description, assignee_id, priority, task_type, cost, estimation_minutes, actual_time_minutes, scheduler_id). Moving to "Done" with a scheduler_id triggers recurring task generation.
+// @Tags         Tasks
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id   path string true "Task UUID"
+// @Param        body body object true "Fields to update (only include fields you want to change)"
+// @Success      200 {object} models.APIResponse{data=models.Task} "Patched task"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      404 {object} models.APIResponse "Task not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/tasks/{id} [patch]
+func (h *Handler) PatchTask(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        var patch map[string]interface{}
+        if err := c.ShouldBindJSON(&amp;patch); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">var patched *models.Task
+        err := h.Tasks.WithLock(func(items []models.Task) ([]models.Task, error) </span><span class="cov8" title="1">{
+                for i, t := range items </span><span class="cov8" title="1">{
+                        if t.ID == id &amp;&amp; t.DeletedAt == nil </span><span class="cov8" title="1">{
+                                if v, ok := patch["swimlane"].(string); ok </span><span class="cov8" title="1">{
+                                        items[i].Swimlane = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["title"].(string); ok </span><span class="cov8" title="1">{
+                                        items[i].Title = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["description"].(string); ok </span><span class="cov8" title="1">{
+                                        items[i].Description = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["assignee_id"].(string); ok </span><span class="cov0" title="0">{
+                                        items[i].AssigneeID = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["priority"].(string); ok </span><span class="cov8" title="1">{
+                                        items[i].Priority = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["task_type"].(string); ok </span><span class="cov8" title="1">{
+                                        items[i].TaskType = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["cost"].(float64); ok </span><span class="cov8" title="1">{
+                                        items[i].Cost = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["estimation_minutes"].(float64); ok </span><span class="cov8" title="1">{
+                                        items[i].EstimationMinutes = int(v)
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["actual_time_minutes"].(float64); ok </span><span class="cov8" title="1">{
+                                        items[i].ActualTimeMinutes = int(v)
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["scheduler_id"].(string); ok </span><span class="cov0" title="0">{
+                                        items[i].SchedulerID = v
+                                }</span>
+                                <span class="cov8" title="1">if v, ok := patch["due_date"].(string); ok </span><span class="cov0" title="0">{
+                                        items[i].DueDate = v
+                                }</span>
+                                <span class="cov8" title="1">items[i].UpdatedAt = time.Now().UTC()
+                                patched = &amp;items[i]
+
+                                // Recurring task generation: if moved to "Done" and has a scheduler
+                                if sw, ok := patch["swimlane"].(string); ok &amp;&amp; sw == "Done" &amp;&amp; items[i].SchedulerID != "" </span><span class="cov8" title="1">{
+                                        newTask := h.generateRecurringTask(items[i])
+                                        if newTask != nil </span><span class="cov8" title="1">{
+                                                items = append(items, *newTask)
+                                        }</span>
+                                }
+                                <span class="cov8" title="1">return items, nil</span>
+                        }
+                }
+                <span class="cov8" title="1">return items, fmt.Errorf("not found")</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov8" title="1">{
+                if err.Error() == "not found" </span><span class="cov8" title="1">{
+                        respond(c, http.StatusNotFound, nil, "task not found")
+                }</span> else<span class="cov0" title="0"> {
+                        respond(c, http.StatusInternalServerError, nil, "failed to patch task: "+err.Error())
+                }</span>
+                <span class="cov8" title="1">return</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusOK, patched, "")</span>
+}
+
+// DeleteTask soft-deletes a task.
+// @Summary      Delete task
+// @Description  Soft-delete a task by UUID
+// @Tags         Tasks
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Task UUID"
+// @Success      200 {object} models.APIResponse{data=object{message=string}} "Deletion confirmation"
+// @Failure      404 {object} models.APIResponse "Task not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/tasks/{id} [delete]
+func (h *Handler) DeleteTask(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        now := time.Now().UTC()
+        var deleted bool
+        err := h.Tasks.WithLock(func(items []models.Task) ([]models.Task, error) </span><span class="cov8" title="1">{
+                for i, t := range items </span><span class="cov8" title="1">{
+                        if t.ID == id &amp;&amp; t.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].DeletedAt = &amp;now
+                                items[i].UpdatedAt = now
+                                deleted = true
+                                return items, nil
+                        }</span>
+                }
+                <span class="cov8" title="1">return items, nil</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to delete task: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if !deleted </span><span class="cov8" title="1">{
+                respond(c, http.StatusNotFound, nil, "task not found")
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, gin.H{"message": "task deleted"}, "")</span>
+}
+
+// generateRecurringTask creates a new task based on a completed task's scheduler.
+func (h *Handler) generateRecurringTask(completed models.Task) *models.Task <span class="cov8" title="1">{
+        schedulers, err := h.Schedulers.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                return nil
+        }</span>
+        <span class="cov8" title="1">var sched *models.Scheduler
+        for _, s := range schedulers </span><span class="cov8" title="1">{
+                if s.ID == completed.SchedulerID &amp;&amp; s.DeletedAt == nil </span><span class="cov8" title="1">{
+                        sched = &amp;s
+                        break</span>
+                }
+        }
+        <span class="cov8" title="1">if sched == nil </span><span class="cov0" title="0">{
+                return nil
+        }</span>
+
+        <span class="cov8" title="1">nextRun := calculateNextRun(sched)
+
+        // Update scheduler's next_run
+        _ = h.Schedulers.WithLock(func(items []models.Scheduler) ([]models.Scheduler, error) </span><span class="cov8" title="1">{
+                for i, s := range items </span><span class="cov8" title="1">{
+                        if s.ID == sched.ID </span><span class="cov8" title="1">{
+                                items[i].NextRun = nextRun
+                                items[i].UpdatedAt = time.Now().UTC()
+                                break</span>
+                        }
+                }
+                <span class="cov8" title="1">return items, nil</span>
+        })
+
+        // Get board's first swimlane (typically "To Do")
+        <span class="cov8" title="1">boards, err := h.Boards.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                return nil
+        }</span>
+        <span class="cov8" title="1">firstSwimlane := "To Do"
+        for _, b := range boards </span><span class="cov8" title="1">{
+                if b.ID == completed.BoardID &amp;&amp; b.DeletedAt == nil &amp;&amp; len(b.Swimlanes) &gt; 0 </span><span class="cov8" title="1">{
+                        firstSwimlane = b.Swimlanes[0]
+                        break</span>
+                }
+        }
+
+        <span class="cov8" title="1">newTask := models.Task{
+                ID:                uuid.New().String(),
+                BoardID:           completed.BoardID,
+                Swimlane:          firstSwimlane,
+                TaskType:          completed.TaskType,
+                Title:             completed.Title,
+                Description:       completed.Description,
+                AssigneeID:        completed.AssigneeID,
+                EstimationMinutes: completed.EstimationMinutes,
+                Cost:              completed.Cost,
+                Priority:          completed.Priority,
+                Reminders:         []models.Reminder{},
+                SchedulerID:       completed.SchedulerID,
+                DueDate:           nextRun,
+                CreatedAt:         time.Now().UTC(),
+                UpdatedAt:         time.Now().UTC(),
+        }
+        return &amp;newTask</span>
+}
+
+// calculateNextRun determines the next occurrence based on the scheduler type/cron.
+func calculateNextRun(s *models.Scheduler) string <span class="cov8" title="1">{
+        now := time.Now().UTC()
+        var baseTime time.Time
+        if s.NextRun != "" </span><span class="cov8" title="1">{
+                if t, err := time.Parse(time.RFC3339, s.NextRun); err == nil </span><span class="cov8" title="1">{
+                        baseTime = t
+                }</span>
+        }
+
+        <span class="cov8" title="1">if baseTime.IsZero() </span><span class="cov8" title="1">{
+                baseTime = now
+        }</span>
+
+        <span class="cov8" title="1">switch s.Type </span>{
+        case "daily":<span class="cov8" title="1">
+                next := baseTime.AddDate(0, 0, 1)
+                for next.Before(now) </span><span class="cov0" title="0">{
+                        next = next.AddDate(0, 0, 1)
+                }</span>
+                <span class="cov8" title="1">return next.Format(time.RFC3339)</span>
+        case "weekly":<span class="cov8" title="1">
+                next := baseTime.AddDate(0, 0, 7)
+                for next.Before(now) </span><span class="cov0" title="0">{
+                        next = next.AddDate(0, 0, 7)
+                }</span>
+                <span class="cov8" title="1">return next.Format(time.RFC3339)</span>
+        case "monthly":<span class="cov8" title="1">
+                next := baseTime.AddDate(0, 1, 0)
+                for next.Before(now) </span><span class="cov0" title="0">{
+                        next = next.AddDate(0, 1, 0)
+                }</span>
+                <span class="cov8" title="1">return next.Format(time.RFC3339)</span>
+        case "yearly":<span class="cov8" title="1">
+                next := baseTime.AddDate(1, 0, 0)
+                for next.Before(now) </span><span class="cov0" title="0">{
+                        next = next.AddDate(1, 0, 0)
+                }</span>
+                <span class="cov8" title="1">return next.Format(time.RFC3339)</span>
+        case "cron":<span class="cov8" title="1">
+                if s.CronExpression != "" </span><span class="cov8" title="1">{
+                        parser := cron.NewParser(cron.Minute | cron.Hour | cron.Dom | cron.Month | cron.Dow)
+                        schedule, err := parser.Parse(s.CronExpression)
+                        if err == nil </span><span class="cov8" title="1">{
+                                next := schedule.Next(baseTime)
+                                for next.Before(now) </span><span class="cov0" title="0">{
+                                        next = schedule.Next(next)
+                                }</span>
+                                <span class="cov8" title="1">return next.Format(time.RFC3339)</span>
+                        }
+                }
+                <span class="cov0" title="0">next := baseTime.AddDate(0, 0, 1)
+                for next.Before(now) </span><span class="cov0" title="0">{
+                        next = next.AddDate(0, 0, 1)
+                }</span>
+                <span class="cov0" title="0">return next.Format(time.RFC3339)</span>
+        default:<span class="cov0" title="0">
+                next := baseTime.AddDate(0, 0, 1)
+                for next.Before(now) </span><span class="cov0" title="0">{
+                        next = next.AddDate(0, 0, 1)
+                }</span>
+                <span class="cov0" title="0">return next.Format(time.RFC3339)</span>
+        }
+}
+
+// ---- Scheduler Handlers ----
+
+// CreateScheduler creates a new recurring schedule.
+// @Summary      Create scheduler
+// @Description  Create a new scheduler (daily, weekly, monthly, yearly, or cron). Automatically calculates next_run if not provided.
+// @Tags         Schedulers
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body models.Scheduler true "Scheduler data (name, type required; cron_expression required when type=cron)"
+// @Success      201 {object} models.APIResponse{data=models.Scheduler} "Created scheduler"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/schedulers [post]
+func (h *Handler) CreateScheduler(c *gin.Context) <span class="cov8" title="1">{
+        var s models.Scheduler
+        if err := c.ShouldBindJSON(&amp;s); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">s.ID = uuid.New().String()
+        s.CreatedAt = time.Now().UTC()
+        s.UpdatedAt = s.CreatedAt
+        if s.NextRun == "" </span><span class="cov8" title="1">{
+                s.NextRun = calculateNextRun(&amp;s)
+        }</span>
+
+        <span class="cov8" title="1">if err := h.Schedulers.WithLock(func(items []models.Scheduler) ([]models.Scheduler, error) </span><span class="cov8" title="1">{
+                return append(items, s), nil
+        }</span>); err != nil <span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to save scheduler: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusCreated, s, "")</span>
+}
+
+// ListSchedulers returns all active schedulers.
+// @Summary      List schedulers
+// @Description  Get all active schedulers (excludes soft-deleted)
+// @Tags         Schedulers
+// @Produce      json
+// @Security     BearerAuth
+// @Success      200 {object} models.APIResponse{data=[]models.Scheduler} "List of schedulers"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/schedulers [get]
+func (h *Handler) ListSchedulers(c *gin.Context) <span class="cov8" title="1">{
+        items, err := h.Schedulers.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load schedulers: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">active := filterActive(items, func(s models.Scheduler) *time.Time </span><span class="cov8" title="1">{ return s.DeletedAt }</span>)
+        <span class="cov8" title="1">respond(c, http.StatusOK, active, "")</span>
+}
+
+// GetScheduler retrieves a single scheduler by ID.
+// @Summary      Get scheduler
+// @Description  Get a scheduler by its UUID
+// @Tags         Schedulers
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Scheduler UUID"
+// @Success      200 {object} models.APIResponse{data=models.Scheduler} "Scheduler details"
+// @Failure      404 {object} models.APIResponse "Scheduler not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/schedulers/{id} [get]
+func (h *Handler) GetScheduler(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        items, err := h.Schedulers.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load schedulers: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">for _, s := range items </span><span class="cov8" title="1">{
+                if s.ID == id &amp;&amp; s.DeletedAt == nil </span><span class="cov8" title="1">{
+                        respond(c, http.StatusOK, s, "")
+                        return
+                }</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusNotFound, nil, "scheduler not found")</span>
+}
+
+// UpdateScheduler replaces a scheduler's data.
+// @Summary      Update scheduler
+// @Description  Full update of a scheduler by UUID. Recalculates next_run.
+// @Tags         Schedulers
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id   path string           true "Scheduler UUID"
+// @Param        body body models.Scheduler  true "Updated scheduler data"
+// @Success      200 {object} models.APIResponse{data=models.Scheduler} "Updated scheduler"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      404 {object} models.APIResponse "Scheduler not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/schedulers/{id} [put]
+func (h *Handler) UpdateScheduler(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        var input models.Scheduler
+        if err := c.ShouldBindJSON(&amp;input); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">var updated *models.Scheduler
+        err := h.Schedulers.WithLock(func(items []models.Scheduler) ([]models.Scheduler, error) </span><span class="cov8" title="1">{
+                for i, s := range items </span><span class="cov8" title="1">{
+                        if s.ID == id &amp;&amp; s.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].Name = input.Name
+                                items[i].CronExpression = input.CronExpression
+                                items[i].Type = input.Type
+                                items[i].LinkedTaskTemplateID = input.LinkedTaskTemplateID
+                                items[i].NextRun = calculateNextRun(&amp;input)
+                                items[i].UpdatedAt = time.Now().UTC()
+                                updated = &amp;items[i]
+                                return items, nil
+                        }</span>
+                }
+                <span class="cov8" title="1">return items, fmt.Errorf("not found")</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov8" title="1">{
+                if err.Error() == "not found" </span><span class="cov8" title="1">{
+                        respond(c, http.StatusNotFound, nil, "scheduler not found")
+                }</span> else<span class="cov0" title="0"> {
+                        respond(c, http.StatusInternalServerError, nil, "failed to update scheduler: "+err.Error())
+                }</span>
+                <span class="cov8" title="1">return</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusOK, updated, "")</span>
+}
+
+// DeleteScheduler soft-deletes a scheduler.
+// @Summary      Delete scheduler
+// @Description  Soft-delete a scheduler by UUID
+// @Tags         Schedulers
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Scheduler UUID"
+// @Success      200 {object} models.APIResponse{data=object{message=string}} "Deletion confirmation"
+// @Failure      404 {object} models.APIResponse "Scheduler not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/schedulers/{id} [delete]
+func (h *Handler) DeleteScheduler(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        now := time.Now().UTC()
+        var deleted bool
+        err := h.Schedulers.WithLock(func(items []models.Scheduler) ([]models.Scheduler, error) </span><span class="cov8" title="1">{
+                for i, s := range items </span><span class="cov8" title="1">{
+                        if s.ID == id &amp;&amp; s.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].DeletedAt = &amp;now
+                                items[i].UpdatedAt = now
+                                deleted = true
+                                return items, nil
+                        }</span>
+                }
+                <span class="cov8" title="1">return items, nil</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to delete scheduler: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if !deleted </span><span class="cov8" title="1">{
+                respond(c, http.StatusNotFound, nil, "scheduler not found")
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, gin.H{"message": "scheduler deleted"}, "")</span>
+}
+
+// ---- Resource Handlers ----
+
+// CreateResource creates a new resource.
+// @Summary      Create resource
+// @Description  Create a new resource (Global, Project, or Task scoped)
+// @Tags         Resources
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        body body models.Resource true "Resource data (name, type required)"
+// @Success      201 {object} models.APIResponse{data=models.Resource} "Created resource"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/resources [post]
+func (h *Handler) CreateResource(c *gin.Context) <span class="cov8" title="1">{
+        var r models.Resource
+        if err := c.ShouldBindJSON(&amp;r); err != nil </span><span class="cov8" title="1">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">r.ID = uuid.New().String()
+        r.CreatedAt = time.Now().UTC()
+        r.UpdatedAt = r.CreatedAt
+        if r.LinkedItems == nil </span><span class="cov0" title="0">{
+                r.LinkedItems = []string{}
+        }</span>
+
+        <span class="cov8" title="1">if err := h.Resources.WithLock(func(items []models.Resource) ([]models.Resource, error) </span><span class="cov8" title="1">{
+                return append(items, r), nil
+        }</span>); err != nil <span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to save resource: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusCreated, r, "")</span>
+}
+
+// ListResources returns all active resources.
+// @Summary      List resources
+// @Description  Get all active resources (excludes soft-deleted)
+// @Tags         Resources
+// @Produce      json
+// @Security     BearerAuth
+// @Success      200 {object} models.APIResponse{data=[]models.Resource} "List of resources"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/resources [get]
+func (h *Handler) ListResources(c *gin.Context) <span class="cov8" title="1">{
+        items, err := h.Resources.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load resources: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">active := filterActive(items, func(r models.Resource) *time.Time </span><span class="cov8" title="1">{ return r.DeletedAt }</span>)
+        <span class="cov8" title="1">respond(c, http.StatusOK, active, "")</span>
+}
+
+// GetResource retrieves a single resource by ID.
+// @Summary      Get resource
+// @Description  Get a resource by its UUID
+// @Tags         Resources
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Resource UUID"
+// @Success      200 {object} models.APIResponse{data=models.Resource} "Resource details"
+// @Failure      404 {object} models.APIResponse "Resource not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/resources/{id} [get]
+func (h *Handler) GetResource(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        items, err := h.Resources.LoadAll()
+        if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to load resources: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">for _, r := range items </span><span class="cov8" title="1">{
+                if r.ID == id &amp;&amp; r.DeletedAt == nil </span><span class="cov8" title="1">{
+                        respond(c, http.StatusOK, r, "")
+                        return
+                }</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusNotFound, nil, "resource not found")</span>
+}
+
+// UpdateResource replaces a resource's data.
+// @Summary      Update resource
+// @Description  Full update of a resource by UUID
+// @Tags         Resources
+// @Accept       json
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id   path string          true "Resource UUID"
+// @Param        body body models.Resource  true "Updated resource data"
+// @Success      200 {object} models.APIResponse{data=models.Resource} "Updated resource"
+// @Failure      400 {object} models.APIResponse "Invalid request"
+// @Failure      404 {object} models.APIResponse "Resource not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/resources/{id} [put]
+func (h *Handler) UpdateResource(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        var input models.Resource
+        if err := c.ShouldBindJSON(&amp;input); err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusBadRequest, nil, "invalid request: "+err.Error())
+                return
+        }</span>
+
+        <span class="cov8" title="1">var updated *models.Resource
+        err := h.Resources.WithLock(func(items []models.Resource) ([]models.Resource, error) </span><span class="cov8" title="1">{
+                for i, r := range items </span><span class="cov8" title="1">{
+                        if r.ID == id &amp;&amp; r.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].Name = input.Name
+                                items[i].Type = input.Type
+                                if input.LinkedItems != nil </span><span class="cov8" title="1">{
+                                        items[i].LinkedItems = input.LinkedItems
+                                }</span>
+                                <span class="cov8" title="1">items[i].UpdatedAt = time.Now().UTC()
+                                updated = &amp;items[i]
+                                return items, nil</span>
+                        }
+                }
+                <span class="cov8" title="1">return items, fmt.Errorf("not found")</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov8" title="1">{
+                if err.Error() == "not found" </span><span class="cov8" title="1">{
+                        respond(c, http.StatusNotFound, nil, "resource not found")
+                }</span> else<span class="cov0" title="0"> {
+                        respond(c, http.StatusInternalServerError, nil, "failed to update resource: "+err.Error())
+                }</span>
+                <span class="cov8" title="1">return</span>
+        }
+        <span class="cov8" title="1">respond(c, http.StatusOK, updated, "")</span>
+}
+
+// DeleteResource soft-deletes a resource.
+// @Summary      Delete resource
+// @Description  Soft-delete a resource by UUID
+// @Tags         Resources
+// @Produce      json
+// @Security     BearerAuth
+// @Param        id path string true "Resource UUID"
+// @Success      200 {object} models.APIResponse{data=object{message=string}} "Deletion confirmation"
+// @Failure      404 {object} models.APIResponse "Resource not found"
+// @Failure      500 {object} models.APIResponse "Storage error"
+// @Router       /v1/resources/{id} [delete]
+func (h *Handler) DeleteResource(c *gin.Context) <span class="cov8" title="1">{
+        id := c.Param("id")
+        now := time.Now().UTC()
+        var deleted bool
+        err := h.Resources.WithLock(func(items []models.Resource) ([]models.Resource, error) </span><span class="cov8" title="1">{
+                for i, r := range items </span><span class="cov8" title="1">{
+                        if r.ID == id &amp;&amp; r.DeletedAt == nil </span><span class="cov8" title="1">{
+                                items[i].DeletedAt = &amp;now
+                                items[i].UpdatedAt = now
+                                deleted = true
+                                return items, nil
+                        }</span>
+                }
+                <span class="cov8" title="1">return items, nil</span>
+        })
+        <span class="cov8" title="1">if err != nil </span><span class="cov0" title="0">{
+                respond(c, http.StatusInternalServerError, nil, "failed to delete resource: "+err.Error())
+                return
+        }</span>
+        <span class="cov8" title="1">if !deleted </span><span class="cov8" title="1">{
+                respond(c, http.StatusNotFound, nil, "resource not found")
+                return
+        }</span>
+        <span class="cov8" title="1">respond(c, http.StatusOK, gin.H{"message": "resource deleted"}, "")</span>
+}
+
+// ---- Helper Functions ----
+
+// filterActive returns only items where deletedAt is nil.
+func filterActive[T any](items []T, getDeletedAt func(T) *time.Time) []T <span class="cov8" title="1">{
+        var result []T
+        for _, item := range items </span><span class="cov8" title="1">{
+                if getDeletedAt(item) == nil </span><span class="cov8" title="1">{
+                        result = append(result, item)
+                }</span>
+        }
+        <span class="cov8" title="1">if result == nil </span><span class="cov8" title="1">{
+                result = make([]T, 0)
+        }</span>
+        <span class="cov8" title="1">return result</span>
+}
+
+// entityExists checks if an entity with the given ID exists and is not soft-deleted.
+func entityExists[T any](items []T, id string, getIDAndDeleted func(T) (string, *time.Time)) bool <span class="cov8" title="1">{
+        for _, item := range items </span><span class="cov8" title="1">{
+                itemID, deletedAt := getIDAndDeleted(item)
+                if itemID == id &amp;&amp; deletedAt == nil </span><span class="cov8" title="1">{
+                        return true
+                }</span>
+        }
+        <span class="cov8" title="1">return false</span>
+}
+
+// contains checks if a string slice contains the given value.
+func contains(slice []string, val string) bool <span class="cov8" title="1">{
+        for _, s := range slice </span><span class="cov8" title="1">{
+                if s == val </span><span class="cov8" title="1">{
+                        return true
+                }</span>
+        }
+        <span class="cov8" title="1">return false</span>
+}
+
+// Health is the unauthenticated health check endpoint.
+// @Summary      Health check
+// @Description  Returns server status and current UTC time
+// @Tags         System
+// @Produce      json
+// @Success      200 {object} models.APIResponse{data=object{status=string,time=string}} "Server is healthy"
+// @Router       /health [get]
+func Health(c *gin.Context) <span class="cov8" title="1">{
+        respond(c, http.StatusOK, gin.H{"status": "ok", "time": time.Now().UTC().Format(time.RFC3339)}, "")
+}</span>
+
+// StartBackgroundWorker runs the task scheduler checker at regular intervals.
+func (h *Handler) StartBackgroundWorker(ctx context.Context) <span class="cov0" title="0">{
+        ticker := time.NewTicker(5 * time.Second)
+        defer ticker.Stop()
+
+        fmt.Println("Starting MyKanban task scheduler background worker...")
+        for </span><span class="cov0" title="0">{
+                select </span>{
+                case &lt;-ctx.Done():<span class="cov0" title="0">
+                        fmt.Println("Stopping MyKanban task scheduler background worker...")
+                        return</span>
+                case &lt;-ticker.C:<span class="cov0" title="0">
+                        h.checkAndTriggerSchedulers()</span>
+                }
+        }
+}
+
+// checkAndTriggerSchedulers evaluates all schedulers and tasks to trigger automatic task generation on due date/expiry.
+func (h *Handler) checkAndTriggerSchedulers() <span class="cov0" title="0">{
+        now := time.Now().UTC()
+
+        // 1. Lock tasks first (following the established lock order tasks -&gt; schedulers to avoid deadlock)
+        _ = h.Tasks.WithLock(func(tasks []models.Task) ([]models.Task, error) </span><span class="cov0" title="0">{
+                // 2. Lock schedulers second
+                _ = h.Schedulers.WithLock(func(schedulers []models.Scheduler) ([]models.Scheduler, error) </span><span class="cov0" title="0">{
+
+                        for idxSched, s := range schedulers </span><span class="cov0" title="0">{
+                                if s.DeletedAt != nil || s.NextRun == "" </span><span class="cov0" title="0">{
+                                        continue</span>
+                                }
+
+                                <span class="cov0" title="0">nextRunTime, err := time.Parse(time.RFC3339, s.NextRun)
+                                if err != nil </span><span class="cov0" title="0">{
+                                        continue</span>
+                                }
+
+                                // If next_run is in the past (expired)
+                                <span class="cov0" title="0">if nextRunTime.Before(now) </span><span class="cov0" title="0">{
+                                        // We need to create a new task for this scheduler!
+                                        // Try to find the source task template to copy details from.
+                                        var sourceTask *models.Task
+
+                                        // First, try using s.LinkedTaskTemplateID
+                                        if s.LinkedTaskTemplateID != "" </span><span class="cov0" title="0">{
+                                                for _, t := range tasks </span><span class="cov0" title="0">{
+                                                        if t.ID == s.LinkedTaskTemplateID &amp;&amp; t.DeletedAt == nil </span><span class="cov0" title="0">{
+                                                                sourceTask = &amp;t
+                                                                break</span>
+                                                        }
+                                                }
+                                        }
+
+                                        // If template not found, find the latest active task linked to this scheduler
+                                        <span class="cov0" title="0">if sourceTask == nil </span><span class="cov0" title="0">{
+                                                var latestTask *models.Task
+                                                for _, t := range tasks </span><span class="cov0" title="0">{
+                                                        if t.SchedulerID == s.ID &amp;&amp; t.DeletedAt == nil </span><span class="cov0" title="0">{
+                                                                if latestTask == nil || t.CreatedAt.After(latestTask.CreatedAt) </span><span class="cov0" title="0">{
+                                                                        latestTask = &amp;t
+                                                                }</span>
+                                                        }
+                                                }
+                                                <span class="cov0" title="0">sourceTask = latestTask</span>
+                                        }
+
+                                        // If we still don't have a source task, we can't copy details. Skip this scheduler.
+                                        <span class="cov0" title="0">if sourceTask == nil </span><span class="cov0" title="0">{
+                                                continue</span>
+                                        }
+
+                                        // Clear the scheduler_id and due_date of any existing uncompleted task linked to this scheduler
+                                        // so we don't keep checking/updating it and to allow the new task to be the active one.
+                                        <span class="cov0" title="0">for idxTask, t := range tasks </span><span class="cov0" title="0">{
+                                                if t.SchedulerID == s.ID &amp;&amp; t.DeletedAt == nil &amp;&amp; t.Swimlane != "Done" </span><span class="cov0" title="0">{
+                                                        tasks[idxTask].SchedulerID = ""
+                                                        tasks[idxTask].UpdatedAt = now
+                                                }</span>
+                                        }
+
+                                        // Calculate the next next_run for the scheduler
+                                        <span class="cov0" title="0">nextNextRun := calculateNextRun(&amp;s)
+                                        schedulers[idxSched].NextRun = nextNextRun
+                                        schedulers[idxSched].UpdatedAt = now
+
+                                        // Get board's first swimlane (typically "To Do")
+                                        boards, err := h.Boards.LoadAll()
+                                        firstSwimlane := "To Do"
+                                        if err == nil </span><span class="cov0" title="0">{
+                                                for _, b := range boards </span><span class="cov0" title="0">{
+                                                        if b.ID == sourceTask.BoardID &amp;&amp; b.DeletedAt == nil &amp;&amp; len(b.Swimlanes) &gt; 0 </span><span class="cov0" title="0">{
+                                                                firstSwimlane = b.Swimlanes[0]
+                                                                break</span>
+                                                        }
+                                                }
+                                        }
+
+                                        // Create the new task!
+                                        <span class="cov0" title="0">newTask := models.Task{
+                                                ID:                uuid.New().String(),
+                                                BoardID:           sourceTask.BoardID,
+                                                Swimlane:          firstSwimlane,
+                                                TaskType:          sourceTask.TaskType,
+                                                Title:             sourceTask.Title,
+                                                Description:       sourceTask.Description,
+                                                AssigneeID:        sourceTask.AssigneeID,
+                                                EstimationMinutes: sourceTask.EstimationMinutes,
+                                                Cost:              sourceTask.Cost,
+                                                Priority:          sourceTask.Priority,
+                                                Reminders:         []models.Reminder{},
+                                                SchedulerID:       s.ID,
+                                                DueDate:           nextNextRun, // Set the task's due date to the new next run!
+                                                CreatedAt:         now,
+                                                UpdatedAt:         now,
+                                        }
+
+                                        tasks = append(tasks, newTask)
+                                        fmt.Printf("Auto-generated recurring task '%s' (Scheduler: %s, Next Run: %s)\n", newTask.Title, s.Name, nextNextRun)</span>
+                                }
+                        }
+
+                        <span class="cov0" title="0">return schedulers, nil</span>
+                })
+
+                <span class="cov0" title="0">return tasks, nil</span>
+        })
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">// Package main is the entry point for the MyKanban backend server.
+//
+// @title           MyKanban Backend API
+// @version         1.0
+// @description     A minimalistic, secure REST API for personal and professional task tracking.
+// @termsOfService  http://swagger.io/terms/
+//
+// @contact.name   MyKanban Support
+// @contact.email  admin@mykanban.local
+//
+// @license.name  MIT
+// @license.url   https://opensource.org/licenses/MIT
+//
+// @host      localhost:8080
+// @BasePath  /api
+//
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+// @description Enter your JWT token with the `Bearer ` prefix, e.g. "Bearer eyJhbGci..."
+package main
+
+import (
+        "context"
+        "fmt"
+        "log"
+        "net/http"
+        "os"
+        "os/signal"
+        "strings"
+        "syscall"
+        "time"
+
+        "github.com/gin-contrib/cors"
+        "github.com/gin-gonic/gin"
+        swaggerFiles "github.com/swaggo/files"
+        ginSwagger "github.com/swaggo/gin-swagger"
+
+        _ "mykanban-backend/docs"
+        "mykanban-backend/handlers"
+        "mykanban-backend/middleware"
+        "mykanban-backend/models"
+        "mykanban-backend/storage"
+)
+
+func main() <span class="cov0" title="0">{
+        // Load configuration
+        configPath := resolveConfigPath()
+        cfgStore := storage.NewConfigStore(configPath, nil)
+        var cfg models.Config
+        if err := cfgStore.Load(&amp;cfg); err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("Failed to load config.json: %v", err)
+        }</span>
+
+        // Set up logging
+        <span class="cov0" title="0">if cfg.LogFile != "" </span><span class="cov0" title="0">{
+                f, err := os.OpenFile(cfg.LogFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Fatalf("Failed to open log file: %v", err)
+                }</span>
+                <span class="cov0" title="0">defer f.Close()
+                log.SetOutput(f)</span>
+        }
+
+        // Initialize storage
+        <span class="cov0" title="0">storageDir := cfg.StorageDir
+        if storageDir == "" </span><span class="cov0" title="0">{
+                storageDir = "./storage"
+        }</span>
+
+        <span class="cov0" title="0">projectStore, err := storage.NewStore[models.Project](storageDir, "projects.json", nil)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("Failed to init project store: %v", err)
+        }</span>
+        <span class="cov0" title="0">boardStore, err := storage.NewStore[models.Board](storageDir, "boards.json", nil)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("Failed to init board store: %v", err)
+        }</span>
+        <span class="cov0" title="0">taskStore, err := storage.NewStore[models.Task](storageDir, "tasks.json", nil)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("Failed to init task store: %v", err)
+        }</span>
+        <span class="cov0" title="0">schedulerStore, err := storage.NewStore[models.Scheduler](storageDir, "schedulers.json", nil)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("Failed to init scheduler store: %v", err)
+        }</span>
+        <span class="cov0" title="0">resourceStore, err := storage.NewStore[models.Resource](storageDir, "resources.json", nil)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("Failed to init resource store: %v", err)
+        }</span>
+
+        <span class="cov0" title="0">h := &amp;handlers.Handler{
+                Projects:   projectStore,
+                Boards:     boardStore,
+                Tasks:      taskStore,
+                Schedulers: schedulerStore,
+                Resources:  resourceStore,
+                Config:     cfgStore,
+                AppConfig:  &amp;cfg,
+        }
+
+        // Set up Gin router
+        router := SetupRouter(h, &amp;cfg)
+
+        // Start background task scheduler worker
+        workerCtx, cancelWorker := context.WithCancel(context.Background())
+        defer cancelWorker()
+        go h.StartBackgroundWorker(workerCtx)
+
+        // Start server with graceful shutdown
+        srv := &amp;http.Server{
+                Addr:    fmt.Sprintf(":%d", cfg.Port),
+                Handler: router,
+        }
+
+        go func() </span><span class="cov0" title="0">{
+                log.Printf("MyKanban server starting on port %d", cfg.Port)
+                fmt.Printf("MyKanban server starting on port %d\n", cfg.Port)
+                if err := srv.ListenAndServe(); err != nil &amp;&amp; err != http.ErrServerClosed </span><span class="cov0" title="0">{
+                        log.Fatalf("Server error: %v", err)
+                }</span>
+        }()
+
+        // Wait for interrupt signal
+        <span class="cov0" title="0">quit := make(chan os.Signal, 1)
+        signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+        &lt;-quit
+        log.Println("Shutting down server...")
+
+        ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+        defer cancel()
+        if err := srv.Shutdown(ctx); err != nil </span><span class="cov0" title="0">{
+                log.Fatalf("Server forced to shutdown: %v", err)
+        }</span>
+        <span class="cov0" title="0">log.Println("Server exited gracefully")</span>
+}
+
+func resolveConfigPath() string <span class="cov0" title="0">{
+        candidates := []string{"config.json", "backend/config.json"}
+        for _, candidate := range candidates </span><span class="cov0" title="0">{
+                if _, err := os.Stat(candidate); err == nil </span><span class="cov0" title="0">{
+                        return candidate
+                }</span>
+        }
+        <span class="cov0" title="0">return "config.json"</span>
+}
+
+// parseAllowedOrigins splits a comma-separated string of origins into a slice,
+// trimming whitespace from each entry. Returns a default if the input is empty.
+func parseAllowedOrigins(raw string) []string <span class="cov8" title="1">{
+        if strings.TrimSpace(raw) == "" </span><span class="cov8" title="1">{
+                return []string{"http://localhost:3000"}
+        }</span>
+        <span class="cov8" title="1">parts := strings.Split(raw, ",")
+        origins := make([]string, 0, len(parts))
+        for _, p := range parts </span><span class="cov8" title="1">{
+                trimmed := strings.TrimSpace(p)
+                if trimmed != "" </span><span class="cov8" title="1">{
+                        origins = append(origins, trimmed)
+                }</span>
+        }
+        <span class="cov8" title="1">if len(origins) == 0 </span><span class="cov0" title="0">{
+                return []string{"http://localhost:3000"}
+        }</span>
+        <span class="cov8" title="1">return origins</span>
+}
+
+// SetupRouter configures all routes and middleware. Exported for testing.
+func SetupRouter(h *handlers.Handler, cfg *models.Config) *gin.Engine <span class="cov8" title="1">{
+        router := gin.New()
+        router.Use(gin.Logger())
+        router.Use(middleware.Recovery())
+
+        // CORS middleware — reads allowed origins from config.json
+        allowedOrigins := parseAllowedOrigins(cfg.AllowedOrigins)
+        log.Printf("CORS allowed origins: %v", allowedOrigins)
+        router.Use(cors.New(cors.Config{
+                AllowOrigins:     allowedOrigins,
+                AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+                AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
+                ExposeHeaders:    []string{"Content-Length", "Content-Type"},
+                AllowCredentials: true,
+                MaxAge:           12 * time.Hour,
+        }))
+
+        // Swagger documentation
+        router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+        // Public routes
+        router.GET("/api/health", handlers.Health)
+
+        // Auth routes (public)
+        authGroup := router.Group("/api/v1/auth")
+        </span><span class="cov8" title="1">{
+                authGroup.POST("/login", h.Login)
+                authGroup.GET("/google/login", h.GoogleLogin)
+                authGroup.GET("/google/callback", h.GoogleCallback)
+        }</span>
+
+        // Protected API routes
+        <span class="cov8" title="1">api := router.Group("/api/v1")
+        api.Use(middleware.JWTAuth(cfg.JWTSecret))
+        </span><span class="cov8" title="1">{
+                // Auth - change password
+                api.POST("/auth/change-password", h.ChangePassword)
+
+                // Projects
+                api.POST("/projects", h.CreateProject)
+                api.GET("/projects", h.ListProjects)
+                api.GET("/projects/:id", h.GetProject)
+                api.PUT("/projects/:id", h.UpdateProject)
+                api.DELETE("/projects/:id", h.DeleteProject)
+
+                // Boards
+                api.POST("/boards", h.CreateBoard)
+                api.GET("/boards", h.ListBoards)
+                api.GET("/boards/:id", h.GetBoard)
+                api.PUT("/boards/:id", h.UpdateBoard)
+                api.DELETE("/boards/:id", h.DeleteBoard)
+
+                // Tasks
+                api.POST("/tasks", h.CreateTask)
+                api.GET("/tasks", h.ListTasks)
+                api.GET("/tasks/:id", h.GetTask)
+                api.PUT("/tasks/:id", h.UpdateTask)
+                api.PATCH("/tasks/:id", h.PatchTask)
+                api.DELETE("/tasks/:id", h.DeleteTask)
+
+                // Schedulers
+                api.POST("/schedulers", h.CreateScheduler)
+                api.GET("/schedulers", h.ListSchedulers)
+                api.GET("/schedulers/:id", h.GetScheduler)
+                api.PUT("/schedulers/:id", h.UpdateScheduler)
+                api.DELETE("/schedulers/:id", h.DeleteScheduler)
+
+                // Resources
+                api.POST("/resources", h.CreateResource)
+                api.GET("/resources", h.ListResources)
+                api.GET("/resources/:id", h.GetResource)
+                api.PUT("/resources/:id", h.UpdateResource)
+                api.DELETE("/resources/:id", h.DeleteResource)
+        }</span>
+
+        <span class="cov8" title="1">return router</span>
+}
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">// Package middleware provides Gin middleware for JWT authentication and error recovery.
+package middleware
+
+import (
+        "net/http"
+        "strings"
+
+        "github.com/gin-gonic/gin"
+        "mykanban-backend/auth"
+        "mykanban-backend/models"
+)
+
+// JWTAuth returns a Gin middleware that validates JWT tokens from the Authorization header.
+func JWTAuth(jwtSecret string) gin.HandlerFunc <span class="cov8" title="1">{
+        return func(c *gin.Context) </span><span class="cov8" title="1">{
+                header := c.GetHeader("Authorization")
+                if header == "" </span><span class="cov8" title="1">{
+                        c.AbortWithStatusJSON(http.StatusUnauthorized, models.APIResponse{
+                                Error:  "missing authorization header",
+                                Status: http.StatusUnauthorized,
+                        })
+                        return
+                }</span>
+
+                <span class="cov8" title="1">parts := strings.SplitN(header, " ", 2)
+                if len(parts) != 2 || strings.ToLower(parts[0]) != "bearer" </span><span class="cov8" title="1">{
+                        c.AbortWithStatusJSON(http.StatusUnauthorized, models.APIResponse{
+                                Error:  "invalid authorization header format, expected 'Bearer &lt;token&gt;'",
+                                Status: http.StatusUnauthorized,
+                        })
+                        return
+                }</span>
+
+                <span class="cov8" title="1">claims, err := auth.ValidateJWT(parts[1], jwtSecret)
+                if err != nil </span><span class="cov8" title="1">{
+                        c.AbortWithStatusJSON(http.StatusUnauthorized, models.APIResponse{
+                                Error:  "invalid or expired token: " + err.Error(),
+                                Status: http.StatusUnauthorized,
+                        })
+                        return
+                }</span>
+
+                <span class="cov8" title="1">c.Set("email", claims.Email)
+                c.Next()</span>
+        }
+}
+
+// Recovery returns a Gin middleware that recovers from panics and returns a JSON error.
+func Recovery() gin.HandlerFunc <span class="cov8" title="1">{
+        return gin.CustomRecovery(func(c *gin.Context, recovered interface{}) </span><span class="cov8" title="1">{
+                c.AbortWithStatusJSON(http.StatusInternalServerError, models.APIResponse{
+                        Error:  "internal server error",
+                        Status: http.StatusInternalServerError,
+                })
+        }</span>)
+}
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">// Package storage provides a thread-safe JSON file-based persistence layer.
+package storage
+
+import (
+        "encoding/json"
+        "fmt"
+        "os"
+        "path/filepath"
+        "sync"
+)
+
+// FileSystem abstracts file I/O for testability.
+type FileSystem interface {
+        ReadFile(path string) ([]byte, error)
+        WriteFile(path string, data []byte, perm os.FileMode) error
+        MkdirAll(path string, perm os.FileMode) error
+        Stat(path string) (os.FileInfo, error)
+}
+
+// OSFileSystem is the real filesystem implementation.
+type OSFileSystem struct{}
+
+func (OSFileSystem) ReadFile(path string) ([]byte, error) <span class="cov0" title="0">{ return os.ReadFile(path) }</span>
+func (OSFileSystem) WriteFile(path string, data []byte, perm os.FileMode) error <span class="cov0" title="0">{
+        return os.WriteFile(path, data, perm)
+}</span>
+func (OSFileSystem) MkdirAll(path string, perm os.FileMode) error <span class="cov0" title="0">{ return os.MkdirAll(path, perm) }</span>
+func (OSFileSystem) Stat(path string) (os.FileInfo, error)        <span class="cov0" title="0">{ return os.Stat(path) }</span>
+
+// Store provides thread-safe CRUD operations on a JSON file.
+type Store[T any] struct {
+        mu       sync.RWMutex
+        filePath string
+        fs       FileSystem
+}
+
+// NewStore creates a new Store for the given entity type.
+func NewStore[T any](dir, filename string, fs FileSystem) (*Store[T], error) <span class="cov8" title="1">{
+        if fs == nil </span><span class="cov0" title="0">{
+                fs = OSFileSystem{}
+        }</span>
+        <span class="cov8" title="1">if err := fs.MkdirAll(dir, 0755); err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("storage: mkdir %s: %w", dir, err)
+        }</span>
+        <span class="cov8" title="1">fp := filepath.Join(dir, filename)
+        if _, err := fs.Stat(fp); os.IsNotExist(err) </span><span class="cov8" title="1">{
+                if err := fs.WriteFile(fp, []byte("[]"), 0644); err != nil </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("storage: init %s: %w", fp, err)
+                }</span>
+        }
+        <span class="cov8" title="1">return &amp;Store[T]{filePath: fp, fs: fs}, nil</span>
+}
+
+// LoadAll reads all records from the JSON file.
+func (s *Store[T]) LoadAll() ([]T, error) <span class="cov8" title="1">{
+        s.mu.RLock()
+        defer s.mu.RUnlock()
+        return s.loadAllUnsafe()
+}</span>
+
+func (s *Store[T]) loadAllUnsafe() ([]T, error) <span class="cov8" title="1">{
+        data, err := s.fs.ReadFile(s.filePath)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("storage: read %s: %w", s.filePath, err)
+        }</span>
+        <span class="cov8" title="1">var items []T
+        if err := json.Unmarshal(data, &amp;items); err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("storage: unmarshal %s: %w", s.filePath, err)
+        }</span>
+        <span class="cov8" title="1">return items, nil</span>
+}
+
+// SaveAll writes all records to the JSON file.
+func (s *Store[T]) SaveAll(items []T) error <span class="cov8" title="1">{
+        s.mu.Lock()
+        defer s.mu.Unlock()
+        return s.saveAllUnsafe(items)
+}</span>
+
+func (s *Store[T]) saveAllUnsafe(items []T) error <span class="cov8" title="1">{
+        data, err := json.MarshalIndent(items, "", "  ")
+        if err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("storage: marshal: %w", err)
+        }</span>
+        <span class="cov8" title="1">if err := s.fs.WriteFile(s.filePath, data, 0644); err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("storage: write %s: %w", s.filePath, err)
+        }</span>
+        <span class="cov8" title="1">return nil</span>
+}
+
+// WithLock provides an exclusive lock for read-modify-write operations.
+// The callback receives all items and must return the modified slice.
+func (s *Store[T]) WithLock(fn func([]T) ([]T, error)) error <span class="cov8" title="1">{
+        s.mu.Lock()
+        defer s.mu.Unlock()
+        items, err := s.loadAllUnsafe()
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov8" title="1">items, err = fn(items)
+        if err != nil </span><span class="cov8" title="1">{
+                return err
+        }</span>
+        <span class="cov8" title="1">return s.saveAllUnsafe(items)</span>
+}
+
+// ConfigStore handles reading and writing the config.json.
+type ConfigStore struct {
+        mu       sync.RWMutex
+        filePath string
+        fs       FileSystem
+}
+
+// NewConfigStore creates a config store.
+func NewConfigStore(filePath string, fs FileSystem) *ConfigStore <span class="cov8" title="1">{
+        if fs == nil </span><span class="cov0" title="0">{
+                fs = OSFileSystem{}
+        }</span>
+        <span class="cov8" title="1">return &amp;ConfigStore{filePath: filePath, fs: fs}</span>
+}
+
+// Load reads the config from disk.
+func (c *ConfigStore) Load(cfg interface{}) error <span class="cov8" title="1">{
+        c.mu.RLock()
+        defer c.mu.RUnlock()
+        data, err := c.fs.ReadFile(c.filePath)
+        if err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("config: read: %w", err)
+        }</span>
+        <span class="cov8" title="1">return json.Unmarshal(data, cfg)</span>
+}
+
+// Save writes the config to disk.
+func (c *ConfigStore) Save(cfg interface{}) error <span class="cov8" title="1">{
+        c.mu.Lock()
+        defer c.mu.Unlock()
+        data, err := json.MarshalIndent(cfg, "", "  ")
+        if err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("config: marshal: %w", err)
+        }</span>
+        <span class="cov8" title="1">return c.fs.WriteFile(c.filePath, data, 0644)</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
