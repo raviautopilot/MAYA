@@ -7,6 +7,6 @@
   "google_client_id": "YOUR_GOOGLE_CLIENT_ID",
   "google_client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
   "google_redirect_url": "http://localhost:8080/api/v1/auth/google/callback",
-  "storage_dir": "~/code/github/raviauthpilot/MAYA/data",
+  "storage_dir": "../data",
   "log_file": "server.log"
 }
