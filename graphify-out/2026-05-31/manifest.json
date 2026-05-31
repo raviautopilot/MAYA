@@ -348,5 +348,10 @@
     "mtime": 1780214224.7927299,
     "ast_hash": "bc4e83538e67120193c69c3951ec3f4b",
     "semantic_hash": "bc4e83538e67120193c69c3951ec3f4b"
+  },
+  "/home/ubuntu/code/github/raviautopilot/mycan/local-docker.sh": {
+    "mtime": 1780214542.9429967,
+    "ast_hash": "a96c14d849e070048ccdb5ee5cb3a9ff",
+    "semantic_hash": "a96c14d849e070048ccdb5ee5cb3a9ff"
   }
 }
