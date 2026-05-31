@@ -54,7 +54,34 @@ function TasksContent() {
   const [viewMode, setViewMode] = useState<'kanban' | 'table'>('kanban');
   const [filterBoardId, setFilterBoardId] = useState(boardIdParam);
   const [filterPriority, setFilterPriority] = useState('');
+  const [activeDragLane, setActiveDragLane] = useState<string | null>(null);
   const addToast = useToastStore((s) => s.addToast);
+
+  const handleDragStart = (e: React.DragEvent, taskId: string) => {
+    e.dataTransfer.setData('text/plain', taskId);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDragEnter = (e: React.DragEvent, lane: string) => {
+    e.preventDefault();
+    setActiveDragLane(lane);
+  };
+
+  const handleDrop = async (e: React.DragEvent, targetLane: string) => {
+    e.preventDefault();
+    setActiveDragLane(null);
+    const taskId = e.dataTransfer.getData('text/plain');
+    if (taskId) {
+      const task = tasks.find((t) => t.id === taskId);
+      if (task && task.swimlane !== targetLane) {
+        await handlePatchSwimlane(taskId, targetLane);
+      }
+    }
+  };
 
   useEffect(() => {
     setFilterBoardId(boardIdParam);
@@ -215,48 +242,67 @@ function TasksContent() {
         /* ── Kanban View ── */
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4" e2e-test-id="tasks-kanban">
           {kanbanSwimlanes.map((lane) => (
-            <div key={lane} className="bg-gray-100 rounded-lg p-4" e2e-test-id={`kanban-lane-${lane.replace(/\s/g, '-').toLowerCase()}`}>
+            <div
+              key={lane}
+              className={`rounded-lg p-4 transition-all duration-200 ${
+                activeDragLane === lane
+                  ? 'bg-blue-50 border-2 border-dashed border-blue-300 shadow-inner'
+                  : 'bg-gray-100 border-2 border-transparent'
+              }`}
+              onDragOver={handleDragOver}
+              onDragEnter={(e) => handleDragEnter(e, lane)}
+              onDragLeave={() => setActiveDragLane(null)}
+              onDrop={(e) => handleDrop(e, lane)}
+              e2e-test-id={`kanban-lane-${lane.replace(/\s/g, '-').toLowerCase()}`}
+            >
               <h3 className="font-semibold text-gray-700 mb-3 text-sm uppercase">{lane} ({tasks.filter((t) => t.swimlane === lane).length})</h3>
-              <div className="space-y-2">
+              <div className="space-y-2 min-h-[150px]">
                 {tasks.filter((t) => t.swimlane === lane).map((task) => {
                   const linkedScheduler = schedulers.find((s) => s.id === task.scheduler_id);
                   return (
-                    <Card key={task.id} className="cursor-pointer hover:shadow-md transition" e2e-test-id={`task-card-${task.id}`}>
-                      <CardBody className="p-3">
-                        <div className="flex items-start justify-between">
-                          <h4 className="text-sm font-medium text-gray-900">{task.title}</h4>
-                          <div className="flex gap-1">
-                            <button onClick={() => openEdit(task)} className="text-blue-500 hover:text-blue-700" e2e-test-id={`task-edit-btn-${task.id}`}><Pencil size={14} /></button>
-                            <button onClick={() => setDeleteTarget(task)} className="text-red-500 hover:text-red-700" e2e-test-id={`task-delete-btn-${task.id}`}><Trash2 size={14} /></button>
+                    <div
+                      key={task.id}
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, task.id)}
+                      className="cursor-grab active:cursor-grabbing hover:scale-[1.01] transition-transform duration-150"
+                    >
+                      <Card className="hover:shadow-md transition" e2e-test-id={`task-card-${task.id}`}>
+                        <CardBody className="p-3">
+                          <div className="flex items-start justify-between">
+                            <h4 className="text-sm font-medium text-gray-900">{task.title}</h4>
+                            <div className="flex gap-1">
+                              <button onClick={(e) => { e.stopPropagation(); openEdit(task); }} className="text-blue-500 hover:text-blue-700" e2e-test-id={`task-edit-btn-${task.id}`}><Pencil size={14} /></button>
+                              <button onClick={(e) => { e.stopPropagation(); setDeleteTarget(task); }} className="text-red-500 hover:text-red-700" e2e-test-id={`task-delete-btn-${task.id}`}><Trash2 size={14} /></button>
+                            </div>
                           </div>
-                        </div>
-                        {task.description && <p className="text-xs text-gray-500 mt-1 line-clamp-2">{task.description}</p>}
-                        <div className="flex items-center gap-2 mt-2 flex-wrap">
-                          <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[task.priority] || ''}`}>{task.priority}</span>
-                          {task.reminders && task.reminders.length > 0 && <Bell size={12} className="text-yellow-500" />}
-                        </div>
-                        {task.due_date && (
-                          <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-2 bg-gray-50 p-1.5 rounded-md border border-gray-100">
-                            <Calendar size={12} className="text-gray-400" />
-                            <span>Due: {new Date(task.due_date).toLocaleString()}</span>
+                          {task.description && <p className="text-xs text-gray-500 mt-1 line-clamp-2">{task.description}</p>}
+                          <div className="flex items-center gap-2 mt-2 flex-wrap">
+                            <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[task.priority] || ''}`}>{task.priority}</span>
+                            {task.reminders && task.reminders.length > 0 && <Bell size={12} className="text-yellow-500" />}
                           </div>
-                        )}
-                        {linkedScheduler && (
-                          <div className="flex items-center gap-1.5 text-xs text-indigo-700 mt-1 bg-indigo-50 p-1.5 rounded-md border border-indigo-100">
-                            <Clock size={12} className="text-indigo-400" />
-                            <span>Recurring: {linkedScheduler.name}</span>
+                          {task.due_date && (
+                            <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-2 bg-gray-50 p-1.5 rounded-md border border-gray-100">
+                              <Calendar size={12} className="text-gray-400" />
+                              <span>Due: {new Date(task.due_date).toLocaleString()}</span>
+                            </div>
+                          )}
+                          {linkedScheduler && (
+                            <div className="flex items-center gap-1.5 text-xs text-indigo-700 mt-1 bg-indigo-50 p-1.5 rounded-md border border-indigo-100">
+                              <Clock size={12} className="text-indigo-400" />
+                              <span>Recurring: {linkedScheduler.name}</span>
+                            </div>
+                          )}
+                          {/* Move buttons */}
+                          <div className="flex gap-1 mt-2">
+                            {kanbanSwimlanes.filter((l) => l !== lane).map((l) => (
+                              <button key={l} onClick={(e) => { e.stopPropagation(); handlePatchSwimlane(task.id, l); }} className="text-xs px-2 py-0.5 bg-gray-200 rounded hover:bg-gray-300" e2e-test-id={`task-move-${task.id}-${l.replace(/\s/g, '-').toLowerCase()}`}>
+                                → {l}
+                              </button>
+                            ))}
                           </div>
-                        )}
-                        {/* Move buttons */}
-                        <div className="flex gap-1 mt-2">
-                          {kanbanSwimlanes.filter((l) => l !== lane).map((l) => (
-                            <button key={l} onClick={() => handlePatchSwimlane(task.id, l)} className="text-xs px-2 py-0.5 bg-gray-200 rounded hover:bg-gray-300" e2e-test-id={`task-move-${task.id}-${l.replace(/\s/g, '-').toLowerCase()}`}>
-                              → {l}
-                            </button>
-                          ))}
-                        </div>
-                      </CardBody>
-                    </Card>
+                        </CardBody>
+                      </Card>
+                    </div>
                   );
                 })}
               </div>
