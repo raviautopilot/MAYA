@@ -12,4 +12,7 @@ export const authApi = {
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
     window.location.href = `${apiUrl}/auth/google/login`;
   },
+
+  getConfig: () =>
+    apiClient.get<APIResponse<{ google_auth_enabled: boolean }>>('/auth/config').then((r) => r.data),
 };

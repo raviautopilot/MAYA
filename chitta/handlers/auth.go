@@ -90,8 +90,8 @@ func (h *Handler) ChangePassword(c *gin.Context) {
 // @Failure      503 {object} models.APIResponse "Google OAuth not configured"
 // @Router       /v1/auth/google/login [get]
 func (h *Handler) GoogleLogin(c *gin.Context) {
-	if h.AppConfig.GoogleClientID == "" {
-		respond(c, http.StatusServiceUnavailable, nil, "google oauth not configured")
+	if h.AppConfig.DisableGoogleAuth || h.AppConfig.GoogleClientID == "" {
+		respond(c, http.StatusServiceUnavailable, nil, "google oauth not configured or disabled")
 		return
 	}
 	if h.AppConfig.GoogleClientID == "mock" {
@@ -194,4 +194,10 @@ func parseAllowedOrigins(raw string) []string {
 		return []string{"http://localhost:3000"}
 	}
 	return origins
+}
+
+// GetAuthConfig returns public authentication settings
+func (h *Handler) GetAuthConfig(c *gin.Context) {
+	googleAuthEnabled := !h.AppConfig.DisableGoogleAuth && h.AppConfig.GoogleClientID != ""
+	respond(c, http.StatusOK, gin.H{"google_auth_enabled": googleAuthEnabled}, "")
 }
