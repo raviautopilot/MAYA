@@ -153,6 +153,12 @@ do_start() {
         chitta_started=1
     else
         log_error "Chitta failed to start. Check logs/chitta.log for details."
+        if [ -f "$LOGS_DIR/chitta.log" ]; then
+            log_info "Last 20 lines of logs/chitta.log:"
+            echo "--------------------------------------------------------------------------------"
+            tail -n 20 "$LOGS_DIR/chitta.log"
+            echo "--------------------------------------------------------------------------------"
+        fi
     fi
 
     if is_alive "$NEW_MAYA_PID"; then
@@ -160,6 +166,12 @@ do_start() {
         maya_started=1
     else
         log_error "Maya failed to start. Check logs/maya.log for details."
+        if [ -f "$LOGS_DIR/maya.log" ]; then
+            log_info "Last 20 lines of logs/maya.log:"
+            echo "--------------------------------------------------------------------------------"
+            tail -n 20 "$LOGS_DIR/maya.log"
+            echo "--------------------------------------------------------------------------------"
+        fi
     fi
 
     # Save to Dev lockfile
