@@ -110,6 +110,7 @@ type Config struct {
 	StorageDir         string `json:"storage_dir"`
 	LogFile            string `json:"log_file"`
 	AllowedOrigins     string `json:"allowed_origins"`
+	DisableGoogleAuth  bool   `json:"disable_google_auth"`
 }
 
 // LoginRequest is the payload for email/password login.
