@@ -2,20 +2,22 @@
 #
 # deploy.sh - Builds and deploys the MyKanban application to a VPS via SSH/SCP.
 #
-# Usage: ./deploy.sh <user@vps-ip>
-# Example: ./deploy.sh root@192.168.1.100
+# Usage: ./deploy.sh [user@vps-ip]
+#   - If no target is provided, it defaults to 'ravi@ravinath-prod'.
+#
+# Example:
+#   ./deploy.sh                    # Deploys to the default target
+#   ./deploy.sh other@server       # Deploys to a different server
 #
 set -euo pipefail
 
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <user@vps-ip>"
-    echo "Example: $0 root@192.168.1.100"
-    exit 1
-fi
-
-VPS_TARGET=$1
+# --- Configuration ---
+DEFAULT_VPS_TARGET="ravi@ravinath-prod"
 REMOTE_CHITTA_DIR="/apps/chitta"
 REMOTE_MAYA_DIR="/apps/maya"
+
+# Use the provided argument or fall back to the default
+VPS_TARGET="${1:-$DEFAULT_VPS_TARGET}"
 
 log_info() {
     printf "\033[1;34m[INFO]\033[0m %s\n" "$1"
@@ -45,6 +47,7 @@ cd ..
 log_success "Frontend built successfully."
 
 # --- 3. Deploy to VPS ---
+log_info "Deploying to target: $VPS_TARGET"
 log_info "Ensuring remote directories exist..."
 ssh "$VPS_TARGET" "mkdir -p $REMOTE_CHITTA_DIR/bin $REMOTE_MAYA_DIR"
 
