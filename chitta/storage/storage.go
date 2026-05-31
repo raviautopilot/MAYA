@@ -4,6 +4,7 @@ package storage
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"sync"
@@ -90,6 +91,7 @@ func (s *Store[T]) saveAllUnsafe(items []T) error {
 	if err != nil {
 		return fmt.Errorf("storage: marshal: %w", err)
 	}
+	log.Printf("[STORAGE] Writing to storage file: %s", s.filePath)
 	if err := s.fs.WriteFile(s.filePath, data, 0644); err != nil {
 		return fmt.Errorf("storage: write %s: %w", s.filePath, err)
 	}
@@ -146,5 +148,6 @@ func (c *ConfigStore) Save(cfg interface{}) error {
 	if err != nil {
 		return fmt.Errorf("config: marshal: %w", err)
 	}
+	log.Printf("[CONFIG] Writing to config file: %s", c.filePath)
 	return c.fs.WriteFile(c.filePath, data, 0644)
 }
