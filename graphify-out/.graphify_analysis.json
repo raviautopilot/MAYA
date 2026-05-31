@@ -1,17 +1,99 @@
 {
   "communities": {
     "0": [
+      "chitta_handlers_handlers_go",
+      "handlers_handler",
+      "handlers_handler_changepassword",
+      "handlers_handler_checkandtriggerschedulers",
+      "handlers_handler_createboard",
+      "handlers_handler_createproject",
+      "handlers_handler_createresource",
+      "handlers_handler_createscheduler",
+      "handlers_handler_createtask",
+      "handlers_handler_deleteboard",
+      "handlers_handler_deleteproject",
+      "handlers_handler_deleteresource",
+      "handlers_handler_deletescheduler",
+      "handlers_handler_deletetask",
+      "handlers_handler_generaterecurringtask",
+      "handlers_handler_getboard",
+      "handlers_handler_getproject",
+      "handlers_handler_getresource",
+      "handlers_handler_getscheduler",
+      "handlers_handler_gettask",
+      "handlers_handler_googlecallback",
+      "handlers_handler_googlelogin",
+      "handlers_handler_listboards",
+      "handlers_handler_listprojects",
+      "handlers_handler_listresources",
+      "handlers_handler_listschedulers",
+      "handlers_handler_listtasks",
+      "handlers_handler_login",
+      "handlers_handler_patchtask",
+      "handlers_handler_startbackgroundworker",
+      "handlers_handler_updateboard",
+      "handlers_handler_updateproject",
+      "handlers_handler_updateresource",
+      "handlers_handler_updatescheduler",
+      "handlers_handler_updatetask",
+      "handlers_handlers_calculatenextrun",
+      "handlers_handlers_contains",
+      "handlers_handlers_entityexists",
+      "handlers_handlers_filteractive",
+      "handlers_handlers_health",
+      "handlers_handlers_respond"
+    ],
+    "1": [
+      "docs_swagger_200_schema",
+      "docs_swagger_get_description",
+      "docs_swagger_get_parameters",
+      "docs_swagger_get_produces",
+      "docs_swagger_get_responses",
+      "docs_swagger_get_security",
+      "docs_swagger_get_summary",
+      "docs_swagger_get_tags",
+      "docs_swagger_health_get",
+      "docs_swagger_paths",
+      "docs_swagger_paths_health",
+      "docs_swagger_paths_v1_auth_change_password",
+      "docs_swagger_paths_v1_auth_google_callback",
+      "docs_swagger_paths_v1_auth_google_login",
+      "docs_swagger_paths_v1_auth_login",
+      "docs_swagger_paths_v1_boards",
+      "docs_swagger_paths_v1_projects",
+      "docs_swagger_paths_v1_resources",
+      "docs_swagger_paths_v1_schedulers",
+      "docs_swagger_put_consumes",
+      "docs_swagger_responses_200",
+      "docs_swagger_responses_201",
+      "docs_swagger_responses_307",
+      "docs_swagger_responses_400",
+      "docs_swagger_responses_401",
+      "docs_swagger_responses_404",
+      "docs_swagger_responses_500",
+      "docs_swagger_responses_503",
+      "docs_swagger_schema_allof",
+      "docs_swagger_schema_ref",
+      "docs_swagger_v1_boards_id_delete",
+      "docs_swagger_v1_boards_id_put",
+      "docs_swagger_v1_boards_post"
+    ],
+    "2": [
       "backend_boards",
       "backend_projects",
+      "backend_resources",
       "backend_schedulers",
       "backend_tasks",
       "maya_src_app_dashboard_boards_page_tsx",
       "maya_src_app_dashboard_dashboard_page_tsx",
+      "maya_src_app_dashboard_layout_tsx",
       "maya_src_app_dashboard_projects_page_tsx",
       "maya_src_app_dashboard_resources_page_tsx",
       "maya_src_app_dashboard_schedulers_page_tsx",
       "maya_src_app_dashboard_tasks_page_tsx",
       "maya_src_app_login_page_tsx",
+      "maya_src_components_header_tsx",
+      "maya_src_components_sidebar_tsx",
       "maya_src_components_ui_button_tsx",
       "maya_src_components_ui_card_tsx",
       "maya_src_components_ui_index_ts",
@@ -27,10 +109,44 @@
       "maya_src_services_api_projects_ts",
       "maya_src_services_api_schedulers_ts",
       "maya_src_services_api_tasks_ts",
+      "maya_src_store_authstore_ts",
       "maya_src_store_toaststore_ts",
       "maya_src_types_index_ts"
     ],
-    "1": [
+    "3": [
+      "chitta_config_allowed_origins",
+      "chitta_config_comment_allowed_origins",
+      "chitta_config_google_client_id",
+      "chitta_config_google_client_secret",
+      "chitta_config_google_redirect_url",
+      "chitta_config_json",
+      "chitta_config_jwt_expiry_hours",
+      "chitta_config_jwt_secret",
+      "chitta_config_log_file",
+      "chitta_config_port",
+      "chitta_config_root_email",
+      "chitta_config_root_password_hash",
+      "chitta_config_storage_dir",
+      "maya_tsconfig_compileroptions",
+      "maya_tsconfig_compileroptions_allowjs",
+      "maya_tsconfig_compileroptions_esmoduleinterop",
+      "maya_tsconfig_compileroptions_incremental",
+      "maya_tsconfig_compileroptions_isolatedmodules",
+      "maya_tsconfig_compileroptions_jsx",
+      "maya_tsconfig_compileroptions_lib",
+      "maya_tsconfig_compileroptions_module",
+      "maya_tsconfig_compileroptions_moduleresolution",
+      "maya_tsconfig_compileroptions_noemit",
+      "maya_tsconfig_compileroptions_paths",
+      "maya_tsconfig_compileroptions_plugins",
+      "maya_tsconfig_compileroptions_resolvejsonmodule",
+      "maya_tsconfig_compileroptions_skiplibcheck",
+      "maya_tsconfig_compileroptions_strict",
+      "maya_tsconfig_exclude",
+      "maya_tsconfig_include",
+      "maya_tsconfig_paths"
+    ],
+    "4": [
       "maya_package_dependencies",
       "maya_package_dependencies_axios",
       "maya_package_dependencies_lucide_react",
@@ -57,7 +173,7 @@
       "maya_package_scripts_start",
       "maya_package_version"
     ],
-    "2": [
+    "5": [
       "mycan_package_description",
       "mycan_package_license",
       "mycan_package_name",
@@ -83,42 +199,7 @@
       "mycan_package_workspaces",
       "package_json"
     ],
-    "3": [
-      "maya_tsconfig_compileroptions",
-      "maya_tsconfig_compileroptions_allowjs",
-      "maya_tsconfig_compileroptions_esmoduleinterop",
-      "maya_tsconfig_compileroptions_incremental",
-      "maya_tsconfig_compileroptions_isolatedmodules",
-      "maya_tsconfig_compileroptions_jsx",
-      "maya_tsconfig_compileroptions_lib",
-      "maya_tsconfig_compileroptions_module",
-      "maya_tsconfig_compileroptions_moduleresolution",
-      "maya_tsconfig_compileroptions_noemit",
-      "maya_tsconfig_compileroptions_paths",
-      "maya_tsconfig_compileroptions_plugins",
-      "maya_tsconfig_compileroptions_resolvejsonmodule",
-      "maya_tsconfig_compileroptions_skiplibcheck",
-      "maya_tsconfig_compileroptions_strict",
-      "maya_tsconfig_paths"
-    ],
-    "4": [
-      "chitta_config_allowed_origins",
-      "chitta_config_comment_allowed_origins",
-      "chitta_config_google_client_id",
-      "chitta_config_google_client_secret",
-      "chitta_config_google_redirect_url",
-      "chitta_config_json",
-      "chitta_config_jwt_expiry_hours",
-      "chitta_config_jwt_secret",
-      "chitta_config_log_file",
-      "chitta_config_port",
-      "chitta_config_root_email",
-      "chitta_config_root_password_hash",
-      "chitta_config_storage_dir",
-      "maya_tsconfig_exclude",
-      "maya_tsconfig_include"
-    ],
-    "5": [
+    "6": [
       "control_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
       "mycan_control_do_kill",
@@ -135,7 +216,22 @@
       "mycan_control_show_access_endpoints",
       "mycan_control_show_help"
     ],
-    "6": [
+    "7": [
+      "chitta_docs_swagger_json",
+      "docs_swagger_basepath",
+      "docs_swagger_contact_email",
+      "docs_swagger_contact_name",
+      "docs_swagger_host",
+      "docs_swagger_info",
+      "docs_swagger_info_contact",
+      "docs_swagger_info_license",
+      "docs_swagger_info_termsofservice",
+      "docs_swagger_info_title",
+      "docs_swagger_info_version",
+      "docs_swagger_license_url",
+      "docs_swagger_swagger"
+    ],
+    "8": [
       "backend_auth",
       "backend_handlers",
       "backend_readme",
@@ -150,7 +246,7 @@
       "swagger_swagger_ui",
       "utils_readme"
     ],
-    "7": [
+    "9": [
       "chitta_config_example_google_client_id",
       "chitta_config_example_google_client_secret",
       "chitta_config_example_google_redirect_url",
@@ -163,7 +259,7 @@
       "chitta_config_example_root_password_hash",
       "chitta_config_example_storage_dir"
     ],
-    "8": [
+    "10": [
       "chitta_main_go",
       "chitta_main_main",
       "chitta_main_parseallowedorigins",
@@ -174,7 +270,17 @@
       "chitta_main_test_testcorsrejectsunknownorigin",
       "chitta_main_test_testparseallowedorigins"
     ],
-    "9": [
+    "11": [
+      "auth_claims",
+      "auth_generatejwt",
+      "auth_validatejwt",
+      "backend_api_endpoints",
+      "backend_auth_flow",
+      "backend_user_registration",
+      "swagger_api_spec",
+      "user_journeys_doc"
+    ],
+    "12": [
       "backend_dockerfile",
       "docker_compose_chitta",
       "docker_compose_chitta_data",
@@ -183,181 +289,192 @@
       "docker_compose_mycan_maya_image",
       "frontend_dockerfile"
     ],
-    "10": [
-      "backend_api_endpoints",
-      "backend_auth_flow",
-      "backend_user_registration",
-      "swagger_api_spec",
-      "user_journeys_doc"
-    ],
-    "11": [
+    "13": [
       "config_create_syschitta_log_info",
       "config_create_syschitta_log_success",
       "config_create_syschitta_log_warn",
       "config_create_syschitta_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
     ],
-    "12": [
+    "14": [
       "deploy_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_deploy_sh__entry",
       "mycan_deploy_log_error",
       "mycan_deploy_log_info",
       "mycan_deploy_log_success"
     ],
-    "13": [
-      "maya_src_app_dashboard_layout_tsx",
-      "maya_src_components_header_tsx",
-      "maya_src_components_sidebar_tsx",
-      "maya_src_store_authstore_ts"
+    "15": [
+      "models_board",
+      "models_project",
+      "models_scheduler",
+      "models_task"
     ],
-    "14": [
+    "16": [
+      "chitta_middleware_middleware_go",
+      "middleware_middleware_jwtauth",
+      "middleware_middleware_recovery"
+    ],
+    "17": [
       "chitta_chitta_certbot_log_info",
       "config_nginx_chitta_chitta_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_chitta_chitta_certbot_sh__entry"
     ],
-    "15": [
+    "18": [
       "config_nginx_maya_maya_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_maya_maya_certbot_sh__entry",
       "maya_maya_certbot_log_info"
     ],
-    "16": [
-      "backend_auth_login",
-      "user_journeys_admin_setup"
-    ],
-    "17": [
-      "chitta_scripts_run_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_run_sh__entry"
-    ],
-    "18": [
-      "chitta_scripts_stop_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_stop_sh__entry"
-    ],
     "19": [
-      "chitta_scripts_troubleshoot_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_troubleshoot_sh__entry"
+      "chitta_docs_docs_go",
+      "docs_docs_init"
     ],
     "20": [
       "chitta_scripts_build_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_build_sh__entry"
     ],
     "21": [
-      "chitta_scripts_test_api_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_api_sh__entry"
+      "chitta_scripts_run_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_run_sh__entry"
     ],
     "22": [
       "chitta_scripts_test_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_sh__entry"
     ],
     "23": [
+      "chitta_scripts_troubleshoot_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_troubleshoot_sh__entry"
+    ],
+    "24": [
+      "chitta_scripts_stop_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_stop_sh__entry"
+    ],
+    "25": [
+      "chitta_scripts_test_api_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_api_sh__entry"
+    ],
+    "26": [
       "maya_eslintrc_extends",
       "maya_eslintrc_json"
     ],
-    "24": [
+    "27": [
       "maya_postcss_config_config",
       "maya_postcss_config_mjs"
     ],
-    "25": [
+    "28": [
       "maya_tailwind_config_config",
       "maya_tailwind_config_ts"
     ],
-    "26": [
+    "29": [
+      "backend_auth_login",
+      "user_journeys_admin_setup"
+    ],
+    "30": [
       "utils_main_go",
       "utils_main_main"
     ],
-    "27": [
+    "31": [
       "storage_resources_json"
     ],
-    "28": [
+    "32": [
       "storage_projects_json"
     ],
-    "29": [
+    "33": [
       "storage_schedulers_json"
     ],
-    "30": [
+    "34": [
       "storage_tasks_json"
     ],
-    "31": [
+    "35": [
       "storage_boards_json"
     ],
-    "32": [
+    "36": [
       "contributing_contributing"
     ],
-    "33": [
+    "37": [
       "update_graphify_sh"
     ],
-    "34": [
+    "38": [
       "chitta_models_models_go"
     ],
-    "35": [
-      "chitta_middleware_middleware_go"
-    ],
-    "36": [
+    "39": [
       "chitta_middleware_middleware_test_go"
     ],
-    "37": [
-      "chitta_handlers_handlers_go"
-    ],
-    "38": [
+    "40": [
       "chitta_handlers_handlers_test_go"
     ],
-    "39": [
+    "41": [
       "chitta_auth_auth_test_go"
     ],
-    "40": [
+    "42": [
       "chitta_auth_auth_go"
     ],
-    "41": [
+    "43": [
       "chitta_storage_resources_json"
     ],
-    "42": [
+    "44": [
       "chitta_storage_projects_json"
     ],
-    "43": [
+    "45": [
       "chitta_storage_schedulers_json"
     ],
-    "44": [
+    "46": [
       "chitta_storage_storage_test_go"
     ],
-    "45": [
+    "47": [
       "chitta_storage_tasks_json"
     ],
-    "46": [
+    "48": [
       "chitta_storage_boards_json"
     ],
-    "47": [
+    "49": [
       "chitta_storage_storage_go"
     ],
-    "48": [
+    "50": [
       "maya_next_config_mjs"
     ],
-    "49": [
+    "51": [
       "maya_next_env_d_ts"
     ],
-    "50": [
+    "52": [
       "maya_src_app_layout_tsx"
     ],
-    "51": [
+    "53": [
       "maya_src_app_page_tsx"
+    ],
+    "54": [
+      "auth_hashpassword"
+    ],
+    "55": [
+      "auth_checkpassword"
+    ],
+    "56": [
+      "auth_googleoauthconfig"
+    ],
+    "57": [
+      "auth_fetchgoogleuser"
+    ],
+    "58": [
+      "models_resource"
     ]
   },
   "cohesion": {
-    "0": 0.16666666666666666,
-    "1": 0.08,
-    "2": 0.08333333333333333,
-    "3": 0.125,
-    "4": 0.13333333333333333,
-    "5": 0.4380952380952381,
-    "6": 0.16666666666666666,
-    "7": 0.18181818181818182,
-    "8": 0.3611111111111111,
-    "9": 0.2857142857142857,
-    "10": 0.5,
-    "11": 0.7,
-    "12": 0.6,
-    "13": 0.6666666666666666,
-    "14": 1.0,
-    "15": 1.0,
-    "16": 1.0,
+    "0": 0.1024390243902439,
+    "1": 0.1590909090909091,
+    "2": 0.13257575757575757,
+    "3": 0.06451612903225806,
+    "4": 0.08,
+    "5": 0.08333333333333333,
+    "6": 0.4380952380952381,
+    "7": 0.16666666666666666,
+    "8": 0.16666666666666666,
+    "9": 0.18181818181818182,
+    "10": 0.3611111111111111,
+    "11": 0.2857142857142857,
+    "12": 0.2857142857142857,
+    "13": 0.7,
+    "14": 0.6,
+    "15": 0.5,
+    "16": 0.6666666666666666,
     "17": 1.0,
     "18": 1.0,
     "19": 1.0,
@@ -392,9 +509,26 @@
     "48": 1.0,
     "49": 1.0,
     "50": 1.0,
-    "51": 1.0
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0
   },
   "gods": [
+    {
+      "id": "handlers_handler",
+      "label": "Handler",
+      "degree": 34
+    },
+    {
+      "id": "handlers_handlers_respond",
+      "label": "respond()",
+      "degree": 32
+    },
     {
       "id": "maya_tsconfig_compileroptions",
       "label": "compilerOptions",
@@ -406,47 +540,48 @@
       "degree": 14
     },
     {
+      "id": "docs_swagger_health_get",
+      "label": "get",
+      "degree": 14
+    },
+    {
+      "id": "docs_swagger_v1_boards_post",
+      "label": "post",
+      "degree": 14
+    },
+    {
+      "id": "docs_swagger_get_responses",
+      "label": "responses",
+      "degree": 12
+    },
+    {
+      "id": "docs_swagger_v1_boards_id_put",
+      "label": "put",
+      "degree": 12
+    },
+    {
       "id": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
       "label": "control.sh script",
       "degree": 11
     },
     {
-      "id": "mycan_control_do_start",
-      "label": "do_start()",
-      "degree": 9
-    },
-    {
-      "id": "mycan_control_log_info",
-      "label": "log_info()",
-      "degree": 7
-    },
-    {
-      "id": "mycan_control_do_stop",
-      "label": "do_stop()",
-      "degree": 7
-    },
-    {
-      "id": "mycan_control_do_kill",
-      "label": "do_kill()",
-      "degree": 7
-    },
-    {
-      "id": "mycan_control_load_pids",
-      "label": "load_pids()",
-      "degree": 6
-    },
-    {
-      "id": "backend_projects",
-      "label": "Projects API",
-      "degree": 6
-    },
-    {
-      "id": "backend_schedulers",
-      "label": "Schedulers API",
-      "degree": 6
+      "id": "docs_swagger_paths",
+      "label": "paths",
+      "degree": 10
     }
   ],
   "surprises": [
+    {
+      "source": "Swagger API Specification",
+      "target": "GenerateJWT",
+      "source_files": [
+        "backend/SWAGGER.pdf",
+        "chitta/coverage.html"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (paper \u2194 doc); connects across different repos/directories"
+    },
     {
       "source": "MyKanban Monorepo",
       "target": "MyKanban Backend",
@@ -490,21 +625,10 @@
       "confidence": "EXTRACTED",
       "relation": "references",
       "why": "connects across different repos/directories"
-    },
-    {
-      "source": "MyKanban Frontend",
-      "target": "MyKanban Backend",
-      "source_files": [
-        "frontend/README.md",
-        "backend/README.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories"
     }
   ],
   "tokens": {
-    "input": 36988,
-    "output": 1860
+    "input": 41497,
+    "output": 1094
   }
 }

@@ -99,3 +99,7 @@
 2026/05/31 13:57:52 Server exited gracefully
 2026/05/31 15:24:41 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
 2026/05/31 15:24:41 MyKanban server starting on port 8080
+2026/05/31 15:31:45 Shutting down server...
+2026/05/31 15:31:45 Server exited gracefully
+2026/05/31 15:31:48 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/31 15:31:48 MyKanban server starting on port 8080

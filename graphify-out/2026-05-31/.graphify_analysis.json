@@ -1,302 +1,63 @@
 {
   "communities": {
     "0": [
-      "api_auth_authapi",
-      "api_boards_boardsapi",
-      "api_client_apiclient",
-      "api_client_token",
-      "api_projects_projectsapi",
-      "api_schedulers_schedulersapi",
-      "api_tasks_tasksapi",
-      "boards_page_boardspage",
-      "dashboard_page_counts",
-      "dashboard_page_dashboardpage",
-      "frontend_src_app_dashboard_boards_page_tsx",
-      "frontend_src_app_dashboard_dashboard_page_tsx",
-      "frontend_src_app_dashboard_projects_page_tsx",
-      "frontend_src_app_dashboard_resources_page_tsx",
-      "frontend_src_app_dashboard_schedulers_page_tsx",
-      "frontend_src_app_dashboard_tasks_page_tsx",
-      "frontend_src_app_login_page_tsx",
-      "frontend_src_components_ui_card_tsx",
-      "frontend_src_components_ui_index_ts",
-      "frontend_src_components_ui_input_tsx",
-      "frontend_src_components_ui_toast_tsx",
-      "frontend_src_services_api_auth_ts",
-      "frontend_src_services_api_boards_ts",
-      "frontend_src_services_api_client_ts",
-      "frontend_src_services_api_index_ts",
-      "frontend_src_services_api_projects_ts",
-      "frontend_src_services_api_schedulers_ts",
-      "frontend_src_services_api_tasks_ts",
-      "frontend_src_store_toaststore_ts",
-      "frontend_src_types_index_ts",
-      "login_page_loginpage",
-      "models_resource",
-      "projects_page_projectspage",
-      "resources_page_resourcespage",
-      "schedulers_page_schedulerspage",
-      "store_toaststore_toast",
-      "store_toaststore_toaststate",
-      "store_toaststore_toasttype",
-      "store_toaststore_usetoaststore",
-      "tasks_page_formatfordatetimelocal",
-      "tasks_page_formdata",
-      "tasks_page_prioritycolors",
-      "tasks_page_taskscontent",
-      "tasks_page_taskspage",
-      "types_index_apiresponse",
-      "types_index_board",
-      "types_index_boardcreate",
-      "types_index_boardupdate",
-      "types_index_changepasswordrequest",
-      "types_index_loginrequest",
-      "types_index_loginresponse",
-      "types_index_project",
-      "types_index_projectcreate",
-      "types_index_projectupdate",
-      "types_index_reminder",
-      "types_index_resource",
-      "types_index_resourcecreate",
-      "types_index_resourceupdate",
-      "types_index_scheduler",
-      "types_index_schedulercreate",
-      "types_index_schedulerupdate",
-      "types_index_task",
-      "types_index_taskcreate",
-      "types_index_taskpatch",
-      "types_index_taskupdate",
-      "ui_card_card",
-      "ui_card_cardbody",
-      "ui_card_cardheader",
-      "ui_card_cardprops",
-      "ui_input_input",
-      "ui_input_inputprops",
-      "ui_skeleton_cardskeleton",
-      "ui_skeleton_skeleton",
-      "ui_skeleton_tableskeleton",
-      "ui_toast_bgcolors",
-      "ui_toast_icons",
-      "ui_toast_toastcontainer"
+      "backend_boards",
+      "backend_projects",
+      "backend_schedulers",
+      "backend_tasks",
+      "maya_src_app_dashboard_boards_page_tsx",
+      "maya_src_app_dashboard_dashboard_page_tsx",
+      "maya_src_app_dashboard_projects_page_tsx",
+      "maya_src_app_dashboard_resources_page_tsx",
+      "maya_src_app_dashboard_schedulers_page_tsx",
+      "maya_src_app_dashboard_tasks_page_tsx",
+      "maya_src_app_login_page_tsx",
+      "maya_src_components_ui_button_tsx",
+      "maya_src_components_ui_card_tsx",
+      "maya_src_components_ui_index_ts",
+      "maya_src_components_ui_input_tsx",
+      "maya_src_components_ui_modal_tsx",
+      "maya_src_components_ui_select_tsx",
+      "maya_src_components_ui_table_tsx",
+      "maya_src_components_ui_toast_tsx",
+      "maya_src_services_api_auth_ts",
+      "maya_src_services_api_boards_ts",
+      "maya_src_services_api_client_ts",
+      "maya_src_services_api_index_ts",
+      "maya_src_services_api_projects_ts",
+      "maya_src_services_api_schedulers_ts",
+      "maya_src_services_api_tasks_ts",
+      "maya_src_store_toaststore_ts",
+      "maya_src_types_index_ts"
     ],
     "1": [
-      "backend_handlers_handlers_test_go",
-      "handlers_handlers_test_createboard",
-      "handlers_handlers_test_createproject",
-      "handlers_handlers_test_createtask",
-      "handlers_handlers_test_dorequest",
-      "handlers_handlers_test_init",
-      "handlers_handlers_test_newmockfs",
-      "handlers_handlers_test_parseresponse",
-      "handlers_handlers_test_setuptesthandler",
-      "handlers_handlers_test_testboard_create",
-      "handlers_handlers_test_testboard_create_customswimlanes",
-      "handlers_handlers_test_testboard_create_invalidproject",
-      "handlers_handlers_test_testboard_delete_blockedbytasks",
-      "handlers_handlers_test_testboard_getupdatedelete",
-      "handlers_handlers_test_testboard_list",
-      "handlers_handlers_test_testchangepassword_success",
-      "handlers_handlers_test_testchangepassword_wrongold",
-      "handlers_handlers_test_testdelete_notfound",
-      "handlers_handlers_test_testgooglecallback_missingcode",
-      "handlers_handlers_test_testgooglelogin_notconfigured",
-      "handlers_handlers_test_testhealth",
-      "handlers_handlers_test_testlogin_invalidbody",
-      "handlers_handlers_test_testlogin_success",
-      "handlers_handlers_test_testlogin_wrongemail",
-      "handlers_handlers_test_testlogin_wrongpassword",
-      "handlers_handlers_test_testpatch_notfound",
-      "handlers_handlers_test_testproject_create",
-      "handlers_handlers_test_testproject_create_invalidtype",
-      "handlers_handlers_test_testproject_delete",
-      "handlers_handlers_test_testproject_delete_blockedbyboards",
-      "handlers_handlers_test_testproject_get",
-      "handlers_handlers_test_testproject_get_notfound",
-      "handlers_handlers_test_testproject_list",
-      "handlers_handlers_test_testproject_update",
-      "handlers_handlers_test_testresource_create_invalidtype",
-      "handlers_handlers_test_testresource_crud",
-      "handlers_handlers_test_testscheduler_create_crontype",
-      "handlers_handlers_test_testscheduler_crud",
-      "handlers_handlers_test_testscheduler_yearlytype",
-      "handlers_handlers_test_testtask_create",
-      "handlers_handlers_test_testtask_create_invalidboard",
-      "handlers_handlers_test_testtask_create_invalidswimlane",
-      "handlers_handlers_test_testtask_create_invalidtasktype",
-      "handlers_handlers_test_testtask_create_toomanyreminders",
-      "handlers_handlers_test_testtask_create_withreminders",
-      "handlers_handlers_test_testtask_duedate",
-      "handlers_handlers_test_testtask_list_filters",
-      "handlers_handlers_test_testtask_patchmove",
-      "handlers_handlers_test_testtask_patchmultiplefields",
-      "handlers_handlers_test_testtask_recurringgeneration",
-      "handlers_handlers_test_testtask_update_notfound",
-      "handlers_handlers_test_testtask_update_toomanyreminders",
-      "handlers_handlers_test_testtask_updateanddelete",
-      "handlers_handlers_test_testupdate_notfound"
+      "maya_package_dependencies",
+      "maya_package_dependencies_axios",
+      "maya_package_dependencies_lucide_react",
+      "maya_package_dependencies_next",
+      "maya_package_dependencies_react",
+      "maya_package_dependencies_react_dom",
+      "maya_package_dependencies_react_hook_form",
+      "maya_package_dependencies_zustand",
+      "maya_package_devdependencies",
+      "maya_package_devdependencies_eslint",
+      "maya_package_devdependencies_eslint_config_next",
+      "maya_package_devdependencies_postcss",
+      "maya_package_devdependencies_tailwindcss",
+      "maya_package_devdependencies_types_node",
+      "maya_package_devdependencies_types_react",
+      "maya_package_devdependencies_typescript",
+      "maya_package_json",
+      "maya_package_name",
+      "maya_package_private",
+      "maya_package_scripts",
+      "maya_package_scripts_build",
+      "maya_package_scripts_dev",
+      "maya_package_scripts_lint",
+      "maya_package_scripts_start",
+      "maya_package_version"
     ],
     "2": [
-      "backend_handlers_handlers_go",
-      "handlers_handler",
-      "handlers_handler_checkandtriggerschedulers",
-      "handlers_handler_createboard",
-      "handlers_handler_createproject",
-      "handlers_handler_createresource",
-      "handlers_handler_createscheduler",
-      "handlers_handler_createtask",
-      "handlers_handler_deleteboard",
-      "handlers_handler_deleteproject",
-      "handlers_handler_deleteresource",
-      "handlers_handler_deletescheduler",
-      "handlers_handler_deletetask",
-      "handlers_handler_generaterecurringtask",
-      "handlers_handler_getboard",
-      "handlers_handler_getproject",
-      "handlers_handler_getresource",
-      "handlers_handler_getscheduler",
-      "handlers_handler_gettask",
-      "handlers_handler_listboards",
-      "handlers_handler_listprojects",
-      "handlers_handler_listresources",
-      "handlers_handler_listschedulers",
-      "handlers_handler_listtasks",
-      "handlers_handler_patchtask",
-      "handlers_handler_startbackgroundworker",
-      "handlers_handler_updateboard",
-      "handlers_handler_updateproject",
-      "handlers_handler_updateresource",
-      "handlers_handler_updatescheduler",
-      "handlers_handler_updatetask",
-      "handlers_handlers_calculatenextrun",
-      "handlers_handlers_contains",
-      "handlers_handlers_entityexists",
-      "handlers_handlers_filteractive",
-      "handlers_handlers_health",
-      "handlers_handlers_respond"
-    ],
-    "3": [
-      "backend_config_allowed_origins",
-      "backend_config_comment_allowed_origins",
-      "backend_config_google_client_id",
-      "backend_config_google_client_secret",
-      "backend_config_google_redirect_url",
-      "backend_config_json",
-      "backend_config_jwt_expiry_hours",
-      "backend_config_jwt_secret",
-      "backend_config_log_file",
-      "backend_config_port",
-      "backend_config_root_email",
-      "backend_config_root_password_hash",
-      "backend_config_storage_dir",
-      "frontend_tsconfig_compileroptions",
-      "frontend_tsconfig_compileroptions_allowjs",
-      "frontend_tsconfig_compileroptions_esmoduleinterop",
-      "frontend_tsconfig_compileroptions_incremental",
-      "frontend_tsconfig_compileroptions_isolatedmodules",
-      "frontend_tsconfig_compileroptions_jsx",
-      "frontend_tsconfig_compileroptions_lib",
-      "frontend_tsconfig_compileroptions_module",
-      "frontend_tsconfig_compileroptions_moduleresolution",
-      "frontend_tsconfig_compileroptions_noemit",
-      "frontend_tsconfig_compileroptions_paths",
-      "frontend_tsconfig_compileroptions_plugins",
-      "frontend_tsconfig_compileroptions_resolvejsonmodule",
-      "frontend_tsconfig_compileroptions_skiplibcheck",
-      "frontend_tsconfig_compileroptions_strict",
-      "frontend_tsconfig_exclude",
-      "frontend_tsconfig_include",
-      "frontend_tsconfig_paths"
-    ],
-    "4": [
-      "auth_auth_checkpassword",
-      "auth_auth_fetchgoogleuser",
-      "auth_auth_generatejwt",
-      "auth_auth_googleoauthconfig",
-      "auth_auth_hashpassword",
-      "auth_auth_test_testcheckpassword_valid",
-      "auth_auth_test_testgenerateandvalidatejwt",
-      "auth_auth_test_testgeneratejwt_defaultexpiry",
-      "auth_auth_test_testhashpassword",
-      "auth_auth_test_testvalidatejwt_expiredtoken",
-      "auth_auth_test_testvalidatejwt_invalidformat",
-      "auth_auth_test_testvalidatejwt_wrongsecret",
-      "auth_auth_validatejwt",
-      "auth_claims",
-      "auth_googleuserinfo",
-      "backend_auth_auth_go",
-      "backend_auth_auth_test_go",
-      "backend_middleware_middleware_go",
-      "backend_middleware_middleware_test_go",
-      "handlers_handler_changepassword",
-      "handlers_handler_googlecallback",
-      "handlers_handler_googlelogin",
-      "handlers_handler_login",
-      "middleware_middleware_jwtauth",
-      "middleware_middleware_recovery",
-      "middleware_middleware_test_init",
-      "middleware_middleware_test_testjwtauth_invalidformat",
-      "middleware_middleware_test_testjwtauth_missingheader",
-      "middleware_middleware_test_testjwtauth_validtoken",
-      "middleware_middleware_test_testrecovery_panichandled"
-    ],
-    "5": [
-      "backend_main_go",
-      "backend_main_main",
-      "backend_main_parseallowedorigins",
-      "backend_main_resolveconfigpath",
-      "backend_main_setuprouter",
-      "backend_main_test_go",
-      "backend_main_test_testcorspreflightresponse",
-      "backend_main_test_testcorsrejectsunknownorigin",
-      "backend_main_test_testparseallowedorigins",
-      "backend_storage_storage_go",
-      "storage_configstore",
-      "storage_configstore_load",
-      "storage_configstore_save",
-      "storage_filesystem",
-      "storage_osfilesystem",
-      "storage_osfilesystem_mkdirall",
-      "storage_osfilesystem_readfile",
-      "storage_osfilesystem_stat",
-      "storage_osfilesystem_writefile",
-      "storage_storage_newconfigstore",
-      "storage_storage_newstore",
-      "storage_store",
-      "storage_store_t",
-      "storage_store_t_loadall",
-      "storage_store_t_loadallunsafe",
-      "storage_store_t_saveall",
-      "storage_store_t_saveallunsafe",
-      "storage_store_t_withlock"
-    ],
-    "6": [
-      "frontend_package_dependencies",
-      "frontend_package_dependencies_axios",
-      "frontend_package_dependencies_lucide_react",
-      "frontend_package_dependencies_next",
-      "frontend_package_dependencies_react",
-      "frontend_package_dependencies_react_dom",
-      "frontend_package_dependencies_react_hook_form",
-      "frontend_package_dependencies_zustand",
-      "frontend_package_devdependencies",
-      "frontend_package_devdependencies_eslint",
-      "frontend_package_devdependencies_eslint_config_next",
-      "frontend_package_devdependencies_postcss",
-      "frontend_package_devdependencies_tailwindcss",
-      "frontend_package_devdependencies_types_node",
-      "frontend_package_devdependencies_types_react",
-      "frontend_package_devdependencies_typescript",
-      "frontend_package_json",
-      "frontend_package_name",
-      "frontend_package_private",
-      "frontend_package_scripts",
-      "frontend_package_scripts_build",
-      "frontend_package_scripts_dev",
-      "frontend_package_scripts_lint",
-      "frontend_package_scripts_start",
-      "frontend_package_version"
-    ],
-    "7": [
       "mycan_package_description",
       "mycan_package_license",
       "mycan_package_name",
@@ -309,14 +70,55 @@
       "mycan_package_scripts_backend_start",
       "mycan_package_scripts_backend_stop",
       "mycan_package_scripts_backend_test",
+      "mycan_package_scripts_chitta_build",
+      "mycan_package_scripts_chitta_start",
+      "mycan_package_scripts_chitta_stop",
+      "mycan_package_scripts_chitta_test",
       "mycan_package_scripts_frontend_build",
       "mycan_package_scripts_frontend_dev",
+      "mycan_package_scripts_maya_build",
+      "mycan_package_scripts_maya_dev",
       "mycan_package_scripts_test_e2e",
       "mycan_package_version",
       "mycan_package_workspaces",
       "package_json"
     ],
-    "8": [
+    "3": [
+      "maya_tsconfig_compileroptions",
+      "maya_tsconfig_compileroptions_allowjs",
+      "maya_tsconfig_compileroptions_esmoduleinterop",
+      "maya_tsconfig_compileroptions_incremental",
+      "maya_tsconfig_compileroptions_isolatedmodules",
+      "maya_tsconfig_compileroptions_jsx",
+      "maya_tsconfig_compileroptions_lib",
+      "maya_tsconfig_compileroptions_module",
+      "maya_tsconfig_compileroptions_moduleresolution",
+      "maya_tsconfig_compileroptions_noemit",
+      "maya_tsconfig_compileroptions_paths",
+      "maya_tsconfig_compileroptions_plugins",
+      "maya_tsconfig_compileroptions_resolvejsonmodule",
+      "maya_tsconfig_compileroptions_skiplibcheck",
+      "maya_tsconfig_compileroptions_strict",
+      "maya_tsconfig_paths"
+    ],
+    "4": [
+      "chitta_config_allowed_origins",
+      "chitta_config_comment_allowed_origins",
+      "chitta_config_google_client_id",
+      "chitta_config_google_client_secret",
+      "chitta_config_google_redirect_url",
+      "chitta_config_json",
+      "chitta_config_jwt_expiry_hours",
+      "chitta_config_jwt_secret",
+      "chitta_config_log_file",
+      "chitta_config_port",
+      "chitta_config_root_email",
+      "chitta_config_root_password_hash",
+      "chitta_config_storage_dir",
+      "maya_tsconfig_exclude",
+      "maya_tsconfig_include"
+    ],
+    "5": [
       "control_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
       "mycan_control_do_kill",
@@ -333,89 +135,46 @@
       "mycan_control_show_access_endpoints",
       "mycan_control_show_help"
     ],
-    "9": [
-      "backend_storage_storage_test_go",
-      "storage_mockfilesystem",
-      "storage_mockfilesystem_mkdirall",
-      "storage_mockfilesystem_readfile",
-      "storage_mockfilesystem_stat",
-      "storage_mockfilesystem_writefile",
-      "storage_storage_test_newmockfs",
-      "storage_storage_test_testconfigstore_loadsave",
-      "storage_storage_test_testnewstore_createsfile",
-      "storage_storage_test_testnewstore_existingfile",
-      "storage_storage_test_teststore_concurrentaccess",
-      "storage_storage_test_teststore_saveandload",
-      "storage_storage_test_teststore_withlock",
-      "storage_storage_test_teststore_withlock_error",
-      "storage_testitem"
-    ],
-    "10": [
-      "components_header_header",
-      "components_header_headerprops",
-      "components_sidebar_navitems",
-      "components_sidebar_sidebar",
-      "components_sidebar_sidebarprops",
-      "dashboard_layout_dashboardlayout",
-      "frontend_src_app_dashboard_layout_tsx",
-      "frontend_src_components_header_tsx",
-      "frontend_src_components_sidebar_tsx",
-      "frontend_src_store_authstore_ts",
-      "login_page_logincontent",
-      "store_authstore_authstate",
-      "store_authstore_useauthstore",
-      "store_authstore_user"
-    ],
-    "11": [
+    "6": [
       "backend_auth",
-      "backend_config",
       "backend_handlers",
-      "backend_main",
       "backend_readme",
       "backend_storage",
       "backend_swagger_md",
       "backend_user_journeys",
       "e2e_readme",
       "frontend_readme",
+      "readme_backend",
+      "readme_frontend",
       "readme_mykanban",
+      "swagger_swagger_ui",
       "utils_readme"
     ],
-    "12": [
-      "backend_config_example_google_client_id",
-      "backend_config_example_google_client_secret",
-      "backend_config_example_google_redirect_url",
-      "backend_config_example_json",
-      "backend_config_example_jwt_expiry_hours",
-      "backend_config_example_jwt_secret",
-      "backend_config_example_log_file",
-      "backend_config_example_port",
-      "backend_config_example_root_email",
-      "backend_config_example_root_password_hash",
-      "backend_config_example_storage_dir"
+    "7": [
+      "chitta_config_example_google_client_id",
+      "chitta_config_example_google_client_secret",
+      "chitta_config_example_google_redirect_url",
+      "chitta_config_example_json",
+      "chitta_config_example_jwt_expiry_hours",
+      "chitta_config_example_jwt_secret",
+      "chitta_config_example_log_file",
+      "chitta_config_example_port",
+      "chitta_config_example_root_email",
+      "chitta_config_example_root_password_hash",
+      "chitta_config_example_storage_dir"
     ],
-    "13": [
-      "backend_models_models_go",
-      "models_apiresponse",
-      "models_board",
-      "models_changepasswordrequest",
-      "models_config",
-      "models_loginrequest",
-      "models_project",
-      "models_reminder",
-      "models_scheduler",
-      "models_task"
+    "8": [
+      "chitta_main_go",
+      "chitta_main_main",
+      "chitta_main_parseallowedorigins",
+      "chitta_main_resolveconfigpath",
+      "chitta_main_setuprouter",
+      "chitta_main_test_go",
+      "chitta_main_test_testcorspreflightresponse",
+      "chitta_main_test_testcorsrejectsunknownorigin",
+      "chitta_main_test_testparseallowedorigins"
     ],
-    "14": [
-      "frontend_src_components_ui_button_tsx",
-      "frontend_src_components_ui_modal_tsx",
-      "ui_button_button",
-      "ui_button_buttonprops",
-      "ui_button_variants",
-      "ui_confirmdialog_confirmdialog",
-      "ui_modal_modal",
-      "ui_modal_modalprops"
-    ],
-    "15": [
+    "9": [
       "backend_dockerfile",
       "docker_compose_chitta",
       "docker_compose_chitta_data",
@@ -424,162 +183,190 @@
       "docker_compose_mycan_maya_image",
       "frontend_dockerfile"
     ],
-    "16": [
-      "config_create_syschitta_log_info",
-      "config_create_syschitta_log_success",
-      "config_create_syschitta_log_warn",
-      "config_create_syschitta_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
-    ],
-    "17": [
-      "deploy_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_deploy_sh__entry",
-      "mycan_deploy_log_error",
-      "mycan_deploy_log_info",
-      "mycan_deploy_log_success"
-    ],
-    "18": [
-      "handlers_mockfs",
-      "handlers_mockfs_mkdirall",
-      "handlers_mockfs_readfile",
-      "handlers_mockfs_stat",
-      "handlers_mockfs_writefile"
-    ],
-    "19": [
+    "10": [
       "backend_api_endpoints",
       "backend_auth_flow",
       "backend_user_registration",
       "swagger_api_spec",
       "user_journeys_doc"
     ],
-    "20": [
-      "app_layout_inter",
-      "app_layout_metadata",
-      "app_layout_rootlayout",
-      "frontend_src_app_layout_tsx"
+    "11": [
+      "config_create_syschitta_log_info",
+      "config_create_syschitta_log_success",
+      "config_create_syschitta_log_warn",
+      "config_create_syschitta_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
     ],
-    "21": [
-      "backend_scripts_test_api_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_api_sh__entry",
-      "scripts_test_api_header",
-      "scripts_test_api_run"
+    "12": [
+      "deploy_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_deploy_sh__entry",
+      "mycan_deploy_log_error",
+      "mycan_deploy_log_info",
+      "mycan_deploy_log_success"
     ],
-    "22": [
-      "frontend_src_components_ui_table_tsx",
-      "ui_table_column",
-      "ui_table_table",
-      "ui_table_tableprops"
+    "13": [
+      "maya_src_app_dashboard_layout_tsx",
+      "maya_src_components_header_tsx",
+      "maya_src_components_sidebar_tsx",
+      "maya_src_store_authstore_ts"
     ],
-    "23": [
+    "14": [
       "chitta_chitta_certbot_log_info",
       "config_nginx_chitta_chitta_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_chitta_chitta_certbot_sh__entry"
     ],
-    "24": [
+    "15": [
       "config_nginx_maya_maya_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_maya_maya_certbot_sh__entry",
       "maya_maya_certbot_log_info"
     ],
+    "16": [
+      "backend_auth_login",
+      "user_journeys_admin_setup"
+    ],
+    "17": [
+      "chitta_scripts_run_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_run_sh__entry"
+    ],
+    "18": [
+      "chitta_scripts_stop_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_stop_sh__entry"
+    ],
+    "19": [
+      "chitta_scripts_troubleshoot_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_troubleshoot_sh__entry"
+    ],
+    "20": [
+      "chitta_scripts_build_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_build_sh__entry"
+    ],
+    "21": [
+      "chitta_scripts_test_api_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_api_sh__entry"
+    ],
+    "22": [
+      "chitta_scripts_test_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_sh__entry"
+    ],
+    "23": [
+      "maya_eslintrc_extends",
+      "maya_eslintrc_json"
+    ],
+    "24": [
+      "maya_postcss_config_config",
+      "maya_postcss_config_mjs"
+    ],
     "25": [
-      "frontend_src_components_ui_select_tsx",
-      "ui_select_select",
-      "ui_select_selectprops"
+      "maya_tailwind_config_config",
+      "maya_tailwind_config_ts"
     ],
     "26": [
-      "backend_scripts_build_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_build_sh__entry"
-    ],
-    "27": [
-      "backend_scripts_test_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_sh__entry"
-    ],
-    "28": [
-      "backend_scripts_troubleshoot_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_troubleshoot_sh__entry"
-    ],
-    "29": [
-      "frontend_eslintrc_extends",
-      "frontend_eslintrc_json"
-    ],
-    "30": [
-      "frontend_postcss_config_config",
-      "frontend_postcss_config_mjs"
-    ],
-    "31": [
-      "app_page_home",
-      "frontend_src_app_page_tsx"
-    ],
-    "32": [
-      "frontend_tailwind_config_config",
-      "frontend_tailwind_config_ts"
-    ],
-    "33": [
-      "backend_scripts_run_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_run_sh__entry"
-    ],
-    "34": [
-      "backend_scripts_stop_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_stop_sh__entry"
-    ],
-    "35": [
       "utils_main_go",
       "utils_main_main"
     ],
-    "36": [
-      "frontend_next_config_mjs"
-    ],
-    "37": [
-      "frontend_next_env_d_ts"
-    ],
-    "38": [
+    "27": [
       "storage_resources_json"
     ],
-    "39": [
+    "28": [
       "storage_projects_json"
     ],
-    "40": [
+    "29": [
       "storage_schedulers_json"
     ],
-    "41": [
+    "30": [
       "storage_tasks_json"
     ],
-    "42": [
+    "31": [
       "storage_boards_json"
     ],
-    "43": [
+    "32": [
       "contributing_contributing"
     ],
-    "44": [
+    "33": [
       "update_graphify_sh"
+    ],
+    "34": [
+      "chitta_models_models_go"
+    ],
+    "35": [
+      "chitta_middleware_middleware_go"
+    ],
+    "36": [
+      "chitta_middleware_middleware_test_go"
+    ],
+    "37": [
+      "chitta_handlers_handlers_go"
+    ],
+    "38": [
+      "chitta_handlers_handlers_test_go"
+    ],
+    "39": [
+      "chitta_auth_auth_test_go"
+    ],
+    "40": [
+      "chitta_auth_auth_go"
+    ],
+    "41": [
+      "chitta_storage_resources_json"
+    ],
+    "42": [
+      "chitta_storage_projects_json"
+    ],
+    "43": [
+      "chitta_storage_schedulers_json"
+    ],
+    "44": [
+      "chitta_storage_storage_test_go"
+    ],
+    "45": [
+      "chitta_storage_tasks_json"
+    ],
+    "46": [
+      "chitta_storage_boards_json"
+    ],
+    "47": [
+      "chitta_storage_storage_go"
+    ],
+    "48": [
+      "maya_next_config_mjs"
+    ],
+    "49": [
+      "maya_next_env_d_ts"
+    ],
+    "50": [
+      "maya_src_app_layout_tsx"
+    ],
+    "51": [
+      "maya_src_app_page_tsx"
     ]
   },
   "cohesion": {
-    "0": 0.06869446343130553,
-    "1": 0.1474493361285814,
-    "2": 0.11411411411411411,
-    "3": 0.06451612903225806,
-    "4": 0.10804597701149425,
-    "5": 0.11375661375661375,
-    "6": 0.08,
-    "7": 0.1111111111111111,
-    "8": 0.4380952380952381,
-    "9": 0.20952380952380953,
-    "10": 0.1978021978021978,
-    "11": 0.19696969696969696,
-    "12": 0.18181818181818182,
-    "13": 0.2,
-    "14": 0.25,
-    "15": 0.2857142857142857,
-    "16": 0.7,
-    "17": 0.6,
-    "18": 0.4,
-    "19": 0.5,
-    "20": 0.5,
-    "21": 0.8333333333333334,
-    "22": 0.5,
+    "0": 0.16666666666666666,
+    "1": 0.08,
+    "2": 0.08333333333333333,
+    "3": 0.125,
+    "4": 0.13333333333333333,
+    "5": 0.4380952380952381,
+    "6": 0.16666666666666666,
+    "7": 0.18181818181818182,
+    "8": 0.3611111111111111,
+    "9": 0.2857142857142857,
+    "10": 0.5,
+    "11": 0.7,
+    "12": 0.6,
+    "13": 0.6666666666666666,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
     "23": 1.0,
     "24": 1.0,
-    "25": 0.6666666666666666,
+    "25": 1.0,
     "26": 1.0,
     "27": 1.0,
     "28": 1.0,
@@ -598,82 +385,111 @@
     "41": 1.0,
     "42": 1.0,
     "43": 1.0,
-    "44": 1.0
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0
   },
   "gods": [
     {
-      "id": "handlers_handlers_test_setuptesthandler",
-      "label": "setupTestHandler()",
-      "degree": 51
-    },
-    {
-      "id": "handlers_handlers_test_dorequest",
-      "label": "doRequest()",
-      "degree": 46
-    },
-    {
-      "id": "handlers_handler",
-      "label": "Handler",
-      "degree": 34
-    },
-    {
-      "id": "handlers_handlers_respond",
-      "label": "respond()",
-      "degree": 32
-    },
-    {
-      "id": "handlers_handlers_test_createproject",
-      "label": "createProject()",
-      "degree": 26
-    },
-    {
-      "id": "handlers_handlers_test_parseresponse",
-      "label": "parseResponse()",
-      "degree": 21
-    },
-    {
-      "id": "handlers_handlers_test_createboard",
-      "label": "createBoard()",
-      "degree": 20
-    },
-    {
-      "id": "frontend_tsconfig_compileroptions",
+      "id": "maya_tsconfig_compileroptions",
       "label": "compilerOptions",
       "degree": 15
     },
     {
-      "id": "store_toaststore_usetoaststore",
-      "label": "useToastStore",
-      "degree": 15
+      "id": "mycan_package_scripts",
+      "label": "scripts",
+      "degree": 14
     },
     {
       "id": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
       "label": "control.sh script",
       "degree": 11
+    },
+    {
+      "id": "mycan_control_do_start",
+      "label": "do_start()",
+      "degree": 9
+    },
+    {
+      "id": "mycan_control_log_info",
+      "label": "log_info()",
+      "degree": 7
+    },
+    {
+      "id": "mycan_control_do_stop",
+      "label": "do_stop()",
+      "degree": 7
+    },
+    {
+      "id": "mycan_control_do_kill",
+      "label": "do_kill()",
+      "degree": 7
+    },
+    {
+      "id": "mycan_control_load_pids",
+      "label": "load_pids()",
+      "degree": 6
+    },
+    {
+      "id": "backend_projects",
+      "label": "Projects API",
+      "degree": 6
+    },
+    {
+      "id": "backend_schedulers",
+      "label": "Schedulers API",
+      "degree": 6
     }
   ],
   "surprises": [
     {
-      "source": "Backend Configuration",
+      "source": "MyKanban Monorepo",
       "target": "MyKanban Backend",
       "source_files": [
-        "backend/config.json",
+        "README.md",
         "backend/README.md"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "crosses file types (doc \u2194 code); peripheral node `Backend Configuration` unexpectedly reaches hub `MyKanban Backend`"
+      "why": "connects across different repos/directories"
     },
     {
-      "source": "MyKanban Backend",
-      "target": "Backend Entry Point",
+      "source": "MyKanban Monorepo",
+      "target": "E2E Tests",
       "source_files": [
-        "backend/README.md",
-        "backend/main.go"
+        "README.md",
+        "e2e/README.md"
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "crosses file types (doc \u2194 code); peripheral node `Backend Entry Point` unexpectedly reaches hub `MyKanban Backend`"
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "MyKanban Monorepo",
+      "target": "MyKanban Frontend",
+      "source_files": [
+        "README.md",
+        "frontend/README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "MyKanban Monorepo",
+      "target": "Shared Utilities",
+      "source_files": [
+        "README.md",
+        "utils/README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
     },
     {
       "source": "MyKanban Frontend",
@@ -684,33 +500,11 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `MyKanban Frontend` unexpectedly reaches hub `MyKanban Backend`"
-    },
-    {
-      "source": "TestCORSPreflightResponse()",
-      "target": "SetupRouter()",
-      "source_files": [
-        "backend/main_test.go",
-        "backend/main.go"
-      ],
-      "confidence": "INFERRED",
-      "relation": "calls",
-      "why": "inferred connection - not explicitly stated in source; peripheral node `TestCORSPreflightResponse()` unexpectedly reaches hub `SetupRouter()`"
-    },
-    {
-      "source": "TestCORSRejectsUnknownOrigin()",
-      "target": "SetupRouter()",
-      "source_files": [
-        "backend/main_test.go",
-        "backend/main.go"
-      ],
-      "confidence": "INFERRED",
-      "relation": "calls",
-      "why": "inferred connection - not explicitly stated in source; peripheral node `TestCORSRejectsUnknownOrigin()` unexpectedly reaches hub `SetupRouter()`"
+      "why": "connects across different repos/directories"
     }
   ],
   "tokens": {
-    "input": 0,
-    "output": 0
+    "input": 36988,
+    "output": 1860
   }
 }
