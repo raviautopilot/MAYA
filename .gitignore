@@ -168,3 +168,17 @@ node_modules/
 # Dev Control Script Lockfile and Logs
 .dev_pids
 logs/
+
+# ========================
+# Docker & Compose
+# ========================
+# Local .env file (contains secrets — never commit)
+.env
+.env.local
+
+# Docker Compose override (local customisations, not for sharing)
+docker-compose.override.yml
+
+# docker-setup.sh PID lockfile (if any)
+.docker_pids
+.docker_setup_*
