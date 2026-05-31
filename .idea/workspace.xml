@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac3fa4d-efc6-4db2-aa44-29f6520e013c" name="Changes" comment="" />
+    <list default="true" id="aac3fa4d-efc6-4db2-aa44-29f6520e013c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/chitta/handlers/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/chitta/handlers/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chitta/middleware/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/chitta/middleware/middleware.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +40,7 @@
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHELLCHECK.PATH": "/home/ubuntu/.local/share/JetBrains/GoLand2025.3/Shell Script/shellcheck",
-    "git-widget-placeholder": "tidy",
+    "git-widget-placeholder": "main",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "/home/ubuntu/code/github/raviautopilot/rBoard",
     "node.js.detected.package.eslint": "true",
