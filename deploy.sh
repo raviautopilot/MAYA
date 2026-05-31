@@ -61,7 +61,8 @@ if [ -f "chitta/config.example.json" ]; then
 fi
 
 log_info "Transferring frontend static files to $REMOTE_MAYA_DIR..."
-scp -r maya/out/* "$VPS_TARGET:$REMOTE_MAYA_DIR/"
+scp -r maya/dist/* "$VPS_TARGET:$REMOTE_MAYA_DIR/"
+
 
 log_success "Deployment to $VPS_TARGET completed!"
 echo "---------------------------------------------------------"

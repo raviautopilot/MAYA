@@ -1,17 +1,16 @@
-'use client';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { FullPageLoader } from '@/components/ui/Loader';
+import { useNavigate } from 'react-router-dom';
+import { FullPageLoader } from '@/components/ui';
 
 export default function Home() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    // Redirect to the correct page, but only on the client-side after mount.
-    router.replace(token ? '/dashboard' : '/login');
-  }, [router]);
+    // Redirect to the correct page on mount.
+    navigate(token ? '/dashboard' : '/login', { replace: true });
+  }, [navigate]);
 
   useEffect(() => {
     // Show a loader for a split second to prevent flashing the login page

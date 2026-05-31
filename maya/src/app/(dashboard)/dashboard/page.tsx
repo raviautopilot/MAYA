@@ -1,6 +1,5 @@
-'use client';
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { projectsApi, boardsApi, tasksApi, schedulersApi, resourcesApi } from '@/services/api';
 import { Card, CardBody } from '@/components/ui';
 import { CardSkeleton } from '@/components/ui/Skeleton';
@@ -49,7 +48,7 @@ export default function DashboardPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {cards.map((c) => (
-            <Link key={c.id} href={c.href} e2e-test-id={`${c.id}-link`}>
+            <Link key={c.id} to={c.href} e2e-test-id={`${c.id}-link`}>
               <Card className="hover:shadow-md transition" e2e-test-id={`${c.id}-card`}>
                 <CardBody>
                   <div className="flex items-center justify-between">
@@ -71,19 +70,19 @@ export default function DashboardPage() {
       <div className="mt-8">
         <h2 className="text-lg font-semibold text-gray-800 mb-4" e2e-test-id="dashboard-quick-actions-title">Quick Actions</h2>
         <div className="flex flex-wrap gap-3">
-          <Link href="/projects" className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition" e2e-test-id="dashboard-quick-new-project">
+          <Link to="/projects" className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition" e2e-test-id="dashboard-quick-new-project">
             + New Project
           </Link>
-          <Link href="/boards" className="px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 transition" e2e-test-id="dashboard-quick-new-board">
+          <Link to="/boards" className="px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 transition" e2e-test-id="dashboard-quick-new-board">
             + New Board
           </Link>
-          <Link href="/tasks" className="px-4 py-2 bg-orange-600 text-white rounded-md text-sm hover:bg-orange-700 transition" e2e-test-id="dashboard-quick-new-task">
+          <Link to="/tasks" className="px-4 py-2 bg-orange-600 text-white rounded-md text-sm hover:bg-orange-700 transition" e2e-test-id="dashboard-quick-new-task">
             + New Task
           </Link>
-          <Link href="/schedulers" className="px-4 py-2 bg-purple-600 text-white rounded-md text-sm hover:bg-purple-700 transition" e2e-test-id="dashboard-quick-new-scheduler">
+          <Link to="/schedulers" className="px-4 py-2 bg-purple-600 text-white rounded-md text-sm hover:bg-purple-700 transition" e2e-test-id="dashboard-quick-new-scheduler">
             + New Scheduler
           </Link>
-          <Link href="/resources" className="px-4 py-2 bg-pink-600 text-white rounded-md text-sm hover:bg-pink-700 transition" e2e-test-id="dashboard-quick-new-resource">
+          <Link to="/resources" className="px-4 py-2 bg-pink-600 text-white rounded-md text-sm hover:bg-pink-700 transition" e2e-test-id="dashboard-quick-new-resource">
             + New Resource
           </Link>
         </div>

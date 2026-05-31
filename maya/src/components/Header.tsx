@@ -1,6 +1,5 @@
-'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/authStore';
 import { Menu, LogOut, User } from 'lucide-react';
 
@@ -9,12 +8,12 @@ interface HeaderProps {
 }
 
 export default function Header({ onMenuClick }: HeaderProps) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const { user, logout } = useAuthStore();
 
   const handleLogout = () => {
     logout();
-    router.push('/login');
+    navigate('/login');
   };
 
   return (
