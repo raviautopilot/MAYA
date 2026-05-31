@@ -84,66 +84,6 @@
       "ui_toast_toastcontainer"
     ],
     "1": [
-      "auth_auth_checkpassword",
-      "auth_auth_fetchgoogleuser",
-      "auth_auth_generatejwt",
-      "auth_auth_googleoauthconfig",
-      "auth_auth_hashpassword",
-      "auth_auth_test_testcheckpassword_valid",
-      "auth_auth_test_testgenerateandvalidatejwt",
-      "auth_auth_test_testgeneratejwt_defaultexpiry",
-      "auth_auth_test_testhashpassword",
-      "auth_auth_test_testvalidatejwt_expiredtoken",
-      "auth_auth_test_testvalidatejwt_invalidformat",
-      "auth_auth_test_testvalidatejwt_wrongsecret",
-      "auth_auth_validatejwt",
-      "auth_claims",
-      "auth_googleuserinfo",
-      "backend_auth_auth_go",
-      "backend_auth_auth_test_go",
-      "backend_handlers_handlers_go",
-      "handlers_handler",
-      "handlers_handler_changepassword",
-      "handlers_handler_checkandtriggerschedulers",
-      "handlers_handler_createboard",
-      "handlers_handler_createproject",
-      "handlers_handler_createresource",
-      "handlers_handler_createscheduler",
-      "handlers_handler_createtask",
-      "handlers_handler_deleteboard",
-      "handlers_handler_deleteproject",
-      "handlers_handler_deleteresource",
-      "handlers_handler_deletescheduler",
-      "handlers_handler_deletetask",
-      "handlers_handler_generaterecurringtask",
-      "handlers_handler_getboard",
-      "handlers_handler_getproject",
-      "handlers_handler_getresource",
-      "handlers_handler_getscheduler",
-      "handlers_handler_gettask",
-      "handlers_handler_googlecallback",
-      "handlers_handler_googlelogin",
-      "handlers_handler_listboards",
-      "handlers_handler_listprojects",
-      "handlers_handler_listresources",
-      "handlers_handler_listschedulers",
-      "handlers_handler_listtasks",
-      "handlers_handler_login",
-      "handlers_handler_patchtask",
-      "handlers_handler_startbackgroundworker",
-      "handlers_handler_updateboard",
-      "handlers_handler_updateproject",
-      "handlers_handler_updateresource",
-      "handlers_handler_updatescheduler",
-      "handlers_handler_updatetask",
-      "handlers_handlers_calculatenextrun",
-      "handlers_handlers_contains",
-      "handlers_handlers_entityexists",
-      "handlers_handlers_filteractive",
-      "handlers_handlers_health",
-      "handlers_handlers_respond"
-    ],
-    "2": [
       "backend_handlers_handlers_test_go",
       "handlers_handlers_test_createboard",
       "handlers_handlers_test_createproject",
@@ -199,46 +139,46 @@
       "handlers_handlers_test_testtask_updateanddelete",
       "handlers_handlers_test_testupdate_notfound"
     ],
-    "3": [
-      "backend_main_go",
-      "backend_main_main",
-      "backend_main_parseallowedorigins",
-      "backend_main_resolveconfigpath",
-      "backend_main_setuprouter",
-      "backend_main_test_go",
-      "backend_main_test_testcorspreflightresponse",
-      "backend_main_test_testcorsrejectsunknownorigin",
-      "backend_main_test_testparseallowedorigins",
-      "backend_middleware_middleware_go",
-      "backend_middleware_middleware_test_go",
-      "backend_storage_storage_go",
-      "middleware_middleware_jwtauth",
-      "middleware_middleware_recovery",
-      "middleware_middleware_test_init",
-      "middleware_middleware_test_testjwtauth_invalidformat",
-      "middleware_middleware_test_testjwtauth_missingheader",
-      "middleware_middleware_test_testjwtauth_validtoken",
-      "middleware_middleware_test_testrecovery_panichandled",
-      "storage_configstore",
-      "storage_configstore_load",
-      "storage_configstore_save",
-      "storage_filesystem",
-      "storage_osfilesystem",
-      "storage_osfilesystem_mkdirall",
-      "storage_osfilesystem_readfile",
-      "storage_osfilesystem_stat",
-      "storage_osfilesystem_writefile",
-      "storage_storage_newconfigstore",
-      "storage_storage_newstore",
-      "storage_store",
-      "storage_store_t",
-      "storage_store_t_loadall",
-      "storage_store_t_loadallunsafe",
-      "storage_store_t_saveall",
-      "storage_store_t_saveallunsafe",
-      "storage_store_t_withlock"
+    "2": [
+      "backend_handlers_handlers_go",
+      "handlers_handler",
+      "handlers_handler_checkandtriggerschedulers",
+      "handlers_handler_createboard",
+      "handlers_handler_createproject",
+      "handlers_handler_createresource",
+      "handlers_handler_createscheduler",
+      "handlers_handler_createtask",
+      "handlers_handler_deleteboard",
+      "handlers_handler_deleteproject",
+      "handlers_handler_deleteresource",
+      "handlers_handler_deletescheduler",
+      "handlers_handler_deletetask",
+      "handlers_handler_generaterecurringtask",
+      "handlers_handler_getboard",
+      "handlers_handler_getproject",
+      "handlers_handler_getresource",
+      "handlers_handler_getscheduler",
+      "handlers_handler_gettask",
+      "handlers_handler_listboards",
+      "handlers_handler_listprojects",
+      "handlers_handler_listresources",
+      "handlers_handler_listschedulers",
+      "handlers_handler_listtasks",
+      "handlers_handler_patchtask",
+      "handlers_handler_startbackgroundworker",
+      "handlers_handler_updateboard",
+      "handlers_handler_updateproject",
+      "handlers_handler_updateresource",
+      "handlers_handler_updatescheduler",
+      "handlers_handler_updatetask",
+      "handlers_handlers_calculatenextrun",
+      "handlers_handlers_contains",
+      "handlers_handlers_entityexists",
+      "handlers_handlers_filteractive",
+      "handlers_handlers_health",
+      "handlers_handlers_respond"
     ],
-    "4": [
+    "3": [
       "backend_config_allowed_origins",
       "backend_config_comment_allowed_origins",
       "backend_config_google_client_id",
@@ -271,7 +211,69 @@
       "frontend_tsconfig_include",
       "frontend_tsconfig_paths"
     ],
+    "4": [
+      "auth_auth_checkpassword",
+      "auth_auth_fetchgoogleuser",
+      "auth_auth_generatejwt",
+      "auth_auth_googleoauthconfig",
+      "auth_auth_hashpassword",
+      "auth_auth_test_testcheckpassword_valid",
+      "auth_auth_test_testgenerateandvalidatejwt",
+      "auth_auth_test_testgeneratejwt_defaultexpiry",
+      "auth_auth_test_testhashpassword",
+      "auth_auth_test_testvalidatejwt_expiredtoken",
+      "auth_auth_test_testvalidatejwt_invalidformat",
+      "auth_auth_test_testvalidatejwt_wrongsecret",
+      "auth_auth_validatejwt",
+      "auth_claims",
+      "auth_googleuserinfo",
+      "backend_auth_auth_go",
+      "backend_auth_auth_test_go",
+      "backend_middleware_middleware_go",
+      "backend_middleware_middleware_test_go",
+      "handlers_handler_changepassword",
+      "handlers_handler_googlecallback",
+      "handlers_handler_googlelogin",
+      "handlers_handler_login",
+      "middleware_middleware_jwtauth",
+      "middleware_middleware_recovery",
+      "middleware_middleware_test_init",
+      "middleware_middleware_test_testjwtauth_invalidformat",
+      "middleware_middleware_test_testjwtauth_missingheader",
+      "middleware_middleware_test_testjwtauth_validtoken",
+      "middleware_middleware_test_testrecovery_panichandled"
+    ],
     "5": [
+      "backend_main_go",
+      "backend_main_main",
+      "backend_main_parseallowedorigins",
+      "backend_main_resolveconfigpath",
+      "backend_main_setuprouter",
+      "backend_main_test_go",
+      "backend_main_test_testcorspreflightresponse",
+      "backend_main_test_testcorsrejectsunknownorigin",
+      "backend_main_test_testparseallowedorigins",
+      "backend_storage_storage_go",
+      "storage_configstore",
+      "storage_configstore_load",
+      "storage_configstore_save",
+      "storage_filesystem",
+      "storage_osfilesystem",
+      "storage_osfilesystem_mkdirall",
+      "storage_osfilesystem_readfile",
+      "storage_osfilesystem_stat",
+      "storage_osfilesystem_writefile",
+      "storage_storage_newconfigstore",
+      "storage_storage_newstore",
+      "storage_store",
+      "storage_store_t",
+      "storage_store_t_loadall",
+      "storage_store_t_loadallunsafe",
+      "storage_store_t_saveall",
+      "storage_store_t_saveallunsafe",
+      "storage_store_t_withlock"
+    ],
+    "6": [
       "frontend_package_dependencies",
       "frontend_package_dependencies_axios",
       "frontend_package_dependencies_lucide_react",
@@ -298,7 +300,7 @@
       "frontend_package_scripts_start",
       "frontend_package_version"
     ],
-    "6": [
+    "7": [
       "mycan_package_description",
       "mycan_package_license",
       "mycan_package_name",
@@ -318,7 +320,7 @@
       "mycan_package_workspaces",
       "package_json"
     ],
-    "7": [
+    "8": [
       "control_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
       "mycan_control_do_kill",
@@ -335,7 +337,7 @@
       "mycan_control_show_access_endpoints",
       "mycan_control_show_help"
     ],
-    "8": [
+    "9": [
       "backend_storage_storage_test_go",
       "storage_mockfilesystem",
       "storage_mockfilesystem_mkdirall",
@@ -352,7 +354,7 @@
       "storage_storage_test_teststore_withlock_error",
       "storage_testitem"
     ],
-    "9": [
+    "10": [
       "components_header_header",
       "components_header_headerprops",
       "components_sidebar_navitems",
@@ -367,7 +369,7 @@
       "store_authstore_useauthstore",
       "store_authstore_user"
     ],
-    "10": [
+    "11": [
       "backend_auth",
       "backend_config",
       "backend_handlers",
@@ -381,7 +383,7 @@
       "readme_mykanban",
       "utils_readme"
     ],
-    "11": [
+    "12": [
       "backend_config_example_google_client_id",
       "backend_config_example_google_client_secret",
       "backend_config_example_google_redirect_url",
@@ -394,7 +396,7 @@
       "backend_config_example_root_password_hash",
       "backend_config_example_storage_dir"
     ],
-    "12": [
+    "13": [
       "backend_models_models_go",
       "models_apiresponse",
       "models_board",
@@ -406,7 +408,7 @@
       "models_scheduler",
       "models_task"
     ],
-    "13": [
+    "14": [
       "frontend_src_components_ui_button_tsx",
       "frontend_src_components_ui_modal_tsx",
       "ui_button_button",
@@ -416,7 +418,7 @@
       "ui_modal_modal",
       "ui_modal_modalprops"
     ],
-    "14": [
+    "15": [
       "backend_dockerfile",
       "docker_compose_chitta",
       "docker_compose_chitta_data",
@@ -425,35 +427,26 @@
       "docker_compose_mycan_maya_image",
       "frontend_dockerfile"
     ],
-    "15": [
-      "deployment_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_deployment_sh__entry",
-      "mycan_deployment_log_error",
-      "mycan_deployment_log_info",
-      "mycan_deployment_log_success",
-      "mycan_deployment_show_help"
-    ],
     "16": [
-      "home_ubuntu_code_github_raviautopilot_mycan_local_docker_sh__entry",
-      "local_docker_sh",
-      "mycan_local_docker_log_error",
-      "mycan_local_docker_log_info",
-      "mycan_local_docker_log_success",
-      "mycan_local_docker_show_help"
-    ],
-    "17": [
-      "backend_api_endpoints",
-      "backend_auth_flow",
-      "backend_user_registration",
-      "swagger_api_spec",
-      "user_journeys_doc"
-    ],
-    "18": [
       "handlers_mockfs",
       "handlers_mockfs_mkdirall",
       "handlers_mockfs_readfile",
       "handlers_mockfs_stat",
       "handlers_mockfs_writefile"
+    ],
+    "17": [
+      "deploy_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_deploy_sh__entry",
+      "mycan_deploy_log_error",
+      "mycan_deploy_log_info",
+      "mycan_deploy_log_success"
+    ],
+    "18": [
+      "backend_api_endpoints",
+      "backend_auth_flow",
+      "backend_user_registration",
+      "swagger_api_spec",
+      "user_journeys_doc"
     ],
     "19": [
       "app_layout_inter",
@@ -462,115 +455,119 @@
       "frontend_src_app_layout_tsx"
     ],
     "20": [
-      "home_ubuntu_code_github_raviautopilot_mycan_promote_sh__entry",
-      "mycan_promote_log_info",
-      "mycan_promote_log_success",
-      "promote_sh"
-    ],
-    "21": [
       "backend_scripts_test_api_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_api_sh__entry",
       "scripts_test_api_header",
       "scripts_test_api_run"
     ],
-    "22": [
+    "21": [
       "frontend_src_components_ui_table_tsx",
       "ui_table_column",
       "ui_table_table",
       "ui_table_tableprops"
     ],
+    "22": [
+      "chitta_chitta_certbot_log_info",
+      "config_nginx_chitta_chitta_certbot_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_chitta_chitta_certbot_sh__entry"
+    ],
     "23": [
-      "backend_scripts_stop_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_stop_sh__entry"
+      "config_nginx_maya_maya_certbot_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_maya_maya_certbot_sh__entry",
+      "maya_maya_certbot_log_info"
     ],
     "24": [
-      "backend_scripts_test_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_sh__entry"
-    ],
-    "25": [
-      "frontend_eslintrc_extends",
-      "frontend_eslintrc_json"
-    ],
-    "26": [
-      "frontend_postcss_config_config",
-      "frontend_postcss_config_mjs"
-    ],
-    "27": [
-      "app_page_home",
-      "frontend_src_app_page_tsx"
-    ],
-    "28": [
-      "frontend_tailwind_config_config",
-      "frontend_tailwind_config_ts"
-    ],
-    "29": [
-      "backend_scripts_build_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_build_sh__entry"
-    ],
-    "30": [
       "backend_scripts_run_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_run_sh__entry"
     ],
-    "31": [
+    "25": [
+      "backend_scripts_test_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_sh__entry"
+    ],
+    "26": [
       "backend_scripts_troubleshoot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_troubleshoot_sh__entry"
     ],
+    "27": [
+      "frontend_eslintrc_extends",
+      "frontend_eslintrc_json"
+    ],
+    "28": [
+      "frontend_postcss_config_config",
+      "frontend_postcss_config_mjs"
+    ],
+    "29": [
+      "app_page_home",
+      "frontend_src_app_page_tsx"
+    ],
+    "30": [
+      "frontend_tailwind_config_config",
+      "frontend_tailwind_config_ts"
+    ],
+    "31": [
+      "backend_scripts_build_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_build_sh__entry"
+    ],
     "32": [
+      "backend_scripts_stop_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_stop_sh__entry"
+    ],
+    "33": [
       "utils_main_go",
       "utils_main_main"
     ],
-    "33": [
+    "34": [
       "frontend_next_config_mjs"
     ],
-    "34": [
+    "35": [
       "frontend_next_env_d_ts"
     ],
-    "35": [
+    "36": [
       "storage_resources_json"
     ],
-    "36": [
+    "37": [
       "storage_projects_json"
     ],
-    "37": [
+    "38": [
       "storage_schedulers_json"
     ],
-    "38": [
+    "39": [
       "storage_tasks_json"
     ],
-    "39": [
+    "40": [
       "storage_boards_json"
     ],
-    "40": [
+    "41": [
       "contributing_contributing"
     ],
-    "41": [
+    "42": [
       "update_graphify_sh"
     ]
   },
   "cohesion": {
     "0": 0.06358024691358025,
-    "1": 0.07138535995160314,
-    "2": 0.1474493361285814,
-    "3": 0.08408408408408409,
-    "4": 0.06451612903225806,
-    "5": 0.08,
-    "6": 0.1111111111111111,
-    "7": 0.4380952380952381,
-    "8": 0.20952380952380953,
-    "9": 0.21794871794871795,
-    "10": 0.19696969696969696,
-    "11": 0.18181818181818182,
-    "12": 0.2,
-    "13": 0.25,
-    "14": 0.2857142857142857,
-    "15": 0.6,
-    "16": 0.6,
-    "17": 0.5,
-    "18": 0.4,
+    "1": 0.1474493361285814,
+    "2": 0.11411411411411411,
+    "3": 0.06451612903225806,
+    "4": 0.10804597701149425,
+    "5": 0.11375661375661375,
+    "6": 0.08,
+    "7": 0.1111111111111111,
+    "8": 0.4380952380952381,
+    "9": 0.20952380952380953,
+    "10": 0.21794871794871795,
+    "11": 0.19696969696969696,
+    "12": 0.18181818181818182,
+    "13": 0.2,
+    "14": 0.25,
+    "15": 0.2857142857142857,
+    "16": 0.4,
+    "17": 0.6,
+    "18": 0.5,
     "19": 0.5,
     "20": 0.8333333333333334,
-    "21": 0.8333333333333334,
-    "22": 0.5,
+    "21": 0.5,
+    "22": 1.0,
     "23": 1.0,
     "24": 1.0,
     "25": 1.0,
@@ -589,7 +586,8 @@
     "38": 1.0,
     "39": 1.0,
     "40": 1.0,
-    "41": 1.0
+    "41": 1.0,
+    "42": 1.0
   },
   "gods": [
     {
@@ -701,7 +699,7 @@
     }
   ],
   "tokens": {
-    "input": 627,
-    "output": 536
+    "input": 0,
+    "output": 0
   }
 }

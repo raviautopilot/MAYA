@@ -2,20 +2,20 @@
 #
 # deploy.sh - Builds and deploys the MyKanban application to a VPS via SSH/SCP.
 #
-# Usage: ./deploy.sh <user@vps-ip> <remote-apps-folder>
-# Example: ./deploy.sh root@192.168.1.100 /var/www/mykanban
+# Usage: ./deploy.sh <user@vps-ip>
+# Example: ./deploy.sh root@192.168.1.100
 #
-
 set -euo pipefail
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <user@vps-ip> <remote-apps-folder>"
-    echo "Example: $0 root@192.168.1.100 /var/www/mykanban"
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <user@vps-ip>"
+    echo "Example: $0 root@192.168.1.100"
     exit 1
 fi
 
 VPS_TARGET=$1
-REMOTE_DIR=$2
+REMOTE_CHITTA_DIR="/apps/chitta"
+REMOTE_MAYA_DIR="/apps/maya"
 
 log_info() {
     printf "\033[1;34m[INFO]\033[0m %s\n" "$1"
@@ -23,10 +23,6 @@ log_info() {
 
 log_success() {
     printf "\033[1;32m[SUCCESS]\033[0m %s\n" "$1"
-}
-
-log_error() {
-    printf "\033[1;31m[ERROR]\033[0m %s\n" "$1"
 }
 
 # --- 1. Build Backend ---
@@ -40,43 +36,30 @@ fi
 cd ..
 log_success "Backend built successfully."
 
-# --- 2. Package Frontend ---
-log_info "Building frontend (maya)..."
-# Assuming root package.json handles workspaces
+# --- 2. Package Frontend (Static Export) ---
+log_info "Building frontend (maya) as a static site..."
 npm install
 cd frontend
 npm run build
-
-log_info "Packaging frontend files..."
-# Create a tarball containing the built files and necessary configs
-tar -czf frontend-release.tar.gz .next public package.json next.config.mjs
 cd ..
-log_success "Frontend packaged successfully."
+log_success "Frontend built successfully."
 
 # --- 3. Deploy to VPS ---
-log_info "Ensuring remote directory exists: $REMOTE_DIR..."
-ssh "$VPS_TARGET" "mkdir -p $REMOTE_DIR/backend/bin $REMOTE_DIR/frontend"
+log_info "Ensuring remote directories exist..."
+ssh "$VPS_TARGET" "mkdir -p $REMOTE_CHITTA_DIR/bin $REMOTE_MAYA_DIR"
 
-log_info "Transferring backend binary..."
-scp backend/bin/tracker-server "$VPS_TARGET:$REMOTE_DIR/backend/bin/tracker-server"
+log_info "Transferring backend binary to $REMOTE_CHITTA_DIR..."
+scp backend/bin/tracker-server "$VPS_TARGET:$REMOTE_CHITTA_DIR/bin/tracker-server"
 if [ -f "backend/config.example.json" ]; then
-    scp backend/config.example.json "$VPS_TARGET:$REMOTE_DIR/backend/"
+    scp backend/config.example.json "$VPS_TARGET:$REMOTE_CHITTA_DIR/"
 fi
 
-log_info "Transferring frontend package..."
-scp frontend/frontend-release.tar.gz "$VPS_TARGET:$REMOTE_DIR/frontend/"
-# Copy the root package-lock.json just in case it's needed for strict installs
-scp package-lock.json "$VPS_TARGET:$REMOTE_DIR/frontend/"
+log_info "Transferring frontend static files to $REMOTE_MAYA_DIR..."
+scp -r frontend/out/* "$VPS_TARGET:$REMOTE_MAYA_DIR/"
 
-log_info "Extracting frontend on VPS and installing production dependencies..."
-ssh "$VPS_TARGET" "cd $REMOTE_DIR/frontend && tar -xzf frontend-release.tar.gz && rm frontend-release.tar.gz && npm install --omit=dev"
-
-# Clean up local tarball
-rm frontend/frontend-release.tar.gz
-
-log_success "Deployment to $VPS_TARGET:$REMOTE_DIR completed!"
+log_success "Deployment to $VPS_TARGET completed!"
 echo "---------------------------------------------------------"
-echo "On your VPS, you can now start your services:"
-echo "Backend: cd $REMOTE_DIR/backend && ./bin/tracker-server"
-echo "Frontend: cd $REMOTE_DIR/frontend && npm start"
+echo "On your VPS, you can now start your backend service:"
+echo "Backend: cd $REMOTE_CHITTA_DIR && ./bin/tracker-server"
+echo "Your frontend is now served from $REMOTE_MAYA_DIR"
 echo "---------------------------------------------------------"

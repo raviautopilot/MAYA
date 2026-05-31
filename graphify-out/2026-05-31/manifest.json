@@ -339,19 +339,19 @@
     "ast_hash": "a6f3d7ea8d714614aeb38518dddf49a4",
     "semantic_hash": "a6f3d7ea8d714614aeb38518dddf49a4"
   },
-  "/home/ubuntu/code/github/raviautopilot/mycan/promote.sh": {
-    "mtime": 1780214375.149801,
-    "ast_hash": "9f8ab3f3be63dd47afb6da11a4d5a3d1",
-    "semantic_hash": "9f8ab3f3be63dd47afb6da11a4d5a3d1"
+  "/home/ubuntu/code/github/raviautopilot/mycan/deploy.sh": {
+    "mtime": 1780216288.5540292,
+    "ast_hash": "1b60e2ee35112a80b0c1e570144881e8",
+    "semantic_hash": "1b60e2ee35112a80b0c1e570144881e8"
   },
-  "/home/ubuntu/code/github/raviautopilot/mycan/deployment.sh": {
-    "mtime": 1780214224.7927299,
-    "ast_hash": "bc4e83538e67120193c69c3951ec3f4b",
-    "semantic_hash": "bc4e83538e67120193c69c3951ec3f4b"
+  "/home/ubuntu/code/github/raviautopilot/mycan/config/nginx/chitta/chitta-certbot.sh": {
+    "mtime": 1780216942.3678896,
+    "ast_hash": "7707ca0f23dca594ba21dbe82aa75e74",
+    "semantic_hash": "7707ca0f23dca594ba21dbe82aa75e74"
   },
-  "/home/ubuntu/code/github/raviautopilot/mycan/local-docker.sh": {
-    "mtime": 1780214542.9429967,
-    "ast_hash": "a96c14d849e070048ccdb5ee5cb3a9ff",
-    "semantic_hash": "a96c14d849e070048ccdb5ee5cb3a9ff"
+  "/home/ubuntu/code/github/raviautopilot/mycan/config/nginx/maya/maya-certbot.sh": {
+    "mtime": 1780216952.4119713,
+    "ast_hash": "97f7de90549d0b8533833dff2aee8361",
+    "semantic_hash": "97f7de90549d0b8533833dff2aee8361"
   }
 }

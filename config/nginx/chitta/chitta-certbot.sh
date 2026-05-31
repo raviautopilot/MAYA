@@ -8,7 +8,7 @@
 set -euo pipefail
 
 DOMAIN="chitta.jaganathan.co.uk"
-EMAIL="admin@jaganathan.co.uk" # CHANGE THIS to a valid email address
+EMAIL="raviregi@gmail.com" # CHANGE THIS to a valid email address
 
 log_info() {
     printf "\033[1;34m[INFO]\033[0m %s\n" "$1"
