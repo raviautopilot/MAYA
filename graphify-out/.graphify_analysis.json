@@ -21,7 +21,6 @@
       "frontend_src_components_ui_card_tsx",
       "frontend_src_components_ui_index_ts",
       "frontend_src_components_ui_input_tsx",
-      "frontend_src_components_ui_select_tsx",
       "frontend_src_components_ui_toast_tsx",
       "frontend_src_services_api_auth_ts",
       "frontend_src_services_api_boards_ts",
@@ -32,7 +31,6 @@
       "frontend_src_services_api_tasks_ts",
       "frontend_src_store_toaststore_ts",
       "frontend_src_types_index_ts",
-      "login_page_logincontent",
       "login_page_loginpage",
       "models_resource",
       "projects_page_projectspage",
@@ -74,8 +72,6 @@
       "ui_card_cardprops",
       "ui_input_input",
       "ui_input_inputprops",
-      "ui_select_select",
-      "ui_select_selectprops",
       "ui_skeleton_cardskeleton",
       "ui_skeleton_skeleton",
       "ui_skeleton_tableskeleton",
@@ -365,6 +361,7 @@
       "frontend_src_components_header_tsx",
       "frontend_src_components_sidebar_tsx",
       "frontend_src_store_authstore_ts",
+      "login_page_logincontent",
       "store_authstore_authstate",
       "store_authstore_useauthstore",
       "store_authstore_user"
@@ -428,11 +425,11 @@
       "frontend_dockerfile"
     ],
     "16": [
-      "handlers_mockfs",
-      "handlers_mockfs_mkdirall",
-      "handlers_mockfs_readfile",
-      "handlers_mockfs_stat",
-      "handlers_mockfs_writefile"
+      "config_create_syschitta_log_info",
+      "config_create_syschitta_log_success",
+      "config_create_syschitta_log_warn",
+      "config_create_syschitta_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
     ],
     "17": [
       "deploy_sh",
@@ -442,110 +439,122 @@
       "mycan_deploy_log_success"
     ],
     "18": [
+      "handlers_mockfs",
+      "handlers_mockfs_mkdirall",
+      "handlers_mockfs_readfile",
+      "handlers_mockfs_stat",
+      "handlers_mockfs_writefile"
+    ],
+    "19": [
       "backend_api_endpoints",
       "backend_auth_flow",
       "backend_user_registration",
       "swagger_api_spec",
       "user_journeys_doc"
     ],
-    "19": [
+    "20": [
       "app_layout_inter",
       "app_layout_metadata",
       "app_layout_rootlayout",
       "frontend_src_app_layout_tsx"
     ],
-    "20": [
+    "21": [
       "backend_scripts_test_api_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_api_sh__entry",
       "scripts_test_api_header",
       "scripts_test_api_run"
     ],
-    "21": [
+    "22": [
       "frontend_src_components_ui_table_tsx",
       "ui_table_column",
       "ui_table_table",
       "ui_table_tableprops"
     ],
-    "22": [
+    "23": [
       "chitta_chitta_certbot_log_info",
       "config_nginx_chitta_chitta_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_chitta_chitta_certbot_sh__entry"
     ],
-    "23": [
+    "24": [
       "config_nginx_maya_maya_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_maya_maya_certbot_sh__entry",
       "maya_maya_certbot_log_info"
     ],
-    "24": [
-      "backend_scripts_run_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_run_sh__entry"
-    ],
     "25": [
-      "backend_scripts_test_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_sh__entry"
+      "frontend_src_components_ui_select_tsx",
+      "ui_select_select",
+      "ui_select_selectprops"
     ],
     "26": [
-      "backend_scripts_troubleshoot_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_troubleshoot_sh__entry"
-    ],
-    "27": [
-      "frontend_eslintrc_extends",
-      "frontend_eslintrc_json"
-    ],
-    "28": [
-      "frontend_postcss_config_config",
-      "frontend_postcss_config_mjs"
-    ],
-    "29": [
-      "app_page_home",
-      "frontend_src_app_page_tsx"
-    ],
-    "30": [
-      "frontend_tailwind_config_config",
-      "frontend_tailwind_config_ts"
-    ],
-    "31": [
       "backend_scripts_build_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_build_sh__entry"
     ],
+    "27": [
+      "backend_scripts_test_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_test_sh__entry"
+    ],
+    "28": [
+      "backend_scripts_troubleshoot_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_troubleshoot_sh__entry"
+    ],
+    "29": [
+      "frontend_eslintrc_extends",
+      "frontend_eslintrc_json"
+    ],
+    "30": [
+      "frontend_postcss_config_config",
+      "frontend_postcss_config_mjs"
+    ],
+    "31": [
+      "app_page_home",
+      "frontend_src_app_page_tsx"
+    ],
     "32": [
+      "frontend_tailwind_config_config",
+      "frontend_tailwind_config_ts"
+    ],
+    "33": [
+      "backend_scripts_run_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_run_sh__entry"
+    ],
+    "34": [
       "backend_scripts_stop_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_backend_scripts_stop_sh__entry"
     ],
-    "33": [
+    "35": [
       "utils_main_go",
       "utils_main_main"
     ],
-    "34": [
+    "36": [
       "frontend_next_config_mjs"
     ],
-    "35": [
+    "37": [
       "frontend_next_env_d_ts"
     ],
-    "36": [
+    "38": [
       "storage_resources_json"
     ],
-    "37": [
+    "39": [
       "storage_projects_json"
     ],
-    "38": [
+    "40": [
       "storage_schedulers_json"
     ],
-    "39": [
+    "41": [
       "storage_tasks_json"
     ],
-    "40": [
+    "42": [
       "storage_boards_json"
     ],
-    "41": [
+    "43": [
       "contributing_contributing"
     ],
-    "42": [
+    "44": [
       "update_graphify_sh"
     ]
   },
   "cohesion": {
-    "0": 0.06358024691358025,
+    "0": 0.06869446343130553,
     "1": 0.1474493361285814,
     "2": 0.11411411411411411,
     "3": 0.06451612903225806,
@@ -555,22 +564,22 @@
     "7": 0.1111111111111111,
     "8": 0.4380952380952381,
     "9": 0.20952380952380953,
-    "10": 0.21794871794871795,
+    "10": 0.1978021978021978,
     "11": 0.19696969696969696,
     "12": 0.18181818181818182,
     "13": 0.2,
     "14": 0.25,
     "15": 0.2857142857142857,
-    "16": 0.4,
+    "16": 0.7,
     "17": 0.6,
-    "18": 0.5,
+    "18": 0.4,
     "19": 0.5,
-    "20": 0.8333333333333334,
-    "21": 0.5,
-    "22": 1.0,
+    "20": 0.5,
+    "21": 0.8333333333333334,
+    "22": 0.5,
     "23": 1.0,
     "24": 1.0,
-    "25": 1.0,
+    "25": 0.6666666666666666,
     "26": 1.0,
     "27": 1.0,
     "28": 1.0,
@@ -587,7 +596,9 @@
     "39": 1.0,
     "40": 1.0,
     "41": 1.0,
-    "42": 1.0
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0
   },
   "gods": [
     {
