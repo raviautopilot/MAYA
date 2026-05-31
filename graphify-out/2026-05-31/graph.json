@@ -170,7 +170,7 @@
       "file_type": "code",
       "source_file": "utils/main.go",
       "source_location": "L1",
-      "community": 30,
+      "community": 31,
       "norm_label": "main.go",
       "id": "utils_main_go"
     },
@@ -179,7 +179,7 @@
       "file_type": "code",
       "source_file": "utils/main.go",
       "source_location": "L8",
-      "community": 30,
+      "community": 31,
       "norm_label": "main()",
       "id": "utils_main_main"
     },
@@ -188,7 +188,7 @@
       "file_type": "code",
       "source_file": "storage/resources.json",
       "source_location": "L1",
-      "community": 31,
+      "community": 32,
       "norm_label": "resources.json",
       "id": "storage_resources_json"
     },
@@ -197,7 +197,7 @@
       "file_type": "code",
       "source_file": "storage/projects.json",
       "source_location": "L1",
-      "community": 32,
+      "community": 33,
       "norm_label": "projects.json",
       "id": "storage_projects_json"
     },
@@ -206,7 +206,7 @@
       "file_type": "code",
       "source_file": "storage/schedulers.json",
       "source_location": "L1",
-      "community": 33,
+      "community": 34,
       "norm_label": "schedulers.json",
       "id": "storage_schedulers_json"
     },
@@ -215,7 +215,7 @@
       "file_type": "code",
       "source_file": "storage/tasks.json",
       "source_location": "L1",
-      "community": 34,
+      "community": 35,
       "norm_label": "tasks.json",
       "id": "storage_tasks_json"
     },
@@ -224,7 +224,7 @@
       "file_type": "code",
       "source_file": "storage/boards.json",
       "source_location": "L1",
-      "community": 35,
+      "community": 36,
       "norm_label": "boards.json",
       "id": "storage_boards_json"
     },
@@ -237,7 +237,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 37,
       "norm_label": "contributing guide",
       "id": "contributing_contributing"
     },
@@ -380,7 +380,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 37,
+      "community": 38,
       "norm_label": "update-graphify.sh",
       "id": "update_graphify_sh"
     },
@@ -744,7 +744,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 14,
+      "community": 15,
       "norm_label": "deploy.sh",
       "id": "deploy_sh"
     },
@@ -757,7 +757,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 14,
+      "community": 15,
       "norm_label": "deploy.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_deploy_sh__entry"
     },
@@ -770,7 +770,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 14,
+      "community": 15,
       "norm_label": "log_info()",
       "id": "mycan_deploy_log_info"
     },
@@ -783,7 +783,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 14,
+      "community": 15,
       "norm_label": "log_success()",
       "id": "mycan_deploy_log_success"
     },
@@ -796,7 +796,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 14,
+      "community": 15,
       "norm_label": "log_error()",
       "id": "mycan_deploy_log_error"
     },
@@ -809,7 +809,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 17,
+      "community": 18,
       "norm_label": "chitta-certbot.sh",
       "id": "config_nginx_chitta_chitta_certbot_sh"
     },
@@ -822,7 +822,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 17,
+      "community": 18,
       "norm_label": "chitta-certbot.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_chitta_chitta_certbot_sh__entry"
     },
@@ -835,7 +835,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 17,
+      "community": 18,
       "norm_label": "log_info()",
       "id": "chitta_chitta_certbot_log_info"
     },
@@ -848,7 +848,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 18,
+      "community": 19,
       "norm_label": "maya-certbot.sh",
       "id": "config_nginx_maya_maya_certbot_sh"
     },
@@ -861,7 +861,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 18,
+      "community": 19,
       "norm_label": "maya-certbot.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_maya_maya_certbot_sh__entry"
     },
@@ -874,7 +874,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 18,
+      "community": 19,
       "norm_label": "log_info()",
       "id": "maya_maya_certbot_log_info"
     },
@@ -887,7 +887,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 13,
+      "community": 14,
       "norm_label": "create-syschitta.sh",
       "id": "config_create_syschitta_sh"
     },
@@ -900,7 +900,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 13,
+      "community": 14,
       "norm_label": "create-syschitta.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
     },
@@ -913,7 +913,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 13,
+      "community": 14,
       "norm_label": "log_info()",
       "id": "config_create_syschitta_log_info"
     },
@@ -926,7 +926,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 13,
+      "community": 14,
       "norm_label": "log_success()",
       "id": "config_create_syschitta_log_success"
     },
@@ -939,7 +939,7 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "community": 13,
+      "community": 14,
       "norm_label": "log_warn()",
       "id": "config_create_syschitta_log_warn"
     },
@@ -1299,7 +1299,7 @@
       "file_type": "code",
       "source_file": "chitta/models/models.go",
       "source_location": "L1",
-      "community": 38,
+      "community": 39,
       "norm_label": "models.go",
       "id": "chitta_models_models_go"
     },
@@ -1308,7 +1308,7 @@
       "file_type": "code",
       "source_file": "chitta/middleware/middleware.go",
       "source_location": "L1",
-      "community": 16,
+      "community": 17,
       "norm_label": "middleware.go",
       "id": "chitta_middleware_middleware_go"
     },
@@ -1317,7 +1317,7 @@
       "file_type": "code",
       "source_file": "chitta/middleware/middleware_test.go",
       "source_location": "L1",
-      "community": 39,
+      "community": 40,
       "norm_label": "middleware_test.go",
       "id": "chitta_middleware_middleware_test_go"
     },
@@ -1335,7 +1335,7 @@
       "file_type": "code",
       "source_file": "chitta/handlers/handlers_test.go",
       "source_location": "L1",
-      "community": 40,
+      "community": 41,
       "norm_label": "handlers_test.go",
       "id": "chitta_handlers_handlers_test_go"
     },
@@ -1344,7 +1344,7 @@
       "file_type": "code",
       "source_file": "chitta/auth/auth_test.go",
       "source_location": "L1",
-      "community": 41,
+      "community": 42,
       "norm_label": "auth_test.go",
       "id": "chitta_auth_auth_test_go"
     },
@@ -1353,7 +1353,7 @@
       "file_type": "code",
       "source_file": "chitta/auth/auth.go",
       "source_location": "L1",
-      "community": 42,
+      "community": 43,
       "norm_label": "auth.go",
       "id": "chitta_auth_auth_go"
     },
@@ -1366,7 +1366,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 22,
+      "community": 26,
       "norm_label": "test.sh",
       "id": "chitta_scripts_test_sh"
     },
@@ -1379,7 +1379,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 22,
+      "community": 26,
       "norm_label": "test.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_sh__entry"
     },
@@ -1392,7 +1392,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 23,
+      "community": 27,
       "norm_label": "troubleshoot.sh",
       "id": "chitta_scripts_troubleshoot_sh"
     },
@@ -1405,7 +1405,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 23,
+      "community": 27,
       "norm_label": "troubleshoot.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_troubleshoot_sh__entry"
     },
@@ -1418,7 +1418,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 21,
+      "community": 23,
       "norm_label": "run.sh",
       "id": "chitta_scripts_run_sh"
     },
@@ -1431,7 +1431,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 21,
+      "community": 23,
       "norm_label": "run.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_run_sh__entry"
     },
@@ -1496,7 +1496,7 @@
         "language": "bash",
         "kind": "file"
       },
-      "community": 20,
+      "community": 22,
       "norm_label": "build.sh",
       "id": "chitta_scripts_build_sh"
     },
@@ -1509,7 +1509,7 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "community": 20,
+      "community": 22,
       "norm_label": "build.sh script",
       "id": "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_build_sh__entry"
     },
@@ -1518,7 +1518,7 @@
       "file_type": "code",
       "source_file": "chitta/storage/resources.json",
       "source_location": "L1",
-      "community": 43,
+      "community": 44,
       "norm_label": "resources.json",
       "id": "chitta_storage_resources_json"
     },
@@ -1527,7 +1527,7 @@
       "file_type": "code",
       "source_file": "chitta/storage/projects.json",
       "source_location": "L1",
-      "community": 44,
+      "community": 45,
       "norm_label": "projects.json",
       "id": "chitta_storage_projects_json"
     },
@@ -1536,7 +1536,7 @@
       "file_type": "code",
       "source_file": "chitta/storage/schedulers.json",
       "source_location": "L1",
-      "community": 45,
+      "community": 46,
       "norm_label": "schedulers.json",
       "id": "chitta_storage_schedulers_json"
     },
@@ -1545,7 +1545,7 @@
       "file_type": "code",
       "source_file": "chitta/storage/storage_test.go",
       "source_location": "L1",
-      "community": 46,
+      "community": 47,
       "norm_label": "storage_test.go",
       "id": "chitta_storage_storage_test_go"
     },
@@ -1554,7 +1554,7 @@
       "file_type": "code",
       "source_file": "chitta/storage/tasks.json",
       "source_location": "L1",
-      "community": 47,
+      "community": 48,
       "norm_label": "tasks.json",
       "id": "chitta_storage_tasks_json"
     },
@@ -1563,7 +1563,7 @@
       "file_type": "code",
       "source_file": "chitta/storage/boards.json",
       "source_location": "L1",
-      "community": 48,
+      "community": 49,
       "norm_label": "boards.json",
       "id": "chitta_storage_boards_json"
     },
@@ -1572,7 +1572,7 @@
       "file_type": "code",
       "source_file": "chitta/storage/storage.go",
       "source_location": "L1",
-      "community": 49,
+      "community": 50,
       "norm_label": "storage.go",
       "id": "chitta_storage_storage_go"
     },
@@ -1581,7 +1581,7 @@
       "file_type": "code",
       "source_file": "maya/next.config.mjs",
       "source_location": "L1",
-      "community": 50,
+      "community": 51,
       "norm_label": "next.config.mjs",
       "id": "maya_next_config_mjs"
     },
@@ -1815,7 +1815,7 @@
       "file_type": "code",
       "source_file": "maya/postcss.config.mjs",
       "source_location": "L1",
-      "community": 27,
+      "community": 29,
       "norm_label": "postcss.config.mjs",
       "id": "maya_postcss_config_mjs"
     },
@@ -1824,7 +1824,7 @@
       "file_type": "code",
       "source_file": "maya/postcss.config.mjs",
       "source_location": "L2",
-      "community": 27,
+      "community": 29,
       "norm_label": "config",
       "id": "maya_postcss_config_config"
     },
@@ -1995,7 +1995,7 @@
       "file_type": "code",
       "source_file": "maya/next-env.d.ts",
       "source_location": "L1",
-      "community": 51,
+      "community": 52,
       "norm_label": "next-env.d.ts",
       "id": "maya_next_env_d_ts"
     },
@@ -2004,7 +2004,7 @@
       "file_type": "code",
       "source_file": "maya/.eslintrc.json",
       "source_location": "L1",
-      "community": 26,
+      "community": 28,
       "norm_label": ".eslintrc.json",
       "id": "maya_eslintrc_json"
     },
@@ -2013,7 +2013,7 @@
       "file_type": "code",
       "source_file": "maya/.eslintrc.json",
       "source_location": "L2",
-      "community": 26,
+      "community": 28,
       "norm_label": "extends",
       "id": "maya_eslintrc_extends"
     },
@@ -2022,7 +2022,7 @@
       "file_type": "code",
       "source_file": "maya/tailwind.config.ts",
       "source_location": "L1",
-      "community": 28,
+      "community": 30,
       "norm_label": "tailwind.config.ts",
       "id": "maya_tailwind_config_ts"
     },
@@ -2031,7 +2031,7 @@
       "file_type": "code",
       "source_file": "maya/tailwind.config.ts",
       "source_location": "L3",
-      "community": 28,
+      "community": 30,
       "norm_label": "config",
       "id": "maya_tailwind_config_config"
     },
@@ -2220,7 +2220,7 @@
       "file_type": "code",
       "source_file": "maya/src/app/layout.tsx",
       "source_location": "L1",
-      "community": 52,
+      "community": 53,
       "norm_label": "layout.tsx",
       "id": "maya_src_app_layout_tsx"
     },
@@ -2229,7 +2229,7 @@
       "file_type": "code",
       "source_file": "maya/src/app/page.tsx",
       "source_location": "L1",
-      "community": 53,
+      "community": 54,
       "norm_label": "page.tsx",
       "id": "maya_src_app_page_tsx"
     },
@@ -2353,7 +2353,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 29,
+      "community": 20,
       "norm_label": "admin setup journey",
       "id": "user_journeys_admin_setup"
     },
@@ -2366,7 +2366,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 29,
+      "community": 20,
       "norm_label": "post /api/v1/auth/login",
       "id": "backend_auth_login"
     },
@@ -2427,810 +2427,810 @@
       "file_type": "code",
       "source_file": "chitta/docs/docs.go",
       "source_location": "L1",
-      "id": "chitta_docs_docs_go",
-      "community": 19,
-      "norm_label": "docs.go"
+      "community": 21,
+      "norm_label": "docs.go",
+      "id": "chitta_docs_docs_go"
     },
     {
       "label": "init()",
       "file_type": "code",
       "source_file": "chitta/docs/docs.go",
       "source_location": "L2226",
-      "id": "docs_docs_init",
-      "community": 19,
-      "norm_label": "init()"
+      "community": 21,
+      "norm_label": "init()",
+      "id": "docs_docs_init"
     },
     {
       "label": "swagger.json",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1",
-      "id": "chitta_docs_swagger_json",
       "community": 7,
-      "norm_label": "swagger.json"
+      "norm_label": "swagger.json",
+      "id": "chitta_docs_swagger_json"
     },
     {
       "label": "swagger",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L2",
-      "id": "docs_swagger_swagger",
       "community": 7,
-      "norm_label": "swagger"
+      "norm_label": "swagger",
+      "id": "docs_swagger_swagger"
     },
     {
       "label": "info",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L3",
-      "id": "docs_swagger_info",
       "community": 7,
-      "norm_label": "info"
+      "norm_label": "info",
+      "id": "docs_swagger_info"
     },
     {
       "label": "title",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L5",
-      "id": "docs_swagger_info_title",
       "community": 7,
-      "norm_label": "title"
+      "norm_label": "title",
+      "id": "docs_swagger_info_title"
     },
     {
       "label": "termsOfService",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L6",
-      "id": "docs_swagger_info_termsofservice",
       "community": 7,
-      "norm_label": "termsofservice"
+      "norm_label": "termsofservice",
+      "id": "docs_swagger_info_termsofservice"
     },
     {
       "label": "contact",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L7",
-      "id": "docs_swagger_info_contact",
       "community": 7,
-      "norm_label": "contact"
+      "norm_label": "contact",
+      "id": "docs_swagger_info_contact"
     },
     {
       "label": "name",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L8",
-      "id": "docs_swagger_contact_name",
       "community": 7,
-      "norm_label": "name"
+      "norm_label": "name",
+      "id": "docs_swagger_contact_name"
     },
     {
       "label": "email",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L9",
-      "id": "docs_swagger_contact_email",
       "community": 7,
-      "norm_label": "email"
+      "norm_label": "email",
+      "id": "docs_swagger_contact_email"
     },
     {
       "label": "license",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L11",
-      "id": "docs_swagger_info_license",
       "community": 7,
-      "norm_label": "license"
+      "norm_label": "license",
+      "id": "docs_swagger_info_license"
     },
     {
       "label": "url",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L13",
-      "id": "docs_swagger_license_url",
       "community": 7,
-      "norm_label": "url"
+      "norm_label": "url",
+      "id": "docs_swagger_license_url"
     },
     {
       "label": "version",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L15",
-      "id": "docs_swagger_info_version",
       "community": 7,
-      "norm_label": "version"
+      "norm_label": "version",
+      "id": "docs_swagger_info_version"
     },
     {
       "label": "host",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L17",
-      "id": "docs_swagger_host",
       "community": 7,
-      "norm_label": "host"
+      "norm_label": "host",
+      "id": "docs_swagger_host"
     },
     {
       "label": "basePath",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L18",
-      "id": "docs_swagger_basepath",
       "community": 7,
-      "norm_label": "basepath"
+      "norm_label": "basepath",
+      "id": "docs_swagger_basepath"
     },
     {
       "label": "paths",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L19",
-      "id": "docs_swagger_paths",
       "community": 1,
-      "norm_label": "paths"
+      "norm_label": "paths",
+      "id": "docs_swagger_paths"
     },
     {
       "label": "/health",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L20",
-      "id": "docs_swagger_paths_health",
       "community": 1,
-      "norm_label": "/health"
+      "norm_label": "/health",
+      "id": "docs_swagger_paths_health"
     },
     {
       "label": "get",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L21",
-      "id": "docs_swagger_health_get",
       "community": 1,
-      "norm_label": "get"
+      "norm_label": "get",
+      "id": "docs_swagger_health_get"
     },
     {
       "label": "description",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L22",
-      "id": "docs_swagger_get_description",
       "community": 1,
-      "norm_label": "description"
+      "norm_label": "description",
+      "id": "docs_swagger_get_description"
     },
     {
       "label": "produces",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L23",
-      "id": "docs_swagger_get_produces",
       "community": 1,
-      "norm_label": "produces"
+      "norm_label": "produces",
+      "id": "docs_swagger_get_produces"
     },
     {
       "label": "tags",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L26",
-      "id": "docs_swagger_get_tags",
       "community": 1,
-      "norm_label": "tags"
+      "norm_label": "tags",
+      "id": "docs_swagger_get_tags"
     },
     {
       "label": "summary",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L29",
-      "id": "docs_swagger_get_summary",
       "community": 1,
-      "norm_label": "summary"
+      "norm_label": "summary",
+      "id": "docs_swagger_get_summary"
     },
     {
       "label": "responses",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L30",
-      "id": "docs_swagger_get_responses",
       "community": 1,
-      "norm_label": "responses"
+      "norm_label": "responses",
+      "id": "docs_swagger_get_responses"
     },
     {
       "label": "200",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L31",
-      "id": "docs_swagger_responses_200",
       "community": 1,
-      "norm_label": "200"
+      "norm_label": "200",
+      "id": "docs_swagger_responses_200"
     },
     {
       "label": "schema",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L33",
-      "id": "docs_swagger_200_schema",
       "community": 1,
-      "norm_label": "schema"
+      "norm_label": "schema",
+      "id": "docs_swagger_200_schema"
     },
     {
       "label": "allOf",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L34",
-      "id": "docs_swagger_schema_allof",
       "community": 1,
-      "norm_label": "allof"
+      "norm_label": "allof",
+      "id": "docs_swagger_schema_allof"
     },
     {
       "label": "/v1/auth/change-password",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L60",
-      "id": "docs_swagger_paths_v1_auth_change_password",
       "community": 1,
-      "norm_label": "/v1/auth/change-password"
+      "norm_label": "/v1/auth/change-password",
+      "id": "docs_swagger_paths_v1_auth_change_password"
     },
     {
       "label": "400",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L113",
-      "id": "docs_swagger_responses_400",
       "community": 1,
-      "norm_label": "400"
+      "norm_label": "400",
+      "id": "docs_swagger_responses_400"
     },
     {
       "label": "$ref",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L116",
-      "id": "docs_swagger_schema_ref",
       "community": 1,
-      "norm_label": "$ref"
+      "norm_label": "$ref",
+      "id": "docs_swagger_schema_ref"
     },
     {
       "label": "401",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L119",
-      "id": "docs_swagger_responses_401",
       "community": 1,
-      "norm_label": "401"
+      "norm_label": "401",
+      "id": "docs_swagger_responses_401"
     },
     {
       "label": "500",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L125",
-      "id": "docs_swagger_responses_500",
       "community": 1,
-      "norm_label": "500"
+      "norm_label": "500",
+      "id": "docs_swagger_responses_500"
     },
     {
       "label": "/v1/auth/google/callback",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L134",
-      "id": "docs_swagger_paths_v1_auth_google_callback",
       "community": 1,
-      "norm_label": "/v1/auth/google/callback"
+      "norm_label": "/v1/auth/google/callback",
+      "id": "docs_swagger_paths_v1_auth_google_callback"
     },
     {
       "label": "parameters",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L144",
-      "id": "docs_swagger_get_parameters",
       "community": 1,
-      "norm_label": "parameters"
+      "norm_label": "parameters",
+      "id": "docs_swagger_get_parameters"
     },
     {
       "label": "/v1/auth/google/login",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L198",
-      "id": "docs_swagger_paths_v1_auth_google_login",
       "community": 1,
-      "norm_label": "/v1/auth/google/login"
+      "norm_label": "/v1/auth/google/login",
+      "id": "docs_swagger_paths_v1_auth_google_login"
     },
     {
       "label": "307",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L209",
-      "id": "docs_swagger_responses_307",
       "community": 1,
-      "norm_label": "307"
+      "norm_label": "307",
+      "id": "docs_swagger_responses_307"
     },
     {
       "label": "503",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L212",
-      "id": "docs_swagger_responses_503",
       "community": 1,
-      "norm_label": "503"
+      "norm_label": "503",
+      "id": "docs_swagger_responses_503"
     },
     {
       "label": "/v1/auth/login",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L221",
-      "id": "docs_swagger_paths_v1_auth_login",
       "community": 1,
-      "norm_label": "/v1/auth/login"
+      "norm_label": "/v1/auth/login",
+      "id": "docs_swagger_paths_v1_auth_login"
     },
     {
       "label": "/v1/boards",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L290",
-      "id": "docs_swagger_paths_v1_boards",
       "community": 1,
-      "norm_label": "/v1/boards"
+      "norm_label": "/v1/boards",
+      "id": "docs_swagger_paths_v1_boards"
     },
     {
       "label": "security",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L292",
-      "id": "docs_swagger_get_security",
       "community": 1,
-      "norm_label": "security"
+      "norm_label": "security",
+      "id": "docs_swagger_get_security"
     },
     {
       "label": "post",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L343",
-      "id": "docs_swagger_v1_boards_post",
       "community": 1,
-      "norm_label": "post"
+      "norm_label": "post",
+      "id": "docs_swagger_v1_boards_post"
     },
     {
       "label": "201",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L372",
-      "id": "docs_swagger_responses_201",
       "community": 1,
-      "norm_label": "201"
+      "norm_label": "201",
+      "id": "docs_swagger_responses_201"
     },
     {
       "label": "404",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L448",
-      "id": "docs_swagger_responses_404",
       "community": 1,
-      "norm_label": "404"
+      "norm_label": "404",
+      "id": "docs_swagger_responses_404"
     },
     {
       "label": "put",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L462",
-      "id": "docs_swagger_v1_boards_id_put",
       "community": 1,
-      "norm_label": "put"
+      "norm_label": "put",
+      "id": "docs_swagger_v1_boards_id_put"
     },
     {
       "label": "consumes",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L469",
-      "id": "docs_swagger_put_consumes",
       "community": 1,
-      "norm_label": "consumes"
+      "norm_label": "consumes",
+      "id": "docs_swagger_put_consumes"
     },
     {
       "label": "delete",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L536",
-      "id": "docs_swagger_v1_boards_id_delete",
       "community": 1,
-      "norm_label": "delete"
+      "norm_label": "delete",
+      "id": "docs_swagger_v1_boards_id_delete"
     },
     {
       "label": "/v1/projects",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L598",
-      "id": "docs_swagger_paths_v1_projects",
       "community": 1,
-      "norm_label": "/v1/projects"
+      "norm_label": "/v1/projects",
+      "id": "docs_swagger_paths_v1_projects"
     },
     {
       "label": "/v1/resources",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L898",
-      "id": "docs_swagger_paths_v1_resources",
       "community": 1,
-      "norm_label": "/v1/resources"
+      "norm_label": "/v1/resources",
+      "id": "docs_swagger_paths_v1_resources"
     },
     {
       "label": "/v1/schedulers",
       "file_type": "code",
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1198",
-      "id": "docs_swagger_paths_v1_schedulers",
       "community": 1,
-      "norm_label": "/v1/schedulers"
+      "norm_label": "/v1/schedulers",
+      "id": "docs_swagger_paths_v1_schedulers"
     },
     {
       "label": "JWTAuth()",
       "file_type": "code",
       "source_file": "chitta/middleware/middleware.go",
       "source_location": "L14",
-      "id": "middleware_middleware_jwtauth",
-      "community": 16,
-      "norm_label": "jwtauth()"
+      "community": 17,
+      "norm_label": "jwtauth()",
+      "id": "middleware_middleware_jwtauth"
     },
     {
       "label": "Recovery()",
       "file_type": "code",
       "source_file": "chitta/middleware/middleware.go",
       "source_location": "L49",
-      "id": "middleware_middleware_recovery",
-      "community": 16,
-      "norm_label": "recovery()"
+      "community": 17,
+      "norm_label": "recovery()",
+      "id": "middleware_middleware_recovery"
     },
     {
       "label": "Handler",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L18",
-      "id": "handlers_handler",
       "community": 0,
-      "norm_label": "handler"
+      "norm_label": "handler",
+      "id": "handlers_handler"
     },
     {
       "label": "respond()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L29",
-      "id": "handlers_handlers_respond",
       "community": 0,
-      "norm_label": "respond()"
+      "norm_label": "respond()",
+      "id": "handlers_handlers_respond"
     },
     {
       "label": ".Login()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L51",
-      "id": "handlers_handler_login",
       "community": 0,
-      "norm_label": ".login()"
+      "norm_label": ".login()",
+      "id": "handlers_handler_login"
     },
     {
       "label": ".ChangePassword()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L86",
-      "id": "handlers_handler_changepassword",
       "community": 0,
-      "norm_label": ".changepassword()"
+      "norm_label": ".changepassword()",
+      "id": "handlers_handler_changepassword"
     },
     {
       "label": ".GoogleLogin()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L117",
-      "id": "handlers_handler_googlelogin",
       "community": 0,
-      "norm_label": ".googlelogin()"
+      "norm_label": ".googlelogin()",
+      "id": "handlers_handler_googlelogin"
     },
     {
       "label": ".GoogleCallback()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L137",
-      "id": "handlers_handler_googlecallback",
       "community": 0,
-      "norm_label": ".googlecallback()"
+      "norm_label": ".googlecallback()",
+      "id": "handlers_handler_googlecallback"
     },
     {
       "label": ".CreateProject()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L171",
-      "id": "handlers_handler_createproject",
       "community": 0,
-      "norm_label": ".createproject()"
+      "norm_label": ".createproject()",
+      "id": "handlers_handler_createproject"
     },
     {
       "label": ".ListProjects()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L199",
-      "id": "handlers_handler_listprojects",
       "community": 0,
-      "norm_label": ".listprojects()"
+      "norm_label": ".listprojects()",
+      "id": "handlers_handler_listprojects"
     },
     {
       "label": ".GetProject()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L220",
-      "id": "handlers_handler_getproject",
       "community": 0,
-      "norm_label": ".getproject()"
+      "norm_label": ".getproject()",
+      "id": "handlers_handler_getproject"
     },
     {
       "label": ".UpdateProject()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L250",
-      "id": "handlers_handler_updateproject",
       "community": 0,
-      "norm_label": ".updateproject()"
+      "norm_label": ".updateproject()",
+      "id": "handlers_handler_updateproject"
     },
     {
       "label": ".DeleteProject()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L297",
-      "id": "handlers_handler_deleteproject",
       "community": 0,
-      "norm_label": ".deleteproject()"
+      "norm_label": ".deleteproject()",
+      "id": "handlers_handler_deleteproject"
     },
     {
       "label": ".CreateBoard()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L351",
-      "id": "handlers_handler_createboard",
       "community": 0,
-      "norm_label": ".createboard()"
+      "norm_label": ".createboard()",
+      "id": "handlers_handler_createboard"
     },
     {
       "label": ".ListBoards()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L398",
-      "id": "handlers_handler_listboards",
       "community": 0,
-      "norm_label": ".listboards()"
+      "norm_label": ".listboards()",
+      "id": "handlers_handler_listboards"
     },
     {
       "label": ".GetBoard()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L433",
-      "id": "handlers_handler_getboard",
       "community": 0,
-      "norm_label": ".getboard()"
+      "norm_label": ".getboard()",
+      "id": "handlers_handler_getboard"
     },
     {
       "label": ".UpdateBoard()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L463",
-      "id": "handlers_handler_updateboard",
       "community": 0,
-      "norm_label": ".updateboard()"
+      "norm_label": ".updateboard()",
+      "id": "handlers_handler_updateboard"
     },
     {
       "label": ".DeleteBoard()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L513",
-      "id": "handlers_handler_deleteboard",
       "community": 0,
-      "norm_label": ".deleteboard()"
+      "norm_label": ".deleteboard()",
+      "id": "handlers_handler_deleteboard"
     },
     {
       "label": ".CreateTask()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L567",
-      "id": "handlers_handler_createtask",
       "community": 0,
-      "norm_label": ".createtask()"
+      "norm_label": ".createtask()",
+      "id": "handlers_handler_createtask"
     },
     {
       "label": ".ListTasks()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L646",
-      "id": "handlers_handler_listtasks",
       "community": 0,
-      "norm_label": ".listtasks()"
+      "norm_label": ".listtasks()",
+      "id": "handlers_handler_listtasks"
     },
     {
       "label": ".GetTask()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L708",
-      "id": "handlers_handler_gettask",
       "community": 0,
-      "norm_label": ".gettask()"
+      "norm_label": ".gettask()",
+      "id": "handlers_handler_gettask"
     },
     {
       "label": ".UpdateTask()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L738",
-      "id": "handlers_handler_updatetask",
       "community": 0,
-      "norm_label": ".updatetask()"
+      "norm_label": ".updatetask()",
+      "id": "handlers_handler_updatetask"
     },
     {
       "label": ".PatchTask()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L801",
-      "id": "handlers_handler_patchtask",
       "community": 0,
-      "norm_label": ".patchtask()"
+      "norm_label": ".patchtask()",
+      "id": "handlers_handler_patchtask"
     },
     {
       "label": ".DeleteTask()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L883",
-      "id": "handlers_handler_deletetask",
       "community": 0,
-      "norm_label": ".deletetask()"
+      "norm_label": ".deletetask()",
+      "id": "handlers_handler_deletetask"
     },
     {
       "label": ".generateRecurringTask()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L910",
-      "id": "handlers_handler_generaterecurringtask",
       "community": 0,
-      "norm_label": ".generaterecurringtask()"
+      "norm_label": ".generaterecurringtask()",
+      "id": "handlers_handler_generaterecurringtask"
     },
     {
       "label": "calculateNextRun()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L974",
-      "id": "handlers_handlers_calculatenextrun",
       "community": 0,
-      "norm_label": "calculatenextrun()"
+      "norm_label": "calculatenextrun()",
+      "id": "handlers_handlers_calculatenextrun"
     },
     {
       "label": ".CreateScheduler()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1052",
-      "id": "handlers_handler_createscheduler",
       "community": 0,
-      "norm_label": ".createscheduler()"
+      "norm_label": ".createscheduler()",
+      "id": "handlers_handler_createscheduler"
     },
     {
       "label": ".ListSchedulers()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1083",
-      "id": "handlers_handler_listschedulers",
       "community": 0,
-      "norm_label": ".listschedulers()"
+      "norm_label": ".listschedulers()",
+      "id": "handlers_handler_listschedulers"
     },
     {
       "label": ".GetScheduler()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1104",
-      "id": "handlers_handler_getscheduler",
       "community": 0,
-      "norm_label": ".getscheduler()"
+      "norm_label": ".getscheduler()",
+      "id": "handlers_handler_getscheduler"
     },
     {
       "label": ".UpdateScheduler()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1134",
-      "id": "handlers_handler_updatescheduler",
       "community": 0,
-      "norm_label": ".updatescheduler()"
+      "norm_label": ".updatescheduler()",
+      "id": "handlers_handler_updatescheduler"
     },
     {
       "label": ".DeleteScheduler()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1180",
-      "id": "handlers_handler_deletescheduler",
       "community": 0,
-      "norm_label": ".deletescheduler()"
+      "norm_label": ".deletescheduler()",
+      "id": "handlers_handler_deletescheduler"
     },
     {
       "label": ".CreateResource()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1220",
-      "id": "handlers_handler_createresource",
       "community": 0,
-      "norm_label": ".createresource()"
+      "norm_label": ".createresource()",
+      "id": "handlers_handler_createresource"
     },
     {
       "label": ".ListResources()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1251",
-      "id": "handlers_handler_listresources",
       "community": 0,
-      "norm_label": ".listresources()"
+      "norm_label": ".listresources()",
+      "id": "handlers_handler_listresources"
     },
     {
       "label": ".GetResource()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1272",
-      "id": "handlers_handler_getresource",
       "community": 0,
-      "norm_label": ".getresource()"
+      "norm_label": ".getresource()",
+      "id": "handlers_handler_getresource"
     },
     {
       "label": ".UpdateResource()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1302",
-      "id": "handlers_handler_updateresource",
       "community": 0,
-      "norm_label": ".updateresource()"
+      "norm_label": ".updateresource()",
+      "id": "handlers_handler_updateresource"
     },
     {
       "label": ".DeleteResource()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1348",
-      "id": "handlers_handler_deleteresource",
       "community": 0,
-      "norm_label": ".deleteresource()"
+      "norm_label": ".deleteresource()",
+      "id": "handlers_handler_deleteresource"
     },
     {
       "label": "filterActive()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1377",
-      "id": "handlers_handlers_filteractive",
       "community": 0,
-      "norm_label": "filteractive()"
+      "norm_label": "filteractive()",
+      "id": "handlers_handlers_filteractive"
     },
     {
       "label": "entityExists()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1391",
-      "id": "handlers_handlers_entityexists",
       "community": 0,
-      "norm_label": "entityexists()"
+      "norm_label": "entityexists()",
+      "id": "handlers_handlers_entityexists"
     },
     {
       "label": "contains()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1402",
-      "id": "handlers_handlers_contains",
       "community": 0,
-      "norm_label": "contains()"
+      "norm_label": "contains()",
+      "id": "handlers_handlers_contains"
     },
     {
       "label": "Health()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1418",
-      "id": "handlers_handlers_health",
       "community": 0,
-      "norm_label": "health()"
+      "norm_label": "health()",
+      "id": "handlers_handlers_health"
     },
     {
       "label": ".StartBackgroundWorker()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1423",
-      "id": "handlers_handler_startbackgroundworker",
       "community": 0,
-      "norm_label": ".startbackgroundworker()"
+      "norm_label": ".startbackgroundworker()",
+      "id": "handlers_handler_startbackgroundworker"
     },
     {
       "label": ".checkAndTriggerSchedulers()",
       "file_type": "code",
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1440",
-      "id": "handlers_handler_checkandtriggerschedulers",
       "community": 0,
-      "norm_label": ".checkandtriggerschedulers()"
+      "norm_label": ".checkandtriggerschedulers()",
+      "id": "handlers_handler_checkandtriggerschedulers"
     },
     {
       "label": "Resources API",
@@ -3241,9 +3241,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "backend_resources",
       "community": 2,
-      "norm_label": "resources api"
+      "norm_label": "resources api",
+      "id": "backend_resources"
     },
     {
       "label": "Claims",
@@ -3254,9 +3254,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "auth_claims",
       "community": 11,
-      "norm_label": "claims"
+      "norm_label": "claims",
+      "id": "auth_claims"
     },
     {
       "label": "HashPassword",
@@ -3267,9 +3267,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "auth_hashpassword",
-      "community": 54,
-      "norm_label": "hashpassword"
+      "community": 55,
+      "norm_label": "hashpassword",
+      "id": "auth_hashpassword"
     },
     {
       "label": "CheckPassword",
@@ -3280,9 +3280,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "auth_checkpassword",
-      "community": 55,
-      "norm_label": "checkpassword"
+      "community": 56,
+      "norm_label": "checkpassword",
+      "id": "auth_checkpassword"
     },
     {
       "label": "GenerateJWT",
@@ -3293,9 +3293,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "auth_generatejwt",
       "community": 11,
-      "norm_label": "generatejwt"
+      "norm_label": "generatejwt",
+      "id": "auth_generatejwt"
     },
     {
       "label": "ValidateJWT",
@@ -3306,9 +3306,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "auth_validatejwt",
       "community": 11,
-      "norm_label": "validatejwt"
+      "norm_label": "validatejwt",
+      "id": "auth_validatejwt"
     },
     {
       "label": "GoogleOAuthConfig",
@@ -3319,9 +3319,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "auth_googleoauthconfig",
-      "community": 56,
-      "norm_label": "googleoauthconfig"
+      "community": 57,
+      "norm_label": "googleoauthconfig",
+      "id": "auth_googleoauthconfig"
     },
     {
       "label": "FetchGoogleUser",
@@ -3332,9 +3332,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "auth_fetchgoogleuser",
-      "community": 57,
-      "norm_label": "fetchgoogleuser"
+      "community": 58,
+      "norm_label": "fetchgoogleuser",
+      "id": "auth_fetchgoogleuser"
     },
     {
       "label": "Project Model",
@@ -3345,9 +3345,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "models_project",
-      "community": 15,
-      "norm_label": "project model"
+      "community": 16,
+      "norm_label": "project model",
+      "id": "models_project"
     },
     {
       "label": "Board Model",
@@ -3358,9 +3358,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "models_board",
-      "community": 15,
-      "norm_label": "board model"
+      "community": 16,
+      "norm_label": "board model",
+      "id": "models_board"
     },
     {
       "label": "Task Model",
@@ -3371,9 +3371,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "models_task",
-      "community": 15,
-      "norm_label": "task model"
+      "community": 16,
+      "norm_label": "task model",
+      "id": "models_task"
     },
     {
       "label": "Resource Model",
@@ -3384,9 +3384,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "models_resource",
-      "community": 58,
-      "norm_label": "resource model"
+      "community": 59,
+      "norm_label": "resource model",
+      "id": "models_resource"
     },
     {
       "label": "Scheduler Model",
@@ -3397,9 +3397,74 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "models_scheduler",
-      "community": 15,
-      "norm_label": "scheduler model"
+      "community": 16,
+      "norm_label": "scheduler model",
+      "id": "models_scheduler"
+    },
+    {
+      "label": "SWAGGER.pdf",
+      "file_type": "document",
+      "source_file": "chitta/SWAGGER.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "swagger_pdf",
+      "community": 13,
+      "norm_label": "swagger.pdf"
+    },
+    {
+      "label": "user_journeys.pdf",
+      "file_type": "document",
+      "source_file": "chitta/design/user_journeys.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "user_journeys_pdf",
+      "community": 13,
+      "norm_label": "user_journeys.pdf"
+    },
+    {
+      "label": "Chitta System",
+      "file_type": "concept",
+      "source_file": "chitta/SWAGGER.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "chitta_system",
+      "community": 13,
+      "norm_label": "chitta system"
+    },
+    {
+      "label": "API Specification",
+      "file_type": "rationale",
+      "source_file": "chitta/SWAGGER.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "api_specification",
+      "community": 13,
+      "norm_label": "api specification"
+    },
+    {
+      "label": "User Experience Design",
+      "file_type": "rationale",
+      "source_file": "chitta/design/user_journeys.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "user_experience_design",
+      "community": 13,
+      "norm_label": "user experience design"
     }
   ],
   "links": [
@@ -3827,7 +3892,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L213",
+      "source_location": "L219",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3837,7 +3902,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L289",
+      "source_location": "L295",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3847,7 +3912,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L99",
+      "source_location": "L101",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3857,7 +3922,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L256",
+      "source_location": "L262",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3867,7 +3932,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L170",
+      "source_location": "L176",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3877,7 +3942,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L55",
+      "source_location": "L57",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3887,7 +3952,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3897,7 +3962,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L39",
+      "source_location": "L41",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3907,7 +3972,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3917,7 +3982,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L31",
+      "source_location": "L33",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3927,7 +3992,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3937,7 +4002,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L90",
+      "source_location": "L92",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
@@ -3947,66 +4012,11 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L64",
+      "source_location": "L66",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "control_sh",
       "target": "mycan_control_show_help"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L305",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_do_kill"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L323",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_do_logs"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L299",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_do_start"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L320",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_do_status"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L302",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_do_stop"
     },
     {
       "relation": "calls",
@@ -4017,7 +4027,7 @@
       "context": "call",
       "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_load_pids"
+      "target": "mycan_control_do_kill"
     },
     {
       "relation": "calls",
@@ -4028,29 +4038,18 @@
       "context": "call",
       "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_log_error"
+      "target": "mycan_control_do_logs"
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L308",
+      "source_location": "L305",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_log_info"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L313",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
-      "target": "mycan_control_log_warn"
+      "target": "mycan_control_do_start"
     },
     {
       "relation": "calls",
@@ -4061,13 +4060,79 @@
       "context": "call",
       "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
+      "target": "mycan_control_do_status"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L308",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
+      "target": "mycan_control_do_stop"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L317",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
+      "target": "mycan_control_load_pids"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L335",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
+      "target": "mycan_control_log_error"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L314",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
+      "target": "mycan_control_log_info"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L319",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
+      "target": "mycan_control_log_warn"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L332",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "home_ubuntu_code_github_raviautopilot_mycan_control_sh__entry",
       "target": "mycan_control_show_help"
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L229",
+      "source_location": "L235",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4078,7 +4143,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L290",
+      "source_location": "L296",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4089,7 +4154,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L113",
+      "source_location": "L115",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4100,7 +4165,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L176",
+      "source_location": "L182",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4111,7 +4176,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L91",
+      "source_location": "L93",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4122,7 +4187,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L252",
+      "source_location": "L258",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4133,7 +4198,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L146",
+      "source_location": "L152",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4144,7 +4209,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L206",
+      "source_location": "L212",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4155,7 +4220,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L218",
+      "source_location": "L224",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4166,7 +4231,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L104",
+      "source_location": "L106",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4177,7 +4242,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L208",
+      "source_location": "L214",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4188,7 +4253,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L149",
+      "source_location": "L155",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4199,7 +4264,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L214",
+      "source_location": "L220",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4210,7 +4275,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L100",
+      "source_location": "L102",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4221,73 +4286,73 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L257",
+      "source_location": "L263",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
       "source": "mycan_control_do_status",
       "target": "mycan_control_load_pids"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L177",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "mycan_control_do_stop",
+      "target": "mycan_control_load_pids"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L223",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "mycan_control_do_kill",
+      "target": "mycan_control_is_alive"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L105",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "mycan_control_do_start",
+      "target": "mycan_control_is_alive"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L271",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "mycan_control_do_status",
+      "target": "mycan_control_is_alive"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "control.sh",
+      "source_location": "L181",
+      "weight": 1.0,
+      "context": "call",
+      "confidence_score": 1.0,
+      "source": "mycan_control_do_stop",
+      "target": "mycan_control_is_alive"
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
       "source_location": "L171",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "mycan_control_do_stop",
-      "target": "mycan_control_load_pids"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L217",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "mycan_control_do_kill",
-      "target": "mycan_control_is_alive"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L103",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "mycan_control_do_start",
-      "target": "mycan_control_is_alive"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L265",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "mycan_control_do_status",
-      "target": "mycan_control_is_alive"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L175",
-      "weight": 1.0,
-      "context": "call",
-      "confidence_score": 1.0,
-      "source": "mycan_control_do_stop",
-      "target": "mycan_control_is_alive"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "control.sh",
-      "source_location": "L165",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4298,7 +4363,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "control.sh",
-      "source_location": "L284",
+      "source_location": "L290",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -4954,9 +5019,9 @@
       "source_file": "chitta/middleware/middleware.go",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_middleware_middleware_go",
-      "target": "middleware_middleware_jwtauth",
-      "confidence_score": 1.0
+      "target": "middleware_middleware_jwtauth"
     },
     {
       "relation": "contains",
@@ -4964,9 +5029,9 @@
       "source_file": "chitta/middleware/middleware.go",
       "source_location": "L49",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_middleware_middleware_go",
-      "target": "middleware_middleware_recovery",
-      "confidence_score": 1.0
+      "target": "middleware_middleware_recovery"
     },
     {
       "relation": "contains",
@@ -4974,9 +5039,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_handlers_handlers_go",
-      "target": "handlers_handler",
-      "confidence_score": 1.0
+      "target": "handlers_handler"
     },
     {
       "relation": "contains",
@@ -4984,9 +5049,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L974",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_handlers_handlers_go",
-      "target": "handlers_handlers_calculatenextrun",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_calculatenextrun"
     },
     {
       "relation": "contains",
@@ -4994,9 +5059,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1402",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_handlers_handlers_go",
-      "target": "handlers_handlers_contains",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_contains"
     },
     {
       "relation": "contains",
@@ -5004,9 +5069,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1391",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_handlers_handlers_go",
-      "target": "handlers_handlers_entityexists",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_entityexists"
     },
     {
       "relation": "contains",
@@ -5014,9 +5079,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1377",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_handlers_handlers_go",
-      "target": "handlers_handlers_filteractive",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_filteractive"
     },
     {
       "relation": "contains",
@@ -5024,9 +5089,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1418",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_handlers_handlers_go",
-      "target": "handlers_handlers_health",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_health"
     },
     {
       "relation": "contains",
@@ -5034,9 +5099,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_handlers_handlers_go",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "contains",
@@ -6318,9 +6383,9 @@
       "source_file": "chitta/docs/docs.go",
       "source_location": "L2226",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_docs_docs_go",
-      "target": "docs_docs_init",
-      "confidence_score": 1.0
+      "target": "docs_docs_init"
     },
     {
       "relation": "contains",
@@ -6328,9 +6393,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_docs_swagger_json",
-      "target": "docs_swagger_basepath",
-      "confidence_score": 1.0
+      "target": "docs_swagger_basepath"
     },
     {
       "relation": "contains",
@@ -6338,9 +6403,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_docs_swagger_json",
-      "target": "docs_swagger_host",
-      "confidence_score": 1.0
+      "target": "docs_swagger_host"
     },
     {
       "relation": "contains",
@@ -6348,9 +6413,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_docs_swagger_json",
-      "target": "docs_swagger_info",
-      "confidence_score": 1.0
+      "target": "docs_swagger_info"
     },
     {
       "relation": "contains",
@@ -6358,9 +6423,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_docs_swagger_json",
-      "target": "docs_swagger_paths",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths"
     },
     {
       "relation": "contains",
@@ -6368,9 +6433,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_docs_swagger_json",
-      "target": "docs_swagger_swagger",
-      "confidence_score": 1.0
+      "target": "docs_swagger_swagger"
     },
     {
       "relation": "contains",
@@ -6378,9 +6443,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6388,9 +6453,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info",
-      "target": "docs_swagger_info_contact",
-      "confidence_score": 1.0
+      "target": "docs_swagger_info_contact"
     },
     {
       "relation": "contains",
@@ -6398,9 +6463,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info",
-      "target": "docs_swagger_info_license",
-      "confidence_score": 1.0
+      "target": "docs_swagger_info_license"
     },
     {
       "relation": "contains",
@@ -6408,9 +6473,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info",
-      "target": "docs_swagger_info_termsofservice",
-      "confidence_score": 1.0
+      "target": "docs_swagger_info_termsofservice"
     },
     {
       "relation": "contains",
@@ -6418,9 +6483,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info",
-      "target": "docs_swagger_info_title",
-      "confidence_score": 1.0
+      "target": "docs_swagger_info_title"
     },
     {
       "relation": "contains",
@@ -6428,9 +6493,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info",
-      "target": "docs_swagger_info_version",
-      "confidence_score": 1.0
+      "target": "docs_swagger_info_version"
     },
     {
       "relation": "contains",
@@ -6438,9 +6503,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info_contact",
-      "target": "docs_swagger_contact_email",
-      "confidence_score": 1.0
+      "target": "docs_swagger_contact_email"
     },
     {
       "relation": "contains",
@@ -6448,9 +6513,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info_contact",
-      "target": "docs_swagger_contact_name",
-      "confidence_score": 1.0
+      "target": "docs_swagger_contact_name"
     },
     {
       "relation": "contains",
@@ -6458,9 +6523,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info_license",
-      "target": "docs_swagger_contact_name",
-      "confidence_score": 1.0
+      "target": "docs_swagger_contact_name"
     },
     {
       "relation": "contains",
@@ -6468,9 +6533,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_info_license",
-      "target": "docs_swagger_license_url",
-      "confidence_score": 1.0
+      "target": "docs_swagger_license_url"
     },
     {
       "relation": "contains",
@@ -6478,9 +6543,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_health",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_health"
     },
     {
       "relation": "contains",
@@ -6488,9 +6553,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L60",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_auth_change_password",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_auth_change_password"
     },
     {
       "relation": "contains",
@@ -6498,9 +6563,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_auth_google_callback",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_auth_google_callback"
     },
     {
       "relation": "contains",
@@ -6508,9 +6573,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L198",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_auth_google_login",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_auth_google_login"
     },
     {
       "relation": "contains",
@@ -6518,9 +6583,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L221",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_auth_login",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_auth_login"
     },
     {
       "relation": "contains",
@@ -6528,9 +6593,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L405",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_boards",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_boards"
     },
     {
       "relation": "contains",
@@ -6538,9 +6603,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L705",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_projects",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_projects"
     },
     {
       "relation": "contains",
@@ -6548,9 +6613,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1005",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_resources",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_resources"
     },
     {
       "relation": "contains",
@@ -6558,9 +6623,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1305",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths",
-      "target": "docs_swagger_paths_v1_schedulers",
-      "confidence_score": 1.0
+      "target": "docs_swagger_paths_v1_schedulers"
     },
     {
       "relation": "contains",
@@ -6568,9 +6633,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_health",
-      "target": "docs_swagger_health_get",
-      "confidence_score": 1.0
+      "target": "docs_swagger_health_get"
     },
     {
       "relation": "contains",
@@ -6578,9 +6643,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1312",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_health_get",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6588,9 +6653,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1320",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_health_get",
-      "target": "docs_swagger_get_parameters",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_parameters"
     },
     {
       "relation": "contains",
@@ -6598,9 +6663,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1313",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_health_get",
-      "target": "docs_swagger_get_produces",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_produces"
     },
     {
       "relation": "contains",
@@ -6608,9 +6673,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1329",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_health_get",
-      "target": "docs_swagger_get_responses",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_responses"
     },
     {
       "relation": "contains",
@@ -6618,9 +6683,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1307",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_health_get",
-      "target": "docs_swagger_get_security",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_security"
     },
     {
       "relation": "contains",
@@ -6628,9 +6693,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1319",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_health_get",
-      "target": "docs_swagger_get_summary",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_summary"
     },
     {
       "relation": "contains",
@@ -6638,9 +6703,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1316",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_health_get",
-      "target": "docs_swagger_get_tags",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_tags"
     },
     {
       "relation": "contains",
@@ -6648,9 +6713,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L135",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_auth_google_callback",
-      "target": "docs_swagger_health_get",
-      "confidence_score": 1.0
+      "target": "docs_swagger_health_get"
     },
     {
       "relation": "contains",
@@ -6658,9 +6723,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L199",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_auth_google_login",
-      "target": "docs_swagger_health_get",
-      "confidence_score": 1.0
+      "target": "docs_swagger_health_get"
     },
     {
       "relation": "contains",
@@ -6668,9 +6733,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L406",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_boards",
-      "target": "docs_swagger_health_get",
-      "confidence_score": 1.0
+      "target": "docs_swagger_health_get"
     },
     {
       "relation": "contains",
@@ -6678,9 +6743,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L706",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_projects",
-      "target": "docs_swagger_health_get",
-      "confidence_score": 1.0
+      "target": "docs_swagger_health_get"
     },
     {
       "relation": "contains",
@@ -6688,9 +6753,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1006",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_resources",
-      "target": "docs_swagger_health_get",
-      "confidence_score": 1.0
+      "target": "docs_swagger_health_get"
     },
     {
       "relation": "contains",
@@ -6698,9 +6763,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1306",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_schedulers",
-      "target": "docs_swagger_health_get",
-      "confidence_score": 1.0
+      "target": "docs_swagger_health_get"
     },
     {
       "relation": "contains",
@@ -6708,9 +6773,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1399",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_200",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6718,9 +6783,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1273",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_201",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6728,9 +6793,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L210",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_307",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6738,9 +6803,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1417",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_400",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6748,9 +6813,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L276",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_401",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6758,9 +6823,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1423",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_404",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6768,9 +6833,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1355",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_500",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6778,9 +6843,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L213",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_503",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6788,9 +6853,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1142",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_delete",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6798,9 +6863,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1368",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6808,9 +6873,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1249",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_get_description",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_description"
     },
     {
       "relation": "contains",
@@ -6818,9 +6883,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_delete",
-      "target": "docs_swagger_get_produces",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_produces"
     },
     {
       "relation": "contains",
@@ -6828,9 +6893,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1372",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_get_produces",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_produces"
     },
     {
       "relation": "contains",
@@ -6838,9 +6903,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1253",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_get_produces",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_produces"
     },
     {
       "relation": "contains",
@@ -6848,9 +6913,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1146",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_delete",
-      "target": "docs_swagger_get_tags",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_tags"
     },
     {
       "relation": "contains",
@@ -6858,9 +6923,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1375",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_get_tags",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_tags"
     },
     {
       "relation": "contains",
@@ -6868,9 +6933,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1256",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_get_tags",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_tags"
     },
     {
       "relation": "contains",
@@ -6878,9 +6943,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1149",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_delete",
-      "target": "docs_swagger_get_summary",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_summary"
     },
     {
       "relation": "contains",
@@ -6888,9 +6953,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1378",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_get_summary",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_summary"
     },
     {
       "relation": "contains",
@@ -6898,9 +6963,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1259",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_get_summary",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_summary"
     },
     {
       "relation": "contains",
@@ -6908,9 +6973,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1398",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_200",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_200"
     },
     {
       "relation": "contains",
@@ -6918,9 +6983,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1272",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_201",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_201"
     },
     {
       "relation": "contains",
@@ -6928,9 +6993,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L209",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_307",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_307"
     },
     {
       "relation": "contains",
@@ -6938,9 +7003,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1416",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_400",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_400"
     },
     {
       "relation": "contains",
@@ -6948,9 +7013,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L275",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_401",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_401"
     },
     {
       "relation": "contains",
@@ -6958,9 +7023,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1422",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_404",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_404"
     },
     {
       "relation": "contains",
@@ -6968,9 +7033,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1428",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_500",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_500"
     },
     {
       "relation": "contains",
@@ -6978,9 +7043,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L212",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_get_responses",
-      "target": "docs_swagger_responses_503",
-      "confidence_score": 1.0
+      "target": "docs_swagger_responses_503"
     },
     {
       "relation": "contains",
@@ -6988,9 +7053,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1159",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_delete",
-      "target": "docs_swagger_get_responses",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_responses"
     },
     {
       "relation": "contains",
@@ -6998,9 +7063,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1397",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_get_responses",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_responses"
     },
     {
       "relation": "contains",
@@ -7008,9 +7073,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1271",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_get_responses",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_responses"
     },
     {
       "relation": "contains",
@@ -7018,9 +7083,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1400",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_200",
-      "target": "docs_swagger_200_schema",
-      "confidence_score": 1.0
+      "target": "docs_swagger_200_schema"
     },
     {
       "relation": "contains",
@@ -7028,9 +7093,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1401",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_200_schema",
-      "target": "docs_swagger_schema_allof",
-      "confidence_score": 1.0
+      "target": "docs_swagger_schema_allof"
     },
     {
       "relation": "contains",
@@ -7038,9 +7103,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1425",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_200_schema",
-      "target": "docs_swagger_schema_ref",
-      "confidence_score": 1.0
+      "target": "docs_swagger_schema_ref"
     },
     {
       "relation": "contains",
@@ -7048,9 +7113,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1274",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_201",
-      "target": "docs_swagger_200_schema",
-      "confidence_score": 1.0
+      "target": "docs_swagger_200_schema"
     },
     {
       "relation": "contains",
@@ -7058,9 +7123,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1418",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_400",
-      "target": "docs_swagger_200_schema",
-      "confidence_score": 1.0
+      "target": "docs_swagger_200_schema"
     },
     {
       "relation": "contains",
@@ -7068,9 +7133,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L277",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_401",
-      "target": "docs_swagger_200_schema",
-      "confidence_score": 1.0
+      "target": "docs_swagger_200_schema"
     },
     {
       "relation": "contains",
@@ -7078,9 +7143,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1424",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_404",
-      "target": "docs_swagger_200_schema",
-      "confidence_score": 1.0
+      "target": "docs_swagger_200_schema"
     },
     {
       "relation": "contains",
@@ -7088,9 +7153,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1356",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_500",
-      "target": "docs_swagger_200_schema",
-      "confidence_score": 1.0
+      "target": "docs_swagger_200_schema"
     },
     {
       "relation": "contains",
@@ -7098,9 +7163,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L214",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_responses_503",
-      "target": "docs_swagger_200_schema",
-      "confidence_score": 1.0
+      "target": "docs_swagger_200_schema"
     },
     {
       "relation": "contains",
@@ -7108,9 +7173,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_auth_change_password",
-      "target": "docs_swagger_v1_boards_post",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_post"
     },
     {
       "relation": "contains",
@@ -7118,9 +7183,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1150",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_delete",
-      "target": "docs_swagger_get_parameters",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_parameters"
     },
     {
       "relation": "contains",
@@ -7128,9 +7193,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1379",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_get_parameters",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_parameters"
     },
     {
       "relation": "contains",
@@ -7138,9 +7203,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1260",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_get_parameters",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_parameters"
     },
     {
       "relation": "contains",
@@ -7148,9 +7213,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L222",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_auth_login",
-      "target": "docs_swagger_v1_boards_post",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_post"
     },
     {
       "relation": "contains",
@@ -7158,9 +7223,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L536",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_boards",
-      "target": "docs_swagger_v1_boards_id_delete",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_id_delete"
     },
     {
       "relation": "contains",
@@ -7168,9 +7233,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L462",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_boards",
-      "target": "docs_swagger_v1_boards_id_put",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_id_put"
     },
     {
       "relation": "contains",
@@ -7178,9 +7243,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L343",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_boards",
-      "target": "docs_swagger_v1_boards_post",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_post"
     },
     {
       "relation": "contains",
@@ -7188,9 +7253,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1137",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_delete",
-      "target": "docs_swagger_get_security",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_security"
     },
     {
       "relation": "contains",
@@ -7198,9 +7263,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1363",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_get_security",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_security"
     },
     {
       "relation": "contains",
@@ -7208,9 +7273,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1244",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_get_security",
-      "confidence_score": 1.0
+      "target": "docs_swagger_get_security"
     },
     {
       "relation": "contains",
@@ -7218,9 +7283,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L643",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_projects",
-      "target": "docs_swagger_v1_boards_post",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_post"
     },
     {
       "relation": "contains",
@@ -7228,9 +7293,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L943",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_resources",
-      "target": "docs_swagger_v1_boards_post",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_post"
     },
     {
       "relation": "contains",
@@ -7238,9 +7303,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1243",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_schedulers",
-      "target": "docs_swagger_v1_boards_post",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_post"
     },
     {
       "relation": "contains",
@@ -7248,9 +7313,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1250",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_post",
-      "target": "docs_swagger_put_consumes",
-      "confidence_score": 1.0
+      "target": "docs_swagger_put_consumes"
     },
     {
       "relation": "contains",
@@ -7258,9 +7323,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L762",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_projects",
-      "target": "docs_swagger_v1_boards_id_put",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_id_put"
     },
     {
       "relation": "contains",
@@ -7268,9 +7333,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1062",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_resources",
-      "target": "docs_swagger_v1_boards_id_put",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_id_put"
     },
     {
       "relation": "contains",
@@ -7278,9 +7343,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1362",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_schedulers",
-      "target": "docs_swagger_v1_boards_id_put",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_id_put"
     },
     {
       "relation": "contains",
@@ -7288,9 +7353,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1369",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_v1_boards_id_put",
-      "target": "docs_swagger_put_consumes",
-      "confidence_score": 1.0
+      "target": "docs_swagger_put_consumes"
     },
     {
       "relation": "contains",
@@ -7298,9 +7363,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L836",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_projects",
-      "target": "docs_swagger_v1_boards_id_delete",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_id_delete"
     },
     {
       "relation": "contains",
@@ -7308,9 +7373,9 @@
       "source_file": "chitta/docs/swagger.json",
       "source_location": "L1136",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_swagger_paths_v1_resources",
-      "target": "docs_swagger_v1_boards_id_delete",
-      "confidence_score": 1.0
+      "target": "docs_swagger_v1_boards_id_delete"
     },
     {
       "relation": "method",
@@ -7318,9 +7383,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_changepassword",
-      "confidence_score": 1.0
+      "target": "handlers_handler_changepassword"
     },
     {
       "relation": "method",
@@ -7328,9 +7393,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1440",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_checkandtriggerschedulers",
-      "confidence_score": 1.0
+      "target": "handlers_handler_checkandtriggerschedulers"
     },
     {
       "relation": "method",
@@ -7338,9 +7403,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L351",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_createboard",
-      "confidence_score": 1.0
+      "target": "handlers_handler_createboard"
     },
     {
       "relation": "method",
@@ -7348,9 +7413,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L171",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_createproject",
-      "confidence_score": 1.0
+      "target": "handlers_handler_createproject"
     },
     {
       "relation": "method",
@@ -7358,9 +7423,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1220",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_createresource",
-      "confidence_score": 1.0
+      "target": "handlers_handler_createresource"
     },
     {
       "relation": "method",
@@ -7368,9 +7433,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1052",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_createscheduler",
-      "confidence_score": 1.0
+      "target": "handlers_handler_createscheduler"
     },
     {
       "relation": "method",
@@ -7378,9 +7443,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L567",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_createtask",
-      "confidence_score": 1.0
+      "target": "handlers_handler_createtask"
     },
     {
       "relation": "method",
@@ -7388,9 +7453,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L513",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_deleteboard",
-      "confidence_score": 1.0
+      "target": "handlers_handler_deleteboard"
     },
     {
       "relation": "method",
@@ -7398,9 +7463,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L297",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_deleteproject",
-      "confidence_score": 1.0
+      "target": "handlers_handler_deleteproject"
     },
     {
       "relation": "method",
@@ -7408,9 +7473,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1348",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_deleteresource",
-      "confidence_score": 1.0
+      "target": "handlers_handler_deleteresource"
     },
     {
       "relation": "method",
@@ -7418,9 +7483,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1180",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_deletescheduler",
-      "confidence_score": 1.0
+      "target": "handlers_handler_deletescheduler"
     },
     {
       "relation": "method",
@@ -7428,9 +7493,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L883",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_deletetask",
-      "confidence_score": 1.0
+      "target": "handlers_handler_deletetask"
     },
     {
       "relation": "method",
@@ -7438,9 +7503,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L910",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_generaterecurringtask",
-      "confidence_score": 1.0
+      "target": "handlers_handler_generaterecurringtask"
     },
     {
       "relation": "method",
@@ -7448,9 +7513,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L433",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_getboard",
-      "confidence_score": 1.0
+      "target": "handlers_handler_getboard"
     },
     {
       "relation": "method",
@@ -7458,9 +7523,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L220",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_getproject",
-      "confidence_score": 1.0
+      "target": "handlers_handler_getproject"
     },
     {
       "relation": "method",
@@ -7468,9 +7533,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1272",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_getresource",
-      "confidence_score": 1.0
+      "target": "handlers_handler_getresource"
     },
     {
       "relation": "method",
@@ -7478,9 +7543,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1104",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_getscheduler",
-      "confidence_score": 1.0
+      "target": "handlers_handler_getscheduler"
     },
     {
       "relation": "method",
@@ -7488,9 +7553,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L708",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_gettask",
-      "confidence_score": 1.0
+      "target": "handlers_handler_gettask"
     },
     {
       "relation": "method",
@@ -7498,9 +7563,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L137",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_googlecallback",
-      "confidence_score": 1.0
+      "target": "handlers_handler_googlecallback"
     },
     {
       "relation": "method",
@@ -7508,9 +7573,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L117",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_googlelogin",
-      "confidence_score": 1.0
+      "target": "handlers_handler_googlelogin"
     },
     {
       "relation": "method",
@@ -7518,9 +7583,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L398",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_listboards",
-      "confidence_score": 1.0
+      "target": "handlers_handler_listboards"
     },
     {
       "relation": "method",
@@ -7528,9 +7593,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L199",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_listprojects",
-      "confidence_score": 1.0
+      "target": "handlers_handler_listprojects"
     },
     {
       "relation": "method",
@@ -7538,9 +7603,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1251",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_listresources",
-      "confidence_score": 1.0
+      "target": "handlers_handler_listresources"
     },
     {
       "relation": "method",
@@ -7548,9 +7613,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1083",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_listschedulers",
-      "confidence_score": 1.0
+      "target": "handlers_handler_listschedulers"
     },
     {
       "relation": "method",
@@ -7558,9 +7623,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L646",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_listtasks",
-      "confidence_score": 1.0
+      "target": "handlers_handler_listtasks"
     },
     {
       "relation": "method",
@@ -7568,9 +7633,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L51",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_login",
-      "confidence_score": 1.0
+      "target": "handlers_handler_login"
     },
     {
       "relation": "method",
@@ -7578,9 +7643,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L801",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_patchtask",
-      "confidence_score": 1.0
+      "target": "handlers_handler_patchtask"
     },
     {
       "relation": "method",
@@ -7588,9 +7653,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1423",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_startbackgroundworker",
-      "confidence_score": 1.0
+      "target": "handlers_handler_startbackgroundworker"
     },
     {
       "relation": "method",
@@ -7598,9 +7663,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L463",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_updateboard",
-      "confidence_score": 1.0
+      "target": "handlers_handler_updateboard"
     },
     {
       "relation": "method",
@@ -7608,9 +7673,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L250",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_updateproject",
-      "confidence_score": 1.0
+      "target": "handlers_handler_updateproject"
     },
     {
       "relation": "method",
@@ -7618,9 +7683,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1302",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_updateresource",
-      "confidence_score": 1.0
+      "target": "handlers_handler_updateresource"
     },
     {
       "relation": "method",
@@ -7628,9 +7693,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_updatescheduler",
-      "confidence_score": 1.0
+      "target": "handlers_handler_updatescheduler"
     },
     {
       "relation": "method",
@@ -7638,9 +7703,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L738",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler",
-      "target": "handlers_handler_updatetask",
-      "confidence_score": 1.0
+      "target": "handlers_handler_updatetask"
     },
     {
       "relation": "calls",
@@ -7649,9 +7714,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L89",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_changepassword",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7660,9 +7725,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L354",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createboard",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7671,9 +7736,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L174",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createproject",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7682,9 +7747,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1223",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createresource",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7693,9 +7758,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1055",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createscheduler",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7704,9 +7769,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L570",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createtask",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7715,9 +7780,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L519",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_deleteboard",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7726,9 +7791,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L303",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_deleteproject",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7737,9 +7802,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1364",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_deleteresource",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7748,9 +7813,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1196",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_deletescheduler",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7759,9 +7824,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L899",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_deletetask",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7770,9 +7835,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L437",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_getboard",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7781,9 +7846,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L224",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_getproject",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7792,9 +7857,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1276",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_getresource",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7803,9 +7868,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1108",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_getscheduler",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7814,9 +7879,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L712",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_gettask",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7825,9 +7890,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L140",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_googlecallback",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7836,9 +7901,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L119",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_googlelogin",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7847,9 +7912,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L401",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listboards",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7858,9 +7923,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L202",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listprojects",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7869,9 +7934,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1254",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listresources",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7880,9 +7945,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1086",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listschedulers",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7891,9 +7956,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L649",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listtasks",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7902,9 +7967,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_login",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7913,9 +7978,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L805",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_patchtask",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7924,9 +7989,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L467",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_updateboard",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7935,9 +8000,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L254",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_updateproject",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7946,9 +8011,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1306",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_updateresource",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7957,9 +8022,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_updatescheduler",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7968,9 +8033,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L742",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_updatetask",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7979,9 +8044,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1419",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handlers_health",
-      "target": "handlers_handlers_respond",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_respond"
     },
     {
       "relation": "calls",
@@ -7990,9 +8055,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L205",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listprojects",
-      "target": "handlers_handlers_filteractive",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_filteractive"
     },
     {
       "relation": "calls",
@@ -8001,9 +8066,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L363",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createboard",
-      "target": "handlers_handlers_entityexists",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_entityexists"
     },
     {
       "relation": "calls",
@@ -8012,9 +8077,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L404",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listboards",
-      "target": "handlers_handlers_filteractive",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_filteractive"
     },
     {
       "relation": "calls",
@@ -8023,9 +8088,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L595",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createtask",
-      "target": "handlers_handlers_contains",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_contains"
     },
     {
       "relation": "calls",
@@ -8034,9 +8099,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L652",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listtasks",
-      "target": "handlers_handlers_filteractive",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_filteractive"
     },
     {
       "relation": "calls",
@@ -8045,9 +8110,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L851",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_patchtask",
-      "target": "handlers_handler_generaterecurringtask",
-      "confidence_score": 1.0
+      "target": "handlers_handler_generaterecurringtask"
     },
     {
       "relation": "calls",
@@ -8056,9 +8121,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L926",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_generaterecurringtask",
-      "target": "handlers_handlers_calculatenextrun",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_calculatenextrun"
     },
     {
       "relation": "calls",
@@ -8067,9 +8132,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1502",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_checkandtriggerschedulers",
-      "target": "handlers_handlers_calculatenextrun",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_calculatenextrun"
     },
     {
       "relation": "calls",
@@ -8078,9 +8143,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1062",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_createscheduler",
-      "target": "handlers_handlers_calculatenextrun",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_calculatenextrun"
     },
     {
       "relation": "calls",
@@ -8089,9 +8154,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1150",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_updatescheduler",
-      "target": "handlers_handlers_calculatenextrun",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_calculatenextrun"
     },
     {
       "relation": "calls",
@@ -8100,9 +8165,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1089",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listschedulers",
-      "target": "handlers_handlers_filteractive",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_filteractive"
     },
     {
       "relation": "calls",
@@ -8111,9 +8176,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1257",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_listresources",
-      "target": "handlers_handlers_filteractive",
-      "confidence_score": 1.0
+      "target": "handlers_handlers_filteractive"
     },
     {
       "relation": "calls",
@@ -8122,9 +8187,9 @@
       "source_file": "chitta/handlers/handlers.go",
       "source_location": "L1434",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "handlers_handler_startbackgroundworker",
-      "target": "handlers_handler_checkandtriggerschedulers",
-      "confidence_score": 1.0
+      "target": "handlers_handler_checkandtriggerschedulers"
     },
     {
       "relation": "references",
@@ -8175,8 +8240,58 @@
       "weight": 1.0,
       "source": "models_task",
       "target": "models_scheduler"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "chitta/SWAGGER.pdf",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "swagger_pdf",
+      "target": "api_specification"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "chitta/SWAGGER.pdf",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "swagger_pdf",
+      "target": "chitta_system"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "chitta/SWAGGER.pdf",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "swagger_pdf",
+      "target": "user_journeys_pdf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "chitta/design/user_journeys.pdf",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "user_journeys_pdf",
+      "target": "chitta_system"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "chitta/design/user_journeys.pdf",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "user_journeys_pdf",
+      "target": "user_experience_design"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "e2deed744f4201225fbe782e22c46c4d2836154d"
+  "built_at_commit": "b31905b20728bca38274e1f114fb42e8cd0131ee"
 }
