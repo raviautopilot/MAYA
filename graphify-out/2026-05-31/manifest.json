@@ -353,5 +353,10 @@
     "mtime": 1780217169.9738305,
     "ast_hash": "af5f53ab94df74935c075ccbf7e28820",
     "semantic_hash": "af5f53ab94df74935c075ccbf7e28820"
+  },
+  "/home/ubuntu/code/github/raviautopilot/mycan/config/create-sysChitta.sh": {
+    "mtime": 1780219312.1526864,
+    "ast_hash": "fb46b708dcc0c22c41820b51536875ab",
+    "semantic_hash": "fb46b708dcc0c22c41820b51536875ab"
   }
 }
