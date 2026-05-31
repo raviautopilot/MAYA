@@ -4,15 +4,15 @@
   "private": true,
   "description": "MyKanban — Full-stack Kanban board monorepo",
   "workspaces": [
-    "frontend"
+    "maya"
   ],
   "scripts": {
-    "backend:build": "cd backend && bash scripts/build.sh",
-    "backend:start": "cd backend && bash scripts/run.sh",
-    "backend:stop": "cd backend && bash scripts/stop.sh",
-    "backend:test": "cd backend && bash scripts/test.sh",
-    "frontend:dev": "cd frontend && npm run dev",
-    "frontend:build": "cd frontend && npm run build",
+    "chitta:build": "cd chitta && bash scripts/build.sh",
+    "chitta:start": "cd chitta && bash scripts/run.sh",
+    "chitta:stop": "cd chitta && bash scripts/stop.sh",
+    "chitta:test": "cd chitta && bash scripts/test.sh",
+    "maya:dev": "cd maya && npm run dev",
+    "maya:build": "cd maya && npm run build",
     "test:e2e": "echo 'E2E tests not yet configured'"
   },
   "repository": {
