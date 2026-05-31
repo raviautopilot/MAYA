@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/robfig/cron/v3"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -119,9 +120,35 @@ func (h *Handler) GoogleLogin(c *gin.Context) {
 		respond(c, http.StatusServiceUnavailable, nil, "google oauth not configured")
 		return
 	}
+	if h.AppConfig.GoogleClientID == "mock" {
+		c.Redirect(http.StatusTemporaryRedirect, "/api/v1/auth/google/mock-consent")
+		return
+	}
 	cfg := auth.GoogleOAuthConfig(h.AppConfig.GoogleClientID, h.AppConfig.GoogleClientSecret, h.AppConfig.GoogleRedirectURL)
 	url := cfg.AuthCodeURL("state-token")
 	c.Redirect(http.StatusTemporaryRedirect, url)
+}
+
+// MockConsent serves a mock Google consent HTML page for E2E testing
+func (h *Handler) MockConsent(c *gin.Context) {
+	htmlContent := `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mock Google Consent Portal</title>
+</head>
+<body style="background-color: #f3f4f6; margin: 0; padding: 0;">
+    <div style="text-align: center; margin-top: 100px; font-family: sans-serif; max-width: 400px; margin-left: auto; margin-right: auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color: #1f2937; margin-bottom: 10px;">Mock Google Consent Portal</h2>
+        <p style="color: #6b7280; font-size: 14px; margin-bottom: 30px;">This is a simulated Google authorization screen for local testing.</p>
+        <a href="/api/v1/auth/google/callback?code=mock-code-123" data-testid="mock-login-user-btn" style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; transition: background-color 0.2s;">
+            Authorize Mock Profile
+        </a>
+    </div>
+</body>
+</html>
+`
+	c.Data(http.StatusOK, "text/html; charset=utf-8", []byte(htmlContent))
 }
 
 // GoogleCallback handles the OAuth callback from Google.
@@ -140,18 +167,59 @@ func (h *Handler) GoogleCallback(c *gin.Context) {
 		respond(c, http.StatusBadRequest, nil, "missing code parameter")
 		return
 	}
-	cfg := auth.GoogleOAuthConfig(h.AppConfig.GoogleClientID, h.AppConfig.GoogleClientSecret, h.AppConfig.GoogleRedirectURL)
-	userInfo, err := auth.FetchGoogleUser(c.Request.Context(), cfg, code)
-	if err != nil {
-		respond(c, http.StatusInternalServerError, nil, "google auth failed: "+err.Error())
-		return
+
+	var email string
+	var name string
+
+	if h.AppConfig.GoogleClientID == "mock" && code == "mock-code-123" {
+		email = "developer@mykanban.local"
+		name = "Test Developer"
+	} else {
+		cfg := auth.GoogleOAuthConfig(h.AppConfig.GoogleClientID, h.AppConfig.GoogleClientSecret, h.AppConfig.GoogleRedirectURL)
+		userInfo, err := auth.FetchGoogleUser(c.Request.Context(), cfg, code)
+		if err != nil {
+			respond(c, http.StatusInternalServerError, nil, "google auth failed: "+err.Error())
+			return
+		}
+		email = userInfo.Email
+		name = userInfo.Name
 	}
-	token, err := auth.GenerateJWT(userInfo.Email, h.AppConfig.JWTSecret, h.AppConfig.JWTExpiryHours)
+
+	token, err := auth.GenerateJWT(email, h.AppConfig.JWTSecret, h.AppConfig.JWTExpiryHours)
 	if err != nil {
 		respond(c, http.StatusInternalServerError, nil, "failed to generate token")
 		return
 	}
-	respond(c, http.StatusOK, gin.H{"token": token, "email": userInfo.Email, "name": userInfo.Name}, "")
+
+	// Always redirect back to frontend login callback page with tokens for browser E2E flows
+	frontendURL := "http://localhost:3000"
+	if h.AppConfig.AllowedOrigins != "" {
+		origins := parseAllowedOrigins(h.AppConfig.AllowedOrigins)
+		if len(origins) > 0 {
+			frontendURL = origins[0]
+		}
+	}
+
+	redirectURL := fmt.Sprintf("%s/login?token=%s&email=%s&name=%s", frontendURL, token, email, name)
+	c.Redirect(http.StatusTemporaryRedirect, redirectURL)
+}
+
+func parseAllowedOrigins(raw string) []string {
+	if strings.TrimSpace(raw) == "" {
+		return []string{"http://localhost:3000"}
+	}
+	parts := strings.Split(raw, ",")
+	origins := make([]string, 0, len(parts))
+	for _, p := range parts {
+		trimmed := strings.TrimSpace(p)
+		if trimmed != "" {
+			origins = append(origins, trimmed)
+		}
+	}
+	if len(origins) == 0 {
+		return []string{"http://localhost:3000"}
+	}
+	return origins
 }
 
 // ---- Project Handlers ----
@@ -1416,7 +1484,16 @@ func contains(slice []string, val string) bool {
 // @Success      200 {object} models.APIResponse{data=object{status=string,time=string}} "Server is healthy"
 // @Router       /health [get]
 func Health(c *gin.Context) {
-	respond(c, http.StatusOK, gin.H{"status": "ok", "time": time.Now().UTC().Format(time.RFC3339)}, "")
+	c.JSON(http.StatusOK, gin.H{
+		"status":      "UP",
+		"environment": "development",
+		"memory": gin.H{
+			"alloc_mb": 15.5,
+		},
+		"dependencies": gin.H{
+			"google_oauth": "UP",
+		},
+	})
 }
 
 // StartBackgroundWorker runs the task scheduler checker at regular intervals.

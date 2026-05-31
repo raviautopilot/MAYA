@@ -47,6 +47,7 @@ bin/
 
 # Test binary, built with `go test -c`
 *.test
+e2etest/reports
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
@@ -115,6 +116,7 @@ build/
 # Backend build artifacts
 chitta/bin/
 chitta/chitta
+
 
 # Project data files
 *.json
