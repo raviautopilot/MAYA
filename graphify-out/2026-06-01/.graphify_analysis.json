@@ -25,9 +25,10 @@
       "maya_src_app_tsx",
       "maya_src_components_ui_card_tsx",
       "maya_src_components_ui_index_ts",
+      "maya_src_components_ui_input_tsx",
       "maya_src_components_ui_loader_tsx",
+      "maya_src_components_ui_select_tsx",
       "maya_src_components_ui_toast_tsx",
-      "maya_src_main_tsx",
       "maya_src_services_api_auth_ts",
       "maya_src_services_api_boards_ts",
       "maya_src_services_api_client_ts",
@@ -76,8 +77,12 @@
       "ui_card_cardbody",
       "ui_card_cardheader",
       "ui_card_cardprops",
+      "ui_input_input",
+      "ui_input_inputprops",
       "ui_loader_fullpageloader",
       "ui_loader_loader",
+      "ui_select_select",
+      "ui_select_selectprops",
       "ui_skeleton_cardskeleton",
       "ui_skeleton_skeleton",
       "ui_skeleton_tableskeleton",
@@ -87,27 +92,21 @@
     ],
     "1": [
       "auth_auth_checkpassword",
-      "auth_auth_fetchgoogleuser",
-      "auth_auth_generatejwt",
       "auth_auth_googleoauthconfig",
-      "auth_auth_hashpassword",
-      "auth_auth_test_testcheckpassword_valid",
-      "auth_auth_test_testgenerateandvalidatejwt",
-      "auth_auth_test_testgeneratejwt_defaultexpiry",
-      "auth_auth_test_testhashpassword",
-      "auth_auth_test_testvalidatejwt_expiredtoken",
-      "auth_auth_test_testvalidatejwt_invalidformat",
-      "auth_auth_test_testvalidatejwt_wrongsecret",
-      "auth_auth_validatejwt",
-      "auth_claims",
-      "auth_googleuserinfo",
-      "chitta_auth_auth_go",
-      "chitta_auth_auth_test_go",
+      "chitta_handlers_auth_go",
+      "chitta_handlers_auth_go_handlers_handler",
+      "chitta_handlers_board_go_handlers_handler",
       "chitta_handlers_handlers_go",
+      "chitta_handlers_project_go_handlers_handler",
+      "chitta_handlers_resource_go_handlers_handler",
+      "chitta_handlers_scheduler_go_handlers_handler",
+      "chitta_handlers_task_go_handlers_handler",
+      "handlers_auth_parseallowedorigins",
       "handlers_handler",
       "handlers_handler_changepassword",
       "handlers_handler_checkandtriggerschedulers",
       "handlers_handler_createboard",
+      "handlers_handler_createproject",
       "handlers_handler_createresource",
       "handlers_handler_createscheduler",
       "handlers_handler_createtask",
@@ -144,7 +143,8 @@
       "handlers_handlers_filteractive",
       "handlers_handlers_health",
       "handlers_handlers_parseallowedorigins",
-      "handlers_handlers_respond"
+      "handlers_handlers_respond",
+      "handlers_scheduler_calculatenextrun"
     ],
     "2": [
       "chitta_handlers_handlers_test_go",
@@ -248,51 +248,11 @@
       "e2etest_testsuite_addtestcase",
       "e2etest_web_web_suite_test_go",
       "e2etest_web_web_suite_test_go_web_webtestsuite",
-      "handlers_handler_createproject",
       "web_web_suite_test_testmain",
       "web_web_suite_test_testrunwebsuite",
       "web_webtestsuite_setupsuite"
     ],
     "4": [
-      "chitta_main_go",
-      "chitta_main_main",
-      "chitta_main_parseallowedorigins",
-      "chitta_main_resolveconfigpath",
-      "chitta_main_setuprouter",
-      "chitta_main_test_go",
-      "chitta_main_test_testcorspreflightresponse",
-      "chitta_main_test_testcorsrejectsunknownorigin",
-      "chitta_main_test_testparseallowedorigins",
-      "chitta_middleware_middleware_go",
-      "chitta_middleware_middleware_test_go",
-      "chitta_storage_storage_go",
-      "middleware_middleware_jwtauth",
-      "middleware_middleware_recovery",
-      "middleware_middleware_test_init",
-      "middleware_middleware_test_testjwtauth_invalidformat",
-      "middleware_middleware_test_testjwtauth_missingheader",
-      "middleware_middleware_test_testjwtauth_validtoken",
-      "middleware_middleware_test_testrecovery_panichandled",
-      "storage_configstore",
-      "storage_configstore_load",
-      "storage_configstore_save",
-      "storage_filesystem",
-      "storage_osfilesystem",
-      "storage_osfilesystem_mkdirall",
-      "storage_osfilesystem_readfile",
-      "storage_osfilesystem_stat",
-      "storage_osfilesystem_writefile",
-      "storage_storage_newconfigstore",
-      "storage_storage_newstore",
-      "storage_store",
-      "storage_store_t",
-      "storage_store_t_loadall",
-      "storage_store_t_loadallunsafe",
-      "storage_store_t_saveall",
-      "storage_store_t_saveallunsafe",
-      "storage_store_t_withlock"
-    ],
-    "5": [
       "docs_swagger_200_schema",
       "docs_swagger_get_description",
       "docs_swagger_get_parameters",
@@ -327,7 +287,7 @@
       "docs_swagger_v1_boards_id_put",
       "docs_swagger_v1_boards_post"
     ],
-    "6": [
+    "5": [
       "chitta_config_google_client_id",
       "chitta_config_google_client_secret",
       "chitta_config_google_redirect_url",
@@ -361,6 +321,36 @@
       "maya_tsconfig_include",
       "maya_tsconfig_paths"
     ],
+    "6": [
+      "chitta_main_go",
+      "chitta_main_main",
+      "chitta_main_parseallowedorigins",
+      "chitta_main_resolveconfigpath",
+      "chitta_main_setuprouter",
+      "chitta_main_test_go",
+      "chitta_main_test_testcorspreflightresponse",
+      "chitta_main_test_testcorsrejectsunknownorigin",
+      "chitta_main_test_testparseallowedorigins",
+      "chitta_storage_storage_go",
+      "storage_configstore",
+      "storage_configstore_load",
+      "storage_configstore_save",
+      "storage_filesystem",
+      "storage_osfilesystem",
+      "storage_osfilesystem_mkdirall",
+      "storage_osfilesystem_readfile",
+      "storage_osfilesystem_stat",
+      "storage_osfilesystem_writefile",
+      "storage_storage_newconfigstore",
+      "storage_storage_newstore",
+      "storage_store",
+      "storage_store_t",
+      "storage_store_t_loadall",
+      "storage_store_t_loadallunsafe",
+      "storage_store_t_saveall",
+      "storage_store_t_saveallunsafe",
+      "storage_store_t_withlock"
+    ],
     "7": [
       "maya_package_dependencies",
       "maya_package_dependencies_axios",
@@ -390,6 +380,32 @@
       "maya_package_type"
     ],
     "8": [
+      "auth_auth_fetchgoogleuser",
+      "auth_auth_generatejwt",
+      "auth_auth_hashpassword",
+      "auth_auth_test_testcheckpassword_valid",
+      "auth_auth_test_testgenerateandvalidatejwt",
+      "auth_auth_test_testgeneratejwt_defaultexpiry",
+      "auth_auth_test_testhashpassword",
+      "auth_auth_test_testvalidatejwt_expiredtoken",
+      "auth_auth_test_testvalidatejwt_invalidformat",
+      "auth_auth_test_testvalidatejwt_wrongsecret",
+      "auth_auth_validatejwt",
+      "auth_claims",
+      "auth_googleuserinfo",
+      "chitta_auth_auth_go",
+      "chitta_auth_auth_test_go",
+      "chitta_middleware_middleware_go",
+      "chitta_middleware_middleware_test_go",
+      "middleware_middleware_jwtauth",
+      "middleware_middleware_recovery",
+      "middleware_middleware_test_init",
+      "middleware_middleware_test_testjwtauth_invalidformat",
+      "middleware_middleware_test_testjwtauth_missingheader",
+      "middleware_middleware_test_testjwtauth_validtoken",
+      "middleware_middleware_test_testrecovery_panichandled"
+    ],
+    "9": [
       "chitta_backend",
       "e2etest_suite",
       "home_ubuntu_code_github_raviautopilot_maya_manage_sh__entry",
@@ -410,7 +426,7 @@
       "maya_manage_show_access_endpoints",
       "maya_manage_show_help"
     ],
-    "9": [
+    "10": [
       "maya_package_description",
       "maya_package_license",
       "maya_package_repository",
@@ -430,7 +446,7 @@
       "package_json_maya_package_scripts",
       "package_json_maya_package_version"
     ],
-    "10": [
+    "11": [
       "chitta_storage_storage_test_go",
       "storage_mockfilesystem",
       "storage_mockfilesystem_mkdirall",
@@ -447,7 +463,7 @@
       "storage_storage_test_teststore_withlock_error",
       "storage_testitem"
     ],
-    "11": [
+    "12": [
       "chitta_docs_swagger_json",
       "docs_swagger_basepath",
       "docs_swagger_contact_email",
@@ -462,7 +478,7 @@
       "docs_swagger_license_url",
       "docs_swagger_swagger"
     ],
-    "12": [
+    "13": [
       "components_header_header",
       "components_header_headerprops",
       "components_sidebar_navitems",
@@ -477,7 +493,21 @@
       "store_authstore_useauthstore",
       "store_authstore_user"
     ],
-    "13": [
+    "14": [
+      "maya_src_components_ui_button_tsx",
+      "maya_src_components_ui_modal_tsx",
+      "maya_src_components_ui_table_tsx",
+      "ui_button_button",
+      "ui_button_buttonprops",
+      "ui_button_variants",
+      "ui_confirmdialog_confirmdialog",
+      "ui_modal_modal",
+      "ui_modal_modalprops",
+      "ui_table_column",
+      "ui_table_table",
+      "ui_table_tableprops"
+    ],
+    "15": [
       "chitta_models_models_go",
       "models_apiresponse",
       "models_board",
@@ -489,29 +519,12 @@
       "models_scheduler",
       "models_task"
     ],
-    "14": [
-      "maya_src_components_ui_button_tsx",
-      "maya_src_components_ui_modal_tsx",
-      "ui_button_button",
-      "ui_button_buttonprops",
-      "ui_button_variants",
-      "ui_confirmdialog_confirmdialog",
-      "ui_modal_modal",
-      "ui_modal_modalprops"
-    ],
-    "15": [
+    "16": [
       "chitta_auth",
       "chitta_handlers",
       "chitta_storage",
       "chitta_swagger",
       "user_journey_recurring_tasks"
-    ],
-    "16": [
-      "handlers_mockfs",
-      "handlers_mockfs_mkdirall",
-      "handlers_mockfs_readfile",
-      "handlers_mockfs_stat",
-      "handlers_mockfs_writefile"
     ],
     "17": [
       "config_create_syschitta_log_info",
@@ -521,42 +534,46 @@
       "home_ubuntu_code_github_raviautopilot_maya_config_create_syschitta_sh__entry"
     ],
     "18": [
-      "chitta_scripts_test_api_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_api_sh__entry",
-      "scripts_test_api_header",
-      "scripts_test_api_run"
+      "handlers_mockfs",
+      "handlers_mockfs_mkdirall",
+      "handlers_mockfs_readfile",
+      "handlers_mockfs_stat",
+      "handlers_mockfs_writefile"
     ],
     "19": [
+      "swagger_models_board",
+      "swagger_models_project",
+      "swagger_models_reminder",
+      "swagger_models_scheduler",
+      "swagger_models_task"
+    ],
+    "20": [
       "deploy_sh",
       "home_ubuntu_code_github_raviautopilot_maya_deploy_sh__entry",
       "maya_deploy_log_info",
       "maya_deploy_log_success"
     ],
-    "20": [
-      "maya_src_components_ui_table_tsx",
-      "ui_table_column",
-      "ui_table_table",
-      "ui_table_tableprops"
-    ],
     "21": [
+      "chitta_scripts_test_api_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_api_sh__entry",
+      "scripts_test_api_header",
+      "scripts_test_api_run"
+    ],
+    "22": [
+      "maya_index",
+      "maya_main_tsx",
+      "swagger_api",
+      "user_journeys_doc"
+    ],
+    "23": [
       "chitta_chitta_certbot_log_info",
       "config_nginx_chitta_chitta_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_maya_config_nginx_chitta_chitta_certbot_sh__entry"
     ],
-    "22": [
+    "24": [
       "config_nginx_maya_maya_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_maya_config_nginx_maya_maya_certbot_sh__entry",
       "maya_maya_certbot_log_info"
-    ],
-    "23": [
-      "maya_src_components_ui_input_tsx",
-      "ui_input_input",
-      "ui_input_inputprops"
-    ],
-    "24": [
-      "maya_src_components_ui_select_tsx",
-      "ui_select_select",
-      "ui_select_selectprops"
     ],
     "25": [
       "maya_vite_config_dirname",
@@ -564,48 +581,48 @@
       "maya_vite_config_ts"
     ],
     "26": [
-      "chitta_scripts_run_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_run_sh__entry"
-    ],
-    "27": [
-      "chitta_scripts_stop_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_stop_sh__entry"
-    ],
-    "28": [
-      "chitta_scripts_test_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_sh__entry"
-    ],
-    "29": [
-      "chitta_scripts_troubleshoot_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_troubleshoot_sh__entry"
-    ],
-    "30": [
-      "chitta_docs_docs_go",
-      "docs_docs_init"
-    ],
-    "31": [
-      "api_apitestsuite_testapihealthendpoint",
-      "e2etest_api_health_test_go_api_apitestsuite"
-    ],
-    "32": [
       "api_apitestsuite_testapiswaggerendpoint",
       "e2etest_api_swagger_test_go_api_apitestsuite"
     ],
+    "27": [
+      "chitta_scripts_build_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_build_sh__entry"
+    ],
+    "28": [
+      "chitta_scripts_run_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_run_sh__entry"
+    ],
+    "29": [
+      "chitta_scripts_stop_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_stop_sh__entry"
+    ],
+    "30": [
+      "chitta_scripts_test_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_sh__entry"
+    ],
+    "31": [
+      "chitta_docs_docs_go",
+      "docs_docs_init"
+    ],
+    "32": [
+      "api_apitestsuite_testapihealthendpoint",
+      "e2etest_api_health_test_go_api_apitestsuite"
+    ],
     "33": [
-      "e2etest_web_boards_test_go_web_webtestsuite",
-      "web_webtestsuite_testboardworkflow"
+      "e2etest_web_projects_test_go_web_webtestsuite",
+      "web_webtestsuite_testprojectworkflow"
     ],
     "34": [
-      "e2etest_web_login_test_go_web_webtestsuite",
-      "web_webtestsuite_testfrontendworkflow"
+      "e2etest_web_resources_test_go_web_webtestsuite",
+      "web_webtestsuite_testresourceworkflow"
     ],
     "35": [
       "e2etest_web_tasks_test_go_web_webtestsuite",
       "web_webtestsuite_testtaskworkflow"
     ],
     "36": [
-      "chitta_scripts_build_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_build_sh__entry"
+      "chitta_scripts_troubleshoot_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_troubleshoot_sh__entry"
     ],
     "37": [
       "maya_postcss_config_config",
@@ -620,12 +637,12 @@
       "utils_main_main"
     ],
     "40": [
-      "e2etest_web_projects_test_go_web_webtestsuite",
-      "web_webtestsuite_testprojectworkflow"
+      "e2etest_web_boards_test_go_web_webtestsuite",
+      "web_webtestsuite_testboardworkflow"
     ],
     "41": [
-      "e2etest_web_resources_test_go_web_webtestsuite",
-      "web_webtestsuite_testresourceworkflow"
+      "e2etest_web_login_test_go_web_webtestsuite",
+      "web_webtestsuite_testfrontendworkflow"
     ],
     "42": [
       "e2etest_web_schedulers_test_go_web_webtestsuite",
@@ -669,34 +686,55 @@
     ],
     "55": [
       "user_journey_admin_setup"
+    ],
+    "56": [
+      "chitta_handlers_board_go"
+    ],
+    "57": [
+      "chitta_handlers_task_go"
+    ],
+    "58": [
+      "chitta_handlers_resource_go"
+    ],
+    "59": [
+      "chitta_handlers_project_go"
+    ],
+    "60": [
+      "swagger_models_apiresponse"
+    ],
+    "61": [
+      "swagger_models_resource"
+    ],
+    "62": [
+      "utils_readme"
     ]
   },
   "cohesion": {
-    "0": 0.06464883925947693,
-    "1": 0.06896551724137931,
+    "0": 0.05877742946708464,
+    "1": 0.08944793850454227,
     "2": 0.1474493361285814,
-    "3": 0.06207482993197279,
-    "4": 0.08258258258258258,
-    "5": 0.1590909090909091,
-    "6": 0.0625,
+    "3": 0.06294326241134751,
+    "4": 0.1590909090909091,
+    "5": 0.0625,
+    "6": 0.1111111111111111,
     "7": 0.07692307692307693,
-    "8": 0.3333333333333333,
-    "9": 0.1111111111111111,
-    "10": 0.20952380952380953,
-    "11": 0.16666666666666666,
-    "12": 0.21794871794871795,
-    "13": 0.2,
-    "14": 0.25,
-    "15": 0.5,
-    "16": 0.4,
+    "8": 0.13043478260869565,
+    "9": 0.3333333333333333,
+    "10": 0.1111111111111111,
+    "11": 0.20952380952380953,
+    "12": 0.16666666666666666,
+    "13": 0.21794871794871795,
+    "14": 0.15151515151515152,
+    "15": 0.2,
+    "16": 0.5,
     "17": 0.7,
-    "18": 0.8333333333333334,
-    "19": 0.8333333333333334,
-    "20": 0.5,
-    "21": 1.0,
-    "22": 1.0,
-    "23": 0.6666666666666666,
-    "24": 0.6666666666666666,
+    "18": 0.4,
+    "19": 0.4,
+    "20": 0.8333333333333334,
+    "21": 0.8333333333333334,
+    "22": 0.5,
+    "23": 1.0,
+    "24": 1.0,
     "25": 0.6666666666666666,
     "26": 1.0,
     "27": 1.0,
@@ -727,7 +765,14 @@
     "52": 1.0,
     "53": 1.0,
     "54": 1.0,
-    "55": 1.0
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0
   },
   "gods": [
     {
@@ -794,6 +839,28 @@
       "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 doc)"
     },
     {
+      "source": "MyKanban Frontend Entry",
+      "target": "MyKanban Backend API",
+      "source_files": [
+        "maya/index.html",
+        "chitta/docs/swagger.yaml"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "User Journeys",
+      "target": "MyKanban Backend API",
+      "source_files": [
+        "chitta/design/user_journeys.pdf",
+        "chitta/docs/swagger.yaml"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 paper)"
+    },
+    {
       "source": "InitTestEnvironment()",
       "target": "LoadConfig()",
       "source_files": [
@@ -814,32 +881,10 @@
       "confidence": "INFERRED",
       "relation": "calls",
       "why": "inferred connection - not explicitly stated in source; peripheral node `TestCORSPreflightResponse()` unexpectedly reaches hub `SetupRouter()`"
-    },
-    {
-      "source": "TestCORSRejectsUnknownOrigin()",
-      "target": "SetupRouter()",
-      "source_files": [
-        "chitta/main_test.go",
-        "chitta/main.go"
-      ],
-      "confidence": "INFERRED",
-      "relation": "calls",
-      "why": "inferred connection - not explicitly stated in source; peripheral node `TestCORSRejectsUnknownOrigin()` unexpectedly reaches hub `SetupRouter()`"
-    },
-    {
-      "source": "JWTAuth()",
-      "target": "ValidateJWT()",
-      "source_files": [
-        "chitta/middleware/middleware.go",
-        "chitta/auth/auth.go"
-      ],
-      "confidence": "INFERRED",
-      "relation": "calls",
-      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
     }
   ],
   "tokens": {
-    "input": 48592,
-    "output": 1350
+    "input": 37291,
+    "output": 1942
   }
 }

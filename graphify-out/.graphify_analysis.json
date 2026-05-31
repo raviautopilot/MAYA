@@ -12,7 +12,6 @@
       "boards_page_boardspage",
       "dashboard_page_counts",
       "dashboard_page_dashboardpage",
-      "login_page_logincontent",
       "login_page_loginpage",
       "maya_src_app_dashboard_boards_page_tsx",
       "maya_src_app_dashboard_dashboard_page_tsx",
@@ -464,6 +463,22 @@
       "storage_testitem"
     ],
     "12": [
+      "components_header_header",
+      "components_header_headerprops",
+      "components_sidebar_navitems",
+      "components_sidebar_sidebar",
+      "components_sidebar_sidebarprops",
+      "dashboard_layout_dashboardlayout",
+      "login_page_logincontent",
+      "maya_src_app_dashboard_layout_tsx",
+      "maya_src_components_header_tsx",
+      "maya_src_components_sidebar_tsx",
+      "maya_src_store_authstore_ts",
+      "store_authstore_authstate",
+      "store_authstore_useauthstore",
+      "store_authstore_user"
+    ],
+    "13": [
       "chitta_docs_swagger_json",
       "docs_swagger_basepath",
       "docs_swagger_contact_email",
@@ -478,36 +493,7 @@
       "docs_swagger_license_url",
       "docs_swagger_swagger"
     ],
-    "13": [
-      "components_header_header",
-      "components_header_headerprops",
-      "components_sidebar_navitems",
-      "components_sidebar_sidebar",
-      "components_sidebar_sidebarprops",
-      "dashboard_layout_dashboardlayout",
-      "maya_src_app_dashboard_layout_tsx",
-      "maya_src_components_header_tsx",
-      "maya_src_components_sidebar_tsx",
-      "maya_src_store_authstore_ts",
-      "store_authstore_authstate",
-      "store_authstore_useauthstore",
-      "store_authstore_user"
-    ],
     "14": [
-      "maya_src_components_ui_button_tsx",
-      "maya_src_components_ui_modal_tsx",
-      "maya_src_components_ui_table_tsx",
-      "ui_button_button",
-      "ui_button_buttonprops",
-      "ui_button_variants",
-      "ui_confirmdialog_confirmdialog",
-      "ui_modal_modal",
-      "ui_modal_modalprops",
-      "ui_table_column",
-      "ui_table_table",
-      "ui_table_tableprops"
-    ],
-    "15": [
       "chitta_models_models_go",
       "models_apiresponse",
       "models_board",
@@ -518,6 +504,16 @@
       "models_reminder",
       "models_scheduler",
       "models_task"
+    ],
+    "15": [
+      "maya_src_components_ui_button_tsx",
+      "maya_src_components_ui_modal_tsx",
+      "ui_button_button",
+      "ui_button_buttonprops",
+      "ui_button_variants",
+      "ui_confirmdialog_confirmdialog",
+      "ui_modal_modal",
+      "ui_modal_modalprops"
     ],
     "16": [
       "chitta_auth",
@@ -554,163 +550,190 @@
       "maya_deploy_log_success"
     ],
     "21": [
-      "chitta_scripts_test_api_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_api_sh__entry",
-      "scripts_test_api_header",
-      "scripts_test_api_run"
-    ],
-    "22": [
       "maya_index",
       "maya_main_tsx",
       "swagger_api",
       "user_journeys_doc"
     ],
+    "22": [
+      "chitta_scripts_test_api_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_api_sh__entry",
+      "scripts_test_api_header",
+      "scripts_test_api_run"
+    ],
     "23": [
+      "api_documentation",
+      "rest_api",
+      "swagger_pdf",
+      "swagger_specification"
+    ],
+    "24": [
+      "maya_src_components_ui_table_tsx",
+      "ui_table_column",
+      "ui_table_table",
+      "ui_table_tableprops"
+    ],
+    "25": [
       "chitta_chitta_certbot_log_info",
       "config_nginx_chitta_chitta_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_maya_config_nginx_chitta_chitta_certbot_sh__entry"
     ],
-    "24": [
+    "26": [
       "config_nginx_maya_maya_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_maya_config_nginx_maya_maya_certbot_sh__entry",
       "maya_maya_certbot_log_info"
     ],
-    "25": [
+    "27": [
       "maya_vite_config_dirname",
       "maya_vite_config_filename",
       "maya_vite_config_ts"
     ],
-    "26": [
-      "api_apitestsuite_testapiswaggerendpoint",
-      "e2etest_api_swagger_test_go_api_apitestsuite"
+    "28": [
+      "api_apitestsuite_testapihealthendpoint",
+      "e2etest_api_health_test_go_api_apitestsuite"
     ],
-    "27": [
+    "29": [
       "chitta_scripts_build_sh",
       "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_build_sh__entry"
     ],
-    "28": [
+    "30": [
       "chitta_scripts_run_sh",
       "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_run_sh__entry"
-    ],
-    "29": [
-      "chitta_scripts_stop_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_stop_sh__entry"
-    ],
-    "30": [
-      "chitta_scripts_test_sh",
-      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_sh__entry"
     ],
     "31": [
       "chitta_docs_docs_go",
       "docs_docs_init"
     ],
     "32": [
-      "api_apitestsuite_testapihealthendpoint",
-      "e2etest_api_health_test_go_api_apitestsuite"
+      "api_apitestsuite_testapiswaggerendpoint",
+      "e2etest_api_swagger_test_go_api_apitestsuite"
     ],
     "33": [
-      "e2etest_web_projects_test_go_web_webtestsuite",
-      "web_webtestsuite_testprojectworkflow"
+      "e2etest_web_login_test_go_web_webtestsuite",
+      "web_webtestsuite_testfrontendworkflow"
     ],
     "34": [
-      "e2etest_web_resources_test_go_web_webtestsuite",
-      "web_webtestsuite_testresourceworkflow"
+      "e2etest_web_projects_test_go_web_webtestsuite",
+      "web_webtestsuite_testprojectworkflow"
     ],
     "35": [
       "e2etest_web_tasks_test_go_web_webtestsuite",
       "web_webtestsuite_testtaskworkflow"
     ],
     "36": [
+      "chitta_scripts_stop_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_stop_sh__entry"
+    ],
+    "37": [
+      "chitta_scripts_test_sh",
+      "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_test_sh__entry"
+    ],
+    "38": [
       "chitta_scripts_troubleshoot_sh",
       "home_ubuntu_code_github_raviautopilot_maya_chitta_scripts_troubleshoot_sh__entry"
     ],
-    "37": [
+    "39": [
       "maya_postcss_config_config",
       "maya_postcss_config_mjs"
     ],
-    "38": [
+    "40": [
       "maya_tailwind_config_config",
       "maya_tailwind_config_ts"
     ],
-    "39": [
+    "41": [
       "utils_main_go",
       "utils_main_main"
     ],
-    "40": [
+    "42": [
       "e2etest_web_boards_test_go_web_webtestsuite",
       "web_webtestsuite_testboardworkflow"
     ],
-    "41": [
-      "e2etest_web_login_test_go_web_webtestsuite",
-      "web_webtestsuite_testfrontendworkflow"
+    "43": [
+      "e2etest_web_resources_test_go_web_webtestsuite",
+      "web_webtestsuite_testresourceworkflow"
     ],
-    "42": [
+    "44": [
       "e2etest_web_schedulers_test_go_web_webtestsuite",
       "web_webtestsuite_testschedulerworkflow"
     ],
-    "43": [
+    "45": [
       "update_graphify_sh"
     ],
-    "44": [
+    "46": [
       "e2etest_web_boards_test_go"
     ],
-    "45": [
+    "47": [
       "e2etest_web_tasks_test_go"
     ],
-    "46": [
+    "48": [
       "e2etest_web_resources_test_go"
     ],
-    "47": [
+    "49": [
       "e2etest_web_schedulers_test_go"
     ],
-    "48": [
+    "50": [
       "e2etest_web_login_test_go"
     ],
-    "49": [
+    "51": [
       "e2etest_web_projects_test_go"
     ],
-    "50": [
+    "52": [
       "e2etest_api_swagger_test_go"
     ],
-    "51": [
+    "53": [
       "e2etest_api_health_test_go"
     ],
-    "52": [
+    "54": [
       "maya_src_vite_env_d_ts"
     ],
-    "53": [
+    "55": [
       "contributing_md"
     ],
-    "54": [
+    "56": [
       "readme_md"
     ],
-    "55": [
+    "57": [
       "user_journey_admin_setup"
     ],
-    "56": [
+    "58": [
       "chitta_handlers_board_go"
     ],
-    "57": [
+    "59": [
       "chitta_handlers_task_go"
     ],
-    "58": [
+    "60": [
       "chitta_handlers_resource_go"
     ],
-    "59": [
+    "61": [
       "chitta_handlers_project_go"
     ],
-    "60": [
+    "62": [
       "swagger_models_apiresponse"
     ],
-    "61": [
+    "63": [
       "swagger_models_resource"
     ],
-    "62": [
+    "64": [
       "utils_readme"
+    ],
+    "65": [
+      "chitta_code_github_raviauthpilot_maya_data_resources_json"
+    ],
+    "66": [
+      "chitta_code_github_raviauthpilot_maya_data_projects_json"
+    ],
+    "67": [
+      "chitta_code_github_raviauthpilot_maya_data_schedulers_json"
+    ],
+    "68": [
+      "chitta_code_github_raviauthpilot_maya_data_tasks_json"
+    ],
+    "69": [
+      "chitta_code_github_raviauthpilot_maya_data_boards_json"
     ]
   },
   "cohesion": {
-    "0": 0.05877742946708464,
+    "0": 0.059609730018711574,
     "1": 0.08944793850454227,
     "2": 0.1474493361285814,
     "3": 0.06294326241134751,
@@ -722,22 +745,22 @@
     "9": 0.3333333333333333,
     "10": 0.1111111111111111,
     "11": 0.20952380952380953,
-    "12": 0.16666666666666666,
-    "13": 0.21794871794871795,
-    "14": 0.15151515151515152,
-    "15": 0.2,
+    "12": 0.1978021978021978,
+    "13": 0.16666666666666666,
+    "14": 0.2,
+    "15": 0.25,
     "16": 0.5,
     "17": 0.7,
     "18": 0.4,
     "19": 0.4,
     "20": 0.8333333333333334,
-    "21": 0.8333333333333334,
-    "22": 0.5,
-    "23": 1.0,
-    "24": 1.0,
-    "25": 0.6666666666666666,
+    "21": 0.5,
+    "22": 0.8333333333333334,
+    "23": 0.5,
+    "24": 0.5,
+    "25": 1.0,
     "26": 1.0,
-    "27": 1.0,
+    "27": 0.6666666666666666,
     "28": 1.0,
     "29": 1.0,
     "30": 1.0,
@@ -772,7 +795,14 @@
     "59": 1.0,
     "60": 1.0,
     "61": 1.0,
-    "62": 1.0
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0
   },
   "gods": [
     {
@@ -884,7 +914,7 @@
     }
   ],
   "tokens": {
-    "input": 37291,
-    "output": 1942
+    "input": 16152,
+    "output": 427
   }
 }
