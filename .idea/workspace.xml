@@ -45,7 +45,7 @@
     "nodejs_package_manager_path": "npm",
     "ts.external.directory.path": "/home/ubuntu/code/github/raviautopilot/mycan/node_modules/typescript/lib"
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/config" />
