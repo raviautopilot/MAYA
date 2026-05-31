@@ -33,6 +33,9 @@ cd chitta
 if [ -f "scripts/build.sh" ]; then
     bash scripts/build.sh
 else
+    # Ensure dependencies are downloaded and docs are generated
+    go mod tidy
+    # swag init # Uncomment this if you are using swaggo/swag for docs
     CGO_ENABLED=0 go build -ldflags="-w -s" -o bin/chitta .
 fi
 cd ..

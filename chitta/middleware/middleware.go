@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/gin-gonic/gin"
 	"chitta/auth"
 	"chitta/models"
+	"github.com/gin-gonic/gin"
 )
 
 // JWTAuth returns a Gin middleware that validates JWT tokens from the Authorization header.

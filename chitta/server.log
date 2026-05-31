@@ -1,0 +1,105 @@
+2026/05/14 14:08:17 MyKanban server starting on port 8080
+2026/05/14 14:17:25 Shutting down server...
+2026/05/14 14:17:25 Server exited gracefully
+2026/05/20 22:56:14 CORS allowed origins: [http://localhost:3000]
+2026/05/20 22:56:14 MyKanban server starting on port 8080
+2026/05/20 22:56:29 Shutting down server...
+2026/05/20 22:56:31 Server exited gracefully
+2026/05/20 22:57:11 CORS allowed origins: [http://localhost:3000]
+2026/05/20 22:57:11 MyKanban server starting on port 8080
+2026/05/20 22:57:21 Shutting down server...
+2026/05/20 22:57:21 Server exited gracefully
+2026/05/20 22:59:21 CORS allowed origins: [http://localhost:3000]
+2026/05/20 22:59:21 MyKanban server starting on port 8080
+2026/05/20 23:24:42 CORS allowed origins: [http://localhost:3000]
+2026/05/20 23:24:42 MyKanban server starting on port 8080
+2026/05/20 23:24:54 Shutting down server...
+2026/05/20 23:24:54 Server exited gracefully
+2026/05/28 00:38:28 CORS allowed origins: [http://localhost:3000]
+2026/05/28 00:38:28 MyKanban server starting on port 8080
+2026/05/28 00:57:03 Shutting down server...
+2026/05/28 00:57:03 Server exited gracefully
+2026/05/28 00:58:30 CORS allowed origins: [http://localhost:3000]
+2026/05/28 00:58:30 MyKanban server starting on port 8080
+2026/05/28 01:14:15 CORS allowed origins: [http://localhost:3000]
+2026/05/28 01:14:15 MyKanban server starting on port 8080
+2026/05/28 01:14:15 Server error: listen tcp :8080: bind: address already in use
+2026/05/28 01:14:23 Shutting down server...
+2026/05/28 01:14:23 Server exited gracefully
+2026/05/28 01:14:24 CORS allowed origins: [http://localhost:3000]
+2026/05/28 01:14:24 MyKanban server starting on port 8080
+2026/05/28 02:49:01 Shutting down server...
+2026/05/28 02:49:01 Server exited gracefully
+2026/05/28 02:49:12 CORS allowed origins: [http://localhost:3000]
+2026/05/28 02:49:12 MyKanban server starting on port 8080
+2026/05/28 02:50:17 Shutting down server...
+2026/05/28 02:50:17 Server exited gracefully
+2026/05/28 02:50:24 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 02:50:24 MyKanban server starting on port 8080
+2026/05/28 02:56:36 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 02:56:36 MyKanban server starting on port 8080
+2026/05/28 02:56:36 Server error: listen tcp :8080: bind: address already in use
+2026/05/28 02:56:56 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 02:56:56 MyKanban server starting on port 8080
+2026/05/28 03:06:14 Shutting down server...
+2026/05/28 03:06:14 Server exited gracefully
+2026/05/28 03:11:30 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:11:30 MyKanban server starting on port 8080
+2026/05/28 03:12:02 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:12:02 MyKanban server starting on port 8080
+2026/05/28 03:12:33 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:12:33 MyKanban server starting on port 8080
+2026/05/28 03:12:56 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:12:56 MyKanban server starting on port 8080
+2026/05/28 03:13:17 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:13:17 MyKanban server starting on port 8080
+2026/05/28 03:15:11 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:15:11 MyKanban server starting on port 8080
+2026/05/28 03:30:15 Shutting down server...
+2026/05/28 03:30:15 Server exited gracefully
+2026/05/28 03:30:17 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:30:17 MyKanban server starting on port 8080
+2026/05/28 03:31:37 Shutting down server...
+2026/05/28 03:31:37 Server exited gracefully
+2026/05/28 03:33:27 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:33:27 MyKanban server starting on port 8080
+2026/05/28 03:48:00 Shutting down server...
+2026/05/28 03:48:00 Server exited gracefully
+2026/05/28 03:48:03 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:48:03 MyKanban server starting on port 8080
+2026/05/28 03:49:36 Shutting down server...
+2026/05/28 03:49:36 Server exited gracefully
+2026/05/28 03:49:47 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:49:47 MyKanban server starting on port 8080
+2026/05/28 03:50:12 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:50:12 MyKanban server starting on port 8080
+2026/05/28 03:51:29 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:51:29 MyKanban server starting on port 8080
+2026/05/28 03:52:01 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:52:01 MyKanban server starting on port 8080
+2026/05/28 03:53:35 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:53:35 MyKanban server starting on port 8080
+2026/05/28 03:53:57 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:53:57 MyKanban server starting on port 8080
+2026/05/28 03:54:25 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:54:25 MyKanban server starting on port 8080
+2026/05/28 03:55:30 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:55:30 MyKanban server starting on port 8080
+2026/05/28 03:55:54 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:55:54 MyKanban server starting on port 8080
+2026/05/28 03:56:14 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/28 03:56:14 MyKanban server starting on port 8080
+2026/05/31 13:12:52 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/31 13:12:52 MyKanban server starting on port 8080
+2026/05/31 13:13:25 Shutting down server...
+2026/05/31 13:13:25 Server exited gracefully
+2026/05/31 13:15:26 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/31 13:15:26 MyKanban server starting on port 8080
+2026/05/31 13:57:52 Shutting down server...
+2026/05/31 13:57:52 Server exited gracefully
+2026/05/31 15:24:41 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/31 15:24:41 MyKanban server starting on port 8080
+2026/05/31 15:31:45 Shutting down server...
+2026/05/31 15:31:45 Server exited gracefully
+2026/05/31 15:31:48 CORS allowed origins: [http://localhost:3000 http://localhost:3001]
+2026/05/31 15:31:48 MyKanban server starting on port 8080
