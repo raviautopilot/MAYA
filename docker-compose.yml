@@ -2,6 +2,9 @@ version: '3.8'
 
 services:
   chitta:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     image: mycan-chitta:latest
     container_name: mycan-chitta
     ports:
@@ -17,6 +20,9 @@ services:
     restart: unless-stopped
 
   maya:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     image: mycan-maya:latest
     container_name: mycan-maya
     ports:
