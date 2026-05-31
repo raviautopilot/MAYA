@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# control.sh - Senior DevOps & Systems Automation Controller for MyKanban
+# manage.sh - Senior DevOps & Systems Automation Controller for MyKanban
 #
 # This script orchestrates and manages the local development lifecycle of the
 # MyKanban Go API Server (chitta) and the Next.js Web App (maya).
@@ -67,7 +67,7 @@ show_help() {
     cat << 'EOF'
 MyKanban Development Environment Controller
 ===========================================
-Usage: ./control.sh [command]
+Usage: ./manage.sh [command]
 
 A production-grade developer tool to automate orchestrating local backend (Go)
 and frontend (Next.js) servers simultaneously in the background.
@@ -113,7 +113,7 @@ do_start() {
     fi
 
     if [ "$already_running" -eq 1 ]; then
-        log_info "Use './control.sh status' to inspect, or './control.sh restart' to reload."
+        log_info "Use './manage.sh status' to inspect, or './manage.sh restart' to reload."
         return 0
     fi
 
@@ -211,7 +211,7 @@ do_stop() {
         rm -f "$LOCKFILE"
         log_success "All development services gracefully stopped and lockfile cleared."
     else
-        log_warn "Some services did not stop gracefully. Run './control.sh kill' to force quit."
+        log_warn "Some services did not stop gracefully. Run './manage.sh kill' to force quit."
     fi
 }
 
