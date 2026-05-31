@@ -122,6 +122,10 @@ func (h *Handler) UpdateResource(c *gin.Context) {
 				if input.LinkedItems != nil {
 					items[i].LinkedItems = input.LinkedItems
 				}
+				items[i].ResourceType = input.ResourceType
+				items[i].ResourceRole = input.ResourceRole
+				items[i].HourlyRate = input.HourlyRate
+				items[i].DailyRate = input.DailyRate
 				items[i].UpdatedAt = time.Now().UTC()
 				updated = &items[i]
 				return items, nil

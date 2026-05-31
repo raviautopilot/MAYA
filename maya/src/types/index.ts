@@ -118,12 +118,15 @@ export type SchedulerCreate = Pick<Scheduler, 'name' | 'type'> & {
 };
 export type SchedulerUpdate = SchedulerCreate;
 
-// ── Resource ──
 export interface Resource {
   id: string;
   name: string;
   type: 'Global' | 'Project' | 'Task';
   linked_items: string[];
+  resource_type?: 'person' | 'machine' | 'AI' | 'tool';
+  resource_role?: 'admin' | 'manager' | 'worker' | 'customer' | 'guest' | 'contact' | 'contractor';
+  hourly_rate?: number;
+  daily_rate?: number;
   created_at: string;
   updated_at: string;
   deleted_at?: string;
@@ -131,5 +134,9 @@ export interface Resource {
 
 export type ResourceCreate = Pick<Resource, 'name' | 'type'> & {
   linked_items?: string[];
+  resource_type?: 'person' | 'machine' | 'AI' | 'tool';
+  resource_role?: 'admin' | 'manager' | 'worker' | 'customer' | 'guest' | 'contact' | 'contractor';
+  hourly_rate?: number;
+  daily_rate?: number;
 };
 export type ResourceUpdate = ResourceCreate;
