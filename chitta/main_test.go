@@ -5,8 +5,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"mykanban-backend/handlers"
-	"mykanban-backend/models"
+	"chitta/handlers"
+	"chitta/models"
 )
 
 func TestParseAllowedOrigins(t *testing.T) {

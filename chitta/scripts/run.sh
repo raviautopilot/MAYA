@@ -16,10 +16,10 @@ if [ ! -f "config.json" ]; then
 fi
 
 # Build if binary missing
-if [ ! -f "bin/tracker-server" ]; then
+if [ ! -f "bin/chitta" ]; then
     echo "==> Binary not found, building..."
     bash scripts/build.sh
 fi
 
 echo "==> Starting MyKanban server..."
-exec ./bin/tracker-server
+exec ./bin/chitta

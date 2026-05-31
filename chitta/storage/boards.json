@@ -1,0 +1,96 @@
+[
+  {
+    "id": "55584aa2-727c-4f13-8f9b-90e44150a887",
+    "project_id": "e40355b3-aa18-4802-ac8d-41d8afb6396d",
+    "name": "RaviJ",
+    "swimlanes": [
+      "TODO",
+      "INPROGRESS",
+      "DONE"
+    ],
+    "task_types": [
+      "Bug",
+      "Feature",
+      "Chore"
+    ],
+    "created_at": "2026-05-27T19:10:58.00696123Z",
+    "updated_at": "2026-05-27T19:32:51.9882129Z",
+    "deleted_at": "2026-05-27T19:32:51.9882129Z"
+  },
+  {
+    "id": "ae2bc70e-7f70-4f4f-9064-a653dd36c396",
+    "project_id": "e40355b3-aa18-4802-ac8d-41d8afb6396d",
+    "name": "Arthi",
+    "swimlanes": [
+      "To Do",
+      "In Progress",
+      "Done"
+    ],
+    "task_types": [
+      "Bug",
+      "Feature",
+      "Chore"
+    ],
+    "created_at": "2026-05-27T19:12:38.129366902Z",
+    "updated_at": "2026-05-27T19:32:54.513620996Z",
+    "deleted_at": "2026-05-27T19:32:54.513620996Z"
+  },
+  {
+    "id": "349e6b53-ea97-4ac6-b80a-fcec907b9e94",
+    "project_id": "dd4d5ad8-41c7-4698-b204-510b75a1498f",
+    "name": "TAGA Dev",
+    "swimlanes": [
+      "To Do",
+      "In Progress",
+      "Done"
+    ],
+    "task_types": [
+      "Bug",
+      "Feature",
+      "Chore"
+    ],
+    "created_at": "2026-05-27T19:14:49.976935626Z",
+    "updated_at": "2026-05-27T19:32:56.855118089Z",
+    "deleted_at": "2026-05-27T19:32:56.855118089Z"
+  },
+  {
+    "id": "6d79a63e-6bff-42fb-ac8b-359aafdb5ee7",
+    "project_id": "221af59f-c2f6-4f02-b9a9-b0bae0dc3630",
+    "name": "Ravi",
+    "swimlanes": [
+      "To Do",
+      "In Progress",
+      "Done"
+    ],
+    "task_types": [
+      "Personal",
+      "Bank",
+      "Share",
+      "Income",
+      "Spending",
+      "Learning",
+      "Reminders"
+    ],
+    "created_at": "2026-05-27T19:47:33.521742031Z",
+    "updated_at": "2026-05-27T21:47:20.061746125Z",
+    "deleted_at": "2026-05-27T21:47:20.061746125Z"
+  },
+  {
+    "id": "0a7ec68f-8d55-42f7-bf72-6a243d817c0b",
+    "project_id": "8d122dc4-ea9b-4f27-8881-a7abcb70b78a",
+    "name": "MyBoard",
+    "swimlanes": [
+      "To Do",
+      "In Progress",
+      "Done"
+    ],
+    "task_types": [
+      "Interest",
+      "Mortgage",
+      "Bill",
+      "Rent"
+    ],
+    "created_at": "2026-05-27T22:06:31.522748257Z",
+    "updated_at": "2026-05-27T22:07:33.581174464Z"
+  }
+]

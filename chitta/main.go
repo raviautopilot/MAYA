@@ -36,11 +36,11 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	_ "mykanban-backend/docs"
-	"mykanban-backend/handlers"
-	"mykanban-backend/middleware"
-	"mykanban-backend/models"
-	"mykanban-backend/storage"
+	_ "chitta/docs"
+	"chitta/handlers"
+	"chitta/middleware"
+	"chitta/models"
+	"chitta/storage"
 )
 
 func main() {

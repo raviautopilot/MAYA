@@ -19,6 +19,6 @@ fi
 
 echo "==> Building binary..."
 mkdir -p bin
-go build -o bin/tracker-server main.go
+go build -o bin/chitta main.go
 
-echo "==> Build success. Binary at bin/tracker-server"
+echo "==> Build success. Binary at bin/chitta"

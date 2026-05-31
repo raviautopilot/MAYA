@@ -8,7 +8,7 @@ if command -v jq &> /dev/null && [ -f "config.json" ]; then
     PORT=$(jq -r '.port // 8080' config.json)
 fi
 
-echo "==> Attempting to stop tracker-server on port $PORT..."
+echo "==> Attempting to stop chitta on port $PORT..."
 
 # Try to find PID by port
 PID=$(lsof -ti ":$PORT" 2>/dev/null || true)
@@ -24,9 +24,9 @@ if [ -n "$PID" ]; then
     echo "    Server stopped."
 else
     # Fallback: pkill
-    if pkill tracker-server 2>/dev/null; then
+    if pkill chitta 2>/dev/null; then
         echo "    Server stopped via pkill."
     else
-        echo "    No running tracker-server process found."
+        echo "    No running chitta process found."
     fi
 fi

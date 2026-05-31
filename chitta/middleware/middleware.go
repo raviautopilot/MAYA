@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"mykanban-backend/auth"
-	"mykanban-backend/models"
+	"chitta/auth"
+	"chitta/models"
 )
 
 // JWTAuth returns a Gin middleware that validates JWT tokens from the Authorization header.

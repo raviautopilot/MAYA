@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/robfig/cron/v3"
-	"mykanban-backend/auth"
-	"mykanban-backend/models"
-	"mykanban-backend/storage"
+	"chitta/auth"
+	"chitta/models"
+	"chitta/storage"
 	"net/http"
 	"time"
 )

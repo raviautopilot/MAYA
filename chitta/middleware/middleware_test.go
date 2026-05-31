@@ -6,9 +6,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"chitta/auth"
+	"chitta/models"
+
 	"github.com/gin-gonic/gin"
-	"mykanban-backend/auth"
-	"mykanban-backend/models"
 )
 
 func init() {

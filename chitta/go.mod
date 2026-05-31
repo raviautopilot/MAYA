@@ -1,4 +1,4 @@
-module mykanban-backend
+module chitta
 
 go 1.25.0
 

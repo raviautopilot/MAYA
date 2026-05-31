@@ -12,9 +12,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"mykanban-backend/auth"
-	"mykanban-backend/models"
-	"mykanban-backend/storage"
+	"chitta/auth"
+	"chitta/models"
+	"chitta/storage"
 )
 
 // --- Mock FileSystem ---
@@ -1090,4 +1090,3 @@ func TestTask_DueDate(t *testing.T) {
 		t.Errorf("expected empty due_date, got '%v'", taskData["due_date"])
 	}
 }
-
