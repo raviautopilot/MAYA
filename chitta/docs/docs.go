@@ -2055,8 +2055,14 @@ const docTemplate = `{
                 "created_at": {
                     "type": "string"
                 },
+                "daily_rate": {
+                    "type": "number"
+                },
                 "deleted_at": {
                     "type": "string"
+                },
+                "hourly_rate": {
+                    "type": "number"
                 },
                 "id": {
                     "type": "string"
@@ -2069,6 +2075,27 @@ const docTemplate = `{
                 },
                 "name": {
                     "type": "string"
+                },
+                "resource_role": {
+                    "type": "string",
+                    "enum": [
+                        "admin",
+                        "manager",
+                        "worker",
+                        "customer",
+                        "guest",
+                        "contact",
+                        "contractor"
+                    ]
+                },
+                "resource_type": {
+                    "type": "string",
+                    "enum": [
+                        "person",
+                        "machine",
+                        "AI",
+                        "tool"
+                    ]
                 },
                 "type": {
                     "type": "string",

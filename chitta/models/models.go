@@ -88,13 +88,17 @@ type Scheduler struct {
 
 // Resource represents a person or service that can be linked to entities.
 type Resource struct {
-	ID          string     `json:"id"`
-	Name        string     `json:"name" binding:"required"`
-	Type        string     `json:"type" binding:"required,oneof=Global Project Task"`
-	LinkedItems []string   `json:"linked_items"`
-	CreatedAt   time.Time  `json:"created_at"`
-	UpdatedAt   time.Time  `json:"updated_at"`
-	DeletedAt   *time.Time `json:"deleted_at,omitempty"`
+	ID           string     `json:"id"`
+	Name         string     `json:"name" binding:"required"`
+	Type         string     `json:"type" binding:"required,oneof=Global Project Task"`
+	LinkedItems  []string   `json:"linked_items"`
+	ResourceType string     `json:"resource_type" binding:"omitempty,oneof=person machine AI tool"`
+	ResourceRole string     `json:"resource_role" binding:"omitempty,oneof=admin manager worker customer guest contact contractor"`
+	HourlyRate   float64    `json:"hourly_rate"`
+	DailyRate    float64    `json:"daily_rate"`
+	CreatedAt    time.Time  `json:"created_at"`
+	UpdatedAt    time.Time  `json:"updated_at"`
+	DeletedAt    *time.Time `json:"deleted_at,omitempty"`
 }
 
 // Config holds the application configuration loaded from config.json.

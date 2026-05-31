@@ -33,7 +33,7 @@ export default function ResourcesPage() {
 
   const openCreate = () => {
     setEditingResource(null);
-    reset({ name: '', type: 'Global' });
+    reset({ name: '', type: 'Global', resource_type: 'person', resource_role: 'worker', hourly_rate: 0, daily_rate: 0 });
     setLinkedItemsInput('');
     setModalOpen(true);
   };
@@ -42,6 +42,10 @@ export default function ResourcesPage() {
     setEditingResource(r);
     setValue('name', r.name);
     setValue('type', r.type);
+    setValue('resource_type', r.resource_type || 'person');
+    setValue('resource_role', r.resource_role || 'worker');
+    setValue('hourly_rate', r.hourly_rate || 0);
+    setValue('daily_rate', r.daily_rate || 0);
     setLinkedItemsInput((r.linked_items || []).join(', '));
     setModalOpen(true);
   };
@@ -50,6 +54,8 @@ export default function ResourcesPage() {
     setSubmitting(true);
     const payload: ResourceCreate = {
       ...data,
+      hourly_rate: Number(data.hourly_rate) || 0,
+      daily_rate: Number(data.daily_rate) || 0,
       linked_items: linkedItemsInput ? linkedItemsInput.split(',').map((s) => s.trim()).filter(Boolean) : undefined,
     };
     try {
@@ -80,9 +86,24 @@ export default function ResourcesPage() {
 
   const columns = [
     { key: 'name', header: 'Name', render: (r: Resource) => <span className="font-medium">{r.name}</span> },
-    { key: 'type', header: 'Type', render: (r: Resource) => (
+    { key: 'type', header: 'Scope', render: (r: Resource) => (
       <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${r.type === 'Global' ? 'bg-green-100 text-green-700' : r.type === 'Project' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`}>
         {r.type}
+      </span>
+    )},
+    { key: 'resource_type', header: 'Type', render: (r: Resource) => (
+      <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 uppercase">
+        {r.resource_type || 'person'}
+      </span>
+    )},
+    { key: 'resource_role', header: 'Role', render: (r: Resource) => (
+      <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700 uppercase">
+        {r.resource_role || 'worker'}
+      </span>
+    )},
+    { key: 'cost', header: 'Rates', render: (r: Resource) => (
+      <span className="text-xs text-gray-600 font-medium">
+        ${r.hourly_rate || 0}/hr | ${r.daily_rate || 0}/day
       </span>
     )},
     { key: 'linked_items', header: 'Linked Items', render: (r: Resource) => (r.linked_items || []).length > 0 ? `${(r.linked_items || []).length} item(s)` : '—' },
@@ -123,6 +144,47 @@ export default function ResourcesPage() {
             {...register('type', { required: 'Type is required' })}
             error={errors.type?.message}
           />
+          <Select
+            label="Resource Type"
+            e2e-test-id="resource-resource-type-select"
+            options={[
+              { value: 'person', label: 'Person' },
+              { value: 'machine', label: 'Machine' },
+              { value: 'AI', label: 'AI' },
+              { value: 'tool', label: 'Tool' }
+            ]}
+            {...register('resource_type')}
+          />
+          <Select
+            label="Resource Role"
+            e2e-test-id="resource-resource-role-select"
+            options={[
+              { value: 'admin', label: 'Admin' },
+              { value: 'manager', label: 'Manager' },
+              { value: 'worker', label: 'Worker' },
+              { value: 'customer', label: 'Customer' },
+              { value: 'guest', label: 'Guest' },
+              { value: 'contact', label: 'Contact' },
+              { value: 'contractor', label: 'Contractor' }
+            ]}
+            {...register('resource_role')}
+          />
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              label="Hourly Rate ($)"
+              type="number"
+              step="0.01"
+              e2e-test-id="resource-hourly-rate-input"
+              {...register('hourly_rate')}
+            />
+            <Input
+              label="Daily Rate ($)"
+              type="number"
+              step="0.01"
+              e2e-test-id="resource-daily-rate-input"
+              {...register('daily_rate')}
+            />
+          </div>
           <Input
             label="Linked Items (comma-separated UUIDs)"
             placeholder="uuid1, uuid2"

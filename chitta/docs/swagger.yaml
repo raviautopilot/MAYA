@@ -99,8 +99,12 @@ definitions:
     properties:
       created_at:
         type: string
+      daily_rate:
+        type: number
       deleted_at:
         type: string
+      hourly_rate:
+        type: number
       id:
         type: string
       linked_items:
@@ -108,6 +112,23 @@ definitions:
           type: string
         type: array
       name:
+        type: string
+      resource_role:
+        enum:
+        - admin
+        - manager
+        - worker
+        - customer
+        - guest
+        - contact
+        - contractor
+        type: string
+      resource_type:
+        enum:
+        - person
+        - machine
+        - AI
+        - tool
         type: string
       type:
         enum:
