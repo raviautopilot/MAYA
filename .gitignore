@@ -116,8 +116,6 @@ build/
 chitta/bin/
 chitta/chitta
 
-# Graphify output
-graphify-out/
 
 # Project data files
 *.json
