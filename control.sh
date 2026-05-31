@@ -20,8 +20,10 @@ MAYA_DIR="$SCRIPT_DIR/maya"
 CHITTA_PORT=8080
 MAYA_PORTS=(3000 3001 3002)
 
-# Ensure logs directory exists
+# Ensure base directories exist
 mkdir -p "$LOGS_DIR"
+mkdir -p "$CHITTA_DIR"
+mkdir -p "$MAYA_DIR"
 
 # Print colored messages for terminal feedback
 log_info() {
@@ -129,6 +131,10 @@ do_start() {
 
     # 2. Start Next.js Frontend
     log_info "Launching Maya Next.js Dev Server..."
+    if [ ! -d "$MAYA_DIR/node_modules" ]; then
+        log_warn "Node modules not found in Maya. Running npm install..."
+        (cd "$MAYA_DIR" && npm install)
+    fi
     cd "$MAYA_DIR"
     # Set PORT=3000 but Node will fallback to 3001/3002 if 3000 is occupied.
     nohup ../node_modules/.bin/next dev > "$LOGS_DIR/maya.log" 2>&1 &

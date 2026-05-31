@@ -290,59 +290,62 @@
       "frontend_dockerfile"
     ],
     "13": [
+      "api_specification",
+      "chitta_system",
+      "swagger_pdf",
+      "user_experience_design",
+      "user_journeys_pdf"
+    ],
+    "14": [
       "config_create_syschitta_log_info",
       "config_create_syschitta_log_success",
       "config_create_syschitta_log_warn",
       "config_create_syschitta_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
     ],
-    "14": [
+    "15": [
       "deploy_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_deploy_sh__entry",
       "mycan_deploy_log_error",
       "mycan_deploy_log_info",
       "mycan_deploy_log_success"
     ],
-    "15": [
+    "16": [
       "models_board",
       "models_project",
       "models_scheduler",
       "models_task"
     ],
-    "16": [
+    "17": [
       "chitta_middleware_middleware_go",
       "middleware_middleware_jwtauth",
       "middleware_middleware_recovery"
     ],
-    "17": [
+    "18": [
       "chitta_chitta_certbot_log_info",
       "config_nginx_chitta_chitta_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_chitta_chitta_certbot_sh__entry"
     ],
-    "18": [
+    "19": [
       "config_nginx_maya_maya_certbot_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_config_nginx_maya_maya_certbot_sh__entry",
       "maya_maya_certbot_log_info"
     ],
-    "19": [
+    "20": [
+      "backend_auth_login",
+      "user_journeys_admin_setup"
+    ],
+    "21": [
       "chitta_docs_docs_go",
       "docs_docs_init"
     ],
-    "20": [
+    "22": [
       "chitta_scripts_build_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_build_sh__entry"
     ],
-    "21": [
+    "23": [
       "chitta_scripts_run_sh",
       "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_run_sh__entry"
-    ],
-    "22": [
-      "chitta_scripts_test_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_sh__entry"
-    ],
-    "23": [
-      "chitta_scripts_troubleshoot_sh",
-      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_troubleshoot_sh__entry"
     ],
     "24": [
       "chitta_scripts_stop_sh",
@@ -353,107 +356,111 @@
       "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_api_sh__entry"
     ],
     "26": [
+      "chitta_scripts_test_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_test_sh__entry"
+    ],
+    "27": [
+      "chitta_scripts_troubleshoot_sh",
+      "home_ubuntu_code_github_raviautopilot_mycan_chitta_scripts_troubleshoot_sh__entry"
+    ],
+    "28": [
       "maya_eslintrc_extends",
       "maya_eslintrc_json"
     ],
-    "27": [
+    "29": [
       "maya_postcss_config_config",
       "maya_postcss_config_mjs"
     ],
-    "28": [
+    "30": [
       "maya_tailwind_config_config",
       "maya_tailwind_config_ts"
     ],
-    "29": [
-      "backend_auth_login",
-      "user_journeys_admin_setup"
-    ],
-    "30": [
+    "31": [
       "utils_main_go",
       "utils_main_main"
     ],
-    "31": [
+    "32": [
       "storage_resources_json"
     ],
-    "32": [
+    "33": [
       "storage_projects_json"
     ],
-    "33": [
+    "34": [
       "storage_schedulers_json"
     ],
-    "34": [
+    "35": [
       "storage_tasks_json"
     ],
-    "35": [
+    "36": [
       "storage_boards_json"
     ],
-    "36": [
+    "37": [
       "contributing_contributing"
     ],
-    "37": [
+    "38": [
       "update_graphify_sh"
     ],
-    "38": [
+    "39": [
       "chitta_models_models_go"
     ],
-    "39": [
+    "40": [
       "chitta_middleware_middleware_test_go"
     ],
-    "40": [
+    "41": [
       "chitta_handlers_handlers_test_go"
     ],
-    "41": [
+    "42": [
       "chitta_auth_auth_test_go"
     ],
-    "42": [
+    "43": [
       "chitta_auth_auth_go"
     ],
-    "43": [
+    "44": [
       "chitta_storage_resources_json"
     ],
-    "44": [
+    "45": [
       "chitta_storage_projects_json"
     ],
-    "45": [
+    "46": [
       "chitta_storage_schedulers_json"
     ],
-    "46": [
+    "47": [
       "chitta_storage_storage_test_go"
     ],
-    "47": [
+    "48": [
       "chitta_storage_tasks_json"
     ],
-    "48": [
+    "49": [
       "chitta_storage_boards_json"
     ],
-    "49": [
+    "50": [
       "chitta_storage_storage_go"
     ],
-    "50": [
+    "51": [
       "maya_next_config_mjs"
     ],
-    "51": [
+    "52": [
       "maya_next_env_d_ts"
     ],
-    "52": [
+    "53": [
       "maya_src_app_layout_tsx"
     ],
-    "53": [
+    "54": [
       "maya_src_app_page_tsx"
     ],
-    "54": [
+    "55": [
       "auth_hashpassword"
     ],
-    "55": [
+    "56": [
       "auth_checkpassword"
     ],
-    "56": [
+    "57": [
       "auth_googleoauthconfig"
     ],
-    "57": [
+    "58": [
       "auth_fetchgoogleuser"
     ],
-    "58": [
+    "59": [
       "models_resource"
     ]
   },
@@ -471,11 +478,11 @@
     "10": 0.3611111111111111,
     "11": 0.2857142857142857,
     "12": 0.2857142857142857,
-    "13": 0.7,
-    "14": 0.6,
-    "15": 0.5,
-    "16": 0.6666666666666666,
-    "17": 1.0,
+    "13": 0.5,
+    "14": 0.7,
+    "15": 0.6,
+    "16": 0.5,
+    "17": 0.6666666666666666,
     "18": 1.0,
     "19": 1.0,
     "20": 1.0,
@@ -516,7 +523,8 @@
     "55": 1.0,
     "56": 1.0,
     "57": 1.0,
-    "58": 1.0
+    "58": 1.0,
+    "59": 1.0
   },
   "gods": [
     {
@@ -628,7 +636,7 @@
     }
   ],
   "tokens": {
-    "input": 41497,
-    "output": 1094
+    "input": 31985,
+    "output": 637
   }
 }
