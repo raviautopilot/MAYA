@@ -2,14 +2,14 @@
 package handlers
 
 import (
+	"chitta/auth"
+	"chitta/models"
+	"chitta/storage"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/robfig/cron/v3"
-	"chitta/auth"
-	"chitta/models"
-	"chitta/storage"
 	"net/http"
 	"time"
 )
