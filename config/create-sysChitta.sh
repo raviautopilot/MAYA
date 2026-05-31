@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# app-user.sh - Creates a dedicated system user for running MyKanban services.
+# create-sysChitta.sh - Creates a dedicated system user for running MyKanban services.
 #
 # This script performs the following actions:
 # 1. Creates a system user 'apprunner' with no login shell.
