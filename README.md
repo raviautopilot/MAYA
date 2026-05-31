@@ -22,8 +22,10 @@ mykanban/
 │   ├── public/       # Static assets
 │   └── package.json  # NPM dependencies and scripts
 ├── e2etest/          # Go End-to-End Testing Suite (Selenium & Webdriver)
+│   ├── api/          # Organized REST API test suites
+│   ├── web/          # Organized Selenium UI test suites
 │   ├── reports/      # Auto-generated interactive HTML test dashboards
-│   └── *.go          # Selenium test suites and assertion suites
+│   └── *.go          # Shared helper and config library files
 ├── manage.sh         # Integrated automation orchestrator & DevOps script
 ├── package.json      # Workspace configurations and run shortcuts
 └── README.md         # This file
