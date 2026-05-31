@@ -132,6 +132,7 @@ chitta/chitta
 !maya/package.json
 !maya/package-lock.json
 !maya/tsconfig.json
+!graphify-out/**
 
 # If data files are stored in the root
 /boards.json
