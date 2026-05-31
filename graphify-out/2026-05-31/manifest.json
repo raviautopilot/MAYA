@@ -390,9 +390,9 @@
     "semantic_hash": "446de290a9491abd639a6418bd12028e"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/control.sh": {
-    "mtime": 1780223482.8337536,
-    "ast_hash": "c91eac0d92b97aa46a5aa1e6f93b5149",
-    "semantic_hash": "c91eac0d92b97aa46a5aa1e6f93b5149"
+    "mtime": 1780225335.280484,
+    "ast_hash": "7dc9d7348d158f440a4c38c4683a557c",
+    "semantic_hash": "7dc9d7348d158f440a4c38c4683a557c"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/package.json": {
     "mtime": 1780223482.8497536,
@@ -400,9 +400,9 @@
     "semantic_hash": "3d7fcb5c667c07a39d03e9c5cec74126"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/deploy.sh": {
-    "mtime": 1780223482.8337536,
-    "ast_hash": "72eb17519b4bee4eb161b922b1ccfdb4",
-    "semantic_hash": "72eb17519b4bee4eb161b922b1ccfdb4"
+    "mtime": 1780225337.460502,
+    "ast_hash": "2142480668bf500cac77fe85c87bfcf3",
+    "semantic_hash": "2142480668bf500cac77fe85c87bfcf3"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/config/create-sysChitta.sh": {
     "mtime": 1780223482.8337536,
@@ -514,15 +514,10 @@
     "ast_hash": "c69810d778c016dc754f837c503d8b1e",
     "semantic_hash": "c69810d778c016dc754f837c503d8b1e"
   },
-  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/next.config.mjs": {
-    "mtime": 1780223482.8457537,
-    "ast_hash": "0f4b59914503921f651c7741f658b7eb",
-    "semantic_hash": "0f4b59914503921f651c7741f658b7eb"
-  },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/package.json": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "47094d3fb4259499c3c575fe7d384a78",
-    "semantic_hash": "47094d3fb4259499c3c575fe7d384a78"
+    "mtime": 1780225238.495687,
+    "ast_hash": "517d1330f3dd1bc0eee956d424bf3edb",
+    "semantic_hash": "517d1330f3dd1bc0eee956d424bf3edb"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/postcss.config.mjs": {
     "mtime": 1780223482.8497536,
@@ -530,14 +525,9 @@
     "semantic_hash": "b7941c02b947e17ae32f67ae7e664ec8"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/tsconfig.json": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "3bd7a3770c6b44dbcaab1d2f175db8bd",
-    "semantic_hash": "3bd7a3770c6b44dbcaab1d2f175db8bd"
-  },
-  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/next-env.d.ts": {
-    "mtime": 1780223555.0503314,
-    "ast_hash": "b5ed9dd8b4c5ba8e5ab8e6a379c15838",
-    "semantic_hash": "b5ed9dd8b4c5ba8e5ab8e6a379c15838"
+    "mtime": 1780225459.485507,
+    "ast_hash": "2d4d9da0cfb394069f043337beab9068",
+    "semantic_hash": "2d4d9da0cfb394069f043337beab9068"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/tailwind.config.ts": {
     "mtime": 1780223482.8497536,
@@ -545,14 +535,14 @@
     "semantic_hash": "09fdf908dd33ad9e4443cd313183a30e"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/components/Sidebar.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "35779cb972948ed61ed2e1df9e489a18",
-    "semantic_hash": "35779cb972948ed61ed2e1df9e489a18"
+    "mtime": 1780225455.101471,
+    "ast_hash": "8cb06b2dd13be0b9ed89a150a3fa7960",
+    "semantic_hash": "8cb06b2dd13be0b9ed89a150a3fa7960"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/components/Header.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "9abde19c77d58ab20b79c8aeb1b2f0e3",
-    "semantic_hash": "9abde19c77d58ab20b79c8aeb1b2f0e3"
+    "mtime": 1780225275.1919892,
+    "ast_hash": "3d84e49344a5ca07429b3254ede7dcd6",
+    "semantic_hash": "3d84e49344a5ca07429b3254ede7dcd6"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/components/ui/Skeleton.tsx": {
     "mtime": 1780223482.8497536,
@@ -575,9 +565,9 @@
     "semantic_hash": "763215aeb7d30fdb46e941c17b059489"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/components/ui/index.ts": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "8b1d7653405ff7827a8af566aed1800e",
-    "semantic_hash": "8b1d7653405ff7827a8af566aed1800e"
+    "mtime": 1780225261.3398752,
+    "ast_hash": "e7c80dba77b789bd1405f86bea3e58ac",
+    "semantic_hash": "e7c80dba77b789bd1405f86bea3e58ac"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/components/ui/Modal.tsx": {
     "mtime": 1780223482.8497536,
@@ -630,9 +620,9 @@
     "semantic_hash": "7ebf55f3e1b1cf9edb7b1379d76e1462"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/services/api/auth.ts": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "a2065e11d6d437e43fdb88341d8f509a",
-    "semantic_hash": "a2065e11d6d437e43fdb88341d8f509a"
+    "mtime": 1780225473.2536204,
+    "ast_hash": "f50192013c4bc4fbc2c7117c584c7b8e",
+    "semantic_hash": "f50192013c4bc4fbc2c7117c584c7b8e"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/services/api/boards.ts": {
     "mtime": 1780223482.8497536,
@@ -640,9 +630,9 @@
     "semantic_hash": "36be6c3c6fcc397cd46c6ed02347032e"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/services/api/client.ts": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "055710e6ad336a3fec1dbf6fc4ffe15d",
-    "semantic_hash": "055710e6ad336a3fec1dbf6fc4ffe15d"
+    "mtime": 1780225291.4881234,
+    "ast_hash": "01ea228e3d9d42d93a61c64756c3ba47",
+    "semantic_hash": "01ea228e3d9d42d93a61c64756c3ba47"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/store/toastStore.ts": {
     "mtime": 1780223482.8497536,
@@ -659,30 +649,25 @@
     "ast_hash": "ef8c30d902a89cea1e5e9b221e9fd0f3",
     "semantic_hash": "ef8c30d902a89cea1e5e9b221e9fd0f3"
   },
-  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/layout.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "6220e6adac34e7a77b8283ffd54971ef",
-    "semantic_hash": "6220e6adac34e7a77b8283ffd54971ef"
-  },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/page.tsx": {
-    "mtime": 1780224570.4304125,
-    "ast_hash": "a79855f0b4a992e1cedd20554c0e9a8c",
-    "semantic_hash": "a79855f0b4a992e1cedd20554c0e9a8c"
+    "mtime": 1780225263.5598934,
+    "ast_hash": "b6aa0a75bbfb9981298c8041c4babaf3",
+    "semantic_hash": "b6aa0a75bbfb9981298c8041c4babaf3"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/login/page.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "b5d80aafb35219b053005acea14a6794",
-    "semantic_hash": "b5d80aafb35219b053005acea14a6794"
+    "mtime": 1780225268.231932,
+    "ast_hash": "724d62b354358e9240c40f9f38c25fe7",
+    "semantic_hash": "724d62b354358e9240c40f9f38c25fe7"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/(dashboard)/layout.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "0163777efd0fb0f89333ff1122d71bdc",
-    "semantic_hash": "0163777efd0fb0f89333ff1122d71bdc"
+    "mtime": 1780225270.2239482,
+    "ast_hash": "91af7422be7015c2d93214386a314400",
+    "semantic_hash": "91af7422be7015c2d93214386a314400"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/(dashboard)/boards/page.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "20db7127739b7454b92a718e8a14804d",
-    "semantic_hash": "20db7127739b7454b92a718e8a14804d"
+    "mtime": 1780225282.0320456,
+    "ast_hash": "2c8e608164bac6c1004a8ddedfe46549",
+    "semantic_hash": "2c8e608164bac6c1004a8ddedfe46549"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/(dashboard)/resources/page.tsx": {
     "mtime": 1780223482.8497536,
@@ -690,9 +675,9 @@
     "semantic_hash": "16ade7904ea5354c5d383c80ecac3817"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/(dashboard)/dashboard/page.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "eeb78935bf0b707c6daa852b8959539b",
-    "semantic_hash": "eeb78935bf0b707c6daa852b8959539b"
+    "mtime": 1780225278.3640153,
+    "ast_hash": "92dca4d8761a1afa5759593af9586d1b",
+    "semantic_hash": "92dca4d8761a1afa5759593af9586d1b"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/(dashboard)/projects/page.tsx": {
     "mtime": 1780223482.8497536,
@@ -705,13 +690,38 @@
     "semantic_hash": "dd7e71d06868c302773c10fa3e3241bf"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/app/(dashboard)/tasks/page.tsx": {
-    "mtime": 1780223482.8497536,
-    "ast_hash": "7af59c21d87774e020604e1542b19e58",
-    "semantic_hash": "7af59c21d87774e020604e1542b19e58"
+    "mtime": 1780225288.5080988,
+    "ast_hash": "ddc0a11653052c2fe943e0c526b5511b",
+    "semantic_hash": "ddc0a11653052c2fe943e0c526b5511b"
   },
   "/home/ubuntu/code/github/raviautopilot/MAYA/utils/main.go": {
     "mtime": 1780223482.8497536,
     "ast_hash": "40fa1939d938f7d7e9290506b618afd7",
     "semantic_hash": "40fa1939d938f7d7e9290506b618afd7"
+  },
+  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/vite.config.ts": {
+    "mtime": 1780225397.5449967,
+    "ast_hash": "69b3040b2b88898c20b86ecc7d38d7f0",
+    "semantic_hash": "69b3040b2b88898c20b86ecc7d38d7f0"
+  },
+  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/App.tsx": {
+    "mtime": 1780225294.0801446,
+    "ast_hash": "54c119fc611f62c9e6599d1e223cdc53",
+    "semantic_hash": "54c119fc611f62c9e6599d1e223cdc53"
+  },
+  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/vite-env.d.ts": {
+    "mtime": 1780225457.281489,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": "0352474ba2918efe13895edbc3780d94"
+  },
+  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/main.tsx": {
+    "mtime": 1780225296.288163,
+    "ast_hash": "672af5fa3f73c9b34f4b13798474351c",
+    "semantic_hash": "672af5fa3f73c9b34f4b13798474351c"
+  },
+  "/home/ubuntu/code/github/raviautopilot/MAYA/maya/src/components/ui/Loader.tsx": {
+    "mtime": 1780225258.1398487,
+    "ast_hash": "d18d188e06536cf4f87259720296287c",
+    "semantic_hash": "d18d188e06536cf4f87259720296287c"
   }
 }

@@ -4064,9 +4064,9 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "id": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
       "community": 7,
-      "norm_label": "control.sh script"
+      "norm_label": "control.sh script",
+      "id": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry"
     },
     {
       "label": "log_info()",
@@ -4077,9 +4077,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_log_info",
       "community": 7,
-      "norm_label": "log_info()"
+      "norm_label": "log_info()",
+      "id": "maya_control_log_info"
     },
     {
       "label": "log_success()",
@@ -4090,9 +4090,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_log_success",
       "community": 7,
-      "norm_label": "log_success()"
+      "norm_label": "log_success()",
+      "id": "maya_control_log_success"
     },
     {
       "label": "log_warn()",
@@ -4103,9 +4103,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_log_warn",
       "community": 7,
-      "norm_label": "log_warn()"
+      "norm_label": "log_warn()",
+      "id": "maya_control_log_warn"
     },
     {
       "label": "log_error()",
@@ -4116,9 +4116,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_log_error",
       "community": 7,
-      "norm_label": "log_error()"
+      "norm_label": "log_error()",
+      "id": "maya_control_log_error"
     },
     {
       "label": "load_pids()",
@@ -4129,9 +4129,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_load_pids",
       "community": 7,
-      "norm_label": "load_pids()"
+      "norm_label": "load_pids()",
+      "id": "maya_control_load_pids"
     },
     {
       "label": "is_alive()",
@@ -4142,9 +4142,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_is_alive",
       "community": 7,
-      "norm_label": "is_alive()"
+      "norm_label": "is_alive()",
+      "id": "maya_control_is_alive"
     },
     {
       "label": "show_help()",
@@ -4155,9 +4155,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_show_help",
       "community": 7,
-      "norm_label": "show_help()"
+      "norm_label": "show_help()",
+      "id": "maya_control_show_help"
     },
     {
       "label": "show_access_endpoints()",
@@ -4168,9 +4168,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_show_access_endpoints",
       "community": 7,
-      "norm_label": "show_access_endpoints()"
+      "norm_label": "show_access_endpoints()",
+      "id": "maya_control_show_access_endpoints"
     },
     {
       "label": "do_start()",
@@ -4181,9 +4181,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_do_start",
       "community": 7,
-      "norm_label": "do_start()"
+      "norm_label": "do_start()",
+      "id": "maya_control_do_start"
     },
     {
       "label": "do_stop()",
@@ -4194,9 +4194,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_do_stop",
       "community": 7,
-      "norm_label": "do_stop()"
+      "norm_label": "do_stop()",
+      "id": "maya_control_do_stop"
     },
     {
       "label": "do_kill()",
@@ -4207,9 +4207,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_do_kill",
       "community": 7,
-      "norm_label": "do_kill()"
+      "norm_label": "do_kill()",
+      "id": "maya_control_do_kill"
     },
     {
       "label": "do_status()",
@@ -4220,9 +4220,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_do_status",
       "community": 7,
-      "norm_label": "do_status()"
+      "norm_label": "do_status()",
+      "id": "maya_control_do_status"
     },
     {
       "label": "do_logs()",
@@ -4233,9 +4233,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_control_do_logs",
       "community": 7,
-      "norm_label": "do_logs()"
+      "norm_label": "do_logs()",
+      "id": "maya_control_do_logs"
     },
     {
       "label": "deploy.sh script",
@@ -4246,9 +4246,9 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "id": "home_ubuntu_code_github_raviautopilot_maya_deploy_sh__entry",
       "community": 16,
-      "norm_label": "deploy.sh script"
+      "norm_label": "deploy.sh script",
+      "id": "home_ubuntu_code_github_raviautopilot_maya_deploy_sh__entry"
     },
     {
       "label": "log_info()",
@@ -4259,9 +4259,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_deploy_log_info",
       "community": 16,
-      "norm_label": "log_info()"
+      "norm_label": "log_info()",
+      "id": "maya_deploy_log_info"
     },
     {
       "label": "log_success()",
@@ -4272,216 +4272,216 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "maya_deploy_log_success",
       "community": 16,
-      "norm_label": "log_success()"
+      "norm_label": "log_success()",
+      "id": "maya_deploy_log_success"
     },
     {
       "label": "type",
       "file_type": "code",
       "source_file": "maya/package.json",
       "source_location": "L5",
-      "id": "maya_package_type",
       "community": 5,
-      "norm_label": "type"
+      "norm_label": "type",
+      "id": "maya_package_type"
     },
     {
       "label": "preview",
       "file_type": "code",
       "source_file": "maya/package.json",
       "source_location": "L9",
-      "id": "maya_package_scripts_preview",
       "community": 5,
-      "norm_label": "preview"
+      "norm_label": "preview",
+      "id": "maya_package_scripts_preview"
     },
     {
       "label": "react-router-dom",
       "file_type": "code",
       "source_file": "maya/package.json",
       "source_location": "L17",
-      "id": "maya_package_dependencies_react_router_dom",
       "community": 5,
-      "norm_label": "react-router-dom"
+      "norm_label": "react-router-dom",
+      "id": "maya_package_dependencies_react_router_dom"
     },
     {
       "label": "@vitejs/plugin-react",
       "file_type": "code",
       "source_file": "maya/package.json",
       "source_location": "L24",
-      "id": "maya_package_devdependencies_vitejs_plugin_react",
       "community": 5,
-      "norm_label": "@vitejs/plugin-react"
+      "norm_label": "@vitejs/plugin-react",
+      "id": "maya_package_devdependencies_vitejs_plugin_react"
     },
     {
       "label": "autoprefixer",
       "file_type": "code",
       "source_file": "maya/package.json",
       "source_location": "L25",
-      "id": "maya_package_devdependencies_autoprefixer",
       "community": 5,
-      "norm_label": "autoprefixer"
+      "norm_label": "autoprefixer",
+      "id": "maya_package_devdependencies_autoprefixer"
     },
     {
       "label": "vite",
       "file_type": "code",
       "source_file": "maya/package.json",
       "source_location": "L29",
-      "id": "maya_package_devdependencies_vite",
       "community": 5,
-      "norm_label": "vite"
+      "norm_label": "vite",
+      "id": "maya_package_devdependencies_vite"
     },
     {
       "label": "vite.config.ts",
       "file_type": "code",
       "source_file": "maya/vite.config.ts",
       "source_location": "L1",
-      "id": "maya_vite_config_ts",
       "community": 23,
-      "norm_label": "vite.config.ts"
+      "norm_label": "vite.config.ts",
+      "id": "maya_vite_config_ts"
     },
     {
       "label": "__filename",
       "file_type": "code",
       "source_file": "maya/vite.config.ts",
       "source_location": "L6",
-      "id": "maya_vite_config_filename",
       "community": 23,
-      "norm_label": "__filename"
+      "norm_label": "__filename",
+      "id": "maya_vite_config_filename"
     },
     {
       "label": "__dirname",
       "file_type": "code",
       "source_file": "maya/vite.config.ts",
       "source_location": "L7",
-      "id": "maya_vite_config_dirname",
       "community": 23,
-      "norm_label": "__dirname"
+      "norm_label": "__dirname",
+      "id": "maya_vite_config_dirname"
     },
     {
       "label": "target",
       "file_type": "code",
       "source_file": "maya/tsconfig.json",
       "source_location": "L3",
-      "id": "maya_tsconfig_compileroptions_target",
       "community": 1,
-      "norm_label": "target"
+      "norm_label": "target",
+      "id": "maya_tsconfig_compileroptions_target"
     },
     {
       "label": "useDefineForClassFields",
       "file_type": "code",
       "source_file": "maya/tsconfig.json",
       "source_location": "L4",
-      "id": "maya_tsconfig_compileroptions_usedefineforclassfields",
       "community": 1,
-      "norm_label": "usedefineforclassfields"
+      "norm_label": "usedefineforclassfields",
+      "id": "maya_tsconfig_compileroptions_usedefineforclassfields"
     },
     {
       "label": "allowImportingTsExtensions",
       "file_type": "code",
       "source_file": "maya/tsconfig.json",
       "source_location": "L11",
-      "id": "maya_tsconfig_compileroptions_allowimportingtsextensions",
       "community": 1,
-      "norm_label": "allowimportingtsextensions"
+      "norm_label": "allowimportingtsextensions",
+      "id": "maya_tsconfig_compileroptions_allowimportingtsextensions"
     },
     {
       "label": "noUnusedLocals",
       "file_type": "code",
       "source_file": "maya/tsconfig.json",
       "source_location": "L19",
-      "id": "maya_tsconfig_compileroptions_nounusedlocals",
       "community": 1,
-      "norm_label": "nounusedlocals"
+      "norm_label": "nounusedlocals",
+      "id": "maya_tsconfig_compileroptions_nounusedlocals"
     },
     {
       "label": "noUnusedParameters",
       "file_type": "code",
       "source_file": "maya/tsconfig.json",
       "source_location": "L20",
-      "id": "maya_tsconfig_compileroptions_nounusedparameters",
       "community": 1,
-      "norm_label": "nounusedparameters"
+      "norm_label": "nounusedparameters",
+      "id": "maya_tsconfig_compileroptions_nounusedparameters"
     },
     {
       "label": "noFallthroughCasesInSwitch",
       "file_type": "code",
       "source_file": "maya/tsconfig.json",
       "source_location": "L21",
-      "id": "maya_tsconfig_compileroptions_nofallthroughcasesinswitch",
       "community": 1,
-      "norm_label": "nofallthroughcasesinswitch"
+      "norm_label": "nofallthroughcasesinswitch",
+      "id": "maya_tsconfig_compileroptions_nofallthroughcasesinswitch"
     },
     {
       "label": "types",
       "file_type": "code",
       "source_file": "maya/tsconfig.json",
       "source_location": "L26",
-      "id": "maya_tsconfig_compileroptions_types",
       "community": 1,
-      "norm_label": "types"
+      "norm_label": "types",
+      "id": "maya_tsconfig_compileroptions_types"
     },
     {
       "label": "App.tsx",
       "file_type": "code",
       "source_file": "maya/src/App.tsx",
       "source_location": "L1",
-      "id": "maya_src_app_tsx",
       "community": 6,
-      "norm_label": "app.tsx"
+      "norm_label": "app.tsx",
+      "id": "maya_src_app_tsx"
     },
     {
       "label": "App()",
       "file_type": "code",
       "source_file": "maya/src/App.tsx",
       "source_location": "L13",
-      "id": "src_app_app",
       "community": 6,
-      "norm_label": "app()"
+      "norm_label": "app()",
+      "id": "src_app_app"
     },
     {
       "label": "vite-env.d.ts",
       "file_type": "code",
       "source_file": "maya/src/vite-env.d.ts",
       "source_location": "L1",
-      "id": "maya_src_vite_env_d_ts",
       "community": 110,
-      "norm_label": "vite-env.d.ts"
+      "norm_label": "vite-env.d.ts",
+      "id": "maya_src_vite_env_d_ts"
     },
     {
       "label": "main.tsx",
       "file_type": "code",
       "source_file": "maya/src/main.tsx",
       "source_location": "L1",
-      "id": "maya_src_main_tsx",
       "community": 6,
-      "norm_label": "main.tsx"
+      "norm_label": "main.tsx",
+      "id": "maya_src_main_tsx"
     },
     {
       "label": "Loader.tsx",
       "file_type": "code",
       "source_file": "maya/src/components/ui/Loader.tsx",
       "source_location": "L1",
-      "id": "maya_src_components_ui_loader_tsx",
       "community": 3,
-      "norm_label": "loader.tsx"
+      "norm_label": "loader.tsx",
+      "id": "maya_src_components_ui_loader_tsx"
     },
     {
       "label": "Loader()",
       "file_type": "code",
       "source_file": "maya/src/components/ui/Loader.tsx",
       "source_location": "L3",
-      "id": "ui_loader_loader",
       "community": 3,
-      "norm_label": "loader()"
+      "norm_label": "loader()",
+      "id": "ui_loader_loader"
     },
     {
       "label": "FullPageLoader()",
       "file_type": "code",
       "source_file": "maya/src/components/ui/Loader.tsx",
       "source_location": "L12",
-      "id": "ui_loader_fullpageloader",
       "community": 3,
-      "norm_label": "fullpageloader()"
+      "norm_label": "fullpageloader()",
+      "id": "ui_loader_fullpageloader"
     },
     {
       "label": "index.html",
@@ -4492,9 +4492,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_html",
       "community": 19,
-      "norm_label": "index.html"
+      "norm_label": "index.html",
+      "id": "index_html"
     },
     {
       "label": "Root Div",
@@ -4505,9 +4505,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_root",
       "community": 19,
-      "norm_label": "root div"
+      "norm_label": "root div",
+      "id": "index_root"
     },
     {
       "label": "main.tsx",
@@ -4518,9 +4518,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "main_tsx",
       "community": 19,
-      "norm_label": "main.tsx"
+      "norm_label": "main.tsx",
+      "id": "main_tsx"
     },
     {
       "label": "MyKanban Application",
@@ -4531,9 +4531,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_mykanban",
       "community": 19,
-      "norm_label": "mykanban application"
+      "norm_label": "mykanban application",
+      "id": "index_mykanban"
     }
   ],
   "links": [
@@ -5550,9 +5550,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_config_json",
-      "target": "maya_tsconfig_compileroptions",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions"
     },
     {
       "relation": "contains",
@@ -5560,9 +5560,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_config_json",
-      "target": "maya_tsconfig_exclude",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_exclude"
     },
     {
       "relation": "contains",
@@ -5570,9 +5570,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chitta_config_json",
-      "target": "maya_tsconfig_include",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_include"
     },
     {
       "relation": "contains",
@@ -5840,9 +5840,9 @@
       "source_file": "maya/package.json",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_json",
-      "target": "maya_package_type",
-      "confidence_score": 1.0
+      "target": "maya_package_type"
     },
     {
       "relation": "contains",
@@ -5860,9 +5860,9 @@
       "source_file": "maya/package.json",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_scripts",
-      "target": "maya_package_scripts_build",
-      "confidence_score": 1.0
+      "target": "maya_package_scripts_build"
     },
     {
       "relation": "contains",
@@ -5870,9 +5870,9 @@
       "source_file": "maya/package.json",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_scripts",
-      "target": "maya_package_scripts_dev",
-      "confidence_score": 1.0
+      "target": "maya_package_scripts_dev"
     },
     {
       "relation": "contains",
@@ -5880,9 +5880,9 @@
       "source_file": "maya/package.json",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_scripts",
-      "target": "maya_package_scripts_preview",
-      "confidence_score": 1.0
+      "target": "maya_package_scripts_preview"
     },
     {
       "relation": "contains",
@@ -5890,9 +5890,9 @@
       "source_file": "maya/package.json",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_dependencies",
-      "target": "maya_package_dependencies_axios",
-      "confidence_score": 1.0
+      "target": "maya_package_dependencies_axios"
     },
     {
       "relation": "contains",
@@ -5900,9 +5900,9 @@
       "source_file": "maya/package.json",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_dependencies",
-      "target": "maya_package_dependencies_lucide_react",
-      "confidence_score": 1.0
+      "target": "maya_package_dependencies_lucide_react"
     },
     {
       "relation": "contains",
@@ -5910,9 +5910,9 @@
       "source_file": "maya/package.json",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_dependencies",
-      "target": "maya_package_dependencies_react",
-      "confidence_score": 1.0
+      "target": "maya_package_dependencies_react"
     },
     {
       "relation": "contains",
@@ -5920,9 +5920,9 @@
       "source_file": "maya/package.json",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_dependencies",
-      "target": "maya_package_dependencies_react_dom",
-      "confidence_score": 1.0
+      "target": "maya_package_dependencies_react_dom"
     },
     {
       "relation": "contains",
@@ -5930,9 +5930,9 @@
       "source_file": "maya/package.json",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_dependencies",
-      "target": "maya_package_dependencies_react_hook_form",
-      "confidence_score": 1.0
+      "target": "maya_package_dependencies_react_hook_form"
     },
     {
       "relation": "contains",
@@ -5940,9 +5940,9 @@
       "source_file": "maya/package.json",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_dependencies",
-      "target": "maya_package_dependencies_react_router_dom",
-      "confidence_score": 1.0
+      "target": "maya_package_dependencies_react_router_dom"
     },
     {
       "relation": "contains",
@@ -5950,9 +5950,9 @@
       "source_file": "maya/package.json",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_dependencies",
-      "target": "maya_package_dependencies_zustand",
-      "confidence_score": 1.0
+      "target": "maya_package_dependencies_zustand"
     },
     {
       "relation": "contains",
@@ -5960,9 +5960,9 @@
       "source_file": "maya/package.json",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_autoprefixer",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_autoprefixer"
     },
     {
       "relation": "contains",
@@ -5970,9 +5970,9 @@
       "source_file": "maya/package.json",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_postcss",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_postcss"
     },
     {
       "relation": "contains",
@@ -5980,9 +5980,9 @@
       "source_file": "maya/package.json",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_tailwindcss",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_tailwindcss"
     },
     {
       "relation": "contains",
@@ -5990,9 +5990,9 @@
       "source_file": "maya/package.json",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_types_node",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_types_node"
     },
     {
       "relation": "contains",
@@ -6000,9 +6000,9 @@
       "source_file": "maya/package.json",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_types_react",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_types_react"
     },
     {
       "relation": "contains",
@@ -6010,9 +6010,9 @@
       "source_file": "maya/package.json",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_typescript",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_typescript"
     },
     {
       "relation": "contains",
@@ -6020,9 +6020,9 @@
       "source_file": "maya/package.json",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_vite",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_vite"
     },
     {
       "relation": "contains",
@@ -6030,9 +6030,9 @@
       "source_file": "maya/package.json",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_package_devdependencies",
-      "target": "maya_package_devdependencies_vitejs_plugin_react",
-      "confidence_score": 1.0
+      "target": "maya_package_devdependencies_vitejs_plugin_react"
     },
     {
       "relation": "contains",
@@ -6050,9 +6050,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_allowimportingtsextensions",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_allowimportingtsextensions"
     },
     {
       "relation": "contains",
@@ -6060,9 +6060,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_isolatedmodules",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_isolatedmodules"
     },
     {
       "relation": "contains",
@@ -6070,9 +6070,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_jsx",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_jsx"
     },
     {
       "relation": "contains",
@@ -6080,9 +6080,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_lib",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_lib"
     },
     {
       "relation": "contains",
@@ -6090,9 +6090,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_module",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_module"
     },
     {
       "relation": "contains",
@@ -6100,9 +6100,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_moduleresolution",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_moduleresolution"
     },
     {
       "relation": "contains",
@@ -6110,9 +6110,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_noemit",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_noemit"
     },
     {
       "relation": "contains",
@@ -6120,9 +6120,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_nofallthroughcasesinswitch",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_nofallthroughcasesinswitch"
     },
     {
       "relation": "contains",
@@ -6130,9 +6130,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_nounusedlocals",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_nounusedlocals"
     },
     {
       "relation": "contains",
@@ -6140,9 +6140,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_nounusedparameters",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_nounusedparameters"
     },
     {
       "relation": "contains",
@@ -6150,9 +6150,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_paths",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_paths"
     },
     {
       "relation": "contains",
@@ -6160,9 +6160,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_resolvejsonmodule",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_resolvejsonmodule"
     },
     {
       "relation": "contains",
@@ -6170,9 +6170,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_skiplibcheck",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_skiplibcheck"
     },
     {
       "relation": "contains",
@@ -6180,9 +6180,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_strict",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_strict"
     },
     {
       "relation": "contains",
@@ -6190,9 +6190,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_target",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_target"
     },
     {
       "relation": "contains",
@@ -6200,9 +6200,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_types",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_types"
     },
     {
       "relation": "contains",
@@ -6210,9 +6210,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions",
-      "target": "maya_tsconfig_compileroptions_usedefineforclassfields",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_compileroptions_usedefineforclassfields"
     },
     {
       "relation": "contains",
@@ -6220,9 +6220,9 @@
       "source_file": "maya/tsconfig.json",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_tsconfig_compileroptions_paths",
-      "target": "maya_tsconfig_paths",
-      "confidence_score": 1.0
+      "target": "maya_tsconfig_paths"
     },
     {
       "relation": "contains",
@@ -6589,9 +6589,9 @@
       "source_file": "maya/src/app/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_page_tsx",
-      "target": "maya_src_components_ui_index_ts",
-      "confidence_score": 1.0
+      "target": "maya_src_components_ui_index_ts"
     },
     {
       "relation": "re_exports",
@@ -6622,9 +6622,9 @@
       "source_file": "maya/src/components/ui/index.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_components_ui_index_ts",
-      "target": "maya_src_components_ui_loader_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_components_ui_loader_tsx"
     },
     {
       "relation": "re_exports",
@@ -6688,9 +6688,9 @@
       "source_file": "maya/src/components/ui/index.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_components_ui_index_ts",
-      "target": "ui_loader_fullpageloader",
-      "confidence_score": 1.0
+      "target": "ui_loader_fullpageloader"
     },
     {
       "relation": "re_exports",
@@ -6699,9 +6699,9 @@
       "source_file": "maya/src/components/ui/index.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_components_ui_index_ts",
-      "target": "ui_loader_loader",
-      "confidence_score": 1.0
+      "target": "ui_loader_loader"
     },
     {
       "relation": "re_exports",
@@ -7930,9 +7930,9 @@
       "source_file": "maya/src/app/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_page_tsx",
-      "target": "ui_loader_fullpageloader",
-      "confidence_score": 1.0
+      "target": "ui_loader_fullpageloader"
     },
     {
       "relation": "imports_from",
@@ -7941,9 +7941,9 @@
       "source_file": "maya/src/App.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_tsx",
-      "target": "maya_src_app_page_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_app_page_tsx"
     },
     {
       "relation": "imports",
@@ -8016,9 +8016,9 @@
       "source_file": "maya/src/App.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_tsx",
-      "target": "maya_src_app_login_page_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_app_login_page_tsx"
     },
     {
       "relation": "contains",
@@ -8048,9 +8048,9 @@
       "source_file": "maya/src/App.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_tsx",
-      "target": "maya_src_app_dashboard_layout_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_app_dashboard_layout_tsx"
     },
     {
       "relation": "imports",
@@ -8168,9 +8168,9 @@
       "source_file": "maya/src/App.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_tsx",
-      "target": "maya_src_app_dashboard_boards_page_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_app_dashboard_boards_page_tsx"
     },
     {
       "relation": "imports",
@@ -8363,9 +8363,9 @@
       "source_file": "maya/src/App.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_tsx",
-      "target": "maya_src_app_dashboard_dashboard_page_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_app_dashboard_dashboard_page_tsx"
     },
     {
       "relation": "imports",
@@ -8763,9 +8763,9 @@
       "source_file": "maya/src/App.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_tsx",
-      "target": "maya_src_app_dashboard_tasks_page_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_app_dashboard_tasks_page_tsx"
     },
     {
       "relation": "references",
@@ -10338,9 +10338,9 @@
       "source_location": "L310",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_do_kill",
-      "confidence_score": 1.0
+      "target": "maya_control_do_kill"
     },
     {
       "relation": "calls",
@@ -10349,9 +10349,9 @@
       "source_location": "L328",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_do_logs",
-      "confidence_score": 1.0
+      "target": "maya_control_do_logs"
     },
     {
       "relation": "calls",
@@ -10360,9 +10360,9 @@
       "source_location": "L304",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_do_start",
-      "confidence_score": 1.0
+      "target": "maya_control_do_start"
     },
     {
       "relation": "calls",
@@ -10371,9 +10371,9 @@
       "source_location": "L325",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_do_status",
-      "confidence_score": 1.0
+      "target": "maya_control_do_status"
     },
     {
       "relation": "calls",
@@ -10382,9 +10382,9 @@
       "source_location": "L307",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_do_stop",
-      "confidence_score": 1.0
+      "target": "maya_control_do_stop"
     },
     {
       "relation": "calls",
@@ -10393,9 +10393,9 @@
       "source_location": "L316",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_load_pids",
-      "confidence_score": 1.0
+      "target": "maya_control_load_pids"
     },
     {
       "relation": "calls",
@@ -10404,9 +10404,9 @@
       "source_location": "L334",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_log_error",
-      "confidence_score": 1.0
+      "target": "maya_control_log_error"
     },
     {
       "relation": "calls",
@@ -10415,9 +10415,9 @@
       "source_location": "L313",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_log_info",
-      "confidence_score": 1.0
+      "target": "maya_control_log_info"
     },
     {
       "relation": "calls",
@@ -10426,9 +10426,9 @@
       "source_location": "L318",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_log_warn",
-      "confidence_score": 1.0
+      "target": "maya_control_log_warn"
     },
     {
       "relation": "calls",
@@ -10437,9 +10437,9 @@
       "source_location": "L331",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_control_sh__entry",
-      "target": "maya_control_show_help",
-      "confidence_score": 1.0
+      "target": "maya_control_show_help"
     },
     {
       "relation": "calls",
@@ -10448,9 +10448,9 @@
       "source_location": "L234",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_kill",
-      "target": "maya_control_log_info",
-      "confidence_score": 1.0
+      "target": "maya_control_log_info"
     },
     {
       "relation": "calls",
@@ -10459,9 +10459,9 @@
       "source_location": "L295",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_logs",
-      "target": "maya_control_log_info",
-      "confidence_score": 1.0
+      "target": "maya_control_log_info"
     },
     {
       "relation": "calls",
@@ -10470,9 +10470,9 @@
       "source_location": "L115",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_start",
-      "target": "maya_control_log_info",
-      "confidence_score": 1.0
+      "target": "maya_control_log_info"
     },
     {
       "relation": "calls",
@@ -10481,9 +10481,9 @@
       "source_location": "L181",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_stop",
-      "target": "maya_control_log_info",
-      "confidence_score": 1.0
+      "target": "maya_control_log_info"
     },
     {
       "relation": "calls",
@@ -10492,9 +10492,9 @@
       "source_location": "L93",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_show_access_endpoints",
-      "target": "maya_control_log_info",
-      "confidence_score": 1.0
+      "target": "maya_control_log_info"
     },
     {
       "relation": "calls",
@@ -10503,9 +10503,9 @@
       "source_location": "L257",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_kill",
-      "target": "maya_control_log_success",
-      "confidence_score": 1.0
+      "target": "maya_control_log_success"
     },
     {
       "relation": "calls",
@@ -10514,9 +10514,9 @@
       "source_location": "L151",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_start",
-      "target": "maya_control_log_success",
-      "confidence_score": 1.0
+      "target": "maya_control_log_success"
     },
     {
       "relation": "calls",
@@ -10525,9 +10525,9 @@
       "source_location": "L211",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_stop",
-      "target": "maya_control_log_success",
-      "confidence_score": 1.0
+      "target": "maya_control_log_success"
     },
     {
       "relation": "calls",
@@ -10536,9 +10536,9 @@
       "source_location": "L223",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_kill",
-      "target": "maya_control_log_warn",
-      "confidence_score": 1.0
+      "target": "maya_control_log_warn"
     },
     {
       "relation": "calls",
@@ -10547,9 +10547,9 @@
       "source_location": "L106",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_start",
-      "target": "maya_control_log_warn",
-      "confidence_score": 1.0
+      "target": "maya_control_log_warn"
     },
     {
       "relation": "calls",
@@ -10558,9 +10558,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_stop",
-      "target": "maya_control_log_warn",
-      "confidence_score": 1.0
+      "target": "maya_control_log_warn"
     },
     {
       "relation": "calls",
@@ -10569,9 +10569,9 @@
       "source_location": "L154",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_start",
-      "target": "maya_control_log_error",
-      "confidence_score": 1.0
+      "target": "maya_control_log_error"
     },
     {
       "relation": "calls",
@@ -10580,9 +10580,9 @@
       "source_location": "L219",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_kill",
-      "target": "maya_control_load_pids",
-      "confidence_score": 1.0
+      "target": "maya_control_load_pids"
     },
     {
       "relation": "calls",
@@ -10591,9 +10591,9 @@
       "source_location": "L102",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_start",
-      "target": "maya_control_load_pids",
-      "confidence_score": 1.0
+      "target": "maya_control_load_pids"
     },
     {
       "relation": "calls",
@@ -10602,9 +10602,9 @@
       "source_location": "L262",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_status",
-      "target": "maya_control_load_pids",
-      "confidence_score": 1.0
+      "target": "maya_control_load_pids"
     },
     {
       "relation": "calls",
@@ -10613,9 +10613,9 @@
       "source_location": "L176",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_stop",
-      "target": "maya_control_load_pids",
-      "confidence_score": 1.0
+      "target": "maya_control_load_pids"
     },
     {
       "relation": "calls",
@@ -10624,9 +10624,9 @@
       "source_location": "L222",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_kill",
-      "target": "maya_control_is_alive",
-      "confidence_score": 1.0
+      "target": "maya_control_is_alive"
     },
     {
       "relation": "calls",
@@ -10635,9 +10635,9 @@
       "source_location": "L105",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_start",
-      "target": "maya_control_is_alive",
-      "confidence_score": 1.0
+      "target": "maya_control_is_alive"
     },
     {
       "relation": "calls",
@@ -10646,9 +10646,9 @@
       "source_location": "L270",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_status",
-      "target": "maya_control_is_alive",
-      "confidence_score": 1.0
+      "target": "maya_control_is_alive"
     },
     {
       "relation": "calls",
@@ -10657,9 +10657,9 @@
       "source_location": "L180",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_stop",
-      "target": "maya_control_is_alive",
-      "confidence_score": 1.0
+      "target": "maya_control_is_alive"
     },
     {
       "relation": "calls",
@@ -10668,9 +10668,9 @@
       "source_location": "L170",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_start",
-      "target": "maya_control_show_access_endpoints",
-      "confidence_score": 1.0
+      "target": "maya_control_show_access_endpoints"
     },
     {
       "relation": "calls",
@@ -10679,9 +10679,9 @@
       "source_location": "L289",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "maya_control_do_status",
-      "target": "maya_control_show_access_endpoints",
-      "confidence_score": 1.0
+      "target": "maya_control_show_access_endpoints"
     },
     {
       "relation": "calls",
@@ -10690,9 +10690,9 @@
       "source_location": "L31",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_deploy_sh__entry",
-      "target": "maya_deploy_log_info",
-      "confidence_score": 1.0
+      "target": "maya_deploy_log_info"
     },
     {
       "relation": "calls",
@@ -10701,9 +10701,9 @@
       "source_location": "L42",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_maya_deploy_sh__entry",
-      "target": "maya_deploy_log_success",
-      "confidence_score": 1.0
+      "target": "maya_deploy_log_success"
     },
     {
       "relation": "contains",
@@ -10711,9 +10711,9 @@
       "source_file": "maya/vite.config.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_vite_config_ts",
-      "target": "maya_vite_config_dirname",
-      "confidence_score": 1.0
+      "target": "maya_vite_config_dirname"
     },
     {
       "relation": "contains",
@@ -10721,9 +10721,9 @@
       "source_file": "maya/vite.config.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_vite_config_ts",
-      "target": "maya_vite_config_filename",
-      "confidence_score": 1.0
+      "target": "maya_vite_config_filename"
     },
     {
       "relation": "contains",
@@ -10731,9 +10731,9 @@
       "source_file": "maya/src/App.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_app_tsx",
-      "target": "src_app_app",
-      "confidence_score": 1.0
+      "target": "src_app_app"
     },
     {
       "relation": "imports_from",
@@ -10742,9 +10742,9 @@
       "source_file": "maya/src/main.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_main_tsx",
-      "target": "maya_src_app_tsx",
-      "confidence_score": 1.0
+      "target": "maya_src_app_tsx"
     },
     {
       "relation": "contains",
@@ -10752,9 +10752,9 @@
       "source_file": "maya/src/components/ui/Loader.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_components_ui_loader_tsx",
-      "target": "ui_loader_fullpageloader",
-      "confidence_score": 1.0
+      "target": "ui_loader_fullpageloader"
     },
     {
       "relation": "contains",
@@ -10762,9 +10762,9 @@
       "source_file": "maya/src/components/ui/Loader.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "maya_src_components_ui_loader_tsx",
-      "target": "ui_loader_loader",
-      "confidence_score": 1.0
+      "target": "ui_loader_loader"
     },
     {
       "relation": "conceptually_related_to",
@@ -10798,5 +10798,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ea0fcd47b4d892866089355b2074ec7c8b2b4ebd"
+  "built_at_commit": "3ce502f379e405b3c1d73d65c82d83eff282c769"
 }

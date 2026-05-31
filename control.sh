@@ -124,7 +124,7 @@ do_start() {
     fi
     
     cd "$CHITTA_DIR"
-    nohup ./bin/chitta > "$LOGS_DIR/chitta.log" 2>&1 &
+    setsid ./bin/chitta > "$LOGS_DIR/chitta.log" 2>&1 < /dev/null &
     NEW_CHITTA_PID=$!
     disown "$NEW_CHITTA_PID" 2>/dev/null || true
     cd "$SCRIPT_DIR"
@@ -136,7 +136,7 @@ do_start() {
         (cd "$MAYA_DIR" && npm install)
     fi
     cd "$MAYA_DIR"
-    nohup ../node_modules/.bin/vite > "$LOGS_DIR/maya.log" 2>&1 &
+    setsid env CI=true ../node_modules/.bin/vite > "$LOGS_DIR/maya.log" 2>&1 < /dev/null &
     NEW_MAYA_PID=$!
     disown "$NEW_MAYA_PID" 2>/dev/null || true
     cd "$SCRIPT_DIR"
