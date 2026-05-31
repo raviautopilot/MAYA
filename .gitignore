@@ -52,6 +52,9 @@ e2etest/reports
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# Logs
+**.log
+
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
