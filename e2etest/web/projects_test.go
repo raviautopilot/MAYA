@@ -2,6 +2,7 @@ package web
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/tebeka/selenium"
@@ -75,6 +76,13 @@ func (s *WebTestSuite) TestProjectWorkflow() {
 	// 6. Click Edit Project
 	editBtn, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//*[contains(text(), '%s')]/ancestor::tr//button[contains(@e2e-test-id, 'project-edit-btn-')]", projectName))
 	s.Require().NoError(err)
+
+	// Parse project ID from edit button attribute to track for automatic teardown cleanup
+	if attr, err := editBtn.GetAttribute("e2e-test-id"); err == nil {
+		id := strings.TrimPrefix(attr, "project-edit-btn-")
+		s.CreatedProjectIDs = append(s.CreatedProjectIDs, id)
+	}
+
 	err = editBtn.Click()
 	s.Require().NoError(err)
 

@@ -2,6 +2,7 @@ package web
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/tebeka/selenium"
@@ -17,134 +18,23 @@ func (s *WebTestSuite) TestTaskWorkflow() {
 	s.ClickElement("[data-testid='mock-login-user-btn']", "Test Developer profile selection")
 	s.WaitTillElementFound("[e2e-test-id='header']", 10*time.Second)
 
-	// 2. Go to Projects Page and create a parent project
-	s.NavigateTo(s.frontendURL + "/projects")
-	s.WaitTillElementFound("[e2e-test-id='projects-page']", 10*time.Second)
-	s.ClickElement("[e2e-test-id='project-create-btn']", "New Project button")
-	s.WaitTillElementFound("[e2e-test-id='project-form']", 10*time.Second)
-
+	// 2. Create parent Project, Board, and Resource via backend API (fast & robust)
 	parentProjectName := fmt.Sprintf("Task Parent Proj %d", time.Now().Unix())
-	nameInput, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='project-name-input']")
+	projID, err := s.CreateProjectViaAPI(parentProjectName, "Parent project for Task E2E test", "personal")
 	s.Require().NoError(err)
-	err = nameInput.SendKeys(parentProjectName)
-	s.Require().NoError(err)
-
-	// Select Project Type (required field)
-	typeSelect, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='project-type-select']")
-	s.Require().NoError(err)
-	err = typeSelect.Click()
-	s.Require().NoError(err)
-	typeOption, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='project-type-select'] option[value='personal']")
-	s.Require().NoError(err)
-	err = typeOption.Click()
-	s.Require().NoError(err)
-
-	s.ClickElement("[e2e-test-id='project-submit-btn']", "Project Submit button")
-
-	// Wait for project in table
-	s.CurrentTest.LogStep("Wait for Project", "INFO", "Waiting for parent project in table")
-	projectFound := false
-	end := time.Now().Add(10 * time.Second)
-	for time.Now().Before(end) {
-		elem, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//*[contains(text(), '%s')]", parentProjectName))
-		if err == nil {
-			if displayed, _ := elem.IsDisplayed(); displayed {
-				projectFound = true
-				break
-			}
-		}
-		time.Sleep(500 * time.Millisecond)
-	}
-	s.Require().True(projectFound, "Parent project was not found in table")
-
-	// 3. Go to Boards Page and create a board
-	s.NavigateTo(s.frontendURL + "/boards")
-	s.WaitTillElementFound("[e2e-test-id='boards-page']", 10*time.Second)
-	s.ClickElement("[e2e-test-id='board-create-btn']", "New Board button")
-	s.WaitTillElementFound("[e2e-test-id='board-form']", 10*time.Second)
 
 	parentBoardName := fmt.Sprintf("Task Parent Board %d", time.Now().Unix())
-	boardNameInput, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='board-name-input']")
+	_, err = s.CreateBoardViaAPI(projID, parentBoardName, []string{"To Do", "In Progress", "Done"}, []string{"Bug", "Feature", "Chore"})
 	s.Require().NoError(err)
-	err = boardNameInput.SendKeys(parentBoardName)
-	s.Require().NoError(err)
-
-	// Wait for project option to load in the dropdown
-	var projectOption selenium.WebElement
-	end = time.Now().Add(10 * time.Second)
-	for time.Now().Before(end) {
-		projectOption, err = s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//select[@e2e-test-id='board-project-select']/option[contains(text(), '%s')]", parentProjectName))
-		if err == nil {
-			break
-		}
-		time.Sleep(500 * time.Millisecond)
-	}
-	s.Require().NoError(err, "Parent project option was not found in dropdown")
-
-	projectSelect, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='board-project-select']")
-	s.Require().NoError(err)
-	err = projectSelect.Click()
-	s.Require().NoError(err)
-	err = projectOption.Click()
-	s.Require().NoError(err)
-
-	s.ClickElement("[e2e-test-id='board-submit-btn']", "Board Submit button")
-
-	// Wait for board in table
-	s.CurrentTest.LogStep("Wait for Board", "INFO", "Waiting for parent board in table")
-	boardFound := false
-	end = time.Now().Add(10 * time.Second)
-	for time.Now().Before(end) {
-		elem, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//*[contains(text(), '%s')]", parentBoardName))
-		if err == nil {
-			if displayed, _ := elem.IsDisplayed(); displayed {
-				boardFound = true
-				break
-			}
-		}
-		time.Sleep(500 * time.Millisecond)
-	}
-	s.Require().True(boardFound, "Parent board was not found in table")
-
-	// 4. Go to Resources Page and create an assignee resource
-	s.NavigateTo(s.frontendURL + "/resources")
-	s.WaitTillElementFound("[e2e-test-id='resources-page']", 10*time.Second)
-	s.ClickElement("[e2e-test-id='resource-create-btn']", "New Resource button")
-	s.WaitTillElementFound("[e2e-test-id='resource-form']", 10*time.Second)
 
 	resourceName := fmt.Sprintf("Assignee %d", time.Now().Unix())
-	resourceNameInput, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='resource-name-input']")
-	s.Require().NoError(err)
-	err = resourceNameInput.SendKeys(resourceName)
+	_, err = s.CreateResourceViaAPI(resourceName, "Global", []string{})
 	s.Require().NoError(err)
 
-	// Select Type
-	resTypeSelect, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='resource-type-select']")
-	s.Require().NoError(err)
-	err = resTypeSelect.Click()
-	s.Require().NoError(err)
-	resTypeOption, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='resource-type-select'] option[value='Global']")
-	s.Require().NoError(err)
-	err = resTypeOption.Click()
-	s.Require().NoError(err)
-
-	s.ClickElement("[e2e-test-id='resource-submit-btn']", "Resource Submit button")
-
-	// Wait for resource in table
-	s.CurrentTest.LogStep("Wait for Resource", "INFO", "Waiting for assignee resource in table")
-	resourceFound := false
-	end = time.Now().Add(10 * time.Second)
-	for time.Now().Before(end) {
-		elem, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//*[contains(text(), '%s')]", resourceName))
-		if err == nil {
-			if displayed, _ := elem.IsDisplayed(); displayed {
-				resourceFound = true
-				break
-			}
-		}
-		time.Sleep(500 * time.Millisecond)
-	}
-	s.Require().True(resourceFound, "Assignee resource was not found in table")
+	// 3. Go to Tasks Page
+	s.NavigateTo(s.frontendURL + "/tasks")
+	s.WaitTillElementFound("[e2e-test-id='tasks-page']", 10*time.Second)
+	s.TakeScreenshot("task_crud_01_page")
 
 	// 5. Go to Tasks Page
 	s.NavigateTo(s.frontendURL + "/tasks")
@@ -168,7 +58,7 @@ func (s *WebTestSuite) TestTaskWorkflow() {
 
 	// Wait for Board option to load in dropdown
 	var boardOption selenium.WebElement
-	end = time.Now().Add(10 * time.Second)
+	end := time.Now().Add(10 * time.Second)
 	for time.Now().Before(end) {
 		boardOption, err = s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//select[@e2e-test-id='task-board-select']/option[contains(text(), '%s')]", parentBoardName))
 		if err == nil {
@@ -196,11 +86,11 @@ func (s *WebTestSuite) TestTaskWorkflow() {
 	s.Require().NoError(err)
 
 	// Wait and Select Task Type
-	typeSelect, err = s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='task-type-select']")
+	typeSelect, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='task-type-select']")
 	s.Require().NoError(err)
 	err = typeSelect.Click()
 	s.Require().NoError(err)
-	typeOption, err = s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='task-type-select'] option[value='Feature']")
+	typeOption, err := s.WD.FindElement(selenium.ByCSSSelector, "[e2e-test-id='task-type-select'] option[value='Feature']")
 	s.Require().NoError(err)
 	err = typeOption.Click()
 	s.Require().NoError(err)
@@ -291,6 +181,16 @@ func (s *WebTestSuite) TestTaskWorkflow() {
 
 	// 9. Transition Task: Click move to "In Progress"
 	s.CurrentTest.LogStep("Transition Task", "INFO", "Moving task to In Progress lane")
+
+	// Find task card and parse task ID for cleanup tracking
+	taskCard, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//h4[contains(text(), '%s')]/ancestor::div[contains(@e2e-test-id, 'task-card-')]", taskTitle))
+	if err == nil {
+		if attr, err := taskCard.GetAttribute("e2e-test-id"); err == nil {
+			id := strings.TrimPrefix(attr, "task-card-")
+			s.CreatedTaskIDs = append(s.CreatedTaskIDs, id)
+		}
+	}
+
 	moveBtn, err := s.WD.FindElement(selenium.ByXPATH, fmt.Sprintf("//h4[contains(text(), '%s')]/ancestor::div[contains(@e2e-test-id, 'task-card-')]//button[contains(@e2e-test-id, 'task-move-') and contains(@e2e-test-id, '-in-progress')]", taskTitle))
 	s.Require().NoError(err)
 	err = moveBtn.Click()

@@ -141,7 +141,7 @@ chitta/chitta
 /resources.json
 
 # If data files are stored in chitta/
-/chitta/boards.jsonexit
+/chitta/boards.json
 /chitta/projects.json
 /chitta/tasks.json
 /chitta/schedulers.json
