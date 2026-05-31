@@ -85,6 +85,9 @@ func GetReport() *Report {
 
 // GetRunDirectory returns the active time-stamped directory for this test execution run
 func (r *Report) GetRunDirectory() string {
+	if envDir := os.Getenv("E2E_RUN_DIR"); envDir != "" {
+		return envDir
+	}
 	return filepath.Join("reports", "run_"+r.StartTime.Format("2006-01-02_15-04-05"))
 }
 
