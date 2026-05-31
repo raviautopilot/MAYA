@@ -1,7 +1,5 @@
-'use client';
 import React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, FolderKanban, Columns3, CheckSquare, Clock, Users, X } from 'lucide-react';
 
 const navItems = [
@@ -19,7 +17,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
-  const pathname = usePathname();
+  const location = useLocation();
+  const pathname = location.pathname;
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         e2e-test-id="sidebar"
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-800">
-          <Link href="/projects" className="text-xl font-bold" e2e-test-id="sidebar-logo">
+          <Link to="/projects" className="text-xl font-bold" e2e-test-id="sidebar-logo">
             <LayoutDashboard className="inline mr-2" size={20} />
             MyKanban
           </Link>
@@ -46,7 +45,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 onClick={onClose}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition ${active ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white'}`}
                 e2e-test-id={item.id}

@@ -1,6 +1,5 @@
-'use client';
 import React, { useState, useEffect, useCallback, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { tasksApi, boardsApi, schedulersApi, resourcesApi } from '@/services/api';
 import { useToastStore } from '@/store/toastStore';
@@ -39,8 +38,8 @@ export default function TasksPage() {
 }
 
 function TasksContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const boardIdParam = searchParams.get('board_id') || '';
 
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -62,13 +61,13 @@ function TasksContent() {
   }, [boardIdParam]);
 
   const handleBoardFilterChange = (boardId: string) => {
-    const params = new URLSearchParams(window.location.search);
+    const newParams = new URLSearchParams(searchParams);
     if (boardId) {
-      params.set('board_id', boardId);
+      newParams.set('board_id', boardId);
     } else {
-      params.delete('board_id');
+      newParams.delete('board_id');
     }
-    router.push(`/tasks?${params.toString()}`);
+    setSearchParams(newParams);
   };
 
   const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } = useForm<FormData>({

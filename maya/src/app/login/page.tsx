@@ -1,6 +1,5 @@
-'use client';
 import React, { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuthStore } from '@/store/authStore';
 import { authApi } from '@/services/api';
@@ -18,8 +17,8 @@ export default function LoginPage() {
 }
 
 function LoginContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { setAuth, hydrate, isAuthenticated } = useAuthStore();
   const addToast = useToastStore((s) => s.addToast);
   const [loading, setLoading] = useState(false);
@@ -31,8 +30,8 @@ function LoginContent() {
   }, [hydrate]);
 
   useEffect(() => {
-    if (isAuthenticated) router.replace('/dashboard');
-  }, [isAuthenticated, router]);
+    if (isAuthenticated) navigate('/dashboard', { replace: true });
+  }, [isAuthenticated, navigate]);
 
   // Handle Google OAuth callback token
   useEffect(() => {
@@ -42,9 +41,9 @@ function LoginContent() {
     if (token) {
       setAuth(token, { email: email || 'user@google.com', name: name || undefined });
       addToast('Logged in with Google!', 'success');
-      router.replace('/dashboard');
+      navigate('/dashboard', { replace: true });
     }
-  }, [searchParams, setAuth, addToast, router]);
+  }, [searchParams, setAuth, addToast, navigate]);
 
   const onSubmit = async (data: LoginRequest) => {
     setLoading(true);
@@ -53,7 +52,7 @@ function LoginContent() {
       if (res.data?.token) {
         setAuth(res.data.token, { email: data.email });
         addToast('Login successful!', 'success');
-        router.push('/dashboard');
+        navigate('/dashboard');
       } else {
         addToast(res.error || 'Login failed', 'error');
       }

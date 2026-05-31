@@ -1,26 +1,25 @@
-'use client';
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate, Outlet } from 'react-router-dom';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import { ToastContainer } from '@/components/ui';
 import { useAuthStore } from '@/store/authStore';
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { hydrate } = useAuthStore();
-  const router = useRouter();
+  const navigate = useNavigate();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     hydrate();
     const token = localStorage.getItem('token');
     if (!token) {
-      router.replace('/login');
+      navigate('/login', { replace: true });
     } else {
       setReady(true);
     }
-  }, [hydrate, router]);
+  }, [hydrate, navigate]);
 
   if (!ready) return null;
 
@@ -30,7 +29,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 overflow-y-auto p-6" e2e-test-id="main-content">
-          {children}
+          <Outlet />
           <ToastContainer />
         </main>
       </div>

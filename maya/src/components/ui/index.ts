@@ -7,3 +7,5 @@ export { default as Table } from './Table';
 export { default as ConfirmDialog } from './ConfirmDialog';
 export { default as ToastContainer } from './Toast';
 export { Skeleton, TableSkeleton, CardSkeleton } from './Skeleton';
+export { Loader, FullPageLoader } from './Loader';
+

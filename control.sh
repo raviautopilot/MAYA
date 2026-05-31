@@ -107,7 +107,7 @@ do_start() {
         already_running=1
     fi
     if is_alive "$MAYA_PID"; then
-        log_warn "Maya Next.js Server is already running on PID $MAYA_PID."
+        log_warn "Maya Vite Server is already running on PID $MAYA_PID."
         already_running=1
     fi
 
@@ -129,15 +129,14 @@ do_start() {
     disown "$NEW_CHITTA_PID" 2>/dev/null || true
     cd "$SCRIPT_DIR"
 
-    # 2. Start Next.js Frontend
-    log_info "Launching Maya Next.js Dev Server..."
+    # 2. Start Vite Frontend
+    log_info "Launching Maya Vite Dev Server..."
     if [ ! -d "$MAYA_DIR/node_modules" ]; then
         log_warn "Node modules not found in Maya. Running npm install..."
         (cd "$MAYA_DIR" && npm install)
     fi
     cd "$MAYA_DIR"
-    # Set PORT=3000 but Node will fallback to 3001/3002 if 3000 is occupied.
-    nohup ../node_modules/.bin/next dev > "$LOGS_DIR/maya.log" 2>&1 &
+    nohup ../node_modules/.bin/vite > "$LOGS_DIR/maya.log" 2>&1 &
     NEW_MAYA_PID=$!
     disown "$NEW_MAYA_PID" 2>/dev/null || true
     cd "$SCRIPT_DIR"
@@ -156,7 +155,7 @@ do_start() {
     fi
 
     if is_alive "$NEW_MAYA_PID"; then
-        log_success "Maya Next.js Server started (PID: $NEW_MAYA_PID)."
+        log_success "Maya Vite Server started (PID: $NEW_MAYA_PID)."
         maya_started=1
     else
         log_error "Maya failed to start. Check logs/maya.log for details."
@@ -192,7 +191,7 @@ do_stop() {
         kill -15 "$MAYA_PID" 2>/dev/null || true
         stopped=1
     else
-        log_info "Maya Next.js Server is not running."
+        log_info "Maya Vite Server is not running."
     fi
 
     # Wait up to 5 seconds for clean exit
@@ -283,7 +282,7 @@ do_status() {
     echo "MyKanban Development Environment Status"
     echo "========================================="
     printf "Chitta Go Server:  [%b] (PID: %s, Uptime: %s)\n" "$chitta_status" "${CHITTA_PID:-None}" "$chitta_uptime"
-    printf "Maya Next.js:   [%b] (PID: %s, Uptime: %s)\n" "$maya_status" "${MAYA_PID:-None}" "$maya_uptime"
+    printf "Maya Vite:      [%b] (PID: %s, Uptime: %s)\n" "$maya_status" "${MAYA_PID:-None}" "$maya_uptime"
     echo "========================================="
 
     if [ "$chitta_running" -eq 1 ] && [ "$maya_running" -eq 1 ]; then
