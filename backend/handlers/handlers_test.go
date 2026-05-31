@@ -353,6 +353,25 @@ func TestProject_Delete(t *testing.T) {
 	}
 }
 
+func TestProject_Delete_BlockedByBoards(t *testing.T) {
+	_, router, token := setupTestHandler(t)
+	p := createProject(t, router, token)
+	pid := p["id"].(string)
+
+	// Create board associated with project
+	createBoard(t, router, token, pid)
+
+	// Try deleting project (should fail with 400 Bad Request)
+	w := doRequest(router, "DELETE", "/api/v1/projects/"+pid, nil, token)
+	if w.Code != http.StatusBadRequest {
+		t.Errorf("expected 400 Bad Request, got %d", w.Code)
+	}
+	resp := parseResponse(w)
+	if resp.Error == "" {
+		t.Error("expected error message in response, got empty")
+	}
+}
+
 func TestProject_Delete_NotFound(t *testing.T) {
 	_, router, token := setupTestHandler(t)
 	w := doRequest(router, "DELETE", "/api/v1/projects/nonexistent", nil, token)
@@ -458,6 +477,26 @@ func TestBoard_GetUpdateDelete(t *testing.T) {
 	w = doRequest(router, "DELETE", "/api/v1/boards/"+bid, nil, token)
 	if w.Code != http.StatusOK {
 		t.Errorf("DELETE expected 200, got %d", w.Code)
+	}
+}
+
+func TestBoard_Delete_BlockedByTasks(t *testing.T) {
+	_, router, token := setupTestHandler(t)
+	p := createProject(t, router, token)
+	b := createBoard(t, router, token, p["id"].(string))
+	bid := b["id"].(string)
+
+	// Create task associated with board
+	createTask(t, router, token, bid)
+
+	// Try deleting board (should fail with 400 Bad Request)
+	w := doRequest(router, "DELETE", "/api/v1/boards/"+bid, nil, token)
+	if w.Code != http.StatusBadRequest {
+		t.Errorf("expected 400 Bad Request, got %d", w.Code)
+	}
+	resp := parseResponse(w)
+	if resp.Error == "" {
+		t.Error("expected error message in response, got empty")
 	}
 }
 
@@ -985,3 +1024,70 @@ func TestPatch_NotFound(t *testing.T) {
 		t.Errorf("expected 404, got %d", w.Code)
 	}
 }
+
+func TestTask_DueDate(t *testing.T) {
+	_, router, token := setupTestHandler(t)
+	p := createProject(t, router, token)
+	b := createBoard(t, router, token, p["id"].(string))
+	bid := b["id"].(string)
+
+	// 1. Create task with due_date
+	dueDate := "2026-06-27T21:33:06Z"
+	w := doRequest(router, "POST", "/api/v1/tasks", map[string]interface{}{
+		"board_id": bid, "swimlane": "To Do", "task_type": "Feature",
+		"title": "Task with due date", "priority": "Medium", "due_date": dueDate,
+	}, token)
+	if w.Code != http.StatusCreated {
+		t.Fatalf("expected 201, got %d %s", w.Code, w.Body.String())
+	}
+	resp := parseResponse(w)
+	taskData := resp.Data.(map[string]interface{})
+	tid := taskData["id"].(string)
+	if taskData["due_date"] != dueDate {
+		t.Errorf("expected due_date '%s', got '%v'", dueDate, taskData["due_date"])
+	}
+
+	// 2. Update task with a different due_date
+	newDueDate := "2026-07-27T21:33:06Z"
+	w = doRequest(router, "PUT", "/api/v1/tasks/"+tid, map[string]interface{}{
+		"board_id": bid, "swimlane": "To Do", "task_type": "Feature",
+		"title": "Task with due date", "priority": "Medium", "due_date": newDueDate,
+	}, token)
+	if w.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d %s", w.Code, w.Body.String())
+	}
+	resp = parseResponse(w)
+	taskData = resp.Data.(map[string]interface{})
+	if taskData["due_date"] != newDueDate {
+		t.Errorf("expected updated due_date '%s', got '%v'", newDueDate, taskData["due_date"])
+	}
+
+	// 3. Patch task to update due_date
+	patchDueDate := "2026-08-27T21:33:06Z"
+	w = doRequest(router, "PATCH", "/api/v1/tasks/"+tid, map[string]interface{}{
+		"due_date": patchDueDate,
+	}, token)
+	if w.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d %s", w.Code, w.Body.String())
+	}
+	resp = parseResponse(w)
+	taskData = resp.Data.(map[string]interface{})
+	if taskData["due_date"] != patchDueDate {
+		t.Errorf("expected patched due_date '%s', got '%v'", patchDueDate, taskData["due_date"])
+	}
+
+	// 4. Clear due_date via PUT
+	w = doRequest(router, "PUT", "/api/v1/tasks/"+tid, map[string]interface{}{
+		"board_id": bid, "swimlane": "To Do", "task_type": "Feature",
+		"title": "Task with due date", "priority": "Medium", "due_date": "",
+	}, token)
+	if w.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d %s", w.Code, w.Body.String())
+	}
+	resp = parseResponse(w)
+	taskData = resp.Data.(map[string]interface{})
+	if taskData["due_date"] != nil && taskData["due_date"] != "" {
+		t.Errorf("expected empty due_date, got '%v'", taskData["due_date"])
+	}
+}
+

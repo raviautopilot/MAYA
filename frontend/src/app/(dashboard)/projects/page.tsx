@@ -32,7 +32,7 @@ export default function ProjectsPage() {
 
   const openCreate = () => {
     setEditingProject(null);
-    reset({ name: '', description: '', type: 'personal' });
+    reset({ name: '', description: '', type: 'personal', start_date: '', end_date: '', estimated_hours: 0 });
     setModalOpen(true);
   };
 
@@ -41,17 +41,26 @@ export default function ProjectsPage() {
     setValue('name', p.name);
     setValue('description', p.description);
     setValue('type', p.type);
+    setValue('start_date', p.start_date ? p.start_date.split('T')[0] : '');
+    setValue('end_date', p.end_date ? p.end_date.split('T')[0] : '');
+    setValue('estimated_hours', p.estimated_hours ?? 0);
     setModalOpen(true);
   };
 
   const onSubmit = async (data: ProjectCreate) => {
     setSubmitting(true);
+    const payload = {
+      ...data,
+      start_date: data.start_date ? new Date(data.start_date).toISOString() : undefined,
+      end_date: data.end_date ? new Date(data.end_date).toISOString() : undefined,
+      estimated_hours: data.estimated_hours ? Number(data.estimated_hours) : 0,
+    };
     try {
       if (editingProject) {
-        await projectsApi.update(editingProject.id, data);
+        await projectsApi.update(editingProject.id, payload);
         addToast('Project updated', 'success');
       } else {
-        await projectsApi.create(data);
+        await projectsApi.create(payload);
         addToast('Project created', 'success');
       }
       setModalOpen(false);
@@ -68,7 +77,10 @@ export default function ProjectsPage() {
       addToast('Project deleted', 'success');
       setDeleteTarget(null);
       fetchProjects();
-    } catch { addToast('Failed to delete project', 'error'); }
+    } catch (err: unknown) {
+      const errMsg = (err as { response?: { data?: { error?: string } } }).response?.data?.error || 'Failed to delete project';
+      addToast(errMsg, 'error');
+    }
     finally { setSubmitting(false); }
   };
 
@@ -121,6 +133,15 @@ export default function ProjectsPage() {
             {...register('type', { required: 'Type is required' })}
             error={errors.type?.message}
           />
+          {editingProject && (
+            <>
+              <div className="grid grid-cols-2 gap-4">
+                <Input type="date" label="Start Date" e2e-test-id="project-start-date-input" {...register('start_date')} />
+                <Input type="date" label="End Date" e2e-test-id="project-end-date-input" {...register('end_date')} />
+              </div>
+              <Input type="number" step="0.5" label="Estimated Hours" e2e-test-id="project-estimated-hours-input" {...register('estimated_hours')} />
+            </>
+          )}
           <div className="flex justify-end gap-3 pt-2">
             <Button variant="secondary" type="button" onClick={() => setModalOpen(false)} e2e-test-id="project-cancel-btn">Cancel</Button>
             <Button type="submit" loading={submitting} e2e-test-id="project-submit-btn">{editingProject ? 'Update' : 'Create'}</Button>

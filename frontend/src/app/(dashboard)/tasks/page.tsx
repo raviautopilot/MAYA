@@ -18,6 +18,18 @@ const priorityColors: Record<string, string> = {
   Critical: 'bg-red-100 text-red-700',
 };
 
+const formatForDateTimeLocal = (dateStr?: string) => {
+  if (!dateStr) return '';
+  try {
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return '';
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  } catch {
+    return '';
+  }
+};
+
 export default function TasksPage() {
   return (
     <Suspense fallback={<div className="p-6"><CardSkeleton /></div>}>
@@ -91,7 +103,7 @@ function TasksContent() {
 
   const openCreate = () => {
     setEditingTask(null);
-    reset({ board_id: filterBoardId || '', swimlane: '', task_type: '', title: '', priority: 'Medium', description: '', reminders: [] });
+    reset({ board_id: filterBoardId || '', swimlane: '', task_type: '', title: '', priority: 'Medium', description: '', reminders: [], due_date: '' });
     setModalOpen(true);
   };
 
@@ -108,6 +120,7 @@ function TasksContent() {
     setValue('actual_time_minutes', t.actual_time_minutes || 0);
     setValue('cost', t.cost || 0);
     setValue('scheduler_id', t.scheduler_id || '');
+    setValue('due_date', formatForDateTimeLocal(t.due_date));
     setValue('reminders', t.reminders || []);
     setModalOpen(true);
   };
@@ -118,6 +131,16 @@ function TasksContent() {
       const payload = { ...data };
       if (!payload.assignee_id) delete payload.assignee_id;
       if (!payload.scheduler_id) delete payload.scheduler_id;
+      if (payload.due_date) {
+        const d = new Date(payload.due_date);
+        if (!isNaN(d.getTime())) {
+          payload.due_date = d.toISOString();
+        } else {
+          payload.due_date = '';
+        }
+      } else {
+        payload.due_date = '';
+      }
       if (editingTask) {
         await tasksApi.update(editingTask.id, payload);
         addToast('Task updated', 'success');
@@ -139,7 +162,10 @@ function TasksContent() {
       addToast('Task deleted', 'success');
       setDeleteTarget(null);
       fetchData();
-    } catch { addToast('Failed to delete task', 'error'); }
+    } catch (err: unknown) {
+      const errMsg = (err as { response?: { data?: { error?: string } } }).response?.data?.error || 'Failed to delete task';
+      addToast(errMsg, 'error');
+    }
     finally { setSubmitting(false); }
   };
 
@@ -208,7 +234,6 @@ function TasksContent() {
                         {task.description && <p className="text-xs text-gray-500 mt-1 line-clamp-2">{task.description}</p>}
                         <div className="flex items-center gap-2 mt-2 flex-wrap">
                           <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[task.priority] || ''}`}>{task.priority}</span>
-                          <span className="text-xs text-gray-400">{task.task_type}</span>
                           {task.reminders && task.reminders.length > 0 && <Bell size={12} className="text-yellow-500" />}
                         </div>
                         {task.due_date && (
@@ -246,7 +271,7 @@ function TasksContent() {
             <table className="min-w-full divide-y divide-gray-200" e2e-test-id="tasks-table">
               <thead className="bg-gray-50">
                 <tr>
-                  {['Title', 'Swimlane', 'Type', 'Priority', 'Due Date', 'Scheduler', 'Board', 'Actions'].map((h) => (
+                  {['Title', 'Swimlane', 'Priority', 'Due Date', 'Scheduler', 'Board', 'Actions'].map((h) => (
                     <th key={h} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{h}</th>
                   ))}
                 </tr>
@@ -256,7 +281,6 @@ function TasksContent() {
                   <tr key={task.id} className="hover:bg-gray-50" e2e-test-id={`task-row-${task.id}`}>
                     <td className="px-6 py-4 text-sm font-medium">{task.title}</td>
                     <td className="px-6 py-4 text-sm">{task.swimlane}</td>
-                    <td className="px-6 py-4 text-sm">{task.task_type}</td>
                     <td className="px-6 py-4"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${priorityColors[task.priority]}`}>{task.priority}</span></td>
                     <td className="px-6 py-4 text-sm text-gray-500">{task.due_date ? new Date(task.due_date).toLocaleString() : '—'}</td>
                     <td className="px-6 py-4 text-sm text-gray-500">{schedulers.find((s) => s.id === task.scheduler_id)?.name || '—'}</td>
@@ -324,6 +348,12 @@ function TasksContent() {
             e2e-test-id="task-scheduler-select"
             options={schedulers.map((s) => ({ value: s.id, label: s.name }))}
             {...register('scheduler_id')}
+          />
+          <Input
+            label="Due Date"
+            type="datetime-local"
+            e2e-test-id="task-due-date-input"
+            {...register('due_date')}
           />
 
           {/* Reminders */}
