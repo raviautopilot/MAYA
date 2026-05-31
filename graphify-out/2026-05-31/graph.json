@@ -4389,9 +4389,9 @@
         "language": "bash",
         "kind": "file"
       },
-      "id": "config_create_syschitta_sh",
       "community": 16,
-      "norm_label": "create-syschitta.sh"
+      "norm_label": "create-syschitta.sh",
+      "id": "config_create_syschitta_sh"
     },
     {
       "label": "create-sysChitta.sh script",
@@ -4402,9 +4402,9 @@
         "language": "bash",
         "kind": "bash_entrypoint"
       },
-      "id": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry",
       "community": 16,
-      "norm_label": "create-syschitta.sh script"
+      "norm_label": "create-syschitta.sh script",
+      "id": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
     },
     {
       "label": "log_info()",
@@ -4415,9 +4415,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "config_create_syschitta_log_info",
       "community": 16,
-      "norm_label": "log_info()"
+      "norm_label": "log_info()",
+      "id": "config_create_syschitta_log_info"
     },
     {
       "label": "log_success()",
@@ -4428,9 +4428,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "config_create_syschitta_log_success",
       "community": 16,
-      "norm_label": "log_success()"
+      "norm_label": "log_success()",
+      "id": "config_create_syschitta_log_success"
     },
     {
       "label": "log_warn()",
@@ -4441,9 +4441,9 @@
         "language": "bash",
         "kind": "bash_function"
       },
-      "id": "config_create_syschitta_log_warn",
       "community": 16,
-      "norm_label": "log_warn()"
+      "norm_label": "log_warn()",
+      "id": "config_create_syschitta_log_warn"
     }
   ],
   "links": [
@@ -13322,7 +13322,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "deploy.sh",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "deploy_sh",
@@ -13332,7 +13332,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "deploy.sh",
-      "source_location": "L24",
+      "source_location": "L26",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "deploy_sh",
@@ -13342,7 +13342,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "deploy.sh",
-      "source_location": "L29",
+      "source_location": "L31",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -13353,7 +13353,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "deploy.sh",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "context": "call",
       "confidence_score": 1.0,
@@ -13428,9 +13428,9 @@
       "source_file": "config/create-sysChitta.sh",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "config_create_syschitta_sh",
-      "target": "config_create_syschitta_log_info",
-      "confidence_score": 1.0
+      "target": "config_create_syschitta_log_info"
     },
     {
       "relation": "defines",
@@ -13438,9 +13438,9 @@
       "source_file": "config/create-sysChitta.sh",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "config_create_syschitta_sh",
-      "target": "config_create_syschitta_log_success",
-      "confidence_score": 1.0
+      "target": "config_create_syschitta_log_success"
     },
     {
       "relation": "defines",
@@ -13448,9 +13448,9 @@
       "source_file": "config/create-sysChitta.sh",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "config_create_syschitta_sh",
-      "target": "config_create_syschitta_log_warn",
-      "confidence_score": 1.0
+      "target": "config_create_syschitta_log_warn"
     },
     {
       "relation": "contains",
@@ -13458,9 +13458,9 @@
       "source_file": "config/create-sysChitta.sh",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "config_create_syschitta_sh",
-      "target": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry",
-      "confidence_score": 1.0
+      "target": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry"
     },
     {
       "relation": "calls",
@@ -13469,9 +13469,9 @@
       "source_location": "L34",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry",
-      "target": "config_create_syschitta_log_info",
-      "confidence_score": 1.0
+      "target": "config_create_syschitta_log_info"
     },
     {
       "relation": "calls",
@@ -13480,9 +13480,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry",
-      "target": "config_create_syschitta_log_success",
-      "confidence_score": 1.0
+      "target": "config_create_syschitta_log_success"
     },
     {
       "relation": "calls",
@@ -13491,11 +13491,11 @@
       "source_location": "L32",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "home_ubuntu_code_github_raviautopilot_mycan_config_create_syschitta_sh__entry",
-      "target": "config_create_syschitta_log_warn",
-      "confidence_score": 1.0
+      "target": "config_create_syschitta_log_warn"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8023e0ff3b51c699ea6103c5e8b9469f5eba757e"
+  "built_at_commit": "e3a58a54ae075a1d34d50f1ddd3b21f613583869"
 }
